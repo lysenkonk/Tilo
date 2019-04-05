@@ -1,0 +1,187 @@
+﻿html{
+    line-height: 1.15;
+}
+body {
+    display: block;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+.main{
+    height: 100%;
+}
+.main-page-img {
+    background-image: url(../files/main/img/tiloMainPage.jpg);
+}
+
+.main-page-img {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.main-page-img {
+    background-image: url(../files/main/img/tiloMainPage.jpg);
+}
+@media all and (max-width: 640px) {
+    .main-page-img {
+        background-image: url(../files/main/img/tiloMainPage2.jpg);
+    }
+}
+@media all and (max-width: 640px) {
+    .main-page-img {
+        background-position: left
+    }
+
+    .main-page-img :nth-child(2) {
+        background-position: left
+    }
+
+    .main-page-img :nth-child(3) {
+        background-position: right
+    }
+
+    .main-page-img :nth-child(4) {
+        background-position: right
+    }
+
+    .main-page-img :nth-child(5) {
+        background-position: left
+    }
+
+    .main-page-img :nth-child(6) {
+        background-position: left
+    }
+
+    .main-page-img :nth-child(7) {
+        background-position: right
+    }
+
+    .main-page-img :nth-child(8) {
+        background-position: right
+    }
+
+    .main-page-img :nth-child(9) {
+        background-position: left
+    }
+}
+
+/*.isActive {
+    display: none;
+}*/
+
+head{
+    display: none;
+}
+header{
+    display: block;
+}
+.header > div {
+    color: #fff;
+    position: absolute;
+    z-index: 100
+}
+
+.menu_link {
+    color: #fff;
+    font-family: 'icons',sans-serif;
+    text-decoration: none;
+    font-size: 32px
+}
+
+    .menu_link:hover {
+        color: #fff
+    }
+    a{
+        background-color:  transparent;
+    }
+.menu {
+    top: 20px;
+    left: 20px
+}
+
+.logo {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+@media all and (max-width:640px) {
+    .logo {
+        top: 15px
+    }
+}
+
+.header__logo {
+    max-width: 200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0;
+    z-index: 300
+}
+
+    .header__logo:after {
+        height: 2px;
+        background: #fff;
+        position: absolute;
+        bottom: 0;
+        left: 10%;
+        right: 10%
+    }
+
+    .header__logo img {
+        width: 100%
+    }
+
+.links {
+    /*top: 20px;
+    right: 20px;    
+    transition: transform .3s ease;*/
+}
+
+    .links:hover {
+        transform: scale(1.2)
+    }
+
+.links {
+    float: right;
+    font-family: 'icons',sans-serif
+}
+
+/*@media all and (max-width:640px) {
+    .links {
+        position: absolute;
+        right: 0;
+        bottom: 40px
+    }
+}*/
+.header_links {
+    /*width : 3;
+    height: 3;*/
+    display: block;
+    float: right;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 30px;
+    padding: 10px;
+    transition: transform .3s ease;
+}
+
+@media all and (max-width:640px) {
+    .header_links {
+        float: none;
+        margin-left: 0;
+        margin-bottom: 10px
+    }
+}
+
+.header_links.custom {
+    position: absolute;
+    top: -60px;
+    right: 0
+}
+
+.header_links:hover {
+    color: #fff;
+    transform: scale(1.2)
+}
