@@ -260,7 +260,7 @@
             opacity: .75;
             color: #000
         }
-/*! normalize-scss | MIT/GPLv2 License | bit.ly/normalize-scss */
+! normalize-scss | MIT/GPLv2 License | bit.ly/normalize-scss 
 html {
     line-height: 1.15;
     -ms-text-size-adjust: 100%;
@@ -914,4 +914,4 @@ main {
         padding: 8px 22px;
         font-size: 18px;
         font-weight: 300
-    }
+    

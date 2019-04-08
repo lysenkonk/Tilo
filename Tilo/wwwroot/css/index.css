@@ -5,7 +5,7 @@ body {
     display: block;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
+    overflow: hidden;
 }
 .main{
     height: 100%;
@@ -82,7 +82,25 @@ header{
     z-index: 100
 }
 
-.menu_link {
+.header__menu {
+    top: 20px;
+    left: 20px
+}
+.header__menu {
+}
+
+.header__link {
+    color: #fff;
+    font-family: 'icons',sans-serif;
+    text-decoration: none;
+    font-size: 32px
+}
+
+    .header__link:hover {
+        color: #fff
+    }
+
+/*.menu_link {
     color: #fff;
     font-family: 'icons',sans-serif;
     text-decoration: none;
@@ -91,7 +109,7 @@ header{
 
     .menu_link:hover {
         color: #fff
-    }
+    }*/
     a{
         background-color:  transparent;
     }
@@ -100,18 +118,17 @@ header{
     left: 20px
 }
 
-.logo {
+.header__logo-wrap {
     top: 20px;
     left: 50%;
     transform: translateX(-50%)
 }
 
-@media all and (max-width:640px) {
-    .logo {
+/*@media all and (max-width:640px) {
+    .header__logo-wrap {
         top: 15px
     }
-}
-
+}*/
 .header__logo {
     max-width: 200px;
     margin: 0 auto;
@@ -133,20 +150,10 @@ header{
         width: 100%
     }
 
-.links {
-    /*top: 20px;
-    right: 20px;    
-    transition: transform .3s ease;*/
-}
-
-    .links:hover {
-        transform: scale(1.2)
-    }
-
-.links {
-    float: right;
-    font-family: 'icons',sans-serif
-}
+/*.links {
+    top: 20px;
+    right: 20px;
+}*/
 
 /*@media all and (max-width:640px) {
     .links {
@@ -155,14 +162,12 @@ header{
         bottom: 40px
     }
 }*/
-.header_links {
-    /*width : 3;
-    height: 3;*/
+/*.header_links {
     display: block;
     float: right;
     color: #fff;
     text-decoration: none;
-    margin-left: 30px;
+    margin-left: 15px;
     padding: 10px;
     transition: transform .3s ease;
 }
@@ -184,4 +189,28 @@ header{
 .header_links:hover {
     color: #fff;
     transform: scale(1.2)
+}*/
+.header__card {
+    top: 20px;
+    right: 20px;
 }
+
+
+.header__link {
+    display: block;
+    float: right;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 0px;
+    transition: transform .3s ease;
+}
+.header__link.custom {
+    position: absolute;
+    top: -60px;
+    right: 0
+}
+    .header__link:hover {
+        color: #fff;
+        transform: scale(1.2)
+    }
