@@ -15,11 +15,9 @@
 <body>
     <header class="header">
         <div class="header__menu">
-            <a href="#" id="menu-open-button">
-                <img src="~/files/main/img/menu_black.png" alt="MENU" width=32 height=32 />
-            </a>
             <div id="menuFirstPage">
-                Mеню
+                <img src="~/files/main/img/menu_black.png" id ="menu-open-button" alt="MENU" width=32 height=32 />
+                <p id="btnMenu">Mеню</p>
             </div>
         </div>
         <div class="phones" id="phone">
@@ -65,7 +63,7 @@
 
         var menuIcon = document.getElementById("menu-open-button");
         menuIcon.addEventListener("click", openNav);
-        var menuFirstPage = document.getElementById("menuFirstPage");
+        var menuFirstPage = document.getElementById("btnMenu");
         menuFirstPage.addEventListener("click", openNav);
         var closeBtn = document.createElement("a");
         closeBtn.innerHTML = "×";
@@ -77,7 +75,7 @@
             
             menuIcon.style.display = "none";
             closeBtn.style.display = "inline";
-            var menuFirstPage = document.getElementById("menuFirstPage");
+            var menuFirstPage = document.getElementById("btnMenu");
             var parentDiv = menuFirstPage.parentNode;
             parentDiv.insertBefore(closeBtn, menuFirstPage);
             

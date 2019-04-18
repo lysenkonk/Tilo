@@ -231,18 +231,16 @@ header{
 }
 }
 
-#menuFirstPage {
+#btnMenu {
     display: block;
     float: right;
-    padding: 7px;
+    padding: 10px;
     margin-top: 2px;
-   
     font-weight: bold;
 }
 #menu-open-button {
     padding: 5px;
 }
-
 /*----------------------------------------------------------------------------------------*/
 .sidepanel  {
   width: 0;
