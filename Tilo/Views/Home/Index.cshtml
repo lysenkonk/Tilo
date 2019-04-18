@@ -8,21 +8,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/index.css" />
-    <title>Index</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>Tilo showroom</title>
 </head>
 <body>
     <header class="header">
         <div class="header__menu">
-<a href="#" id="menu-open-button" class="header__link">
-    <img src="~/files/main/img/menu_black.png" alt="MENU" width=32 height=32 />
-    <div id="menuFirstPage">
-        Mеню
-    </div>
-   
-</a>
-
+            <a href="#" id="menu-open-button">
+                <img src="~/files/main/img/menu_black.png" alt="MENU" width=32 height=32 />
+            </a>
+            <div id="menuFirstPage">
+                Mеню
+            </div>
         </div>
-        <div class="phones">
+        <div class="phones" id="phone">
             <div>
                 <pre>
                     +38 095 216 74 24
@@ -32,11 +32,10 @@
         </div>
         <div class="header__logo-wrap">
             <h1 class="header__logo">
-                <img src="~/files/main/logo/logoIl.png" alt="LOGO"  />
+                <img src="~/files/main/logo/logoIl.png" alt="LOGO" />
             </h1>
         </div>
         <div class="header__card">
-
             <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
                 <img src="~/files/main/img/instagram.png" width=32 height=36 />
             </a>
@@ -46,14 +45,52 @@
             <a href="https://www.facebook.com/TILO.showroom/" class="header__link">
                 <img src="~/files/main/img/facebook.png" width=32 height=34 />
             </a>
-
         </div>
     </header>
     <main>
         <div class="main">
-            <div class="main-page-img"></div>
+            <div class="main-page-img">
+                <div id="mySidepanel" class="sidepanel">
+                    @*<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>*@
+                    <a href="#">МАГАЗИН</a>
+                    <a href="#">БЛОГ</a>
+                    <a href="#">БУДУАРНАЯ СЪЁМКА</a>
+                    <a href="#">ПОПУЛЯРНОЕ ВИДЕО</a>
+                    <a href="#">ВЕЧЕРИНКИ</a>
+                </div>
+            </div>
         </div>
     </main>
+    <script>
+
+        var menuIcon = document.getElementById("menu-open-button");
+        menuIcon.addEventListener("click", openNav);
+        var menuFirstPage = document.getElementById("menuFirstPage");
+        menuFirstPage.addEventListener("click", openNav);
+        var closeBtn = document.createElement("a");
+        closeBtn.innerHTML = "×";
+        closeBtn.setAttribute("id", "closebtn");
+        closeBtn.addEventListener("click", closeNav, false);
+        
+        function openNav() {
+            document.getElementById("mySidepanel").style.width = "250px";        
+            
+            menuIcon.style.display = "none";
+            closeBtn.style.display = "inline";
+            var menuFirstPage = document.getElementById("menuFirstPage");
+            var parentDiv = menuFirstPage.parentNode;
+            parentDiv.insertBefore(closeBtn, menuFirstPage);
+            
+        }
+
+        function closeNav() {
+            closeBtn.style.display = "none";
+            document.getElementById("mySidepanel").style.width = "0";
+            var menuIcon = document.getElementById("menu-open-button");
+            menuIcon.style.display = "inline";
+        }
+    </script>
+
 </body>
 </html>
  

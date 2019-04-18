@@ -1,57 +1,50 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tilo</title>
-
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-              crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
-    </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <title></title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Tilo</a>
+    <header class="header">
+        <div class="header__menu">
+            <a href="#" id="menu-open-button" class="header__link" onclick="openNav()">
+                <img src="~/files/main/img/menu_black.png" alt="MENU" width=32 height=32 />
+                <div id="menuFirstPage">
+                    Mеню
+                </div>
+            </a>
+        </div>
+        <div class="phones">
+            <div>
+                <pre>
+                    +38 095 216 74 24
+                    г.Киев (ул.Антоновича 12)
+                </pre>
             </div>
-        </nav>
+        </div>
+        <div class="header__logo-wrap">
+            <h1 class="header__logo">
+                <img src="~/files/main/logo/logoIl.png" alt="LOGO" />
+            </h1>
+        </div>
+        <div class="header__card">
+            <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
+                <img src="~/files/main/img/instagram.png" width=32 height=36 />
+            </a>
+            <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
+                <img src="~/files/main/img/youtube.png" width=33 height=36 />
+            </a>
+            <a href="https://www.facebook.com/TILO.showroom/" class="header__link">
+                <img src="~/files/main/img/facebook.png" width=32 height=34 />
+            </a>
+        </div>
     </header>
-
-    <partial name="_CookieConsentPartial" />
     <main role="main" class="main">
         @RenderBody()
     </main>
 
 
     <footer class="footer"></footer>
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>*@
-    </environment>
-    <environment exclude="Development">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
-        </script>
-    </environment>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>

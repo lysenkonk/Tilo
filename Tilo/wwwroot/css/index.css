@@ -10,9 +10,6 @@ body {
 .main{
     height: 100%;
 }
-.main-page-img {
-    background-image: url(../files/main/img/tiloMainPage.jpg);
-}
 
 .main-page-img {
     height: 100vh;
@@ -98,7 +95,6 @@ header{
     text-decoration: none;
     font-size: 18px;
     margin-left: 20px;
-    padding: 0px;
     transition: transform .3s ease;
 }
 
@@ -238,8 +234,45 @@ header{
 #menuFirstPage {
     display: block;
     float: right;
-    padding: 5px;
+    padding: 7px;
     margin-top: 2px;
    
     font-weight: bold;
+}
+#menu-open-button {
+    padding: 5px;
+}
+
+/*----------------------------------------------------------------------------------------*/
+.sidepanel  {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  height: auto;
+  top: 30%;
+  left: 40%;
+  background-color: none;
+  overflow: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+  color: black;
+}
+
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 22px;
+  text-align: center;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+#closebtn {
+    font-size: 36px;
+    cursor: pointer;
 }
