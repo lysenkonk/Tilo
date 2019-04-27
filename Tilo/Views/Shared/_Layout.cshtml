@@ -1,50 +1,77 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="~/css/index.css" />
-    <title></title>
+    <link rel="stylesheet" href="~/css/layout.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <title>Tilo showroom</title>
 </head>
 <body>
     <header class="header">
-        <div class="header__menu">
-            <a href="#" id="menu-open-button" class="header__link" onclick="openNav()">
-                <img src="~/files/main/img/menu_black.png" alt="MENU" width=32 height=32 />
-                <div id="menuFirstPage">
-                    Mеню
+        <div class="top-line"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="hamburger-menu">
+                        <a class="hamburger" data-ajax="false">
+                            <img src="~/files/main/img/menu_black.png" id="menu-open-button" alt="MENU" width=32 height=32 />
+                            Mеню
+                            </a>
+                        </div>
+                   
+                    <div class="phones">
+                        <div class="phone-top">
+                            <a class="phone active" data-ajax="false">
+                                +38 095 216 74 24
+                               
+                            </a>
+                            <pre> г.Киев (ул.Антоновича 12)</pre>
+                        </div>
+                      </div>
+                    <div class="cities">
+                        <div class="cities-top">
+                          
+                          
+                        </div>
+                        <div class="city-selector">
+                            </div>
+                    </div>       
+                    <div class="logo">
+                       
+                            <img src="~/files/main/logo/logoIl.png" alt="LOGO">
+                       
+                    </div>
+                    @*<div class="header__card">
+                        <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
+                            <img src="~/files/main/img/instagram.png" width=32 height=36 />
+                        </a>
+                        <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
+                            <img src="~/files/main/img/youtube.png" width=33 height=36 />
+                        </a>
+                        <a href="https://www.facebook.com/TILO.showroom/" class="header__link">
+                            <img src="~/files/main/img/facebook.png" width=32 height=34 />
+                        </a>
+                    </div>*@
                 </div>
-            </a>
-        </div>
-        <div class="phones">
-            <div>
-                <pre>
-                    +38 095 216 74 24
-                    г.Киев (ул.Антоновича 12)
-                </pre>
             </div>
-        </div>
-        <div class="header__logo-wrap">
-            <h1 class="header__logo">
-                <img src="~/files/main/logo/logoIl.png" alt="LOGO" />
-            </h1>
-        </div>
-        <div class="header__card">
-            <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
-                <img src="~/files/main/img/instagram.png" width=32 height=36 />
-            </a>
-            <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
-                <img src="~/files/main/img/youtube.png" width=33 height=36 />
-            </a>
-            <a href="https://www.facebook.com/TILO.showroom/" class="header__link">
-                <img src="~/files/main/img/facebook.png" width=32 height=34 />
-            </a>
+            <div class="row"></div>
         </div>
     </header>
-    <main role="main" class="main">
-        @RenderBody()
+    <main>
+        <div class="main">
+           @RenderBody()
+        </div>
     </main>
+    <script>
 
+     
+    </script>
 
-    <footer class="footer"></footer>
 </body>
 </html>
