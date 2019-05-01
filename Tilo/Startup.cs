@@ -57,7 +57,14 @@ namespace Tilo
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "Shop",
+                    template: "Shop",
+                    defaults: new {controller = "Shop", action = "Index" }
+                    );
             });
+
         }
     }
 }

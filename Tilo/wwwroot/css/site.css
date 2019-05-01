@@ -67,12 +67,6 @@ body {
     line-height: 60px; /* Vertically center the text there */
 }
 
-.main-page-img {
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-image: url(../files/main/img/tiloMainPage.jpg);
-}
 
 .main {
     height: 100%;
