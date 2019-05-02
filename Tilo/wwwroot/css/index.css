@@ -4,8 +4,11 @@
 body {
     display: block;
     height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto",sans-serif;
     overflow: hidden;
+}
+html, body{
+    min-width: 320px;
 }
 .main{
     height: 100%;
@@ -18,7 +21,7 @@ body {
 }
 
 .main-page-img {
-    background-image: url(../files/main/img/tiloMainPage.jpg);
+    background-image: url(../files/main/img/first.jpeg);
 }
 @media all and (max-width: 640px) {
     .main-page-img {
@@ -27,7 +30,7 @@ body {
 }
 @media all and (max-width: 640px) {
     .main-page-img {
-        background-position: left
+        background-position: left;
     }
 
     .main-page-img :nth-child(2) {
@@ -80,7 +83,7 @@ header{
 }
 
 .header__menu {
-    top: 80px;
+    top: 60px;
     left: 20px
 }
 
@@ -188,8 +191,8 @@ header{
     color: #fff;
     transform: scale(1.2)
 }*/
-.header__card {
-    top: 80px;
+.header__links {
+    top: 50px;
     right: 20px;
 }
 
@@ -200,10 +203,9 @@ header{
     top: -60px;
     right: 0
 }
-    /*.header__link:hover {
-        
+    .header__link:hover {
         transform: scale(1.1)
-    }*/
+    }
 .phones {
     display: none;
     position: relative;
@@ -219,7 +221,7 @@ header{
     z-index: 13;
     perspective: 200px;
     transform-style: preserve-3d;
-    margin-top: 89px;
+    margin-top: 50px;
 }
 
 
@@ -227,7 +229,7 @@ header{
 .phones {
     display: block;
     margin-left: 5%;
-    margin-top: 60px;
+    /*margin-top: 60px;*/
 }
 }
 
