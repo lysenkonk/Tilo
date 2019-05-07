@@ -235,7 +235,7 @@ header .phones {
     header .phones {
         display: block;
         /*margin-left: 58px;*/
-        margin-top: 65px;
+        margin-top: 55px;
     }
 }
 
@@ -328,7 +328,7 @@ header .hamburger-menu {
 @media (min-width: 768px) {
     header .hamburger-menu {
         float: left;
-        margin-top: 70px;
+        margin-top: 60px;
     }
 }
 
@@ -359,7 +359,7 @@ header .hamburger-menu:hover .hamburger {
 /*------------------------------------------------------------*/
 header .social {
     display: none;
-    margin: 54px 0px 0px 0px;
+    margin: 44px 0px 0px 0px;
     width: 60px;
     padding: 0px;
 }
@@ -386,13 +386,13 @@ header .personal-data {
 @media (min-width: 768px) {
     header .personal-data {
         display: block;
-        margin: 68px 0px 0px 150px;
+        margin: 58px 0px 0px 150px;
     }
 }
 
 @media (min-width: 1280px) {
     header .personal-data {
-        margin-top: 68px;
+        margin-top: 58px;
     }
 }
 
