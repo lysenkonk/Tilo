@@ -2,40 +2,69 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+
+
     <link rel="stylesheet" href="~/css/layout.css" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/reset.css" />
     <title></title>
 </head>
 <body>
-    <header class="header">
-        <div class="header__menu">
-            <div id="menuFirstPage">
-                <img src="~/files/main/img/menu_black.png" id="menu-open-button" alt="MENU" width=32 height=32 />
-                <p id="btnMenu">MЕНЮ</p>
+
+    <header class="clearfix relative">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-2">
+                    <div class="hamburger-menu">
+                        <img src="~/files/main/img/menu_black.png" id="menu-open-button" alt="MENU" width=38 height=38 />
+                        <span id="btnMenu">MЕНЮ</span>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="phones" style="z-index: 101">
+                        <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
+                            <img src="~/files/main/img/instagram.png" width=26 height=30 />
+                        </a>
+                        <a href="https://www.instagram.com/tilo_showroom_/" class="header__link" id="logoYouTb">
+                            <img src="~/files/main/img/youtube.png" width=29 height=34 />
+                        </a>
+                        <a href="https://www.facebook.com/TILO.showroom/" class="header__link">
+                            <img src="~/files/main/img/facebook.png" width=26 height=28 />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-4  float-right">
+                    <div class="logo">
+                        <h1 class="header__logo">
+                            <img src="~/files/main/logo/tilo_n.png" alt="LOGO" />
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-xs-2  float-left">
+                    <div class="social">
+                        <span id="phone">
+                            +38 095 216 74 24
+                            г.Киев (ул.Антоновича 12)
+                        </span>
+                    </div>
+                    </div>
+                <div class="col-xs-2 float-left">
+                    <div class="personal-data ">
+                        <a class="float-left mallki-link color-black register-link">
+                            <span id="btnRegistration">
+                                Регистрация
+                            </span>
+                        </a>
+                        <a class="pull-right mallki-link color-black login-link">
+                            <span id="btnLogIn">
+                                Вход
+                            </span>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="phones">
-            <div>
-                <pre>
-                    +38 095 216 74 24
-                    г.Киев (ул.Антоновича 12)
-                </pre>
-            </div>
-        </div>
-        <div class="header__logo-wrap">
-            <h1 class="header__logo">
-                <img src="~/files/main/logo/tilo_n.png" alt="LOGO" />
-            </h1>
-        </div>
-        <div class="header__links">
-            <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
-                <img src="~/files/main/img/instagram.png" width=26 height=30 />
-            </a>
-            <a href="https://www.instagram.com/tilo_showroom_/" class="header__link" id="logoYouTb">
-                <img   src="~/files/main/img/youtube.png" width=29 height=34  />
-            </a>
-            <a href="https://www.facebook.com/TILO.showroom/" class="header__link">
-                <img src="~/files/main/img/facebook.png" width=26 height=28 />
-            </a>
         </div>
     </header>
     <main role="main" class="main">
@@ -43,6 +72,5 @@
     </main>
 
 
-    <footer class="footer"></footer>
 </body>
 </html>

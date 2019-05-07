@@ -1,0 +1,51 @@
+﻿.container {
+    width: 310px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 760px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 760px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 760px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 760px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        width: 1190px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container {
+        width: 1480px;
+    }
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+    text-decoration: none !important;
+    outline: none !important;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}

@@ -84,7 +84,7 @@ header{
 
 .header__menu {
     top: 60px;
-    left: 20px
+    left: 40px
 }
 
     .header__menu:hover {
@@ -99,6 +99,21 @@ header{
     font-size: 18px;
     margin-left: 20px;
     transition: transform .3s ease;
+}
+
+.header__link {
+    display: block;
+    float: right;
+    color: black;
+    font-family: 'icons',sans-serif;
+    text-decoration: none;
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: 10px;
+    transition: transform .3s ease;
+}
+#logoYouTb {
+    margin-top: 8px;
 }
 
 /*.menu_link {
@@ -192,8 +207,8 @@ header{
     transform: scale(1.2)
 }*/
 .header__links {
-    top: 50px;
-    right: 20px;
+    top: 60px;
+    right: 40px;
 }
 
 
@@ -221,7 +236,7 @@ header{
     z-index: 13;
     perspective: 200px;
     transform-style: preserve-3d;
-    margin-top: 50px;
+    margin-top: 42px;
 }
 
 
