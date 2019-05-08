@@ -5098,8 +5098,8 @@ header .mask {
 @media (min-width: 768px) {
     .new-products .title {
         background-color: #ffffff;
-        top: -50px;
-        padding-top: 35px;
+        top: -5px;
+        padding-top: 5px;
         margin-left: 379px;
     }
 }
@@ -5113,8 +5113,8 @@ header .mask {
 
 @media (min-width: 1600px) {
     .new-products .title {
-        margin-left: 435px;
-        padding-top: 40px;
+        margin-left: 490px;
+        /*padding-top: 40px;*/
         letter-spacing: 0.8px;
         min-height: 1420px;
     }
