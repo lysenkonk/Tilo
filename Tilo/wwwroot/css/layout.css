@@ -54,38 +54,10 @@ header {
     transition: transform .3s ease;
 }
 
-a {
+/*a {
     background-color: transparent;
-}
-
-/*.header__logo {
-    max-width: 200px;
-    margin: 0 auto;
-    position: relative;
-    padding: 0;
-    z-index: 300
-}
-
-    .header__logo:after {
-        height: 2px;
-        background: #fff;
-        position: absolute;
-        bottom: 0;
-        left: 10%;
-        right: 10%
-    }
-
-    .header__logo img {
-        width: 100%;
-        min-width: 100px
-    }
-
-@media all and (max-width: 768px) {
-    .header__logo img {
-        min-width: 100px;
-        margin-left: 50px;
-    }
 }*/
+
 
 #logoYouTb {
     margin-top: 8px;
@@ -172,10 +144,10 @@ header .logo {
 
 @media (min-width: 768px) {
     header .logo {
-        margin-top: 8px;
+        /*margin-top: 8px;
         max-width: 200px;
         margin-left: 100px;
-        margin-right: 120px;
+        margin-right: 120px;*/
     }
 
         header .logo img {
@@ -192,26 +164,26 @@ header .logo {
         margin-right: 60px;
         max-width: 200px;
         /*max-height: 125px;*/
-        margin-left: 120px;
+        /*margin-left: 120px;*/
     }
 
         header .logo img {
             max-width: 200px;
             /*max-height: 125px;*/
-            width: 100%;
+            /*width: 100%;*/
             /*height: 125px;*/
         }
 }
 
 @media (min-width: 1600px) {
     header .logo {
-        margin-left: 145px;
+        /*margin-left: 145px;*/
     }
 }
 
 @media (min-width: 2000px) {
     header .logo {
-        margin-left: 145px;
+        /*margin-left: 145px;*/
     }
 }
 /*******************************************************************/
@@ -362,7 +334,12 @@ header .social {
     margin: 44px 0px 0px 0px;
     width: 60px;
     padding: 0px;
+    font-size: 1rem;
+    color: #333;
+    font-family: "Roboto",sans-serif;
 }
+
+
 
 @media (min-width: 768px) {
     header .social {
@@ -381,12 +358,13 @@ header .social {
 header .personal-data {
     display: none;
     width: 60px;
+
 }
 
 @media (min-width: 768px) {
     header .personal-data {
         display: block;
-        margin: 58px 0px 0px 150px;
+        margin: 58px 0px 0px 80px;
     }
 }
 
@@ -481,4 +459,151 @@ span.mallki-link {
     position: relative;
     overflow: hidden;
     transition-delay: .3s !important;
+}
+/*******************************************************************************The second row of layout*/
+header .menu {
+    display: none;
+    position: relative;
+    min-height: 21px;
+    z-index: 12;
+}
+
+@media (min-width: 1280px) {
+    header .menu {
+        display: block;
+    }
+}
+
+@keyframes show-menu {
+    0% {
+        opacity: 0
+    }
+
+    40% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+header .menu .ul {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    opacity: 0;
+    animation: show-menu 0.7s ease 0s 1 forwards;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: true;
+    width: 100%;
+}
+
+    header .menu .ul .col-xs-5 {
+        border-top: 1px solid #f3f3f3;
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+    }
+
+header .menu .ulItem {
+    position: relative;
+    display: block;
+    float: left;
+}
+
+    header .menu .ulItem a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: "Roboto",sans-serif;
+        font-size: 1.2rem;
+        color: black;
+        height: 51px;
+        line-height: 51px;
+        text-align: center;
+        font-weight: 600;
+        padding: 0px 15px;
+        /*border-top: 1px solid #f3f3f3;*/
+    }
+        header .menu .ulItem a:hover {
+            background-color: #222;
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+        /*header .menu .ulItem a:hover,*/
+        header .menu .ulItem a:active {
+            color: #6b1d23;
+            text-decoration: underline;
+        }
+
+        header .menu .ulItem a:focus {
+            /*color: #6b1d23;*/
+            background-color: #222;
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+
+        /*header .menu .ulItem a span:before {
+            background: #75ded5 none repeat scroll 0 0;
+            top: -2px;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            transform: translateY(0.5px) translateZ(0px);
+            transition: all 0.3s ease 0s;
+            width: 0;
+            z-index: 1;
+        }*/
+        /*header .menu .ulItem.active a span:before {
+        display: none;
+    }
+
+    header .menu .ulItem a:hover span:before,
+    header .menu .ulItem a:focus span:before {
+        left: 0;
+        width: 100%;
+    }*/
+        /*header .menu .ulItem a span {
+            position: relative;
+            display: block;
+            height: 100%;
+            transform-origin: 0 0;
+            letter-spacing: 0.7px;
+        }*/
+
+        /*header .menu .ulItem a span:after {
+            text-decoration: dashed;
+        }
+
+    header .menu .ulItem.active a span:after {
+        left: 0;
+        width: 100%;
+    }*/
+
+
+header .menu .ulItem.empty-space {
+    border-top: 0 solid #f3f3f3;
+    display: block;
+    height: 51px;
+}
+
+@media (min-width: 1280px) {
+    header .menu .ulItem.empty-space {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1600px) {
+    header .menu .ulItem.empty-space {
+        width: 100%;
+    }
 }
