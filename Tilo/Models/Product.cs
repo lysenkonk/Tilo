@@ -22,7 +22,7 @@ namespace Tilo.Models
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Please specify a category")]
-        public string Category { get; set; }
+        public Category Category { get; set; }
 
         public List<FileModel> Images { get; set; } = new List<FileModel>();
     }
