@@ -12,5 +12,9 @@ namespace Tilo.Models
 
         [Required(ErrorMessage = "Please enter a category name")]
         public string Name { get; set; }
+        public Category(string name)
+        {
+            Name = name;
+        }
     }
 }
