@@ -494,8 +494,8 @@ header .menu .ul {
     position: absolute;
     top: -10px;
     left: 0;
-    opacity: 0;
-    animation: show-menu 0.7s ease 0s 1 forwards;
+    opacity: 1;
+    /*animation: show-menu 0.7s ease 0s 1 forwards;*/
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     will-change: true;
@@ -732,9 +732,15 @@ img {
 /*-----------------------------------------------------------------Product new--------------------------------------*/
 
 .parent-height {
+    margin-bottom: 60px;
     position: relative;
     height: 100%;
 }
+
+.border-bottom {
+    border-bottom: 1px solid #f3f3f3;
+}
+
 
 .main-slider .mask,
 header .mask {
@@ -777,6 +783,7 @@ header .mask {
     position: relative;
     height: 810px;
     z-index: 5;
+    margin-top: 70px;
 }
 
 @media (min-width: 768px) {
@@ -876,16 +883,17 @@ header .mask {
     position: relative;
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
 }
 
 .new-products .products {
-    width: 1000000px;
+    /*width: 1000000px;*/
     margin-top: 90px;
     position: relative;
     z-index: 6;
 }
 
+/*********************************************/
 @media (min-width: 768px) {
     .new-products .products {
         margin-top: 40px;
@@ -899,8 +907,7 @@ header .mask {
     float: left;
     overflow: hidden;
     z-index: 6;
-    height: 520px;/*change*/
-    width: 280px;
+    /*height: 450px;/*change*/ */ width: 280px;
 }
 
     .new-products .products .product.accessory,
@@ -921,7 +928,7 @@ header .mask {
 
     .catalog .products .product {
         width: 243px;
-        height: 520px; /*change*/
+        /*height: 450px; /*change*/
     }
 
         .new-products .products .product.accessory,
@@ -933,8 +940,8 @@ header .mask {
 @media (min-width: 1280px) {
     .new-products .products .product,
     .catalog .products .product {
-        width: 290px;
-        height: 520px; /*change*/
+        width: 20%;
+        /*height: 450px; /*change*/ */
     }
 
         .new-products .products .product img,
@@ -951,7 +958,7 @@ header .mask {
 .new-products .products .product .picture,
 .catalog .products .product .picture {
     position: relative;
-    height: 400px;
+    height: 320px;
     width: 100%;
     text-align: center;
     background-color: #ffffff;
@@ -974,7 +981,7 @@ header .mask {
 @media (min-width: 1280px) {
     .new-products .products .product .picture,
     .catalog .products .product .picture {
-        height: 100%;
+        /*height: 100%;*/
     }
 }
 
@@ -982,7 +989,7 @@ header .mask {
     float: right;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
     .new-products .products .product:hover,
     .catalog .products .product:hover {
         position: relative;
@@ -1001,7 +1008,7 @@ header .mask {
 
 .new-products .products .product .description,
 .catalog .products .product .description {
-    position: absolute;
+    /*position: absolute;*/
     background-color: #ffffff;
     border: 0;
     bottom: 0;
@@ -1015,7 +1022,7 @@ header .mask {
 @media (min-width: 768px) {
     .new-products .products .product .description,
     .catalog .products .product .description {
-        border-right: 1px solid #f1f1f1;
+        /*border-right: 1px solid #f1f1f1;*/
     }
 }
 
@@ -1032,15 +1039,15 @@ header .mask {
     }
 }
 
-.new-products .products .product:hover,
+/*.new-products .products .product:hover,
 .catalog .products .product:hover {
     cursor: pointer;
-}
+}*/
 
-    .new-products .products .product:hover .description,
-    .catalog .products .product:hover .description {
-        display: block;
-    }
+.new-products .products .product:hover .description,
+.catalog .products .product:hover .description {
+    display: block;
+}
 
 /*@media (min-width: 1280px){*/
 /*.new-products .products .product:hover .description,*/
@@ -1057,8 +1064,8 @@ header .mask {
     bottom: 0;
     background-color: #75ded5;
     color: #ffffff;
-    min-height: 35px;
     padding: 9px 20px;
+    min-height: 35px;
     text-align: left;
     width: 100%;
     font-size: 12px;
@@ -1079,7 +1086,7 @@ header .mask {
     padding: 5px 5px 5px 5px;
     background-color: #ffffff;
     color: #2d2d2d;
-    min-height: 157px;
+    min-height: 70px;
 }
 
 @media (min-width: 1280px) {
@@ -1195,114 +1202,10 @@ header .mask {
     .new-products .products .product .description .open-link span,
     .catalog .products .product .description .open-link span {
     }
-
-/*.main-page .new-products .indicators {
-    position: absolute;
-    top: 38px;
-    left: 155px;
-    width: 130px;
-    height: 10px;
+.pagination a{
+    color: black;
 }
-
-@media (min-width: 768px) {
-    .main-page .new-products .indicators {
-        top: -14px;
-        left: 180px;
-        width: 140px;
-    }
+.btn-primary {
+    background-color: white;
+    border-color: black;
 }
-
-@media (min-width: 1280px) {
-    .main-page .new-products .indicators {
-        top: 260px;
-        left: 0;
-        width: 100%;
-    }
-}
-
-.new-products .indicators {
-    position: absolute;
-    top: 260px;
-    left: 0;
-    width: 100%;
-}
-
-    .new-products .indicators .left {
-        display: block;
-        position: relative;
-        width: 68px;
-        z-index: 10;
-        float: left;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        padding-left: 7px;
-        margin-left: -20px;
-    }
-
-        .new-products .indicators .left span {
-            display: block;
-            position: relative;
-            height: 1px;
-            width: 61px;
-            background-color: #2d2d2d;
-            float: left;
-            transition: all 0.3s ease 0s;
-        }
-
-            .new-products .indicators .left span:before {
-                display: block;
-                position: absolute;
-                left: -7px;
-                top: -4px;
-                content: "";
-                width: 5px;
-                height: 8px;
-                background: url('../images/pagination-arrow-left.png') no-repeat center;
-            }
-
-        .new-products .indicators .left:hover span {
-            width: 35px;
-        }
-
-    .new-products .indicators .right {
-        display: block;
-        position: relative;
-        width: 68px;
-        z-index: 10;
-        float: right;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        padding-right: 7px;
-    }
-
-@media (min-width: 1600px) {
-    .new-products .indicators .right {
-        margin-right: -20px;
-    }
-}
-
-.new-products .indicators .right span {
-    display: block;
-    position: relative;
-    height: 1px;
-    width: 61px;
-    background-color: #2d2d2d;
-    float: right;
-    transition: all 0.3s ease 0s;
-}
-
-    .new-products .indicators .right span:before {
-        display: block;
-        position: absolute;
-        right: -7px;
-        top: -4px;
-        content: "";
-        width: 5px;
-        height: 8px;
-        background: url('../images/pagination-arrow-right.png') no-repeat center;
-    }
-
-.new-products .indicators .right:hover span {
-    width: 35px;
-}*/
-/***********************************************************************************************************************/

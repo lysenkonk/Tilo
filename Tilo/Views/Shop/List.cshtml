@@ -1,0 +1,44 @@
+﻿@model ProductsListViewModel
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="new-products appear-from-nowhere shown">
+    <div class="container parent-height">
+        <div class="row parent-height appearing-group shown">
+            <div class="col-xs-12 parent-height">
+                <div class="wrapper">
+                    <ul class="products clearfix">
+                        @foreach (var p in Model.Products)
+                        {
+                            <li class="product inner-appearing-object">
+                                <div class="picture img">
+                                    <img src="~/files/main/newProducts/39.jpg" />
+                                </div>
+                                <div class="description">
+                                    <div class="information">
+                                    <div class="name">
+                                        <p>@p.Name</p>
+                                    </div>
+                                    <div class="price">               
+                                         @p.Price.ToString()
+                                        <span class="woocommerce-Price-currencySymbol">грн.</span>
+                                    </div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary"
+             page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+             class="pagination justify-content-center">
+        </div>
+    </div>
+
+</section> 

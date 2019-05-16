@@ -7,12 +7,14 @@ namespace Tilo.Models
 {
     public class EFProductRepository : IProductRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
 
         public EFProductRepository(ApplicationDbContext ctx)
         {
-            context = ctx;
+            _context = ctx;
         }
-        public IQueryable<Product> Products => context.Products;
+        public IQueryable<Product> Products => _context.Products;
+
+        public IQueryable<string> Colors => _context.Products.Select(x => x.Color).Distinct().OrderBy(x => x);           
     }
 }

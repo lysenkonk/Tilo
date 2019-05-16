@@ -60,6 +60,12 @@ namespace Tilo
                     template: "Shop",
                     defaults: new {controller = "Shop", action = "Index" }
                     );
+
+                routes.MapRoute(
+                    name: "List",
+                    template: "List",
+                    defaults: new {controller = "Shop", action = "List" }
+                    );
             });
             SeedData.EnsurePopulated(app);
         }

@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Tilo.Models
 {
-    interface IProductRepository
+    public interface IProductRepository
     {
         IQueryable<Product> Products { get; }
+        IQueryable<string> Colors { get; }
     }
 }
