@@ -10,7 +10,7 @@ using Tilo.Models;
 namespace Tilo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190516063332_Initial")]
+    [Migration("20190618120528_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,11 @@ namespace Tilo.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<int?>("ParentCategoryCategoryID");
+
                     b.HasKey("CategoryID");
+
+                    b.HasIndex("ParentCategoryCategoryID");
 
                     b.ToTable("Categories");
                 });
@@ -49,7 +53,7 @@ namespace Tilo.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("FileModel");
+                    b.ToTable("FileModels");
                 });
 
             modelBuilder.Entity("Tilo.Models.Product", b =>
@@ -81,6 +85,13 @@ namespace Tilo.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Tilo.Models.Category", b =>
+                {
+                    b.HasOne("Tilo.Models.Category", "ParentCategory")
+                        .WithMany("ChildCategories")
+                        .HasForeignKey("ParentCategoryCategoryID");
+                });
+
             modelBuilder.Entity("Tilo.Models.FileModel", b =>
                 {
                     b.HasOne("Tilo.Models.Product")
@@ -91,7 +102,7 @@ namespace Tilo.Migrations
             modelBuilder.Entity("Tilo.Models.Product", b =>
                 {
                     b.HasOne("Tilo.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

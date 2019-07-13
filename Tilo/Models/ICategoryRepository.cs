@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Tilo.Models
 {
-    interface ICategoryRepository
+    public interface ICategoryRepository
     {
         IQueryable<Category> Categories { get; }
+        IQueryable<Category> ParentCategories { get; }
     }
 }

@@ -12,9 +12,22 @@ namespace Tilo.Models
 
         [Required(ErrorMessage = "Please enter a category name")]
         public string Name { get; set; }
-        public Category(string name)
+        public Category ParentCategory { get; set; }
+
+        public List<Category> ChildCategories { get; set; }
+        public List<Product> Products { get; set; }
+
+        public Category(string name, Category parentCategory = null)
         {
             Name = name;
+            if(parentCategory != null)
+            {
+                ParentCategory = parentCategory;
+            }
+        }
+        public Category()
+        {
+
         }
     }
 }

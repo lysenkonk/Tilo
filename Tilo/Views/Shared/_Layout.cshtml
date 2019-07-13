@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/reset.css" />
     <link rel="stylesheet" href="~/css/layout.css" />
+    <link rel="stylesheet" href="~/css/product.css" />
 
     <title></title>
 
@@ -21,7 +22,7 @@
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <div class="phones" style="z-index: 101">
+                    <div class="phones" style="z-index: 10">
                         <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
                             <img src="~/files/main/img/instagram.png" width=26 height=30 />
                         </a>
@@ -44,7 +45,7 @@
                     <div class="social">
                         <span id="phone">
                             +38 095 216 74 24
-                            г.Киев (ул.Антоновича 12)
+                            г.Киев (ул.Антоновича, 12)
                         </span>
                     </div>
                 </div>
@@ -68,7 +69,7 @@
                     <div class="clearfix row ul border-bottom">
                         <div class="col-xs-5">
                             <div class="ulItem left-item">
-                                <a>
+                                <a onclick="openNav()">
                                     <span>
                                         Магазин
                                     </span>
@@ -135,42 +136,135 @@
                 </div>
             </div>
         </div>
-    </header> 
-
+    </header>
+    
+    @await Component.InvokeAsync("Catalog", Model)
     @RenderBody()
+    <footer class="bFooter">
+        <div class="bWrap">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="footer-main-menu">
+                        <ul class="clearfix">
+                            <li class="item">
+                                <a class="mallki-link">
+                                    <span> Новая коллекция</span>
+                                </a>
+                            </li>
+                            <li class="item">
+                                <a class="mallki-link">
+                                    <span>
+                                        Подарочные сертификаты
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="item">
+                                <a class="mallki-link">
+                                    <span> Сотрудничество</span>
+                                </a>
+                            </li>
+                            <li class="item">
+                                <a href="https://www.instagram.com/tilo_showroom_/">
+                                    <img src="~/files/main/img/I4.png" width=26 height=30 />
+                                </a>
+                                <a href="https://www.instagram.com/tilo_showroom_/" id="logoYouTb">
+                                    <img src="~/files/main/img/Y2.png" width=38 height=44 />
+                                </a>
+                                <a href="https://www.facebook.com/TILO.showroom/">
+                                    <img src="~/files/main/img/facebookWhite.png" width=26 height=28 />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <li class="item">
+                            <a class="mallki-link">
+                                <span>Новости и интересные предложения</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a class="custom-button subscribe-btn">
+                                <span>
+                                    подписаться на рассылку
+                                </span>
+                            </a>
+                        </li>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="clearfix">
+                            <li class="item">
+                                <a class="mallki-link">
+                                    <span>
+                                        г.Киев
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="item">
+                                <a class="mallki-link">
+                                    <span>
+                                        ул.Антоновича, 12
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="item">
+                                <a class="mallki-link">
+                                    <span>
+                                        Пн-пт 13.00 - 20.00,
+                                    </span>
+                                    <span>
+                                        Cб. 13.00 - 18.00
+                                    </span>
+                                </a>
+                            </li>
+                            @*<li class="item">
+                                    <a class="mallki-link">
+                                        <span>
+                                            Cб. 13.00 - 18.00
+                                        </span>
+                                    </a>
+                                </li>*@
+                            <li class="item">
+                                <a class="mallki-link">
+                                    <span>
+                                        +38 095 216 74 24
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-
-
-
-
-
+        </div>
+    </footer>
     <script>
-var slideIndex = 1;
-showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
+        /* Set the width of the sidebar to 250px (show it) */
+        function openNav() {
+            document.getElementById("mySidepanel").style.width = "380px";
+        }
+
+        /* Set the width of the sidebar to 0 (hide it) */
+        function closeNav() {
+            document.getElementById("mySidepanel").style.width = "0";
+        }
     </script>
+    <script src="~/js/slider.js"></script>
 </body>
 </html>

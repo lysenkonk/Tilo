@@ -1,0 +1,56 @@
+﻿@model ICategoryRepository
+
+<div id="mySidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    @foreach (var p in Model.ParentCategories)
+    {
+        <button class="dropdown-btn">
+            @p.Name
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            @foreach (var c in p.ChildCategories)
+            {
+                <a href="#">@c.Name</a>
+            }
+
+        </div>
+    }
+
+    @*<button class="dropdown-btn">
+            Dropdown
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+        <button class="dropdown-btn">
+            Dropdown
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+        <button class="dropdown-btn">
+            Dropdown
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+        <button class="dropdown-btn">
+            Dropdown
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>*@
+</div>

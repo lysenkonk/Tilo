@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Tilo.Models
         {
             _context = ctx;
         }
-        public IQueryable<Product> Products => _context.Products;
+        public IQueryable<Product> Products => _context.Products.Include(p => p.Images).Include(p => p.Category);
 
         public IQueryable<string> Colors => _context.Products.Select(x => x.Color).Distinct().OrderBy(x => x);           
     }

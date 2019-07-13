@@ -12,7 +12,18 @@ namespace Tilo.Models
         public EFCategoryRepository(ApplicationDbContext ctx)
         {
             context = ctx;
+            setChildCategories();
         }
         public IQueryable<Category> Categories => context.Categories;
+        public IQueryable<Category> ParentCategories => context.Categories.Where(p => p.ParentCategory == null);
+
+
+        void setChildCategories()
+        {
+            foreach (var p in ParentCategories)
+            {
+                p.ChildCategories = context.Categories.Where(e => e.ParentCategory.Name == p.Name).ToList();
+            }
+        }
     }
 }

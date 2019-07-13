@@ -1,0 +1,682 @@
+﻿html, body {
+    min-width: 320px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+element.style {
+}
+
+/*a {
+    text-decoration: underline;
+    color: #6f6f6e;
+}*/
+a {
+    background-color: transparent;
+    color: #6f6f6e;
+}
+ a,link {
+        transition: color .1s ease-in-out;
+}
+body {
+    display: block;
+    font-family: "Roboto",sans-serif;
+}
+
+.bProductView {
+    margin-bottom: 200px;
+    padding-top: 19px;
+    font-size: 16px;
+    box-sizing: inherit;
+}
+
+@media (max-width:767.98px) {
+    .bProductView {
+        margin-bottom: 60px
+    }
+}
+@media (min-width:1276px) {
+    .bProductView {
+        margin-top: 50px
+    }
+}
+
+.eProductView_body {
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 -10px
+}
+
+
+.eProductView_images {
+    /*width: 72%;*/
+    /* padding: 0 0px; */
+    margin: 0 -10px;
+    display: -ms-flexbox;
+    display: flex;
+    box-sizing: inherit;
+}
+
+
+@media (max-width:1024.98px) {
+    .eProductView_images {
+        display: none
+    }
+}
+.eProductView_slider {
+    /*width: 72%;*/
+    -ms-flex-order: 1;
+    order: 1;
+    overflow: hidden;
+    padding: 0 10px;
+    /*max-width: 570px;*/
+    box-sizing: inherit;
+}
+
+@media (min-width: 1300px) {
+    .eProductView_slider {
+        /*margin-left: 110px;*/
+    }
+}
+
+@media (min-width: 1600px) {
+    .eProductView_slider {
+        /*margin-left: 150px;*/
+    }
+}
+
+.eProductView_sliderNav {
+    margin-left: 150px;
+    width: 28%;
+    -ms-flex-order: 0;
+    order: 0;
+    overflow: hidden;
+    max-width: 212px;
+    margin-top: -60px;
+    padding: 0 10px
+}
+
+    .eProductView_sliderNav .eProductView_image {
+        padding: 5px 0;
+        height: 165px
+    }
+
+.eProductView_sliderNavBtn {
+    height: 47px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    cursor: pointer
+}
+
+/*.eProductView_sliderNav {
+    margin-left: 150px;
+    width: 28%;
+    -ms-flex-order: 0;
+    order: 0;
+    overflow: hidden;
+    max-width: 212px;
+    margin-top: -60px;
+    /* padding-left: 60px; */
+}
+*/
+/*.eProductView_sliderNav .eProductView_image {
+        padding: 5px 0;
+        height: 165px
+    }
+
+.eProductView_sliderNavBtn {
+    height: 47px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    cursor: pointer
+}*/
+
+.eProductView_data {
+    width: 29.8%;
+    padding: 6px 10px 0;
+    /*max-width: 317px*/
+}
+
+@media (max-width:1024.98px) {
+    .eProductView_data {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 640px
+    }
+}
+
+@media (max-width:767.98px) {
+    .eProductView_data {
+        max-width: 540px
+    }
+}
+
+@media (max-width:767.98px) {
+    .eProductView_dataInner {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+}
+
+.eProductView_name {
+    text-align: center;
+    margin-bottom: 7px
+}
+
+.eProductView_price {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 24px;
+    /*text-transform: uppercase*/
+}
+
+.eProductView_mobSlider {
+    display: none
+}
+
+@media (max-width:1024.98px) {
+    .eProductView_mobSlider {
+        display: block;
+        margin-bottom: 40px
+    }
+
+        .eProductView_mobSlider .slick-dots {
+            bottom: -34px
+        }
+}
+
+.eProductView_description p {
+    margin-bottom: 0;
+    line-height: 1.5
+}
+
+.eProductView_category {
+    margin-bottom: 28px;
+    display: -ms-flexbox;
+    display: flex
+}
+
+@media (max-width:767.98px) {
+    .eProductView_category {
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+}
+
+.eProductView_categoryTitle {
+    font-weight: 700;
+    margin-right: 4px
+}
+
+.eProductView_size {
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 13px
+}
+
+@media (max-width:767.98px) {
+    .eProductView_size {
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+}
+
+.eProductView_size label {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    white-space: nowrap;
+    min-width: 32px;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 0 5px;
+    margin-right: 20px;
+    border: 1px solid #797979;
+    transition: .4s;
+    cursor: pointer
+}
+
+.eProductView_size input[type=radio] {
+    display: none
+}
+
+    .eProductView_size input[type=radio]:checked + label {
+        background: #333;
+        color: #fff
+    }
+
+.eProductView_guide {
+    margin-bottom: 33px;
+    font-size: 14px
+}
+
+.eProductView_icon {
+    display: inline-block;
+    margin-right: 10px
+}
+
+.eProductView_actions {
+    margin-bottom: 18px
+}
+
+.mAddToCart {
+    display: block;
+    width: 100%;
+    margin-right: 6px
+}
+
+@media (max-width:767.98px) {
+    .mAddToCart {
+        min-width: 174px
+    }
+}
+
+.eProductView_buyInfo {
+    margin-bottom: 19px
+}
+
+    .eProductView_buyInfo ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: -ms-flexbox;
+        display: flex
+    }
+
+@media (max-width:767.98px) {
+    .eProductView_buyInfo ul {
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+}
+
+.eProductView_buyInfo li {
+    padding: 0
+}
+
+    .eProductView_buyInfo li:after {
+        content: '|';
+        margin: 0 15px
+    }
+
+@media (max-width:1170px) {
+    .eProductView_buyInfo li:after {
+        margin: 0 10px
+    }
+}
+
+@media (max-width:1024.98px) {
+    .eProductView_buyInfo li:after {
+        margin: 0 7px
+    }
+}
+
+.eProductView_buyInfo li:last-child:after {
+    display: none
+}
+
+.eProductView_buyInfo a {
+    font-size: 14px
+}
+
+@media (max-width:1170px) {
+    .eProductView_buyInfo a {
+        font-size: 13px
+    }
+}
+
+.eProductView_share {
+    margin-bottom: 10px;
+    text-align: center
+}
+
+@media (max-width:767.98px) {
+    .mProductView_name {
+        -ms-flex-order: 0;
+        order: 0
+    }
+
+    .mProductView_collection {
+        -ms-flex-order: 1;
+        order: 1
+    }
+
+    .mProductView_price {
+        -ms-flex-order: 2;
+        order: 2
+    }
+
+    .mProductView_img {
+        -ms-flex-order: 3;
+        order: 3
+    }
+
+    .mProductView_description {
+        -ms-flex-order: 6;
+        order: 6
+    }
+
+    .mProductView_category {
+        -ms-flex-order: 5;
+        order: 5
+    }
+
+    .mProductView_form {
+        -ms-flex-order: 4;
+        order: 4
+    }
+
+    .mProductView_buyInfo {
+        display: none
+    }
+
+    .mProductView_share {
+        display: none
+    }
+}
+/*********************************************************/
+.bWrap {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: inherit;
+}
+
+@media (max-width:767.98px) {
+    .bWrap {
+        padding: 0 10px
+    }
+}
+
+@media(min-width: 1600px) {
+    .bWrap {
+        max-width: 1550px;
+        margin: 0 auto;
+        padding: 0 40px;
+        box-sizing: inherit;
+    }
+
+    .eProductView_slider {
+        /* width: 70%; */
+        -ms-flex-order: 1;
+        order: 1;
+        overflow: hidden;
+        padding: 0 10px;
+        /* max-width: 570px; */
+        box-sizing: inherit;
+        /* display: flex; */
+        padding-left: 100px;
+        /* justify-content: right; */
+    }
+    }
+
+    /**********************************************************/
+
+    div.product {
+        margin-bottom: 0;
+        margin-top: 100px;
+        position: relative;
+    }
+    /**********************************************************slick*/
+    .slick-slider {
+        position: relative;
+        display: block;
+        box-sizing: border-box;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -ms-touch-action: pan-y;
+        touch-action: pan-y;
+        -webkit-tap-highlight-color: transparent
+    }
+
+    .slick-list {
+        position: relative;
+        overflow: hidden;
+        display: block;
+        margin: 0px;
+        padding: 0
+    }
+
+        .slick-list:focus {
+            outline: none
+        }
+
+        .slick-list.dragging {
+            cursor: pointer;
+            cursor: hand
+        }
+
+    .slick-slider .slick-track, .slick-slider .slick-list {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0)
+    }
+
+    .slick-track {
+        position: relative;
+        left: 0;
+        top: 0;
+        display: block;
+        opacity: 1;
+        /*width: 1016px;
+    transform: translate3d(0px, 0px, 0px);*/
+    }
+
+        .slick-track:before, .slick-track:after {
+            content: "";
+            display: table
+        }
+
+        .slick-track:after {
+            clear: both
+        }
+
+    .slick-loading .slick-track {
+        visibility: hidden
+    }
+
+    .slick-slide {
+        float: left;
+        height: 100%;
+        min-height: 1px;
+        outline: 0;
+        display: none;
+        margin: auto;
+    }
+
+    [dir=rtl] .slick-slide {
+        float: right
+    }
+
+    .slick-slide img {
+        display: block;
+        max-width: none;
+        /*width: 100%*/
+    }
+
+    .slick-slide.slick-loading img {
+        display: none
+    }
+
+    .slick-slide.dragging img {
+        pointer-events: none
+    }
+
+    @media(min-width: 1022px) {
+        .slick-slide {
+            display: block
+        }
+    }
+
+    .slick-loading .slick-slide {
+        visibility: hidden
+    }
+
+    .slick-vertical .slick-slide {
+        display: block;
+        height: auto;
+        border: 1px solid transparent
+    }
+
+    .slick-arrow.slick-hidden {
+        display: none
+    }
+
+    .slick-prev, .slick-next {
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 200%;
+        line-height: 0;
+        font-size: 0;
+        cursor: pointer;
+        background: 0 0;
+        color: transparent;
+        top: 0;
+        padding: 0;
+        border: none;
+        outline: none;
+        z-index: 1;
+        box-shadow: none
+    }
+
+        .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+            outline: none;
+            color: transparent
+        }
+
+            .slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before {
+                opacity: 1
+            }
+
+        .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+            opacity: .25
+        }
+
+    .slick-prev {
+        right: 100%
+    }
+
+    .slick-next {
+        left: 100%
+    }
+
+    @media (max-width:1024.98px) {
+        .slick-prev {
+            display: none !important
+        }
+
+        .slick-next {
+            display: none !important
+        }
+    }
+
+    .slick-dots {
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 100%;
+        list-style: none;
+        display: block;
+        height: 1.4375rem;
+        padding: 0;
+        margin: 0;
+        line-height: 0;
+        text-align: center;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0
+    }
+
+        .slick-dots li {
+            position: relative;
+            display: inline-block;
+            margin: 0 .1875rem 0;
+            padding: 0;
+            cursor: pointer
+        }
+
+            .slick-dots li.slick-active button {
+                background: #4c4c4c
+            }
+
+        .slick-dots button {
+            position: relative;
+            border: 1px solid #4c4c4c;
+            background: #fff;
+            display: block;
+            height: 10px;
+            width: 10px;
+            border-radius: 10px;
+            padding: 0;
+            outline: none;
+            font-size: 0;
+            color: #fff;
+            cursor: pointer;
+            transition: .4s;
+            z-index: 1
+        }
+
+            .slick-dots button:hover {
+                background: #4c4c4c
+            }
+
+    .o-svg {
+        display: inline-block;
+    }
+
+
+    .bProductView .o-svg--slider-arrow-bottom, .bProductView .o-svg--slider-arrow-top {
+        width: 47px;
+        height: 47px;
+    }
+
+    @media (min-width: 1025px) {
+        .col-lg-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    .breadCrumbs {
+        padding: 0;
+        margin: 15px 0 25px;
+        color: #b6b6b6;
+        font-size: 13px;
+        display: none
+    }
+
+    @media(min-width: 770px) {
+        .breadCrumbs {
+            display: block;
+        }
+    }
+
+
+
+    .breadCrumbs a {
+        text-decoration: underline;
+    }
+
+            .breadCrumbs a:hover {
+                color: black;
+            }
+
+        .breadCrumbs nav {
+            display: -ms-flexbox;
+            display: flex;
+        }
+}

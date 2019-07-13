@@ -14,5 +14,6 @@ namespace Tilo.Models
             : base(options) { }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<FileModel> FileModels { get; set; }
     }
 }

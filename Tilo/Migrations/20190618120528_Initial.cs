@@ -13,11 +13,18 @@ namespace Tilo.Migrations
                 {
                     CategoryID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(nullable: false),
+                    ParentCategoryCategoryID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.CategoryID);
+                    table.ForeignKey(
+                        name: "FK_Categories_Categories_ParentCategoryCategoryID",
+                        column: x => x.ParentCategoryCategoryID,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,7 +52,7 @@ namespace Tilo.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FileModel",
+                name: "FileModels",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -55,9 +62,9 @@ namespace Tilo.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FileModel", x => x.Id);
+                    table.PrimaryKey("PK_FileModels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FileModel_Products_ProductID",
+                        name: "FK_FileModels_Products_ProductID",
                         column: x => x.ProductID,
                         principalTable: "Products",
                         principalColumn: "ProductID",
@@ -65,8 +72,13 @@ namespace Tilo.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_FileModel_ProductID",
-                table: "FileModel",
+                name: "IX_Categories_ParentCategoryCategoryID",
+                table: "Categories",
+                column: "ParentCategoryCategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FileModels_ProductID",
+                table: "FileModels",
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
@@ -78,7 +90,7 @@ namespace Tilo.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "FileModel");
+                name: "FileModels");
 
             migrationBuilder.DropTable(
                 name: "Products");

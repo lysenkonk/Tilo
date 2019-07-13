@@ -11,16 +11,40 @@ namespace Tilo.Controllers
     public class ShopController : Controller
     {
         private IProductRepository _repository;
-        public int PageSize = 6;
+        private ICategoryRepository _repoCategories;
+        public int PageSize = 10;
 
-        public ShopController(IProductRepository repo)
+        public ShopController(IProductRepository repo, ICategoryRepository categories)
         {
             _repository = repo;
+            _repoCategories = categories;
         }
 
         public ViewResult Index()
         {
+            //var temp = _repoCategories.Categories.First(p => p.Name == "nh");
+
+
+            //foreach(var p in _repoCategories.ParentCategories)
+            //{
+            //    p.ChildCategories = _repoCategories.Categories.Where(e => e.ParentCategory.Name == p.Name).ToList();
+            //}
+
             return View();
+        }
+
+        public ViewResult Product(int id)
+        {
+          
+
+            //int categoryId = _repoCategories.Categories.First(p => p.Name == "Трусы");
+            Product product = _repository.Products
+                .FirstOrDefault(p => p.ProductID == id);
+            if(product == null)
+            {
+                return View("Product not found");
+            }
+            return View(product);
         }
 
         public ViewResult List(string category, int page = 1)

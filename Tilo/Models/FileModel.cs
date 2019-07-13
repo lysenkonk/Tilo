@@ -10,5 +10,10 @@ namespace Tilo.Models
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public FileModel(string name)
+        {
+            Name = name;
+        }
     }
 }

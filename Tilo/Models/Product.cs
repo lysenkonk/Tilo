@@ -27,6 +27,8 @@ namespace Tilo.Models
         [Required(ErrorMessage = "Please enter a color")]
         public string Color { get; set; }
 
+        //public int CategoryId { get; set; }
+
         [Required(ErrorMessage = "Please specify a category")]
         public Category Category { get; set; }
 

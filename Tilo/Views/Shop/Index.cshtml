@@ -1,26 +1,26 @@
-﻿
+﻿@*@model ICategoryRepository*@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-        <div class="slideshow-container">
-            <div class="mySlides fade">
-                <img src="~/files/main/slider/IMG_5308-1.jpg" style="width:100%">
-                @*<div class="text">Caption Text</div>*@
-            </div>
+<div class="slideshow-container">
+    <div class="mySlides fade">
+        <img src="~/files/main/slider/IMG_5308-1.jpg" style="width:100%">
+        @*<div class="text">Caption Text</div>*@
+    </div>
 
-            <div class="mySlides fade">
-                <img src="~/files/main/slider/tiloMainPage.jpg" style="width:100%">
-            </div>
+    <div class="mySlides fade">
+        <img src="~/files/main/slider/tiloMainPage.jpg" style="width:100%">
+    </div>
 
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-           <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-        <br>
-        <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-        </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+</div>
 
 <section class="new-products appear-from-nowhere shown">
     <div class="container parent-height">
@@ -34,15 +34,15 @@
                     </span>
                 </span>
                 @*<div class="indicators">
-                    <a href="#" class="left appearing-object">
-                        <span></span>
-                    </a>
-                    <a href="#" class="right appearing-object">
-                        <span>
+                        <a href="#" class="left appearing-object">
+                            <span></span>
+                        </a>
+                        <a href="#" class="right appearing-object">
+                            <span>
 
-                        </span>
-                    </a>
-                </div>*@
+                            </span>
+                        </a>
+                    </div>*@
                 <div class="wrapper">
                     <ul class="products">
                         <li class="product inner-appearing-object">
@@ -152,5 +152,5 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </section> 

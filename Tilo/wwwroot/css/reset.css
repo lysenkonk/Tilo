@@ -4,25 +4,25 @@
 
 @media (min-width: 768px) {
     .container {
-        width: 760px;
+        width: 700px;
     }
 }
 
 @media (min-width: 992px) {
     .container {
-        width: 760px;
+        width: 890px;
     }
 }
 
 @media (min-width: 992px) {
     .container {
-        width: 760px;
+        width: 890px;
     }
 }
 
 @media (min-width: 1200px) {
     .container {
-        width: 760px;
+        width: 1100px;
     }
 }
 
@@ -48,4 +48,18 @@ a:focus {
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
     margin: 0;
     padding: 0;
+}
+ol, ul {
+    list-style: none;
+}
+li {
+    list-style: none;
+}
+button{
+    background: none;
+    border: none;
+}
+button:focus {
+    background: none;
+    border: none;
 }

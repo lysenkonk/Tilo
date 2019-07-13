@@ -14,16 +14,18 @@
                         {
                             <li class="product inner-appearing-object">
                                 <div class="picture img">
-                                    <img src="~/files/main/newProducts/39.jpg" />
+ 
+                                    <img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)" >
                                 </div>
                                 <div class="description">
+                                    
                                     <div class="information">
                                     <div class="name">
                                         <p>@p.Name</p>
                                     </div>
                                     <div class="price">               
                                          @p.Price.ToString()
-                                        <span class="woocommerce-Price-currencySymbol">грн.</span>
+                                        <span class="woocommerce-Price-currencySymbol">грн</span>
                                     </div>
                                     </div>
                                 </div>
@@ -37,7 +39,7 @@
         <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
              page-class="btn" page-class-normal="btn-secondary"
              page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
-             class="pagination justify-content-center">
+             class="pagination">
         </div>
     </div>
 
