@@ -1250,7 +1250,6 @@ btn.focus, .btn:focus, .btn:hover {
     background-color: black;
     border-color: #204d74;
 }
-/*********************************************Footer**/
 @media (min-width: 768px) {
     .col-md-3 {
         width: 25%;
@@ -1263,7 +1262,7 @@ btn.focus, .btn:focus, .btn:hover {
     padding-top: 31px;
     border-top: 1px solid #d7d7d7;
     background-color: black;
-    height: 360px;
+    height: 180px;
 }
 
 }
@@ -1292,8 +1291,8 @@ btn.focus, .btn:focus, .btn:hover {
 }
 
 .footer-main-menu {
-    width: 100%;
-    /*float: left;*/
+    width: 25%;
+    float: left;
     margin-left: -12px
 }
 
@@ -1310,12 +1309,11 @@ btn.focus, .btn:focus, .btn:hover {
 }
 
 li.item {
-    margin: 28px auto 31px;
+    margin-bottom: 14px;
     height: 16px;
     font-size: 12px;
     padding: 0;
     padding-left: 12px;
-    text-align: center;
 }
 
     li.item a {
