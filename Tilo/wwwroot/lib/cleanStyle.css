@@ -1,0 +1,2098 @@
+﻿.block {
+    display: block !important
+}
+
+.mb0 {
+    margin-bottom: 0 !important
+}
+
+.mb3 {
+    margin-bottom: 3px !important
+}
+
+.mb5 {
+    margin-bottom: 5px !important
+}
+
+.mb10 {
+    margin-bottom: 10px !important
+}
+
+.mb20 {
+    margin-bottom: 20px !important
+}
+
+.mb30 {
+    margin-bottom: 30px !important
+}
+
+body {
+    margin: 0;
+    color: #000;
+    font: 12px Arial,Helvetica,sans-serif;
+    min-width: 1100px
+}
+
+btnNewProduct {
+    text-align: right;
+}
+
+img {
+    border-style: none
+}
+
+a {
+    color: #006d84;
+    outline: 0;
+    cursor: pointer
+}
+
+    a:hover {
+        text-decoration: none
+    }
+
+.item-box .info {
+    overflow: hidden;
+    height: 1%;
+    position: relative;
+}
+
+#blocktab1 {
+    display: table;
+}
+
+.order-form .choice {
+    margin: 0;
+    padding: 10px 0 14px;
+    list-style: none;
+    border: solid 1px #e2e4dc;
+    border-width: 0 1px 1px 1px;
+    width: 390px;
+}
+
+    .order-form .choice li {
+        overflow: hidden;
+        height: 1%;
+        padding: 0 0 7px 20px;
+    }
+
+        .order-form .choice li.dynamicProduct {
+            padding: 5px 10px;
+            text-align: center;
+        }
+
+    .order-form .choice .radio {
+        float: left;
+        width: 15px;
+        height: 15px;
+        margin: 5px 1px 0 0;
+        padding: 0;
+    }
+
+    .order-form .choice label {
+        float: left;
+        margin: 5px 0 0;
+        width: 69px;
+    }
+
+    .order-form .choice strong {
+        float: left;
+        color: #9a3;
+        font-size: 18px;
+        margin: 4px 0 0 0;
+    }
+
+.order-form .note {
+    overflow: hidden;
+    height: 1%;
+    padding: 8px 0 18px;
+}
+
+    .order-form .note span {
+        margin: 0 3px 0 0;
+    }
+
+.order-form .button,
+#divfastorder-a {
+    width: 90px;
+    height: 28px;
+    display: block;
+    color: #fff;
+    padding: 9px 0 0 40px;
+    text-decoration: none;
+    font: bold 14px "trebuchet ms", helvetica, sans-serif;
+    text-transform: uppercase;
+    border-radius: 3px;
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -moz-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aabb44), color-stop(49%, #96af39), color-stop(50%, #87a732), color-stop(100%, #6e9a26));
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -webkit-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -o-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -ms-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
+}
+
+.order-form .fast-order-button {
+    text-align: center;
+    border-radius: 3px;
+    padding: 9px 0 0 0;
+    width: 124px;
+    background: #d36f14;
+    background: -moz-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ec8a31), color-stop(50%, #e97a16), color-stop(50%, #d36f14), color-stop(100%, #549b09));
+    background: -webkit-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
+    background: -o-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
+    background: -ms-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
+    background: linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
+    -pie-background: linear-gradient(#ec8a31, #e97a16, #d36f14);
+}
+
+.order-form .button:hover {
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -moz-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9eaf40), color-stop(49%, #8ca435), color-stop(50%, #7e9c2f), color-stop(100%, #679024));
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -webkit-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -o-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -ms-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
+}
+
+.order-form .fast-order-button:hover {
+    background: #d36f14;
+}
+
+.button_order {
+    background: url(../Files/design/design-01.png) no-repeat scroll -221px -53px transparent;
+    width: 85px;
+    height: 22px;
+    display: block;
+    color: #fff;
+    padding: 4px 1px 2px 1px;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    font: bold 13px "trebuchet ms", helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+    .button_order:hover {
+        background: url(../Files/design/design-01.png) no-repeat scroll -221px -81px transparent;
+    }
+
+    .button_order:active {
+        position: relative;
+        top: 1px;
+        left: 1px;
+    }
+
+form {
+    margin: 0;
+    padding: 0;
+    border-style: none
+}
+
+p {
+    margin: 0
+}
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin: 0 0 0 -500px;
+    z-index: 1
+}
+
+#wrapper {
+    background: url(../Files/design/bg-header.png) repeat-x;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    min-width: 1100px
+}
+
+#headeri {
+    padding: 0 24px;
+    height: 251px;
+    text-align: center;
+}
+
+    #headeri:after {
+        display: block;
+        clear: both;
+        content: ""
+    }
+
+.box .visual img {
+    width: 195px;
+    height: 195px
+}
+
+.logo {
+    margin: 0;
+    width: 268px;
+    height: 118px;
+    overflow: hidden;
+    text-indent: -9999px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+    .logo a {
+        height: 100%;
+        display: block;
+        width: 268px;
+        height: 118px;
+        background: url(../Files/design/logo.png) no-repeat
+    }
+
+.logo-box {
+    position: absolute;
+    width: 268px;
+    height: 118px;
+    margin: 0 0 0 -134px;
+    left: 50%;
+    top: 13px;
+    z-index: 50
+}
+
+.container2 {
+    width: 100%;
+    padding: 0 0 27px;
+    border-bottom: solid 1px #e6e6e5;
+    margin: 0 0 24px;
+    overflow: hidden
+}
+
+#headeri .box {
+    margin: 0 0 0 auto;
+    position: relative;
+    z-index: 60;
+    width: 384px
+}
+
+    #headeri .box:after {
+        display: block;
+        clear: both;
+        content: ""
+    }
+
+#headeri .tel-box {
+    float: right;
+    width: 210px;
+    margin: 12px 0 0;
+    height: 159px;
+    background: url(../Files/design/design-02.png) no-repeat
+}
+
+.tel-box .title {
+    color: #fff;
+    text-align: center;
+    padding: 5px 5px 10px 7px;
+    font: 17px "trebuchet ms",helvetica,sans-serif
+}
+
+.tel-box .tel-wrap {
+    text-align: center;
+    color: #324315;
+    font: 14px/18px tahoma,geneva,sans-serif;
+    margin: 5px 5px -1px;
+    width: 200px;
+    height: 90px;
+    padding-top: 7px
+}
+
+.tel-wrap .infoBox {
+    padding-top: 7px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: left;
+    padding-left: 15px
+}
+
+.tel-box .email {
+    font: bold 12px/30px tahoma,geneva,sans-serif;
+    color: #394c16;
+    padding: 0 0 0 6px;
+    text-align: center
+}
+
+.staticPage .infoBox {
+    padding-left: 60px
+}
+
+.tel-box .tel div {
+    padding: 0 0 5px 6px
+}
+
+.tel-box .tel strong {
+    margin: 0 3px 0 0
+}
+
+.item-box .info .visual-block {
+    float: left;
+    padding: 3px 20px 0 0;
+}
+
+    .item-box .info .visual-block .extimgs {
+        text-align: center;
+    }
+
+        .item-box .info .visual-block .extimgs li {
+            cursor: pointer;
+        }
+
+    .item-box .info .visual-block img {
+        vertical-align: top;
+    }
+
+    .item-box .info .visual-block .visual {
+        position: relative;
+        border: solid 1px #dea;
+        margin: 0 0 10px;
+    }
+
+
+
+    .item-box .info .visual-block .image.large {
+        max-width: 430px;
+        max-height: 430px;
+    }
+
+    .item-box .info .visual-block .image .zoom-in {
+        cursor: url("../Files/design/crsr_zoom_in.png"), crosshair;
+    }
+
+    .item-box .info .visual-block .video {
+        display: none;
+        width: 714px;
+        height: 406px;
+    }
+
+        .item-box .info .visual-block .video.large {
+            display: none;
+            width: 747px;
+            height: 430px;
+        }
+
+        .item-box .info .visual-block .video .videowrap,
+        .item-box .info .visual-block .video .zoomwrap {
+            margin: 5px;
+        }
+
+        .item-box .info .visual-block .video .videowrap,
+        .item-box .info .visual-block.large .video .zoomwrap {
+            margin: 5pxpx;
+        }
+
+        .item-box .info .visual-block .video .zoomwrap {
+            display: none;
+            height: 396px;
+            width: 704px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .item-box .info .visual-block .video.large .zoomwrap {
+            display: none;
+            height: 420px;
+            width: 737px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .item-box .info .visual-block .video .zoomwrap img {
+            cursor: url("../Files/design/crsr-zoom-out.png"), crosshair;
+            top: 0;
+            left: 0;
+            position: absolute;
+        }
+
+    .item-box .info .visual-block .bg-line {
+        width: 160px;
+        margin: 0 0 0 -80px;
+    }
+
+    .item-box .info .visual-block .video .bg-line {
+        width: 540px;
+        margin: 0 0 0 -265px;
+    }
+
+    .item-box .info .visual-block .list {
+        padding: 0;
+        list-style: none;
+        width: 351px;
+        white-space: nowrap;
+    }
+
+    .item-box .info .visual-block.large .list {
+        padding: 0;
+        list-style: none;
+        width: 430px;
+        white-space: nowrap;
+    }
+
+    .item-box .info .visual-block .list li {
+        display: inline-block;
+        vertical-align: top;
+        width: 108px;
+        margin: 0 6px 0 0;
+    }
+
+    .item-box .info .visual-block .perFour li {
+        width: 81px;
+    }
+
+    .item-box .info .visual-block .perFour.large li {
+        width: 101px;
+    }
+
+    .item-box .info .visual-block .list img {
+        border: solid 1px #dea;
+        width: 106px;
+        height: 106px;
+    }
+
+    .item-box .info .visual-block .list.perFour img {
+        width: 81px;
+        height: 81px;
+    }
+
+    .item-box .info .visual-block .list.perFour.large img {
+        width: 101px;
+        height: 101px;
+    }
+
+.item-box .info h1,
+.item-box .info .div-head {
+    font: 24px "trebuchet ms", helvetica, sans-serif;
+    margin: 0 0 14px;
+}
+
+.input-validation-error {
+    border-color: red;
+    background-color: #fee;
+}
+
+#nav {
+    padding: 16px 0 0 0px;
+    list-style: none;
+    overflow: hidden;
+    display: inline-block;
+}
+
+
+#mainAdm {
+    overflow: hidden;
+    height: 1%;
+    padding: 0 0 0 24px;
+    margin: 10px;
+}
+
+.sidenav ul li .tab {
+    display: block;
+    width: 219px;
+    height: 32px;
+    text-decoration: none;
+    background: url(../Files/design/design-02.png) no-repeat -211px -33px;
+    overflow: hidden;
+    font-size: 14px
+}
+
+#nav li {
+    float: left;
+    background: url(../Files/design/separatop01.gif) no-repeat 0 2px;
+    padding: 0 0 0 1px
+}
+
+    #nav li:first-child {
+        background: 0
+    }
+
+    #nav li a {
+        float: left;
+        text-decoration: none;
+        font-size: 13px;
+        color: #fff
+    }
+
+        #nav li a:hover {
+            text-decoration: none;
+            background: url(../Files/design/nav-l.gif) no-repeat
+        }
+
+        #nav li a span {
+            float: left;
+            height: 22px;
+            padding: 0;
+            margin: 5px 20px;
+            font-size: 14px
+        }
+/*---------------------------------------------------------------------------------------------navAdm--------------------------------*/
+/*---------------------------------------------------------------------------------------------gallery---------------------------*/
+
+body {
+    font-family: Verdana, sans-serif;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.row > .column {
+    padding: 10px 8px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column {
+    float: left;
+    width: 25%;
+}
+
+/*The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: black;
+}
+
+/*Modal Content*/
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/*The Close Button*/
+.close {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #999;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.mySlides {
+    display: none;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+/*Next & previous buttons*/
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/*Position the "next button" to the right*/
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+On hover, add a black background color with a little bit see-through
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/*Number text (1/3 etc)*/
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+img {
+    margin-bottom: -4px;
+}
+
+.caption-container {
+    text-align: center;
+    background-color: black;
+    padding: 2px 16px;
+    color: white;
+}
+
+.demo {
+    opacity: 0.6;
+}
+
+    .active,
+    .demo:hover {
+        opacity: 1;
+    }
+
+img.hover-shadow {
+    transition: 0.3s;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+#navAdm {
+    padding: 16px 0 0 0px;
+    list-style: none;
+    overflow: hidden;
+    display: inline-block;
+}
+
+    #navAdm li {
+        float: left;
+        background: url(../Files/design/separatop01.gif) no-repeat 0 2px;
+        padding: 0 0 0 1px
+    }
+
+        #navAdm li:first-child {
+            background: 0
+        }
+
+        #navAdm li a {
+            float: left;
+            text-decoration: none;
+            font-size: 13px;
+            color: #fff
+        }
+
+            #navAdm li a:hover {
+                text-decoration: none;
+                background: white;
+            }
+
+            #navAdm li a span {
+                float: left;
+                height: 22px;
+                padding: 0;
+                margin: 5px 20px;
+                font-size: 14px
+            }
+
+
+
+
+#main {
+    overflow: hidden;
+    height: 1%;
+    padding: 0 0 0 24px;
+    margin: 10px;
+}
+
+    #main .btn-up {
+        display: none;
+        height: 40px;
+        width: 40px;
+        background: url(../Files/design/ontop.png) no-repeat;
+        cursor: pointer
+    }
+
+.sidebar {
+    float: left;
+    width: 219px;
+    padding: 0 21px 0 0
+}
+
+* html .sidebar {
+    margin-right: -3px
+}
+
+.sidenavAdm {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 0 18px
+}
+
+    .sidenavAdm .title {
+        background: powderblue;
+        height: 44px;
+        font: 20px "trebuchet ms",helvetica,sans-serif;
+        color: #fff;
+        padding: 5px 0 0 15px;
+        margin: 0 0 -8px;
+        position: relative
+    }
+
+    .sidenavAdm ul {
+        margin: 0;
+        padding: 0;
+        list-style: none
+    }
+
+        .sidenavAdm ul li {
+            margin: 0 0 1px;
+            float: left;
+            width: 100%
+        }
+
+            .sidenavAdm ul li .tab:hover {
+                background: url(../Files/design/design-02.png) no-repeat -211px -66px;
+                color: #303030;
+                text-decoration: none
+            }
+
+            .sidenavAdm ul li .tab {
+                display: block;
+                width: 219px;
+                height: 32px;
+                text-decoration: none;
+                background: rgba(86, 61, 124, .15);
+                ;
+                overflow: hidden;
+                font-size: 14px
+            }
+
+                .sidenavAdm ul li .tab span {
+                    float: left;
+                    margin: 7px 0 0 26px;
+                    display: inline;
+                    background: url(../Files/design/dot01.gif) repeat-x 0 100%
+                }
+
+            .sidenavAdm ul li .list {
+                padding: 0 25px 1px;
+                background: url(../Files/design/bg-sidebar-drop-b.gif) no-repeat 0 100%
+            }
+
+                .sidenavAdm ul li .list li {
+                    margin: 0;
+                    float: none;
+                    width: auto;
+                    padding: 4px 0 5px 11px;
+                    border-bottom: solid 1px #e6e6e5
+                }
+
+                .sidenavAdm ul li .list a {
+                    font-weight: 700;
+                    text-decoration: none
+                }
+
+                    .sidenavAdm ul li .list a:hover {
+                        text-decoration: underline
+                    }
+/*-----------------------------------------------------------------------------------------------------*/
+.sidenav {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 0 18px
+}
+
+    .sidenav .title {
+        background: url(../Files/design/design-01.png) no-repeat scroll -79px -1px transparent;
+        height: 44px;
+        font: 20px "trebuchet ms",helvetica,sans-serif;
+        color: #fff;
+        padding: 5px 0 0 15px;
+        margin: 0 0 -8px;
+        position: relative
+    }
+
+    .sidenav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none
+    }
+
+        .sidenav ul li {
+            margin: 0 0 1px;
+            float: left;
+            width: 100%
+        }
+
+            .sidenav ul li .tab:hover {
+                background: url(../Files/design/design-02.png) no-repeat -211px -66px;
+                color: #303030;
+                text-decoration: none
+            }
+
+
+            .sidenav ul li .tab span {
+                float: left;
+                margin: 7px 0 0 26px;
+                display: inline;
+                background: url(../Files/design/dot01.gif) repeat-x 0 100%
+            }
+
+            .sidenav ul li .list {
+                padding: 0 25px 1px;
+                background: url(../Files/design/bg-sidebar-drop-b.gif) no-repeat 0 100%
+            }
+
+                .sidenav ul li .list li {
+                    margin: 0;
+                    float: none;
+                    width: auto;
+                    padding: 4px 0 5px 11px;
+                    border-bottom: solid 1px #e6e6e5
+                }
+
+                .sidenav ul li .list a {
+                    font-weight: 700;
+                    text-decoration: none
+                }
+
+                    .sidenav ul li .list a:hover {
+                        text-decoration: underline
+                    }
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.feedback {
+    background: url(../Files/design/bg-feedback-c.gif) repeat-y;
+    width: 100%;
+    overflow: hidden;
+    margin: 10px 0 20px
+}
+
+    .feedback .head {
+        background: url(../Files/design/bg-feedback-t.gif) no-repeat;
+        overflow: hidden;
+        height: 1%;
+        padding: 7px 15px 18px
+    }
+
+        .feedback .head span {
+            font: 20px "trebuchet ms",helvetica,sans-serif;
+            color: #000;
+            margin: 0 5px 0 0
+        }
+
+        .feedback .head a {
+            font-size: 11px
+        }
+
+    .feedback .list {
+        margin: 0;
+        padding: 0 0 1px;
+        list-style: none;
+        background: url(../Files/design/bg-feedback-b.gif) no-repeat 0 100%
+    }
+
+        .feedback .list li {
+            padding: 0 7px;
+            margin: 0 0 25px
+        }
+
+    .feedback .name {
+        color: #3f3f3f;
+        padding: 3px 0 5px 8px;
+        margin: 0 0 3px;
+        background: #eaf1e1 url(../Files/design/bg-name-t.gif) no-repeat
+    }
+
+    .feedback strong {
+        background: #eaf1e1 url(../Files/design/bg-name-b.gif) no-repeat 0 100%;
+        font-size: 11px
+    }
+
+    .feedback p {
+        margin: 0 4px 0 8px;
+        line-height: 18px
+    }
+
+.content {
+    overflow: hidden;
+    height: 1%
+}
+
+    .content h3 {
+        margin: 0 0 6px;
+        font: 24px "trebuchet ms",helvetica,sans-serif
+    }
+
+.bg-line {
+    height: 6px;
+    background: #ab4;
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    overflow: hidden
+}
+
+.order-form .row {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 1%;
+    margin: 0 0 9px;
+}
+
+    .order-form .row label {
+        float: left;
+        margin: 1px 8px 0 0;
+    }
+
+.order-form .row2 {
+    height: 1%;
+    overflow: hidden;
+    margin: 0 0 17px;
+}
+
+    .order-form .row2 strong {
+        float: left;
+        margin: 0 9px 0 0;
+    }
+
+    .order-form .row2 .opener,
+    .choice-delivery .opener,
+    .item-box .info .container2 .opener {
+        float: left;
+        font-size: 16px;
+        padding: 0 11px 0 0;
+        text-decoration: none;
+    }
+
+        .order-form .row2 .opener span,
+        .choice-delivery .opener span,
+        .item-box .info .container2 .opener span {
+            float: left;
+            font-weight: bold;
+            background: url(../Files/design/dot01.gif) repeat-x 0 100%;
+        }
+
+        .order-form .row2 .opener:hover span,
+        .choice-delivery .opener:hover span {
+            background: 0;
+        }
+
+    .order-form .row2 .link,
+    .choice-delivery .link {
+        font-size: 13px;
+        padding: 4px 0 0 0;
+    }
+
+    .order-form .row2 .link {
+        padding: 0;
+    }
+
+    .order-form .row2 .reg-bkt {
+        padding: 0;
+    }
+
+    .order-form .row2 .link span,
+    .choice-delivery .link span {
+        font-weight: normal;
+    }
+
+.order-form .tab {
+    margin: 0;
+    padding: 3px 0 0 8px;
+    list-style: none;
+    background: url(../Files/design/bg-tab01.gif) no-repeat;
+    width: 400px;
+    overflow: hidden;
+}
+
+    .order-form .tab li {
+        float: left;
+    }
+
+        .order-form .tab li a {
+            float: left;
+            background: url(../Files/design/bg-tab01-l.gif) no-repeat;
+            text-decoration: none;
+        }
+
+        .order-form .tab li span {
+            float: left;
+            background: url(../Files/design/bg-tab01-r.gif) no-repeat 100% 0;
+            height: 27px;
+            padding: 11px 12px 0;
+        }
+
+        .order-form .tab li em {
+            float: left;
+            font-style: normal;
+            background: url(../Files/design/dot01.gif) repeat-x 0 100%;
+        }
+
+#tab1:hover {
+    cursor: default;
+}
+
+.order-form .tab li a:hover em {
+    background: 0;
+}
+
+.order-form .tab li.active a {
+    background: url(../Files/design/bg-tab01-l-h.gif) no-repeat;
+}
+
+    .order-form .tab li.active a span {
+        background: url(../Files/design/bg-tab01-r-h.gif) no-repeat 100% 0;
+        font-weight: bold;
+        color: #000;
+    }
+
+.order-form .tab li.active em {
+    background: 0;
+}
+
+.order-form .choice {
+    margin: 0;
+    padding: 10px 0 14px;
+    list-style: none;
+    border: solid 1px #e2e4dc;
+    border-width: 0 1px 1px 1px;
+    width: 390px;
+}
+
+    .order-form .choice li {
+        overflow: hidden;
+        height: 1%;
+        padding: 0 0 7px 20px;
+    }
+
+        .order-form .choice li.dynamicProduct {
+            padding: 5px 10px;
+            text-align: center;
+        }
+
+    .order-form .choice .radio {
+        float: left;
+        width: 15px;
+        height: 15px;
+        margin: 5px 1px 0 0;
+        padding: 0;
+    }
+
+    .order-form .choice label {
+        float: left;
+        margin: 5px 0 0;
+        width: 69px;
+    }
+
+    .order-form .choice strong {
+        float: left;
+        color: #9a3;
+        font-size: 18px;
+        margin: 4px 0 0 0;
+    }
+
+.order-form .note {
+    overflow: hidden;
+    height: 1%;
+    padding: 8px 0 18px;
+}
+
+    .order-form .note span {
+        margin: 0 3px 0 0;
+    }
+
+#tab1:hover {
+    cursor: default
+}
+
+.order-form .button {
+    width: 90px;
+    height: 28px;
+    display: block;
+    color: #fff;
+    padding: 9px 0 0 40px;
+    text-decoration: none;
+    font: bold 14px "trebuchet ms",helvetica,sans-serif;
+    text-transform: uppercase;
+    border-radius: 3px;
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-moz-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-webkit-gradient(linear,left top,left bottom,color-stop(0,#ab4),color-stop(49%,#96af39),color-stop(50%,#87a732),color-stop(100%,#6e9a26));
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-webkit-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-o-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-ms-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%)
+}
+
+    .order-form .button:hover {
+        background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-moz-linear-gradient(top,#9eaf40 0,#8ca435 49%,#7e9c2f 50%,#679024 100%);
+        background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-webkit-gradient(linear,left top,left bottom,color-stop(0,#9eaf40),color-stop(49%,#8ca435),color-stop(50%,#7e9c2f),color-stop(100%,#679024));
+        background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-webkit-linear-gradient(top,#9eaf40 0,#8ca435 49%,#7e9c2f 50%,#679024 100%);
+        background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-o-linear-gradient(top,#9eaf40 0,#8ca435 49%,#7e9c2f 50%,#679024 100%);
+        background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-ms-linear-gradient(top,#9eaf40 0,#8ca435 49%,#7e9c2f 50%,#679024 100%)
+    }
+
+.button_order {
+    background: url(../Files/design/design-01.png) no-repeat scroll -221px -53px transparent;
+    width: 85px;
+    height: 22px;
+    display: block;
+    color: #fff;
+    padding: 4px 1px 2px 1px;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    font: bold 13px "trebuchet ms",helvetica,sans-serif;
+    text-transform: uppercase
+}
+
+    .button_order:hover {
+        background: url(../Files/design/design-01.png) no-repeat scroll -221px -81px transparent
+    }
+
+    .button_order:active {
+        position: relative;
+        top: 1px;
+        left: 1px
+    }
+
+.info .holder {
+    overflow: hidden;
+    height: 1%;
+    line-height: 18px;
+    min-width: 321px
+}
+
+.information-box {
+    overflow: hidden;
+    height: 1%;
+    margin: 0 0 30px
+}
+
+    .information-box img {
+        vertical-align: top
+    }
+
+    .information-box .tel-box {
+        float: left;
+        width: 29%;
+        padding: 4px 0 0
+    }
+
+    .information-box .div-head {
+        margin: 0 0 20px;
+        font: 20px "trebuchet ms",helvetica,sans-serif
+    }
+
+    .information-box .tel-box ul {
+        margin: 0 0 4px;
+        padding: 0;
+        list-style: none;
+        line-height: 18px
+    }
+
+    .information-box .tel-box .email strong {
+        margin: 0 3px 0 0
+    }
+
+.text-block {
+    overflow: hidden;
+    width: 100%;
+    margin: 0 0 13px;
+    position: absolute;
+    bottom: 120px;
+    left: 260px;
+    width: auto;
+    right: 20px
+}
+
+    .text-block h4 {
+        font: 24px/33px "trebuchet ms",helvetica,sans-serif;
+        margin: 0 0 13px
+    }
+
+    .text-block p {
+        margin: 0 0 18px;
+        line-height: 18px
+    }
+
+    .text-block .box {
+        margin: 0 0 10px;
+        overflow: hidden;
+        height: 1%
+    }
+
+#footer {
+    width: 100%;
+    overflow: hidden;
+    height: 98px;
+    background: url(../Files/design/bg-footer.png) repeat-x;
+    text-align: center;
+    padding: 19px 0 0
+}
+
+.sorting-form {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 0 14px
+}
+
+    .sorting-form .row, .sorting-form .row2 {
+        overflow: hidden;
+        height: 1%;
+        margin: 0 0 10px;
+        padding: 0 10px
+    }
+
+    .sorting-form .row2 {
+        margin: 0;
+        padding: 6px 10px 12px;
+        background: url(../Files/design/line02.gif) repeat-x 0 100%
+    }
+
+    .sorting-form .col {
+        float: right;
+        margin: 0 5px 0 0;
+        display: inline
+    }
+
+        .sorting-form .col label {
+            float: left;
+            margin: 1px 8px 0 0
+        }
+
+.set-proposals {
+    width: 100%;
+    min-width: 820px;
+    margin: -16px 0 6px
+}
+
+    .set-proposals .head {
+        overflow: hidden;
+        height: 1%;
+        padding: 0 10px;
+        margin: 0 0 3px
+    }
+
+        .set-proposals .head .holder {
+            overflow: hidden;
+            height: 1%;
+            margin: 8px 0 5px
+        }
+
+        .set-proposals .head .holder {
+            margin-top: 10px
+        }
+
+        .set-proposals .head .sorting {
+            overflow: hidden;
+            height: 1%
+        }
+
+        .set-proposals .head h1, .set-proposals .head h3 {
+            margin: 0 18px 0 0;
+            display: inline;
+            font: 24px "trebuchet ms",helvetica,sans-serif
+        }
+
+        .set-proposals .head .bright_header {
+            color: red;
+            font-weight: 700
+        }
+
+        .set-proposals .head .sorting strong {
+            float: left;
+            font-weight: 400;
+            margin: 2px 4px 0 0
+        }
+
+        .set-proposals .head .sorting ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            float: left
+        }
+
+        .set-proposals .head .sorting li {
+            float: left;
+            margin: 0 4px 0 0
+        }
+
+        .set-proposals .head .sorting a {
+            float: left;
+            font-weight: 700;
+            text-decoration: none
+        }
+
+        .set-proposals .head .sorting span {
+            float: left;
+            height: 19px;
+            padding: 2px 5px 0
+        }
+
+        .set-proposals .head .sorting em {
+            float: left;
+            font-style: normal;
+            background: url(../Files/design/dot01.gif) repeat-x 0 100%
+        }
+
+        .set-proposals .head .sorting a:hover em {
+            background: 0
+        }
+
+    .set-proposals .list {
+        margin-right: 20px;
+        padding: 3px 0 0;
+        list-style: none;
+        overflow: hidden;
+        min-width: 820px;
+        height: 1%
+    }
+
+        .set-proposals .list li {
+            width: 25%;
+            float: left;
+            margin: 0 0 10px;
+            min-width: 200px
+        }
+
+        * html .set-proposals .list li {
+            width: 24.9%;
+            min-width: 200px
+        }
+
+            .set-proposals .list li img {
+                vertical-align: top
+            }
+
+        .set-proposals .list .wrap {
+            position: relative;
+            padding: 3px 0 0;
+            margin: 0 3px;
+            min-width: 200px;
+            height: 1%;
+            border-top: solid 1px #e7da3e
+        }
+
+        .set-proposals .list .bg-l {
+            position: absolute;
+            left: 0;
+            top: -1px;
+            background: url(../Files/design/design-02.png) no-repeat -370px -137px;
+            width: 8px;
+            height: 4px
+        }
+
+        .set-proposals .list .bg-r {
+            position: absolute;
+            right: 0;
+            top: -1px;
+            background: url(../Files/design/design-02.png) no-repeat -370px -132px;
+            width: 8px;
+            height: 4px
+        }
+
+        .set-proposals .list .bg-line {
+            width: 160px;
+            margin: 0 0 0 -80px
+        }
+
+        .set-proposals .list .box {
+            background: url(../Files/design/line01.gif) repeat-x 0 100%;
+            height: 295px;
+            overflow: hidden;
+            min-width: 200px;
+            text-align: center;
+            padding: 0;
+            border: solid 1px #dea
+        }
+
+            .set-proposals .list .box:hover {
+                border: solid 1px #9db948;
+                background: url(../Files/design/line01-h.gif) repeat-x 0 100%
+            }
+
+            .set-proposals .list .box .button {
+                background: url(../Files/design/button09.png) no-repeat;
+                width: 120px;
+                height: 20px;
+                color: #fff;
+                position: absolute;
+                z-index: 10;
+                top: 4px;
+                left: 50%;
+                margin: 0 0 0 -60px;
+                padding: 0 0 10px 0;
+                display: none;
+                border: 0;
+                cursor: pointer
+            }
+
+                .set-proposals .list .box .button:hover {
+                    background: url(../Files/design/button09-h.png) no-repeat
+                }
+
+            .set-proposals .list .box:hover .button {
+                display: block
+            }
+
+        .set-proposals .list .visual {
+            margin: 0 0 8px;
+            padding-top: 4px;
+            text-align: center;
+            width: 201px;
+            height: 195px;
+            position: relative;
+            display: inline-block
+        }
+
+            .set-proposals .list .visual .orange {
+                background: url(../Files/design/productLabelOrange.png) repeat scroll 0 0 transparent
+            }
+
+            .set-proposals .list .visual .gift {
+                background: url(../Files/design/productLabelGift.png) repeat scroll 0 0 transparent
+            }
+
+        .set-proposals .list .name {
+            margin: 0 0 11px;
+            height: 20px
+        }
+
+            .set-proposals .list .name a {
+                color: #6c6c00;
+                font-weight: 700
+            }
+
+        .set-proposals .list .price {
+            position: relative;
+            padding: 12px 0 0;
+            height: 1%
+        }
+
+            .set-proposals .list .price .bg {
+                background: url(../Files/design/design-02.png) no-repeat -211px -131px;
+                top: 0;
+                left: 50%;
+                margin: 0 0 0 -71px;
+                width: 143px;
+                height: 12px;
+                position: absolute
+            }
+
+            .set-proposals .list .price div {
+                color: #9a3;
+                font-weight: 700;
+                font-size: 15px
+            }
+
+        .set-proposals .list .zoom {
+            display: inline-block;
+            width: 26px;
+            height: 28px;
+            margin: 0 2px 0 0;
+            text-decoration: none;
+            background: url(../Files/design/ico01.png) no-repeat
+        }
+
+        .set-proposals .list .basket {
+            width: 25px;
+            height: 28px;
+            text-decoration: none;
+            display: inline-block;
+            background: url(../Files/design/ico02.png) no-repeat
+        }
+
+.page {
+    height: 1%;
+    overflow: hidden;
+    text-align: center;
+    font-weight: 700;
+    padding: 8px 0 0;
+    margin: 16px 0 0
+}
+
+    .page a {
+        display: inline-block;
+        vertical-align: top;
+        color: #6c6c00;
+        background: #c8ddac;
+        background: -moz-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
+        background: -webkit-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
+        background: -o-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
+        background: -ms-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
+        background: linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
+        border-radius: 2px;
+        width: 28px;
+        text-align: center;
+        height: 21px;
+        text-decoration: none;
+        padding: 7px 0 0;
+        margin: 0 3px
+    }
+
+        .page a:hover {
+            background: #656e58;
+            color: #fff;
+            text-decoration: none
+        }
+
+    .page ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: inline
+    }
+
+        .page ul li {
+            display: inline
+        }
+
+.main-tab {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 0 13px
+}
+
+    .main-tab ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        height: 1%
+    }
+
+    .main-tab li {
+        width: 33.3%;
+        float: left
+    }
+
+        .main-tab li .l {
+            float: left;
+            height: 44px;
+            width: 10px
+        }
+
+        * html .main-tab li .l {
+            margin-right: -3px
+        }
+
+        .main-tab li .r {
+            float: right;
+            height: 44px;
+            width: 10px
+        }
+
+        * html .main-tab li .r {
+            margin-left: -3px
+        }
+
+        .main-tab li .c {
+            overflow: hidden;
+            height: 33px;
+            padding: 11px 0 0;
+            text-align: center;
+            font: 16px "trebuchet ms",helvetica,sans-serif
+        }
+
+.main-order-form {
+    overflow: hidden;
+    width: 100%;
+    padding: 6px 0 0;
+    margin: 0 0 38px
+}
+
+    .main-order-form .box {
+        border-bottom: solid 1px #f4f4f3;
+        overflow: hidden;
+        height: 1%;
+        margin: 0 0 8px;
+        padding: 0 0 3px
+    }
+
+    .main-order-form .row {
+        overflow: hidden;
+        height: 1%;
+        margin: 0 0 10px
+    }
+
+    .main-order-form .row2 {
+        overflow: hidden;
+        height: 1%;
+        margin: 0 0 11px;
+        display: block;
+        widht: auto
+    }
+
+    .main-order-form .col {
+        float: left;
+        margin: 0 0 -11px
+    }
+
+    .main-order-form label {
+        float: left;
+        padding: 6px 7px 0 0;
+        width: 215px;
+        text-align: right;
+        color: #3f3f3f;
+        font-weight: 700;
+        height: 30px
+    }
+
+        .main-order-form label em {
+            color: #be3217;
+            font-weight: 700;
+            font-size: 14px
+        }
+
+        .main-order-form label span {
+            font-weight: 400
+        }
+
+    .main-order-form .wrap {
+        background: url(../Files/design/input.gif) no-repeat;
+        height: 30px;
+        float: left
+    }
+
+    .main-order-form .wrap2 {
+        float: left;
+        padding: 0 7px;
+        background: url(../Files/design/input-r.gif) no-repeat 100% 0
+    }
+
+    .main-order-form .wrap input {
+        background: 0;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        width: 251px;
+        height: 30px;
+        font-size: 14px;
+        color: #404040;
+        line-height: 26px
+    }
+
+    .main-order-form .holder {
+        background: #f8faf6;
+        border: solid 1px #edf0e9;
+        overflow: hidden;
+        height: 1%;
+        margin: 0 0 23px;
+        padding: 15px 20px 7px 0
+    }
+
+        .main-order-form .holder label {
+            width: 214px
+        }
+
+        .main-order-form .holder .row {
+            margin: 0
+        }
+
+    .main-order-form .row3 {
+        overflow: hidden;
+        height: 1%;
+        padding: 0 0 10px 220px
+    }
+
+        .main-order-form .row3 .row {
+            margin: 0 0 3px
+        }
+
+    .main-order-form .holder .text {
+        color: #3f3f3f;
+        font-style: italic;
+        line-height: 18px
+    }
+
+    .main-order-form .row3 label {
+        color: #3f3f3f;
+        font-size: 12px;
+        padding: 1px 0 0 3px;
+        font-weight: 400;
+        width: auto
+    }
+
+    .main-order-form .row4 {
+        overflow: hidden;
+        height: 1%;
+        margin: 0 0 18px
+    }
+
+        .main-order-form .row4 input {
+            width: 121px
+        }
+
+    .main-order-form .row3 .row2 {
+        margin: 0 0 8px
+    }
+
+    .flowers-button-line, .main-order-form .button, .payment-box .button {
+        text-align: center;
+        overflow: hidden;
+        height: 1%;
+        padding: 10px 0 13px;
+        margin: 32px 0 0;
+        background: url(../Files/design/line04.gif) repeat-x;
+        position: relative
+    }
+
+        .main-order-form .button .br, .payment-box .button .br {
+            background: url(../Files/design/dot06.gif) no-repeat;
+            position: absolute;
+            bottom: 0;
+            width: 1px;
+            height: 1px;
+            right: 0
+        }
+
+    .main-order-form .email-block {
+        width: 335px;
+        margin: 0 auto;
+        padding: 13px 0 0
+    }
+
+        .main-order-form .email-block:after {
+            display: block;
+            clear: both;
+            content: ""
+        }
+
+        .main-order-form .email-block label {
+            float: none;
+            padding: 0;
+            margin: 0 0 8px;
+            display: block;
+            text-align: left;
+            width: auto
+        }
+
+        .main-order-form .email-block .row {
+            margin: 0 0 7px;
+            overflow: visible;
+            position: relative
+        }
+
+            .main-order-form .email-block .row:after {
+                display: block;
+                clear: both;
+                content: ""
+            }
+
+        .main-order-form .email-block input {
+            width: 321px
+        }
+
+    .main-order-form .button a {
+        display: inline-block;
+        overflow: hidden;
+        text-decoration: none;
+        font-size: 13px;
+        margin: 0 0 0 10px;
+        font-weight: 400;
+        font: 14px "trebuchet ms",helvetica,sans-serif
+    }
+
+        .main-order-form .button a span {
+            float: left;
+            padding: 9px 15px 0;
+            height: 28px
+        }
+
+    .main-order-form .email-holder {
+        width: 100%;
+        margin: 0 0 15px
+    }
+
+        .main-order-form .email-holder input {
+            width: 254px
+        }
+
+.flowers-button {
+    background: url(../Files/design/button13-altl.gif) no-repeat
+}
+
+    .flowers-button span {
+        background: url(../Files/design/button13-altr.gif) no-repeat 100% 0;
+        padding: 9px 32px 0 15px !important
+    }
+
+.payment-box {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 0 29px
+}
+
+    .payment-box .head {
+        background: url(../Files/design/bg-head-c.gif) repeat-x;
+        width: 100%;
+        margin: 0 0 1px
+    }
+
+    .payment-box .l {
+        background: url(../Files/design/bg-head-l.gif) no-repeat;
+        width: 100%
+    }
+
+    .payment-box .r {
+        background: url(../Files/design/bg-head-r.gif) no-repeat 100% 0;
+        overflow: hidden;
+        height: 43px;
+        text-align: center;
+        padding: 10px 0 0;
+        font: 24px "trebuchet ms",helvetica,sans-serif
+    }
+
+    .payment-box .block {
+        background: #f8faf6;
+        height: 1%;
+        overflow: hidden;
+        padding: 29px 30px 16px
+    }
+
+    .payment-box .list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        width: 100%
+    }
+
+        .payment-box .list li {
+            font-size: 14px;
+            margin: 0 0 1px;
+            width: 100%;
+            float: left;
+            position: relative
+        }
+
+            .payment-box .list li .wrap {
+                background: #eaede6 url(../Files/design/bg-payment-tl.gif) no-repeat;
+                overflow: hidden;
+                width: 100%
+            }
+
+            .payment-box .list li .br {
+                width: 100%;
+                overflow: hidden;
+                background: url(../Files/design/bg-payment-br.gif) no-repeat 100% 100%
+            }
+
+        .payment-box .list .visual {
+            float: left;
+            margin: 0 10px 0 0
+        }
+
+            .payment-box .list .visual img {
+                vertical-align: top
+            }
+
+        .payment-box .list .text {
+            float: left;
+            margin: 11px 14px 0 0
+        }
+
+    .payment-box .pay-button {
+        position: absolute;
+        right: 20px;
+        top: 7px;
+        background: url(../Files/design/button19.gif) no-repeat;
+        width: 81px;
+        height: 20px;
+        padding: 5px 0 0;
+        text-decoration: none;
+        color: #324315;
+        font-size: 12px;
+        text-align: center
+    }
+
+    .payment-box .button {
+        margin-top: 3px
+    }
+
+        .payment-box .button a.pay {
+            display: inline-block;
+            overflow: hidden;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            font: 14px "trebuchet ms",helvetica,sans-serif;
+            background: url(../Files/design/button13-altl.gif) no-repeat;
+            color: #fff;
+            text-transform: uppercase
+        }
+
+            .payment-box .button a.pay span {
+                float: left;
+                padding: 9px 15px 0;
+                height: 28px;
+                background: url(../Files/design/button13-r.gif) no-repeat 100% 0
+            }
+
+.main-order-form .title {
+    border-radius: 4px 4px 4px 4px;
+    font-size: 14pt;
+    height: 40px;
+    padding: 7px 0 0 25px;
+    background: #adc47c;
+    background: -moz-linear-gradient(top,#d9e7be 0,#adc47c 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#d9e7be),color-stop(100%,#adc47c));
+    background: -webkit-linear-gradient(top,#d9e7be 0,#adc47c 100%);
+    background: -o-linear-gradient(top,#d9e7be 0,#adc47c 100%);
+    background: -ms-linear-gradient(top,#d9e7be 0,#adc47c 100%);
+    background: linear-gradient(top,#d9e7be 0,#adc47c 100%);
+    -pie-background: linear-gradient(#d9e7be,#adc47c)
+}
+
+.main-order-form .block {
+    background: #f6f8f3;
+    border-radius: 10px;
+    position: relative;
+    top: -10px;
+    padding: 15px 15px 15px 25px
+}
+
+    .main-order-form .block .row:last-child {
+        margin: 0
+    }
+
+    .main-order-form .block .row label {
+        width: 180px;
+        text-align: left;
+        padding: 4px 7px 0 0;
+        height: auto;
+        overflow-y: hidden
+    }
+
+    .main-order-form .block .wrap, .main-order-form .block input {
+        border: 1px solid #a0a59d;
+        border-color: #a0a59d #e1e1df #e1e1df #a0a59d;
+        text-indent: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        background: #ecf0e9;
+        background: -moz-linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ecf0e9),color-stop(100%,#f5f8f5));
+        background: -webkit-linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
+        background: -o-linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
+        background: -ms-linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
+        background: linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
+        -pie-background: linear-gradient(#ecf0e9,#f5f8f5)
+    }
+
+    .main-order-form .block .wrap, .main-order-form .block input {
+        margin: 0;
+        padding: 0;
+        width: 220px;
+        height: 22px;
+        font-size: 14px;
+        color: #404040;
+        line-height: 22px
+    }
+
+    .main-order-form .block .row2 input {
+        float: left;
+        height: 15px;
+        margin: 0 10px 0 0;
+        padding: 0;
+        width: 15px
+    }
+
+    .main-order-form .block .row2 label {
+        float: left;
+        padding: 0;
+        width: auto;
+        height: auto
+    }
+
+    .main-order-form .block img {
+        margin-right: 3px;
+        vertical-align: middle;
+        width: 40px;
+        height: 22px
+    }
+
+.main-order-form .btn {
+    border: 0 none;
+    line-height: 37px;
+    height: 37px;
+    color: #fff;
+    font-family: Verdana,Geneva,sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 700;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #a3bb39;
+    background: -moz-linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#a3bb39),color-stop(50%,#8db128),color-stop(50%,#72ad1f),color-stop(100%,#549b09));
+    background: -webkit-linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
+    background: -o-linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
+    background: -ms-linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
+    background: linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
+    -pie-background: linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%)
+}
+
+.main-order-form .btn {
+    font-size: 19px;
+    font-family: "trebuchet ms",helvetica,sans-serif;
+    height: 51px;
+    line-height: 51px;
+    min-width: 150px;
+    padding: 0 20px;
+    width: auto;
+    background: -moz-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ab4),color-stop(49%,#96af39),color-stop(50%,#87a732),color-stop(100%,#6e9a26));
+    background: -webkit-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
+    background: -o-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
+    background: -ms-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%)
+}
+
+    .main-order-form .btn b {
+        color: #fff;
+        font-size: 30px;
+        display: inline-block;
+        height: 17px;
+        line-height: 8px;
+        vertical-align: middle;
+        font-family: Geneva,sans-serif
+    }
+
+    .main-order-form .btn b {
+        font-size: 45px;
+        height: 21px
+    }
+
+.not_found_title {
+    width: 715px;
+    margin: 0 auto;
+    text-align: left
+}
+
+.not_found_content {
+    width: 700px;
+    margin: 0 auto;
+    padding: 25px 15px 25px 25px !important;
+    font-size: 16px
+}

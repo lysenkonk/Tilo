@@ -35,8 +35,6 @@ namespace Tilo.Controllers
 
         public ViewResult Product(int id)
         {
-          
-
             //int categoryId = _repoCategories.Categories.First(p => p.Name == "Трусы");
             Product product = _repository.Products
                 .FirstOrDefault(p => p.ProductID == id);
@@ -49,7 +47,7 @@ namespace Tilo.Controllers
 
         public ViewResult List(string category, int page = 1)
         {
-            var viewModel = new ProductsListViewModel
+            var viewModel = new ProductsViewModel
             {
                 Products = _repository.Products
                 .Where(p => category == null || p.Category.Name == category)

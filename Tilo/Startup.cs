@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tilo.Models;
+using Tilo.Services;
 
 namespace Tilo
 {
@@ -17,7 +18,7 @@ namespace Tilo
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+                 Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,8 +31,10 @@ namespace Tilo
                     Configuration["Data:TiloProducts:ConnectionString"]));
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddTransient<ICategoryRepository, EFCategoryRepository>();
-
+            services.AddTransient<IFileModelRepository, EFFileModelRepository>();
             services.AddMvc();
+            services.AddTransient<ProductsService>();
+            services.AddDistributedMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +51,7 @@ namespace Tilo
 
             app.UseStaticFiles();
             app.UseStatusCodePages();
+
 
             app.UseMvc(routes =>
             {
@@ -72,8 +76,19 @@ namespace Tilo
                     template: "Product/{id}",
                     defaults: new { controller = "Shop", action = "Product"  }
                     );
+                routes.MapRoute(
+                    name: "admin",
+                    template: "Admin/{action=Index}/{productId?}",
+                    defaults: new { controller = "Admin"}
+                    );
+                routes.MapRoute(
+                   name: "categoryNavAdmin",
+                   template: "{category}/{page}",
+                   defaults: new { controller = "Admin", action = "Index" }
+                   );
             });
             SeedData.EnsurePopulated(app);
+            //IdentitySeedData.EnsurePopulated(app).Wait();
         }
     }
 }

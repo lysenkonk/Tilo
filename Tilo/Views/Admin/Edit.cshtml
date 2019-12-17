@@ -1,0 +1,118 @@
+﻿@model AdminProductViewModel
+
+@{
+    ViewBag.Title = "All Products";
+    Layout = "_AdminLayout";
+}
+
+
+<div class="container">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Product.ProductID" />
+        <div class="form-group row">
+            <label asp-for="@Model.Product.Name" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <div> <span asp-validation-for="@Model.Product.Name" class="text-danger"></span></div>
+                <input asp-for="Product.Name" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Product.Description" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <div> <span asp-validation-for="@Model.Product.Description" class="text-danger"></span></div>
+                <textarea asp-for="Product.Description" rows="5" class="form-control vresize"> </textarea>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Product.Category" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <select id="editable-select" asp-for="@Model.Product.Category.Name" class="form-control" asp-items="@(new SelectList(Model.Categories, "Name", "Name", "CategoryId"))">
+                    <option value="@Model.Product.Category.Name"></option>
+                </select>
+                <span asp-validation-for="@Model.Product.Category.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Product.Price" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
+                <input asp-for="Product.Price" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="@Model.Product.Size" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <select id="editable-select" asp-for="@Model.Product.Size" class="form-control" asp-items="@(new SelectList(Model.Sizes, "Size"))">
+                    <option value="@Model.Product.Size"></option>
+                </select>
+                <span asp-validation-for="@Model.Product.Size" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="@Model.Product.Color" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <select id="editable-select" asp-for="@Model.Product.Color" class="form-control" asp-items="@(new SelectList(Model.Colors, "Color"))">
+                    <option value="@Model.Product.Color"></option>
+                </select>
+                <span asp-validation-for="@Model.Product.Color" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-10 ml-auto">
+                <button class="btn btn-primary" type="submit">Save</button>
+                <a asp-action="Create" class="btn btn-warning">Clean</a>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (FileModel image in @Model.Product.Images)
+        {
+            <div class="col-md-3">
+                <div class="thumbnail container text-center">
+                    <div>
+                        <a href="@Url.Content("/Files/Bg/" + image.Name)">
+                            <img class="imageAdmin" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name">
+                        </a>
+                    </div>
+                    <div>
+                        <a asp-action="RemoveImage" class="btn btn-sm btn-warning"
+                           asp-route-productId="@Model.Product.ProductID" asp-route-imageName="@image.Name">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-md-3 align-self-center">
+
+            <form id="form" asp-action="AddImage" asp-route-productId="@Model.Product.ProductID" method="post" enctype="multipart/form-data">
+                <div class="upload-button">
+                    <a onclick="document.getElementById('file-input').click();" class="btn btn-sm btn-info">Add</a>
+                    <input id="file-input" type="file" name="uploadedFile" onchange="submitForm('form');" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+
+<script>
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
+
+    $('#editable-select').editableSelect();
+</script>
+

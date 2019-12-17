@@ -14,8 +14,8 @@ namespace Tilo.Models
             context = ctx;
             setChildCategories();
         }
-        public IQueryable<Category> Categories => context.Categories;
-        public IQueryable<Category> ParentCategories => context.Categories.Where(p => p.ParentCategory == null);
+        public IEnumerable<Category> Categories => context.Categories;
+        public IEnumerable<Category> ParentCategories => context.Categories.Where(p => p.ParentCategory == null);
 
 
         void setChildCategories()

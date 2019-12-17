@@ -1,4 +1,4 @@
-﻿@model ProductsListViewModel
+﻿@model ProductsViewModel
 @{
     ViewData["Title"] = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,8 +23,8 @@
                                     <div class="name">
                                         <p>@p.Name</p>
                                     </div>
-                                    <div class="price">               
-                                         @p.Price.ToString()
+                                    <div class="price">
+                                        @{p.Price.ToString();}
                                         <span class="woocommerce-Price-currencySymbol">грн</span>
                                     </div>
                                     </div>

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Tilo.Models
 {
-    public class Category
+    public class Category : IComparable<Category>
     {
         public int CategoryID { get; set; }
 
@@ -28,6 +28,13 @@ namespace Tilo.Models
         public Category()
         {
 
+        }
+
+        public int CompareTo(Category otherCategory)
+        {
+            if (otherCategory == null) return 1;
+
+            return this.Name.CompareTo(otherCategory.Name);
         }
     }
 }

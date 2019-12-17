@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace Tilo.Models.ViewModels
 {
-    public class ProductsListViewModel
+    public class ProductsViewModel
     {
         public IEnumerable<Product> Products { get; set; }
         public PagingInfo PagingInfo { get; set; }
         public string CurrentCategory { get; set; }
+        public SortViewModel SortViewModel { get; set; }
+        public FilterViewModel FilterViewModel { get; set; }
     }
 }

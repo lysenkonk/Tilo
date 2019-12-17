@@ -45,6 +45,8 @@ namespace Tilo.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Path");
+
                     b.Property<int?>("ProductID");
 
                     b.HasKey("Id");
@@ -71,7 +73,7 @@ namespace Tilo.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<decimal>("Price");
+                    b.Property<int>("Price");
 
                     b.Property<string>("Size")
                         .IsRequired();

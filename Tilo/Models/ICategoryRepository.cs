@@ -7,7 +7,7 @@ namespace Tilo.Models
 {
     public interface ICategoryRepository
     {
-        IQueryable<Category> Categories { get; }
-        IQueryable<Category> ParentCategories { get; }
+        IEnumerable<Category> Categories { get; }
+        IEnumerable<Category> ParentCategories { get; }
     }
 }

@@ -20,9 +20,9 @@ namespace Tilo.Models
         public string Size { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue,
+        [Range(0, int.MaxValue,
             ErrorMessage = "Please enter a positive price")]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
 
         [Required(ErrorMessage = "Please enter a color")]
         public string Color { get; set; }

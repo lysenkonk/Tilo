@@ -48,14 +48,14 @@ namespace Tilo.Models
             {
                 context.Categories.Add(new Category("Аксессуары", lingue));
             }
-            if (context.Categories.FirstOrDefault(p => p.Name == "Suit") == null)
-            {
-                context.Categories.Add(new Category("Подарочные сертификаты", lingue));
-            }
-            if (context.Categories.FirstOrDefault(p => p.Name == "Suit") == null)
-            {
-                context.Categories.Add(new Category("Акции", lingue));
-            }
+            //if (context.Categories.FirstOrDefault(p => p.Name == "Suit") == null)
+            //{
+            //    context.Categories.Add(new Category("Подарочные сертификаты", lingue));
+            //}
+            //if (context.Categories.FirstOrDefault(p => p.Name == "Suit") == null)
+            //{
+            //    context.Categories.Add(new Category("Акции", lingue));
+            //}
             context.SaveChanges();
 
 

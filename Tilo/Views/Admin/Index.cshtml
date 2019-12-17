@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "All Products";
+    Layout = "_AdminLayout";
+}
+
+<style>
+    [class*="col-"] {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background-color: rgba(86, 61, 124, .15);
+        border: 1px solid rgba(86, 61, 124, .2);
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            ID
+        </div>
+        <div class="col-md-3">
+            Name
+        </div>
+        <div class="col-md-2">
+            Category
+        </div>
+        <div class="col-md-1">
+            Price, $
+        </div>
+        <div class="col-md-2">
+            Actions
+        </div>
+    </div>
+
+    @foreach (Product product in Model)
+    {
+        <div class="row">
+            <div class="col-md-1">
+                @product.ProductID
+            </div>
+            <div class="col-md-3">
+                @product.Name
+            </div>
+            <div class="col-md-2">
+                @product.Category.Name
+            </div>
+            <div class="col-md-1">
+                @product.Price
+            </div>
+            <div class="col-md-2">
+                <a asp-action="Edit" class="btn btn-sm btn-warning"
+                   asp-route-productId="@product.ProductID">
+                    Edit
+                </a>
+                <a asp-action="Delete" class="btn btn-sm btn-danger"
+                   asp-route-productId="@product.ProductID">
+                    Delete
+                </a>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Add Product</a>
+</div>

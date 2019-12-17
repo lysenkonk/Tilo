@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Category>
+
+    <li>
+        <a class="tab"
+           asp-action="Index"
+           asp-controller="Admin"
+           asp-route-category="">
+            <span style="font-weight:bold;">
+                All products
+            </span>
+        </a>
+    </li>
+    @foreach (Category category in Model)
+    {
+        <li>
+            <a class="tab"
+               asp-action="List"
+               asp-controller="Admin"
+               asp-route-category="@category.Name"
+               asp-route-page="1">
+                <span style="">
+                    @category.Name
+                </span>
+            </a>
+        </li>
+    }

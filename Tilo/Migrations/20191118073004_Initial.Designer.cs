@@ -10,7 +10,7 @@ using Tilo.Models;
 namespace Tilo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190618120528_Initial")]
+    [Migration("20191118073004_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,6 +47,8 @@ namespace Tilo.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Path");
+
                     b.Property<int?>("ProductID");
 
                     b.HasKey("Id");
@@ -73,7 +75,7 @@ namespace Tilo.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<decimal>("Price");
+                    b.Property<int>("Price");
 
                     b.Property<string>("Size")
                         .IsRequired();

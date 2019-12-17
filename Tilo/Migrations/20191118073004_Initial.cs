@@ -36,7 +36,7 @@ namespace Tilo.Migrations
                     Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
                     Size = table.Column<string>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
+                    Price = table.Column<int>(nullable: false),
                     Color = table.Column<string>(nullable: false),
                     CategoryID = table.Column<int>(nullable: false)
                 },
@@ -58,6 +58,7 @@ namespace Tilo.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
+                    Path = table.Column<string>(nullable: true),
                     ProductID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
