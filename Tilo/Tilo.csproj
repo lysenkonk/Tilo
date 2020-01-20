@@ -19,7 +19,7 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\files\Bg\" />
+    <Folder Include="wwwroot\Files\Sm\" />
   </ItemGroup>
 
 </Project>

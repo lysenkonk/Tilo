@@ -7,6 +7,10 @@ namespace Tilo.Models
 {
     public interface IFileModelRepository
     {
-        IQueryable<FileModel> fileModels { get; }
+        IQueryable<FileModel> FileModels { get; }
+
+        Task<FileModel> SavePhotoModelAsync(FileModel photo);
+
+        Task<FileModel> RemovePhotoModelAsync(string photoName);
     }
 }

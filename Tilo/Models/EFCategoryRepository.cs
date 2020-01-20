@@ -17,13 +17,29 @@ namespace Tilo.Models
         public IEnumerable<Category> Categories => context.Categories;
         public IEnumerable<Category> ParentCategories => context.Categories.Where(p => p.ParentCategory == null);
 
-
         void setChildCategories()
         {
             foreach (var p in ParentCategories)
             {
                 p.ChildCategories = context.Categories.Where(e => e.ParentCategory.Name == p.Name).ToList();
             }
+        }
+        public async Task<Category> AddCategoryAsync(string categoryName, string categoryParent)
+        {
+            Category category;
+            Category parent = context.Categories.FirstOrDefault(c => c.Name == categoryParent);
+            if (parent != null)
+            {
+                category = new Category(categoryName, parent);
+            }
+            else
+            {
+                category = new Category(categoryName);
+            }
+            
+
+            await context.SaveChangesAsync();
+            return category;
         }
     }
 }

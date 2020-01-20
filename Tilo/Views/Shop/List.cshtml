@@ -14,18 +14,20 @@
                         {
                             <li class="product inner-appearing-object">
                                 <div class="picture img">
- 
-                                    <img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)" >
+                                    <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ProductID">
+                                        <img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)">
+                                    </a>
                                 </div>
-                                <div class="description">
-                                    
+                                <div class="description">                                   
                                     <div class="information">
-                                    <div class="name">
-                                        <p>@p.Name</p>
-                                    </div>
+                                        <div class="name">
+                                            <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ProductID">   
+                                                <p>@p.Name</p>
+                                            </a>
+                                        </div>
                                     <div class="price">
-                                        @{p.Price.ToString();}
-                                        <span class="woocommerce-Price-currencySymbol">грн</span>
+                                        <p></p>
+                                        <span class="woocommerce-Price-currencySymbol">@p.Price грн</span>
                                     </div>
                                     </div>
                                 </div>

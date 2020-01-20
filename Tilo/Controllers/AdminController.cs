@@ -55,19 +55,10 @@ namespace Tilo.Controllers
             var viewModel = new AdminProductViewModel
             {
                 Product = product,
-                Categories = _productsService.Products
-                .Select(x => x.Category)
-                .Distinct()
-                .OrderBy(x => x),
-                Colors = _productsService.Products
-                .Select(x => x.Color)
-                .Distinct()
-                .OrderBy(x => x),
-                Sizes = _productsService.Products
-                .Select(x => x.Size)
-                .Distinct()
-                .OrderBy(x => x)
-        };
+                Categories = _productsService.Categories,
+                Colors = _productsService.Colors,
+                Sizes = _productsService.Sizes
+        }; 
 
             return View(viewModel);
         }
@@ -84,18 +75,9 @@ namespace Tilo.Controllers
             var viewModel = new AdminProductViewModel
             {
                 Product = product,
-                Categories = _productsService.Products
-                            .Select(x => x.Category)
-                            .Distinct()
-                            .OrderBy(x => x),
-                Colors = _productsService.Products
-                            .Select(x => x.Color)
-                            .Distinct()
-                            .OrderBy(x => x),
-                Sizes = _productsService.Products
-                            .Select(x => x.Size)
-                            .Distinct()
-                            .OrderBy(x => x)
+                Categories = _productsService.Categories,
+                Colors = _productsService.Colors,
+                Sizes = _productsService.Sizes
             };
             return View(viewModel);
         }
@@ -167,6 +149,21 @@ namespace Tilo.Controllers
             return true;
         }
 
+        public async Task<IActionResult> AddCategory(string categoryName, string parentCategory) 
+        {
+            var category = _productsService.Categories.FirstOrDefault(c => c.Name == categoryName);
+
+            if (category != null)
+            {
+                TempData["message"] = $"That category is already exist";
+                return RedirectToAction("List");
+            }else
+            {
+                await _productsService.SaveCategoryAsync(categoryName, parentCategory);
+                TempData["message"] = $"{categoryName} has been saved";
+                return RedirectToAction("List");
+            }
+        }
 
     }
 }

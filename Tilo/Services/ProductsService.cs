@@ -38,6 +38,10 @@ namespace Tilo.Services
         {
             return await _repository.SaveProductAsync(product);
         }
+        public async Task<Category> SaveCategoryAsync(string category, string parentCategory = null)
+        {
+            return await _categoryRepository.AddCategoryAsync(category, parentCategory);
+        }
 
         public async Task<Product> DeleteProductAsync(int productID)
         {
