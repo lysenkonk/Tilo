@@ -1,4 +1,5 @@
 ﻿@*@model ICategoryRepository*@
+@model IQueryable<Product> 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -45,109 +46,116 @@
                     </div>*@
                 <div class="wrapper">
                     <ul class="products">
-                        <li class="product inner-appearing-object">
-                            <a href="#" class="rightClickLink"></a>
-                            <div class="picture img">
-                                <img src="~/files/main/newProducts/39.jpg" />
-                            </div>
-                            <div class="description">
-                                <div class="information">
-                                    <div class="name">
-                                        <p>Magnolia Champagne</p>
-                                    </div>
-                                    <div class="price">
-                                        1200 грн
+                        @foreach (var p in Model)
+                        {
+                            <li class="product inner-appearing-object">
+                                <a href="#" class="rightClickLink"></a>
+                                <div class="picture img">
+                                    <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ProductID">
+                                        <img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)">
+                                     </a>
+                                </div>
+                                <div class="description">
+                                    <div class="information">
+                                        <div class="name">
+                                            <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ProductID">
+                                                <p>@p.Name</p>
+                                            </a>
+                                        </div>
+                                        <div class="price">
+                                            <p></p>
+                                            <span class="woocommerce-Price-currencySymbol">@p.Price грн</span>
+                                        </div>
                                     </div>
                                 </div>
-
-                            </div>
-                        </li>
-                        <li class="product inner-appearing-object">
-                            <a href="#" class="rightClickLink"></a>
-                            <div class="picture img">
-                                <img src="~/files/main/newProducts/1.jpg" />
-                            </div>
-                            <div class="description">
-                                <div class="information">
-                                    <div class="name">
-                                        <p>Magnolia Champagne</p>
-                                    </div>
-                                    <div class="price">
-                                        1200 грн
-                                    </div>
+                            </li>
+                        }
+                            @*<li class="product inner-appearing-object">
+                                <a href="#" class="rightClickLink"></a>
+                                <div class="picture img">
+                                    <img src="~/files/main/newProducts/1.jpg" />
                                 </div>
+                                <div class="description">
+                                    <div class="information">
+                                        <div class="name">
+                                            <p>Magnolia Champagne</p>
+                                        </div>
+                                        <div class="price">
+                                            1200 грн
+                                        </div>
+                                    </div>
 
-                            </div>
-                        </li>
-                        <li class="product inner-appearing-object">
-                            <a href="#" class="rightClickLink"></a>
-                            <div class="picture img">
-                                <img src="~/files/main/newProducts/19.jpg" />
-                            </div>
-                            <div class="description">
-                                <div class="information">
-                                    <div class="name">
-                                        <p>Magnolia Champagne</p>
-                                    </div>
-                                    <div class="price">
-                                        1200 грн
-                                    </div>
                                 </div>
-
-                            </div>
-                        </li>
-                        <li class="product inner-appearing-object">
-                            <a href="#" class="rightClickLink"></a>
-                            <div class="picture img">
-                                <img src="~/files/main/newProducts/39.jpg" />
-                            </div>
-                            <div class="description">
-                                <div class="information">
-                                    <div class="name">
-                                        <p>Magnolia Champagne</p>
-                                    </div>
-                                    <div class="price">
-                                        1200 грн
-                                    </div>
+                            </li>
+                            <li class="product inner-appearing-object">
+                                <a href="#" class="rightClickLink"></a>
+                                <div class="picture img">
+                                    <img src="~/files/main/newProducts/19.jpg" />
                                 </div>
+                                <div class="description">
+                                    <div class="information">
+                                        <div class="name">
+                                            <p>Magnolia Champagne</p>
+                                        </div>
+                                        <div class="price">
+                                            1200 грн
+                                        </div>
+                                    </div>
 
-                            </div>
-                        </li>
-                        <li class="product inner-appearing-object">
-                            <a href="#" class="rightClickLink"></a>
-                            <div class="picture img">
-                                <img src="~/files/main/newProducts/1.jpg" />
-                            </div>
-                            <div class="description">
-                                <div class="information">
-                                    <div class="name">
-                                        <p>Magnolia Champagne</p>
-                                    </div>
-                                    <div class="price">
-                                        1200 грн
-                                    </div>
                                 </div>
-
-                            </div>
-                        </li>
-                        <li class="product inner-appearing-object">
-                            <a href="#" class="rightClickLink"></a>
-                            <div class="picture img">
-                                <img src="~/files/main/newProducts/19.jpg" />
-                            </div>
-                            <div class="description">
-                                <div class="information">
-                                    <div class="name">
-                                        <p>Magnolia Champagne</p>
-                                    </div>
-                                    <div class="price">
-                                        1200 грн
-                                    </div>
+                            </li>
+                            <li class="product inner-appearing-object">
+                                <a href="#" class="rightClickLink"></a>
+                                <div class="picture img">
+                                    <img src="~/files/main/newProducts/39.jpg" />
                                 </div>
+                                <div class="description">
+                                    <div class="information">
+                                        <div class="name">
+                                            <p>Magnolia Champagne</p>
+                                        </div>
+                                        <div class="price">
+                                            1200 грн
+                                        </div>
+                                    </div>
 
-                            </div>
-                        </li>
-                    </ul>
+                                </div>
+                            </li>
+                            <li class="product inner-appearing-object">
+                                <a href="#" class="rightClickLink"></a>
+                                <div class="picture img">
+                                    <img src="~/files/main/newProducts/1.jpg" />
+                                </div>
+                                <div class="description">
+                                    <div class="information">
+                                        <div class="name">
+                                            <p>Magnolia Champagne</p>
+                                        </div>
+                                        <div class="price">
+                                            1200 грн
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="product inner-appearing-object">
+                                <a href="#" class="rightClickLink"></a>
+                                <div class="picture img">
+                                    <img src="~/files/main/newProducts/19.jpg" />
+                                </div>
+                                <div class="description">
+                                    <div class="information">
+                                        <div class="name">
+                                            <p>Magnolia Champagne</p>
+                                        </div>
+                                        <div class="price">
+                                            1200 грн
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>*@
+                        </ul>
 
                 </div>
             </div>

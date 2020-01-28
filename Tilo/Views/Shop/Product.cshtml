@@ -91,11 +91,7 @@
                                 <div itemprop="description" class="eProductView_row mProductView_description">
                                     <div class="eProductView_description">
                                         <p>
-                                            Форма низа — бразильяна. Низ выполнен из кружева спереди и стрейч-тюля сзади.<br>
-                                            Цвет: жемчужно-розовый<br>
-                                            Материал: 70% — полиэстер, 20% — хлопок, 10% — эластан<br>
-                                            Подкладка: 100% хлопок<br>
-                                            Ручная стирка, в холодной воде
+                                            @Model.Description
                                         </p>
                                     </div>
                                 </div>
@@ -103,10 +99,8 @@
                                     <div class="eProductView_category">
                                         <div class="eProductView_categoryTitle">Категория:</div>
                                         <div class="eProductView_categoryItems">
-                                            <a href="https://zhilyova.com/ru/product-category/trusiki" rel="tag">@Model.Category.Name</a>
+                                            <a asp-action="List" asp-controller="Shop" asp-route-category="@Model.Category.Name"> @Model.Category.Name</a>
                                         </div>
-
-                                        <!--	    -->
                                     </div>
                                 </div>
                                 <div class="eProductView_row">
