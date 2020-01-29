@@ -92,17 +92,20 @@
                                     <div class="eProductView_description">
                                         <p>
                                             @Model.Description
+                                        </p>                                        
+                                        <p>
+                                            Цвет: @Model.Color
                                         </p>
                                     </div>
                                 </div>
-                                <div class="eProductView_row mProductView_params">
+                                @*<div class="eProductView_row mProductView_params">
                                     <div class="eProductView_category">
                                         <div class="eProductView_categoryTitle">Категория:</div>
                                         <div class="eProductView_categoryItems">
                                             <a asp-action="List" asp-controller="Shop" asp-route-category="@Model.Category.Name"> @Model.Category.Name</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="eProductView_row">
                                     <div class="mProductView_form">
                                         <form class="variations_form cart " method="post" enctype="multipart/form-data" data-product_id="10753">
