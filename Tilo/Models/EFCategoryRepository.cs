@@ -36,7 +36,8 @@ namespace Tilo.Models
             {
                 category = new Category(categoryName);
             }
-            
+
+            context.Categories.Add(category);
 
             await context.SaveChangesAsync();
             return category;

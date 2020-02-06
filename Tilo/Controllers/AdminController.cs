@@ -27,22 +27,21 @@ namespace Tilo.Controllers
             return View("Index", _productsService.Products);
         }
 
-        public ViewResult List(Category category, int page = 1)
+        public ViewResult List(string category, int page = 1)
         {
             IEnumerable<Product> products = _productsService.Products
-             .Where(p => category == null || p.Category == category);
+             .Where(p => category == null || p.Category.Name == category);
 
-            var count = products.Count();
-            var items = products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-            ProductsViewModel viewModel = new ProductsViewModel
-            {
-                PagingInfo = new PagingInfo(count, page, pageSize),
-                SortViewModel = new SortViewModel(SortState.NameAsc),
-                FilterViewModel = new FilterViewModel(_productsService.Categories.ToList(), category),
-                Products = items
-            };
-            return View("~/Views/Admin/Products.cshtml", viewModel.Products);
+            //IEnumerable<Product> Products = _productsService.Products
+            //    .Where(p => category == null || p.Category.Name == category)
+            //    .OrderBy(p => p.ProductID)
+            //    .Skip((page - 1) * pageSize)
+            //    .Take(pageSize);
+
+            //var count = products.Count();
+            //var items = Products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            return View("Index", products);
         }
 
         public IActionResult Edit(int productId)
@@ -120,13 +119,50 @@ namespace Tilo.Controllers
 
         public IActionResult Create()
         {
+            Product product = new Product();
+            product.Category = _productsService.Categories.FirstOrDefault();
+
             var viewModel = new AdminProductViewModel
             {
-                Product = new Product(),
-                Categories = _productsService.Categories
+                Product = product,
+                Categories = _productsService.Categories,
+                Colors = _productsService.Colors,
+                Sizes = _productsService.Sizes
             };
             return View("Edit", viewModel);
         }
+
+
+        public IActionResult CreateCategory()
+        {
+            var viewModel = new AdminCategoryModel
+            {
+                Category = new Category("Name", new Category("ParentName")),
+                Categories = _productsService.Categories
+            };
+            return View("Category", viewModel);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory(Category category)
+        {
+
+            var c = _productsService.Categories.FirstOrDefault(curent => curent.Name == category.Name);
+            string nameParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory.Name;
+
+            if (c != null && category.ParentCategory == c.ParentCategory)
+            {
+                TempData["message"] = $"That category is already exist";
+            }
+            else
+            {
+                await _productsService.SaveCategoryAsync(category.Name, nameParentCategory);
+                TempData["message"] = $"{category.Name} has been saved";
+            }
+            return RedirectToAction("Index");
+        }
+
 
         public async Task<IActionResult> Delete(int productId)
         {
@@ -149,21 +185,21 @@ namespace Tilo.Controllers
             return true;
         }
 
-        public async Task<IActionResult> AddCategory(string categoryName, string parentCategory) 
-        {
-            var category = _productsService.Categories.FirstOrDefault(c => c.Name == categoryName);
+        //public async Task<IActionResult> AddCategory(string categoryName, string parentCategory = null) 
+        //{
+        //    var category = _productsService.Categories.FirstOrDefault(c => c.Name == categoryName);
 
-            if (category != null)
-            {
-                TempData["message"] = $"That category is already exist";
-                return RedirectToAction("List");
-            }else
-            {
-                await _productsService.SaveCategoryAsync(categoryName, parentCategory);
-                TempData["message"] = $"{categoryName} has been saved";
-                return RedirectToAction("List");
-            }
-        }
+        //    if (category != null)
+        //    {
+        //        TempData["message"] = $"That category is already exist";
+        //        return RedirectToAction("Index");
+        //    }else
+        //    {
+        //        await _productsService.SaveCategoryAsync(categoryName, parentCategory);
+        //        TempData["message"] = $"{categoryName} has been saved";
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
     }
 }

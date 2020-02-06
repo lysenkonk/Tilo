@@ -16,10 +16,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-2">
-                    <div class="hamburger-menu">
-                        <img src="~/files/main/img/menu_black.png" id="menu-open-button" alt="MENU" width=38 height=38 />
-                        <span id="btnMenu">MЕНЮ</span>
-                    </div>
+                    <a onclick="openNav()">
+                        <div class="hamburger-menu">
+                            <img src="~/files/main/img/menu_black.png" id="menu-open-button" alt="MENU" width=38 height=38 />
+                            <span id="btnMenu">MЕНЮ</span>
+                        </div>
+                     </a>
                 </div>
                 <div class="col-xs-3">
                     <div class="phones" style="z-index: 10">
@@ -147,8 +149,8 @@
                     <div class="footer-main-menu">
                         <ul class="clearfix">
                             <li class="item">
-                                <a class="mallki-link">
-                                    <span> Новая коллекция</span>
+                                <a asp-action="Index" asp-controller="Shop">
+                                <span> Новая коллекция</span>
                                 </a>
                             </li>
                             <li class="item">
@@ -257,6 +259,7 @@
 
         /* Set the width of the sidebar to 250px (show it) */
         function openNav() {
+            if (document.getElementById("mySidepanel").style.width = "380px")
             document.getElementById("mySidepanel").style.width = "380px";
         }
 

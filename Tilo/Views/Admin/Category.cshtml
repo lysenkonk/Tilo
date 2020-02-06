@@ -1,0 +1,73 @@
+﻿@model Tilo.Models.ViewModels.AdminCategoryModel
+
+<h4>Category</h4>
+<hr />
+@{
+    ViewBag.Title = "Create Category";
+    Layout = "_AdminLayout";
+}
+@*<div class="row">
+        <div class="col-md-4">
+            <form asp-action="Category">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="CategoryID" class="control-label"></label>
+                    <input asp-for="CategoryID" class="form-control" />
+                    <span asp-validation-for="CategoryID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>*@
+<div class="container">
+    <form asp-action="CreateCategory" method="post">
+        <input type="hidden" asp-for="@Model.Category.CategoryID" />
+        <div class="form-group row">
+            <label asp-for="@Model.Category.Name" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <div> <span asp-validation-for="@Model.Category.Name" class="text-danger"></span></div>
+                <input asp-for="@Model.Category.Name" class="form-control" />
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label asp-for="@Model.Category.ParentCategory" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <select id="editable-select" asp-for="@Model.Category.ParentCategory.Name" class="form-control" asp-items="@(new SelectList(Model.Categories, "Name", "Name", "CategoryId"))">
+                    <option value="@Model.Category.ParentCategory.Name">Choose the category</option>
+                </select>
+                <span asp-validation-for="@Model.Category.ParentCategory.Name" class="text-danger"></span>
+            </div>
+        </div>
+        @*<div class="form-group row">
+            <label asp-for="@Model.ParentCategory" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <div> <span asp-validation-for="@Model.ParentCategory" class="text-danger"></span></div>
+                <input asp-for="@Model.ParentCategory" class="form-control" />
+            </div>
+        </div>*@
+
+        <div class="form-group row">
+            <div class="col-sm-10 ml-auto">
+                <button class="btn btn-primary" type="submit">Save</button>
+                <a asp-action="CreateCategory" class="btn btn-warning">Clean</a>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

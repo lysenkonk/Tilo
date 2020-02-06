@@ -22,7 +22,7 @@ namespace Tilo.Models
             Name = name;
             if(parentCategory != null)
             {
-                ParentCategory = parentCategory;
+                ParentCategory = parentCategory; 
             }
         }
         public Category()

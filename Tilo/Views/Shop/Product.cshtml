@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model ProductView
 @{
     ViewData["Title"] = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,7 +20,7 @@
                             &nbsp;/&nbsp;
                             <a asp-action="Index" asp-controller="Shop">Mагазин</a>
                             &nbsp;/&nbsp;
-                            <a asp-action="List" asp-controller="Shop" asp-route-category="@Model.Category.Name">@Model.Category.Name</a>
+                            <a asp-action="List" asp-controller="Shop" asp-route-category="@Model.product.Category.Name">@Model.product.Category.Name</a>
                         </nav>
                         <div class="product eProductView_body">
                             <div class="eProductView_images">
@@ -73,12 +73,12 @@
                             <div class="eProductView_data">
                                 <div class="eProductView_row mProductView_name">
                                     <h1 itemprop="name" class="eProductView_name">
-                                        @Model.Name
+                                        @Model.product.Name
                                     </h1>
                                 </div>
                                 <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="eProductView_row mProductView_price">
 
-                                    <div class="eProductView_price"><span class="woocommerce-Price-amount amount">@Model.Price &nbsp;<span class="woocommerce-Price-currencySymbol">грн</span></span></div>
+                                    <div class="eProductView_price"><span class="woocommerce-Price-amount amount">@Model.product.Price &nbsp;<span class="woocommerce-Price-currencySymbol">грн</span></span></div>
 
                                     <meta itemprop="price" content="1200">
                                     <meta itemprop="priceCurrency" content="UAH">
@@ -91,10 +91,10 @@
                                 <div itemprop="description" class="eProductView_row mProductView_description">
                                     <div class="eProductView_description">
                                         <p>
-                                            @Model.Description
+                                            @Model.product.Description
                                         </p>                                        
                                         <p>
-                                            Цвет: @Model.Color
+                                            Цвет: @Model.product.Color
                                         </p>
                                     </div>
                                 </div>
@@ -120,9 +120,18 @@
                                                 </tbody>
                                             </table>
 
-                                            <div class="eProductView_size">
-                                                <input type="radio" name="size" id="size_xs-ru" value="xs-ru"><label style="    text-align: center;" for="size_xs-ru">XS</label><input type="radio" name="size" id="size_s-ru" value="s-ru"><label style="    text-align: center;" for="size_s-ru">S</label><input type="radio" name="size" id="size_l-ru" value="l-ru"><label style="    text-align: center;" for="size_l-ru">L</label><input type="radio" name="size" id="size_m-ru" value="m-ru"><label style="    text-align: center;" for="size_m-ru">M</label>
+                                            <label asp-for="@Model.product.Size" class="col-sm-2 col-form-label-size">Размер:</label>
+
+                                            <div class="col-sm-10">
+                                                <select id="editable-select-size" asp-for="@Model.product.Size" class="form-control" asp-items="@(new SelectList(Model.Sizes, "Size"))">
+                                                    
+                                                    <option value="@Model.product.Size"></option>
+                                                </select>
+                                                <span asp-validation-for="@Model.product.Size" class="text-danger"></span>
                                             </div>
+                                            @*<div class="eProductView_size">
+            <input type="radio" name="size" id="size_xs-ru" value="xs-ru"><label style="    text-align: center;" for="size_xs-ru">XS</label><input type="radio" name="size" id="size_s-ru" value="s-ru"><label style="    text-align: center;" for="size_s-ru">S</label><input type="radio" name="size" id="size_l-ru" value="l-ru"><label style="    text-align: center;" for="size_l-ru">L</label><input type="radio" name="size" id="size_m-ru" value="m-ru"><label style="    text-align: center;" for="size_m-ru">M</label>
+        </div>*@
 
                                             <div class="eProductView_guide">
                                                 <a class="open-popup-link" href="#ct_size_guide">
@@ -132,10 +141,10 @@
                                                                 <path d="M28.6 4.7H3.4l3.3-3.3L5.3 0l-5 5a1 1 0 0 0 0 1.4l5 5L6.7 10 3.4 6.7h25.2L25.3 10l1.4 1.4 5-5c.4-.4.4-1 0-1.4l-5-5-1.4 1.4 3.3 3.3zM0 14.7v10c0 .6.4 1 1 1h4v-7h2v7h3v-5h2v5h3v-7h2v7h3v-5h2v5h3v-7h2v7h4c.6 0 1-.4 1-1v-10c0-.6-.4-1-1-1H1c-.6 0-1 .4-1 1z"></path>
                                                             </svg>
                                                         </div>
-                                                    </div><span>Size Guide</span>
+                                                    </div><p>Size Guide</p>
                                                 </a>
                                             </div><div class="clearfix"></div>
-                                            <div class="single_variation_wrap">
+                                            @*<div class="single_variation_wrap">
                                                 <div class="woocommerce-variation single_variation" style="display: none;"></div>
                                                 <div class="eProductView_actions">
                                                     <div style="display: none">
@@ -151,7 +160,7 @@
                                                     <input type="hidden" name="variation_id" class="variation_id" value="">
                                                 </div>
 
-                                            </div>
+                                            </div>*@
 
 
                                         </form>

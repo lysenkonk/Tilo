@@ -40,11 +40,26 @@ namespace Tilo.Controllers
             //int categoryId = _repoCategories.Categories.First(p => p.Name == "Трусы");
             Product product = _repository.Products
                 .FirstOrDefault(p => p.ProductID == id);
-            if(product == null)
+            if (product == null)
             {
                 return View("Product not found");
             }
-            return View(product);
+
+            IQueryable<Product> ProductsWithTheSameNames = _repository.Products.Where(p => p.Name == product.Name && p.Category == product.Category);
+            IQueryable<string> Sizes = ProductsWithTheSameNames.Select(x => x.Size).Distinct().OrderBy(x => x);
+            //foreach(var p in ProductsWithTheSameNames)
+            //{
+
+            //}
+            var viewModel = new ProductView
+            {
+                product = product,
+                Sizes = Sizes
+            };
+
+
+
+            return View(viewModel);
         }
 
         public ViewResult List(string category, int page = 1)
