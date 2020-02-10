@@ -23,8 +23,13 @@ namespace Tilo.Models
 
         public async Task<Product> SaveProductAsync(Product product)
         {
+            Category category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
             if (product.ProductID == 0)
             {
+                if (category != null)
+                {
+                    product.Category = category;
+                }
                 _context.Products.Add(product);
             }
             else
@@ -33,7 +38,7 @@ namespace Tilo.Models
 
                 if (dbEntry != null)
                 {
-                    Category category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
+                    
                     if(category != null)
                     {
                         dbEntry.Category = category;

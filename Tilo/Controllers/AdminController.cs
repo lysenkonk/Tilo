@@ -27,6 +27,11 @@ namespace Tilo.Controllers
             return View("Index", _productsService.Products);
         }
 
+        public ViewResult Categories()
+        {
+            return View("Categories", _productsService.Categories);
+        }
+
         public ViewResult List(string category, int page = 1)
         {
             IEnumerable<Product> products = _productsService.Products
@@ -52,6 +57,7 @@ namespace Tilo.Controllers
                 return NotFound();
 
             var viewModel = new AdminProductViewModel
+
             {
                 Product = product,
                 Categories = _productsService.Categories,
@@ -147,17 +153,31 @@ namespace Tilo.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategory(Category category)
         {
+            category.ParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory;
 
-            var c = _productsService.Categories.FirstOrDefault(curent => curent.Name == category.Name);
-            string nameParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory.Name;
+            var c = _productsService.Categories.SingleOrDefault(curent => curent.Name == category.Name && curent.ParentCategory.Name == category.ParentCategory.Name);
+            //string nameParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory.Name;
 
-            if (c != null && category.ParentCategory == c.ParentCategory)
+            if (c != null) 
             {
-                TempData["message"] = $"That category is already exist";
+                if (c.ParentCategory != null && c.ParentCategory.Name != null)
+                {
+                    if (c.Name == category.Name && category.ParentCategory.Name == c.ParentCategory.Name)
+                        TempData["message"] = $"That category is already exist";
+                }else
+                {
+                    TempData["message"] = $"That category is already exist";
+                }
             }
             else
             {
-                await _productsService.SaveCategoryAsync(category.Name, nameParentCategory);
+                if (category.ParentCategory != null)
+                {
+                    await _productsService.SaveCategoryAsync(category.Name, category.ParentCategory.Name);
+                }
+                else
+                    await _productsService.SaveCategoryAsync(category.Name);
+
                 TempData["message"] = $"{category.Name} has been saved";
             }
             return RedirectToAction("Index");
@@ -173,6 +193,54 @@ namespace Tilo.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> DeleteCategory(int categoryID)
+        {
+            Category deletedCategory = await _productsService._categoryRepository.DeleteCategoryAsync(categoryID);
+            if (deletedCategory != null)
+            {
+                TempData["message"] = $"{deletedCategory.Name} was deleted";
+            }
+            return RedirectToAction("Categories");
+        }
+
+
+        public IActionResult EditCategory(int categoryID)
+        {
+            var category = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.CategoryID == categoryID);
+
+            if (category == null)
+                return NotFound();
+
+            var viewModel = new AdminCategoryModel
+            {
+                Category = category,
+                Categories = _productsService.Categories
+            };
+
+            return View("Category", viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditCategory(Category category)
+        {
+
+            if (ModelState.IsValid)
+            {
+                await _productsService._categoryRepository.SaveCategoryAsync(category);
+                TempData["message"] = $"{category.Name} has been saved";
+            }
+            var viewModel = new AdminCategoryModel
+            {
+                Category = category,
+                Categories = _productsService.Categories
+            };
+            return View("Category", viewModel);
+        }
+
+
+
+
 
         private bool isProduct(int productId)
         {

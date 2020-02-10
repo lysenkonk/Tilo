@@ -10,5 +10,7 @@ namespace Tilo.Models
         IEnumerable<Category> Categories { get; }
         IEnumerable<Category> ParentCategories { get; }
         Task<Category> AddCategoryAsync(string categoryName, string parentCategory);
+        Task<Category> DeleteCategoryAsync(int categoryID);
+        Task<Category> SaveCategoryAsync(Category category);
     }
 }

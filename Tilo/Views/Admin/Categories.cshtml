@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewBag.Title = "All Categories";
+    Layout = "_AdminLayout";
+}
+
+<style>
+    [class*="col-"] {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        background-color: rgba(86, 61, 124, .15);
+        border: 1px solid rgba(86, 61, 124, .2);
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            ID
+        </div>
+        <div class="col-md-3">
+            Name
+        </div>
+        <div class="col-md-2">
+           ParentName
+        </div>
+        <div class="col-md-2">
+            Actions
+        </div>
+    </div>
+
+    @foreach (Category category in Model)
+    {
+        <div class="row">
+            <div class="col-md-1">
+                @category.CategoryID
+            </div>
+            <div class="col-md-3">
+                @category.Name
+            </div>
+            <div class="col-md-2">
+                @if (category.ParentCategory != null)
+                 {
+                      @category.ParentCategory.Name
+                 }
+
+
+        </div>
+
+        <div class="col-md-2">
+                <a asp-action="EditCategory" class="btn btn-sm btn-warning"
+                   asp-route-categoryId="@category.CategoryID">
+                    Edit
+                </a>
+                <a asp-action="DeleteCategory" class="btn btn-sm btn-danger"
+                   asp-route-categoryId="@category.CategoryID">
+                    Delete
+                </a>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Add Product</a>
+    <a asp-action="CreateCategory" class="btn btn-primary">Add Category</a>
+</div>
