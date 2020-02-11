@@ -2,19 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using Tilo.Models;
-using Tilo.Models;
+using Tilo.Services;
 
 namespace Tilo.Models
 {
     public class EFCategoryRepository : ICategoryRepository
     {
-        private ApplicationDbContext context;
+        private const string BigFilesFolder = "/Files/Bg/";
+        private const string SmallFilesFolder = "/Files/Sm/";
 
-        public EFCategoryRepository(ApplicationDbContext ctx)
+        private ApplicationDbContext context;
+        //private readonly ProductsService _productsService;
+        public readonly IProductRepository _repository;
+        private readonly IHostingEnvironment _appEnvironment;
+
+        public EFCategoryRepository(ApplicationDbContext ctx/*, ProductsService service*/, IProductRepository repository, IHostingEnvironment appEnvironment)
         {
             context = ctx;
+            _repository = repository;
+            //_productsService = service;
             setChildCategories();
+            _appEnvironment = appEnvironment;
+
         }
         public IEnumerable<Category> Categories => context.Categories;
         public IEnumerable<Category> ParentCategories => context.Categories.Where(p => p.ParentCategory == null);
@@ -55,12 +70,20 @@ namespace Tilo.Models
                 throw new Exception("404 Not Found Category"); // TODO make proper hadling
 
             List<Category> categories = new List<Category>(context.Categories.Where(p => p.ParentCategory.Name == dbEntry.Name).ToList());
-            List<Product> products = new List<Product>(context.Products.Where(p => p.Category.Name == dbEntry.Name).ToList());
+            List<Product> products = new List<Product>(_repository.Products.Where(p => p.Category.Name == dbEntry.Name).ToList());
             foreach (var product in products)
             {
-                context.Remove(product);
-                await context.SaveChangesAsync();
-            }
+                    List<FileModel> images = new List<FileModel>();
+                    foreach (var image in images)
+                    {
+                        RemoveImageFiles(image.Name);
+                        await _repository.RemoveImageAsync(product.ProductID, image.Name);
+                    }
+
+                    await _repository.DeleteProductAsync(product.ProductID);
+                    //context.Remove(product);
+                    //await context.SaveChangesAsync();
+                }
 
             foreach (var category in categories) 
             {
@@ -106,6 +129,26 @@ namespace Tilo.Models
             }
             await context.SaveChangesAsync();
             return category;
+        }
+
+
+        public async Task RemoveImage(int productId, string imageName)
+        {
+            await _repository.RemoveImageAsync(productId, imageName);
+            RemoveImageFiles(imageName);
+        }
+
+        private void RemoveImageFiles(string imageName)
+        {
+            if (File.Exists(_appEnvironment.WebRootPath + BigFilesFolder + imageName))
+                File.Delete(_appEnvironment.WebRootPath + BigFilesFolder + imageName);
+            else
+                return; // TODO make proper hadling
+
+            if (File.Exists(_appEnvironment.WebRootPath + SmallFilesFolder + imageName))
+                File.Delete(_appEnvironment.WebRootPath + SmallFilesFolder + imageName);
+            else
+                return; // TODO make proper hadling
         }
     }
 }

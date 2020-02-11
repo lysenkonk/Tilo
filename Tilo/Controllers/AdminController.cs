@@ -143,7 +143,7 @@ namespace Tilo.Controllers
         {
             var viewModel = new AdminCategoryModel
             {
-                Category = new Category("Name", new Category("ParentName")),
+                Category = new Category("Name", new Category("ParentName")), 
                 Categories = _productsService.Categories
             };
             return View("Category", viewModel);

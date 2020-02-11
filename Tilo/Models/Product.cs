@@ -32,6 +32,6 @@ namespace Tilo.Models
         [Required(ErrorMessage = "Please specify a category")]
         public Category Category { get; set; }
 
-        public List<FileModel> Images { get; set; } = new List<FileModel>();
+        public List<FileModel> Images { get; set; } /*= new List<FileModel>();*/
     }
 }
