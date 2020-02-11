@@ -29,8 +29,11 @@
                                         <div class="slick-list">
                                             <div class="slick-track">
                                                 <div class="eProductView_image slick-slide slick-current slick-active">
-                                                    <img width="600" height="436" src="~/files/main/newProducts/11.png" /> 
-                                                       
+                                                    @*<img width="600" height="436" src="~/files/main/newProducts/11.png" />*@
+                                                    <a asp-action="Product" asp-controller="Shop" asp-route-id="@Model.product.ProductID">
+                                                        <img height="550" src="@Url.Content("/files/Bm/" + @Model.product.Images[0].Name)">
+                                                    </a>
+
                                                 </div>
                                             </div>
                                            
@@ -49,16 +52,25 @@
                                     <div class="slick-slider slick-vertical">
                                         <div class="slick-list draggable">
                                             <div class="slick-track">
+                                                @if (@Model.product.Images.Count > 1)
+                                                {
                                                 <div class="eProductView_image slick-slide" style="width:176px">
-                                                    <img width="170" src="~/files/main/newProducts/bra.png" />
+                                                    <img width="170" src="@Url.Content("/files/Sm/" + @Model.product.Images[1].Name)" />
                                                 </div>
+                                                }
+                                                @if (@Model.product.Images.Count > 2)
+                                                {
                                                 <div class="eProductView_image slick-slide" style="width:176px">
-                                                    <img width="170" src="~/files/main/newProducts/buttom.png" />
+                                                    <img width="170" src="@Url.Content("/files/Sm/" + @Model.product.Images[2].Name)" />
                                                 </div>
+                                                }
+                                                @if (@Model.product.Images.Count > 3)
+                                                {
                                                 <div class="eProductView_image slick-slide" style="width:176px">
-                                                    <img width="170" src="~/files/main/newProducts/bra.png" />
+                                                    <img width="170" src="@Url.Content("/files/Sm/" + @Model.product.Images[3].Name)" />
                                                 </div>
-                                            </div>
+                                                }
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="eProductView_sliderNavBtn jsSliderNavPrev">
@@ -161,10 +173,7 @@
                                                 </div>
 
                                             </div>*@
-
-
                                         </form>
-
                                     </div>
                                 </div>
                             

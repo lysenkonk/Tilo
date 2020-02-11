@@ -48,13 +48,16 @@
                     <ul class="products">
                         @foreach (var p in Model)
                         {
-                            <li class="product inner-appearing-object">
-                                <a href="#" class="rightClickLink"></a>
+                        <li class="product inner-appearing-object">
+                            <a href="#" class="rightClickLink"></a>
+                            @if (p.Images.Count > 0)
+                            {
                                 <div class="picture img">
                                     <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ProductID">
                                         <img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)">
-                                     </a>
+                                    </a>
                                 </div>
+                            }
                                 <div class="description">
                                     <div class="information">
                                         <div class="name">
