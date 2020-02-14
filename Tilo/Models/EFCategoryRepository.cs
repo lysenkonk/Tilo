@@ -77,10 +77,10 @@ namespace Tilo.Models
                     foreach (var image in images)
                     {
                         RemoveImageFiles(image.Name);
-                        await _repository.RemoveImageAsync(product.ProductID, image.Name);
+                        await _repository.RemoveImageAsync(product.ID, image.Name);
                     }
 
-                    await _repository.DeleteProductAsync(product.ProductID);
+                    await _repository.DeleteProductAsync(product.ID);
                     //context.Remove(product);
                     //await context.SaveChangesAsync();
                 }

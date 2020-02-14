@@ -15,7 +15,7 @@ namespace Tilo.Models
         public Category ParentCategory { get; set; }
 
         public List<Category> ChildCategories { get; set; }
-        public List<Product> Products { get; set; }
+        //public List<Product> Products { get; set; }
 
         public Category(string name, Category parentCategory = null)
         {

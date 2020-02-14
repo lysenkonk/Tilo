@@ -8,7 +8,7 @@ namespace Tilo.Models
 {
     public class Product
     {
-        public int ProductID { get; set; } 
+        public int ID { get; set; } 
 
         [Required(ErrorMessage = "Please enter a product name")]
         public string Name { get; set; }

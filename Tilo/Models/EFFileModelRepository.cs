@@ -27,7 +27,7 @@ namespace Tilo.Models
                 if (dbEntry != null)
                 {
                     dbEntry.Name = photo.Name;
-                    dbEntry.Path = photo.Path;
+                    //dbEntry.Path = photo.Path;
                 }
             }
             await _context.SaveChangesAsync();

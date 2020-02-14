@@ -14,14 +14,14 @@
                         {
                             <li class="product inner-appearing-object">
                                 <div class="picture img">
-                                    <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ProductID">
+                                    <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ID">
                                         <img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)">
                                     </a>
                                 </div>
                                 <div class="description">                                   
                                     <div class="information">
                                         <div class="name">
-                                            <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ProductID">
+                                            <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.ID">
                                                 <p>@p.Name</p>
                                             </a>
                                         </div>

@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Tilo.Models;
 using Tilo.Services;
 
@@ -26,15 +28,38 @@ namespace Tilo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-              options.UseSqlServer(
-                    Configuration["Data:TiloProducts:ConnectionString"]));
+
+
+            services.AddMvc();
+            string conString = Configuration["Data:TiloProducts:ConnectionString"];
+        
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddTransient<ICategoryRepository, EFCategoryRepository>();
             services.AddTransient<IFileModelRepository, EFFileModelRepository>();
-            services.AddMvc();
+            
             services.AddTransient<ProductsService>();
+            services.AddTransient<EmailService>();
+            services.AddTransient<IOrdersRepository, EFOrdersRepository>();
             services.AddDistributedMemoryCache();
+            services.AddDbContext<ApplicationDbContext>(options =>
+          options.UseSqlServer(conString));
+
+            services.AddDistributedSqlServerCache(options => {
+                options.ConnectionString = conString;
+                options.SchemaName = "dbo";
+                options.TableName = "SessionData";
+            });
+            services.AddSession(options => {
+                options.Cookie.Name = "Tilo.Session";
+                options.IdleTimeout = System.TimeSpan.FromHours(48);
+                options.Cookie.HttpOnly = false;
+            });
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +76,7 @@ namespace Tilo
 
             app.UseStaticFiles();
             app.UseStatusCodePages();
+            app.UseSession();
 
 
             app.UseMvc(routes =>

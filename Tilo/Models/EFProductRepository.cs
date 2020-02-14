@@ -24,7 +24,7 @@ namespace Tilo.Models
         public async Task<Product> SaveProductAsync(Product product)
         {
             Category category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
-            if (product.ProductID == 0)
+            if (product.ID == 0)
             {
                 if (category != null)
                 {
@@ -34,7 +34,7 @@ namespace Tilo.Models
             }
             else
             {
-                Product dbEntry = _context.Products.FirstOrDefault(p => p.ProductID == product.ProductID);
+                Product dbEntry = _context.Products.FirstOrDefault(p => p.ID == product.ID);
 
                 if (dbEntry != null)
                 {
@@ -62,7 +62,7 @@ namespace Tilo.Models
         public async Task<Product> DeleteProductAsync(int productID)
         {
             Product dbEntry = _context.Products
-                .FirstOrDefault(p => p.ProductID == productID);
+                .FirstOrDefault(p => p.ID == productID);
             if (dbEntry != null)
             {
                 _context.Products.Remove(dbEntry);
@@ -74,7 +74,7 @@ namespace Tilo.Models
 
         public async Task<FileModel> AddImageAsync(int productId, FileModel image)
         {
-            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ProductID == productId);
+            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ID == productId);
 
             if (dbEntry == null)
                 throw new Exception("404 Not Found product");
@@ -86,7 +86,7 @@ namespace Tilo.Models
 
         public async Task<FileModel> RemoveImageAsync(int productId, string fileName)
         {
-            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ProductID == productId);
+            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ID == productId);
 
             if (dbEntry == null)
                 throw new Exception("404 Not Found product");

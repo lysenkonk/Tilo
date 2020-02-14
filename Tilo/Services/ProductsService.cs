@@ -45,7 +45,7 @@ namespace Tilo.Services
 
         public async Task<Product> DeleteProductAsync(int productID)
         {
-            var product = await _repository.Products.FirstOrDefaultAsync(p => p.ProductID == productID);
+            var product = await _repository.Products.FirstOrDefaultAsync(p => p.ID == productID);
 
             if (product == null)
                 throw new Exception("404 Not Found Product"); // TODO make proper hadling
@@ -53,7 +53,7 @@ namespace Tilo.Services
             foreach (var image in images)
             {
                 RemoveImageFiles(image.Name);
-                await _repository.RemoveImageAsync(product.ProductID, image.Name);
+                await _repository.RemoveImageAsync(product.ID, image.Name);
             }
 
             return await _repository.DeleteProductAsync(productID);
@@ -61,7 +61,7 @@ namespace Tilo.Services
 
         public async Task AddImage(int productId, IFormFile uploadedFile)
         {
-            Product product = await _repository.Products.FirstOrDefaultAsync(p => p.ProductID == productId);
+            Product product = await _repository.Products.FirstOrDefaultAsync(p => p.ID == productId);
 
             if (product == null)
                 throw new Exception("404 Not Found"); // TODO make proper hadling
@@ -79,7 +79,7 @@ namespace Tilo.Services
                 file = new FileModel { Name = uploadedFile.FileName };
             }
 
-            await _repository.AddImageAsync(product.ProductID, file);
+            await _repository.AddImageAsync(product.ID, file);
         }
 
         public async Task RemoveImage(int productId, string imageName)

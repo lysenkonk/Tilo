@@ -17,5 +17,23 @@ namespace Tilo.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<FileModel> FileModels { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderLine> OrderLines { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Product>().HasIndex(p => p.Name);
+            modelBuilder.Entity<Product>().HasIndex(p => p.Price);
+
+            modelBuilder.Entity<Category>().HasIndex(p => p.Name);
+            modelBuilder.Entity<Product>().HasIndex(p => p.Description);
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
     }
 }

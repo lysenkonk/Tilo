@@ -51,7 +51,7 @@ namespace Tilo.Controllers
 
         public IActionResult Edit(int productId)
         {
-            var product = _productsService.Products.FirstOrDefault(p => p.ProductID == productId);
+            var product = _productsService.Products.FirstOrDefault(p => p.ID == productId);
 
             if (product == null)
                 return NotFound();
@@ -244,7 +244,7 @@ namespace Tilo.Controllers
 
         private bool isProduct(int productId)
         {
-            var product = _productsService.Products.FirstOrDefault(p => p.ProductID == productId);
+            var product = _productsService.Products.FirstOrDefault(p => p.ID == productId);
             if (product == null)
             {
                 TempData["message"] = $"That product doesn't exist";

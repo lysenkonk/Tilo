@@ -12,7 +12,18 @@
     <link rel="stylesheet" type="text/css" href="~/lib/cleanStyle.css" />
     <link rel="stylesheet" type="text/css" href="~/lib/mainStyle.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <style>
 
+        .placeholder {
+            visibility: collapse;
+            display: none
+        }
+
+            .placeholder:only-child {
+                visibility: visible;
+                display: flex
+            }
+    </style>
 
     <title>@ViewBag.Title</title>
 </head>
@@ -25,6 +36,12 @@
             <li>
                 <a asp-action="Categories" asp-controller="Admin">
                     <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Orders" asp-action="Index"
+                   class="@GetClassForButton("Orders")">
+                    Orders
                 </a>
             </li>
         </ul>
@@ -55,3 +72,12 @@
     </div>
 </body>
 </html>
+
+@functions {
+string GetClassForButton(string controller)
+{
+    return "btn btn-block " + (ViewContext.RouteData.Values["controller"]
+        as string == controller ? "btn-primary" : "btn-outline-primary");
+}
+}
+

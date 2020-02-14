@@ -1,0 +1,73 @@
+﻿@model Cart
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div id="content">
+        <div class="bProductView">
+            <div class="bWrap">
+                <h2 class="m-1 text-center">Your Cart</h2>
+                <div class="row">
+                    <div class="col-sm-3 font-weight-bold">Product</div>
+                    <div class="col-sm-3 font-weight-bold">Quantity</div>
+                    <div class="col-sm-3 font-weight-bold text-right">Price</div>
+                    <div class="col-sm-3 font-weight-bold text-right">Subtotal</div>
+                </div>
+                @if (Model.Selections.Count() == 0)
+                {
+                    <div class="row mt-2"><div class="col-12"><h4>Cart is Empty</h4></div></div>
+                }
+                else
+                {
+                    @foreach (OrderLine line in Model.Selections)
+                    {
+                    <div class="row">
+                        <div class="col-sm-3">@line.Product.Name</div>
+                        <div class="col-sm-3">@line.Quantity</div>
+                        <div class="col-sm-3 text-right">
+                            $@line.Product.Price.ToString("f2")
+                        </div>
+                        <div class="col text-right">
+                            $@((line.Product.Price
+                                                                          * line.Quantity).ToString("f2"))
+                        </div>
+                        <div class="col-sm-3">
+                            <form asp-action="RemoveFromCart">
+                                <button type="submit" name="productId"
+                                        value="@line.ProdId"
+                                        class="btn btn-sm btn-outline-danger">
+                                    Remove
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    }
+                }
+                <div class="row mt-2">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col text-right font-weight-bold">Total:</div>
+                    <div class="col text-right font-weight-bold">
+                        $@(Model.Selections.Sum(l => l.Product.Price
+                                                               * l.Quantity).ToString("f2"))
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            <div class="text-center m-2">
+                @if (ViewBag.returnUrl != null)
+                {
+                    <a href="@ViewBag.returnUrl" class="btn btn-outline-primary">
+                        Continue Shopping
+                    </a>
+                }
+                <a asp-action="CreateOrder" class="btn btn-primary">
+                    Place Order
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+        </div>

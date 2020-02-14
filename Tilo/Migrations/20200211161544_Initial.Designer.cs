@@ -10,7 +10,7 @@ using Tilo.Models;
 namespace Tilo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191118073004_Initial")]
+    [Migration("20200211161544_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,8 +47,6 @@ namespace Tilo.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Path");
-
                     b.Property<int?>("ProductID");
 
                     b.HasKey("Id");
@@ -58,9 +56,53 @@ namespace Tilo.Migrations
                     b.ToTable("FileModels");
                 });
 
+            modelBuilder.Entity("Tilo.Models.Order", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("CustomerName");
+
+                    b.Property<bool>("Shipped");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("ZipCode");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Tilo.Models.OrderLine", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("OrderId");
+
+                    b.Property<long>("ProdId");
+
+                    b.Property<int?>("ProductID");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("OrderLines");
+                });
+
             modelBuilder.Entity("Tilo.Models.Product", b =>
                 {
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -80,7 +122,7 @@ namespace Tilo.Migrations
                     b.Property<string>("Size")
                         .IsRequired();
 
-                    b.HasKey("ProductID");
+                    b.HasKey("ID");
 
                     b.HasIndex("CategoryID");
 
@@ -98,6 +140,18 @@ namespace Tilo.Migrations
                 {
                     b.HasOne("Tilo.Models.Product")
                         .WithMany("Images")
+                        .HasForeignKey("ProductID");
+                });
+
+            modelBuilder.Entity("Tilo.Models.OrderLine", b =>
+                {
+                    b.HasOne("Tilo.Models.Order", "Order")
+                        .WithMany("Lines")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Tilo.Models.Product", "Product")
+                        .WithMany()
                         .HasForeignKey("ProductID");
                 });
 

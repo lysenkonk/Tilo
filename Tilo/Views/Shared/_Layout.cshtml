@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width" />
     @*<link rel="stylesheet" href="~/css/styleLook.css" />*@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/reset.css" />
     <link rel="stylesheet" href="~/css/layout.css" />
     <link rel="stylesheet" href="~/css/product.css" />
@@ -12,6 +13,13 @@
 
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row bg-dark p-4 text-white">
+            <div class="col-auto text-right">
+                @await Component.InvokeAsync("Cart", Context.Session)
+            </div>
+        </div>  
+    </div>
     <header class="clearfix relative">
         <div class="container">
             <div class="row">
@@ -21,7 +29,7 @@
                             <img src="~/files/main/img/menu_black.png" id="menu-open-button" alt="MENU" width=38 height=38 />
                             <span id="btnMenu">MЕНЮ</span>
                         </div>
-                     </a>
+                    </a>
                 </div>
                 <div class="col-xs-3">
                     <div class="phones" style="z-index: 10">
@@ -139,7 +147,7 @@
             </div>
         </div>
     </header>
-    
+
     @await Component.InvokeAsync("Catalog", Model)
     @RenderBody()
     <footer class="bFooter">
@@ -150,7 +158,7 @@
                         <ul class="clearfix">
                             <li class="item">
                                 <a asp-action="Index" asp-controller="Shop">
-                                <span> Новая коллекция</span>
+                                    <span> Новая коллекция</span>
                                 </a>
                             </li>
                             <li class="item">
@@ -260,7 +268,7 @@
         /* Set the width of the sidebar to 250px (show it) */
         function openNav() {
             if (document.getElementById("mySidepanel").style.width = "380px")
-            document.getElementById("mySidepanel").style.width = "380px";
+                document.getElementById("mySidepanel").style.width = "380px";
         }
 
         /* Set the width of the sidebar to 0 (hide it) */
