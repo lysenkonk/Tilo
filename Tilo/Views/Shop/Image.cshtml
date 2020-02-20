@@ -1,0 +1,18 @@
+﻿@model Product
+@if (Model.Images.Count > 0)
+{
+       <img height="550" id="img_Bg"  class="zoom-in" name ="@Model.Images[0].Name"  src="@Url.Content("/files/Bg/" + @Model.Images[0].Name)">
+}
+else
+{
+    <img height="550" id="img_Bg" src="@Url.Content("/Files/main/img/noPhoto.jpg")" class="zoom-in">
+}
+
+@*@if (Model.Images.Count > 0)
+{
+    <img style="width:100%;height:100%;max-width:430px;max-height:430px" id="img_Bg" src="@Url.Content("/Files/Bg/" + Model.Images[0].Name)" data-zoom-image="@Url.Content("/Files/Bg/" +  Model.Images[0].Name)" alt="@Model.Name" title="@Model.Name" class="zoom-in" />
+}
+else
+{
+    <img style="width:100%;" id="img_Bg" itemprop="image" src="@Url.Content("/Files/design/noPhoto.jpg")" class="zoom-in">
+}*@

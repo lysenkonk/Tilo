@@ -39,7 +39,7 @@ namespace Tilo.Controllers
         {
             //int categoryId = _repoCategories.Categories.First(p => p.Name == "Трусы");
             Product product = _repository.Products
-                .FirstOrDefault(p => p.ID == id);
+                .FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
                 return View("Product not found");
@@ -65,7 +65,7 @@ namespace Tilo.Controllers
             {
                 Products = _repository.Products
                 .Where(p => category == null || p.Category.Name == category)
-                .OrderBy(p => p.ID)
+                .OrderBy(p => p.Id)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
                 PagingInfo = new PagingInfo

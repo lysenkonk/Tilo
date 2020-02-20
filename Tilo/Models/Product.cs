@@ -8,7 +8,7 @@ namespace Tilo.Models
 {
     public class Product
     {
-        public int ID { get; set; } 
+        public long Id { get; set; } 
 
         [Required(ErrorMessage = "Please enter a product name")]
         public string Name { get; set; }
@@ -32,6 +32,6 @@ namespace Tilo.Models
         [Required(ErrorMessage = "Please specify a category")]
         public Category Category { get; set; }
 
-        public List<FileModel> Images { get; set; }/* = new List<FileModel>();*/
+        public List<FileModel> Images { get; set; } = new List<FileModel>();
     }
 }

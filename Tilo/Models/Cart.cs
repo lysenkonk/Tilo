@@ -11,7 +11,7 @@ namespace Tilo.Models
         public Cart AddItem(Product p, int quantity)
         {
             OrderLine line = selections
-                .Where(l => l.ProdId == p.ID).FirstOrDefault();
+                .Where(l => l.ProductId == p.Id).FirstOrDefault();
             if (line != null)
             {
                 line.Quantity += quantity;
@@ -20,7 +20,7 @@ namespace Tilo.Models
             {
                 selections.Add(new OrderLine
                 {
-                    ProdId = p.ID,
+                    ProductId = p.Id,
                     Product = p,
                     Quantity = quantity
                 });
@@ -30,7 +30,7 @@ namespace Tilo.Models
 
         public Cart RemoveItem(long productId)
         {
-            selections.RemoveAll(l => l.ProdId == productId);
+            selections.RemoveAll(l => l.ProductId == productId);
             return this;
         }
 

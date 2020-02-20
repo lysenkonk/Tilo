@@ -8,7 +8,7 @@
 
 <div class="container">
     <form asp-action="Edit" method="post">
-        <input type="hidden" asp-for="Product.ID" />
+        <input type="hidden" asp-for="Product.Id" />
         <div class="form-group row">
             <label asp-for="@Model.Product.Name" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label asp-for="@Model.Product.Category.CategoryID" class="col-sm-2 col-form-label"></label>
+            <label asp-for="@Model.Product.Category.ID" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
                 <select id="editable-select" asp-for="@Model.Product.Category.Name" class="form-control" asp-items="@(new SelectList(Model.Categories, "Name", "Name", "CategoryId"))">
                     <option value="@Model.Product.Category.Name">Choose the category</option>
@@ -74,35 +74,39 @@
 
 <div class="container">
     <div class="row">
-        @foreach (FileModel image in @Model.Product.Images)
+
+        @if (@Model.Product.Images != null)
         {
-            <div class="col-md-3">
-                <div class="thumbnail container text-center">
-                    <div>
-                        <a href="@Url.Content("/Files/Bg/" + image.Name)">
-                            <img class="imageAdmin" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name">
-                        </a>
-                    </div>
-                    <div>
-                        <a asp-action="RemoveImage" class="btn btn-sm btn-warning"
-                           asp-route-productId="@Model.Product.ID" asp-route-imageName="@image.Name">
-                            Delete
-                        </a>
+            @foreach (FileModel image in @Model.Product.Images)
+            {
+                <div class="col-md-3">
+                    <div class="thumbnail container text-center">
+                        <div>
+                            <a href="@Url.Content("/Files/Bg/" + image.Name)">
+                                <img class="imageAdmin" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name">
+                            </a>
+                        </div>
+                        <div>
+                            <a asp-action="RemoveImage" class="btn btn-sm btn-warning"
+                               asp-route-productId="@Model.Product.Id" asp-route-imageName="@image.Name">
+                                Delete
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
-        <div class="col-md-3 align-self-center">
+            <div class="col-md-3 align-self-center">
 
-            <form id="form" asp-action="AddImage" asp-route-productId="@Model.Product.ID" method="post" enctype="multipart/form-data">
-                <div class="upload-button">
-                    <a onclick="document.getElementById('file-input').click();" class="btn btn-sm btn-info">Add</a>
-                    <input id="file-input" type="file" name="uploadedFile" onchange="submitForm('form');" />
-                </div>
-            </form>
+                <form id="form" asp-action="AddImage" asp-route-productId="@Model.Product.Id" method="post" enctype="multipart/form-data">
+                    <div class="upload-button">
+                        <a onclick="document.getElementById('file-input').click();" class="btn btn-sm btn-info">Add</a>
+                        <input id="file-input" type="file" name="uploadedFile" onchange="submitForm('form');" />
+                    </div>
+                </form>
 
+            </div>
         </div>
-    </div>
 </div>
 <div class="text-center">
     <a asp-action="Index" class="btn btn-primary">Back to List</a>

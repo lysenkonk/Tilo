@@ -21,18 +21,20 @@ namespace Tilo.Migrations
 
             modelBuilder.Entity("Tilo.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<int?>("ParentCategoryCategoryID");
+                    b.Property<int?>("ParentCategoryID");
 
-                    b.HasKey("CategoryID");
+                    b.HasKey("ID");
 
-                    b.HasIndex("ParentCategoryCategoryID");
+                    b.HasIndex("Name");
+
+                    b.HasIndex("ParentCategoryID");
 
                     b.ToTable("Categories");
                 });
@@ -45,11 +47,11 @@ namespace Tilo.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("ProductID");
+                    b.Property<long?>("ProductId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("FileModels");
                 });
@@ -60,15 +62,11 @@ namespace Tilo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address");
-
                     b.Property<string>("CustomerName");
 
-                    b.Property<bool>("Shipped");
+                    b.Property<string>("Email");
 
-                    b.Property<string>("State");
-
-                    b.Property<string>("ZipCode");
+                    b.Property<string>("Phone");
 
                     b.HasKey("Id");
 
@@ -83,9 +81,7 @@ namespace Tilo.Migrations
 
                     b.Property<long>("OrderId");
 
-                    b.Property<long>("ProdId");
-
-                    b.Property<int?>("ProductID");
+                    b.Property<long>("ProductId");
 
                     b.Property<int>("Quantity");
 
@@ -93,14 +89,14 @@ namespace Tilo.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderLines");
                 });
 
             modelBuilder.Entity("Tilo.Models.Product", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -120,9 +116,15 @@ namespace Tilo.Migrations
                     b.Property<string>("Size")
                         .IsRequired();
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("Description");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("Price");
 
                     b.ToTable("Products");
                 });
@@ -131,14 +133,14 @@ namespace Tilo.Migrations
                 {
                     b.HasOne("Tilo.Models.Category", "ParentCategory")
                         .WithMany("ChildCategories")
-                        .HasForeignKey("ParentCategoryCategoryID");
+                        .HasForeignKey("ParentCategoryID");
                 });
 
             modelBuilder.Entity("Tilo.Models.FileModel", b =>
                 {
                     b.HasOne("Tilo.Models.Product")
                         .WithMany("Images")
-                        .HasForeignKey("ProductID");
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Tilo.Models.OrderLine", b =>
@@ -150,13 +152,14 @@ namespace Tilo.Migrations
 
                     b.HasOne("Tilo.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductID");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Tilo.Models.Product", b =>
                 {
                     b.HasOne("Tilo.Models.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

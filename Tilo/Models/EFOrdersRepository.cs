@@ -21,8 +21,8 @@ namespace Tilo.Models
 
         public void AddOrder(Order order)
         {
-            context.Orders.Add(order);
-            context.SaveChangesAsync();
+            var entry = context.Orders.Add(order);
+            context.SaveChanges();
         }
 
         public void UpdateOrder(Order order)

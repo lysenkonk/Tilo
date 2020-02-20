@@ -26,10 +26,10 @@ namespace Tilo.Controllers
         {
             var products = productRepository.Products;
             Order order = id == 0 ? new Order() : ordersRepository.GetOrder(id);
-            IDictionary<long, OrderLine> linesMap = order.Lines?.ToDictionary(l => l.ProdId) ?? new Dictionary<long, OrderLine>();
-            ViewBag.Lines = products.Select(p => linesMap.ContainsKey(p.ID)
-                            ? linesMap[p.ID]
-                            : new OrderLine { Product = p, ProdId = p.ID, Quantity = 0 });
+            IDictionary<long, OrderLine> linesMap = order.Lines?.ToDictionary(l => l.ProductId) ?? new Dictionary<long, OrderLine>();
+            ViewBag.Lines = products.Select(p => linesMap.ContainsKey(p.Id)
+                            ? linesMap[p.Id]
+                            : new OrderLine { Product = p, ProductId = p.Id, Quantity = 0 });
             return View(order);
         }
         [HttpPost]

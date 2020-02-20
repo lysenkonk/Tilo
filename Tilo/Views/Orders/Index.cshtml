@@ -26,7 +26,7 @@
             <div class="row p-2">
                 <div class="col-1">@o.Id</div>
                 <div class="col">@o.CustomerName</div>
-                <div class="col">@o.ZipCode</div>
+                <div class="col">@o.Email</div>
                 <div class="col">
                     @o.Lines.Sum(l => l.Quantity * l.Product.Price)
                 </div>
@@ -34,7 +34,6 @@
                         @o.Lines.Sum(l => l.Quantity
                              * (l.Product.RetailPrice - l.Product.PurchasePrice))
                     </div>*@
-                <div class="col-1">@(o.Shipped ? "Shipped" : "Pending")</div>
                 <div class="col-3 text-right">
                     <form asp-action="DeleteOrder" method="post">
                         <input type="hidden" name="Id" value="@o.Id" />

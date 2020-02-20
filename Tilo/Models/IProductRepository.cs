@@ -15,10 +15,10 @@ namespace Tilo.Models
 
         Task<Product> SaveProductAsync(Product product);
 
-        Task<Product> DeleteProductAsync(int productID);
+        Task<Product> DeleteProductAsync(long productID);
 
-        Task<FileModel> AddImageAsync(int productId, FileModel image);
+        Task<FileModel> AddImageAsync(long productId, FileModel image);
 
-        Task<FileModel> RemoveImageAsync(int productId, string fileName);
+        Task<FileModel> RemoveImageAsync(long productId, string fileName);
     }
 }

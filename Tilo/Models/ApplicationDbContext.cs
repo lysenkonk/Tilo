@@ -29,11 +29,7 @@ namespace Tilo.Models
 
             modelBuilder.Entity<Category>().HasIndex(p => p.Name);
             modelBuilder.Entity<Product>().HasIndex(p => p.Description);
-        }
 
-        public override void Dispose()
-        {
-            base.Dispose();
         }
     }
 }

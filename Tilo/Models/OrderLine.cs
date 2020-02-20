@@ -9,7 +9,7 @@ namespace Tilo.Models
     {
         public long Id { get; set; }
 
-        public long ProdId { get; set; }
+        public long ProductId { get; set; }
         public Product Product { get; set; }
 
         public int Quantity { get; set; }

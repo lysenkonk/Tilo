@@ -15,6 +15,7 @@ namespace Tilo.Models
             ApplicationDbContext context = app.ApplicationServices
                 .GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
+
             Category lingue = new Category("Нижнее бельё и домашняя одежда", null);
            
 

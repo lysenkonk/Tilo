@@ -38,7 +38,7 @@ namespace Tilo.Models
         {
             foreach (var p in ParentCategories)
             {
-                p.ChildCategories = context.Categories.Where(e => e.ParentCategory.CategoryID == p.CategoryID).ToList();
+                p.ChildCategories = context.Categories.Where(e => e.ParentCategory.ID == p.ID).ToList();
             }
         }
         public async Task<Category> AddCategoryAsync(string categoryName, string categoryParent)
@@ -64,7 +64,7 @@ namespace Tilo.Models
         public async Task<Category> DeleteCategoryAsync(int categoryID)
         {
             Category dbEntry = context.Categories
-                .FirstOrDefault(p => p.CategoryID == categoryID);
+                .FirstOrDefault(p => p.ID == categoryID);
 
             if (dbEntry == null)
                 throw new Exception("404 Not Found Category"); // TODO make proper hadling
@@ -77,17 +77,17 @@ namespace Tilo.Models
                     foreach (var image in images)
                     {
                         RemoveImageFiles(image.Name);
-                        await _repository.RemoveImageAsync(product.ID, image.Name);
+                        await _repository.RemoveImageAsync(product.Id, image.Name);
                     }
 
-                    await _repository.DeleteProductAsync(product.ID);
+                    await _repository.DeleteProductAsync(product.Id);
                     //context.Remove(product);
                     //await context.SaveChangesAsync();
                 }
 
             foreach (var category in categories) 
             {
-                await DeleteCategoryAsync(category.CategoryID);
+                await DeleteCategoryAsync(category.ID);
                 await context.SaveChangesAsync();
             }
 
@@ -101,13 +101,13 @@ namespace Tilo.Models
 
         public async Task<Category> SaveCategoryAsync(Category category)
         {
-            if (category.CategoryID == 0)
+            if (category.ID == 0)
             {
                 context.Categories.Add(category);
             }
             else
             {
-                Category dbEntry = context.Categories.FirstOrDefault(c => c.CategoryID == category.CategoryID);
+                Category dbEntry = context.Categories.FirstOrDefault(c => c.ID == category.ID);
 
                 if (dbEntry != null)
                 {

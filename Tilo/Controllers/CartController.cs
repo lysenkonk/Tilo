@@ -50,29 +50,29 @@ namespace Tilo.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrder(Order order)
+        public async Task<IActionResult> CreateOrder(Order order)
         {
             order.Lines = GetCart().Selections.Select(s => new OrderLine
             {
-                ProdId = s.ProdId,
-                //Quantity = s.Quantity,
+                ProductId = s.ProductId,
+                Quantity = s.Quantity,
                 //Product = s.Product,
                 //Order = order
             }).ToArray();
 
             ordersRepository.AddOrder(order);
+            
             SaveCart(new Cart());
-            return RedirectToAction("Completed");
-            //await SendMessage(order);
-            //if (isSuccess)
-            //{
-            //    ordersRepository.AddOrder(order);
-            //    SaveCart(new Cart());
-            //    Completed();
-            //}else
-            //{
-            //    NotCompleted();
-            //}
+            //return RedirectToAction("Completed");
+            bool isSuccess = await SendMessage(order);
+            if (isSuccess)
+            {
+                return RedirectToAction("Completed");
+            }
+            else
+            {
+                return RedirectToAction("NotCompleted");
+            }
         }
 
         public IActionResult AddAndSaveOrder(Order order)
@@ -88,25 +88,27 @@ namespace Tilo.Controllers
         }
         public IActionResult Completed()
         {
-            return View();
+             return View();
         }
+        
 
-        //public async Task<IActionResult> SendMessage(Order order)
-        //{
-        //    var textMessage = "Deer " + order.CustomerName + ", your order №" + order.Id + " is processed. Our manager will contact you";
-        //    EmailService emailService = new EmailService();
-        //    string subject = "Order №" + order.Id + " is processed. With love your Tiloshowroom";
-        //    try
-        //    {
-        //        await emailService.SendEmailAsync(order.Address, subject, textMessage);
-        //        return AddAndSaveOrder(order);
-        //    }
-        //    catch
-        //    {
-        //        return NotCompleted();
-        //    }
-            
-        //}
+        public async Task<bool> SendMessage(Order order)
+        {
+            long numberOrder = ordersRepository.Orders.Last<Order>().Id;
+            var textMessage = "Deer " + order.CustomerName + ", your order №" + numberOrder + " is processed. Our manager will contact you";
+            EmailService emailService = new EmailService();
+            string subject = "Order №" + numberOrder + " is processed. With love your Tiloshowroom";
+            try
+            {
+                await emailService.SendEmailAsync(order.Email, subject, textMessage);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
 
         private Cart GetCart() =>
             HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();

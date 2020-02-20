@@ -24,7 +24,7 @@ namespace Tilo.Models
         public async Task<Product> SaveProductAsync(Product product)
         {
             Category category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
-            if (product.ID == 0)
+            if (product.Id == 0)
             {
                 if (category != null)
                 {
@@ -34,7 +34,7 @@ namespace Tilo.Models
             }
             else
             {
-                Product dbEntry = _context.Products.FirstOrDefault(p => p.ID == product.ID);
+                Product dbEntry = _context.Products.FirstOrDefault(p => p.Id == product.Id);
 
                 if (dbEntry != null)
                 {
@@ -59,10 +59,10 @@ namespace Tilo.Models
             return product;
         }
 
-        public async Task<Product> DeleteProductAsync(int productID)
+        public async Task<Product> DeleteProductAsync(long productID)
         {
             Product dbEntry = _context.Products
-                .FirstOrDefault(p => p.ID == productID);
+                .FirstOrDefault(p => p.Id == productID);
             if (dbEntry != null)
             {
                 _context.Products.Remove(dbEntry);
@@ -72,9 +72,9 @@ namespace Tilo.Models
             return dbEntry;
         }
 
-        public async Task<FileModel> AddImageAsync(int productId, FileModel image)
+        public async Task<FileModel> AddImageAsync(long productId, FileModel image)
         {
-            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ID == productId);
+            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.Id == productId);
 
             if (dbEntry == null)
                 throw new Exception("404 Not Found product");
@@ -84,9 +84,9 @@ namespace Tilo.Models
             return image;
         }
 
-        public async Task<FileModel> RemoveImageAsync(int productId, string fileName)
+        public async Task<FileModel> RemoveImageAsync(long productId, string fileName)
         {
-            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ID == productId);
+            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.Id == productId);
 
             if (dbEntry == null)
                 throw new Exception("404 Not Found product");

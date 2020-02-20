@@ -51,7 +51,7 @@ namespace Tilo.Controllers
 
         public IActionResult Edit(int productId)
         {
-            var product = _productsService.Products.FirstOrDefault(p => p.ID == productId);
+            var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
 
             if (product == null)
                 return NotFound();
@@ -207,7 +207,7 @@ namespace Tilo.Controllers
 
         public IActionResult EditCategory(int categoryID)
         {
-            var category = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.CategoryID == categoryID);
+            var category = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.ID == categoryID);
 
             if (category == null)
                 return NotFound();
@@ -244,7 +244,7 @@ namespace Tilo.Controllers
 
         private bool isProduct(int productId)
         {
-            var product = _productsService.Products.FirstOrDefault(p => p.ID == productId);
+            var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
             if (product == null)
             {
                 TempData["message"] = $"That product doesn't exist";

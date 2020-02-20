@@ -34,7 +34,7 @@
     {
         <div class="row">
             <div class="col-md-1">
-                @category.CategoryID
+                @category.ID
             </div>
             <div class="col-md-3">
                 @category.Name
@@ -50,11 +50,11 @@
 
         <div class="col-md-2">
                 <a asp-action="EditCategory" class="btn btn-sm btn-warning"
-                   asp-route-categoryId="@category.CategoryID">
+                   asp-route-categoryId="@category.ID">
                     Edit
                 </a>
                 <a asp-action="DeleteCategory" class="btn btn-sm btn-danger"
-                   asp-route-categoryId="@category.CategoryID">
+                   asp-route-categoryId="@category.ID">
                     Delete
                 </a>
             </div>
