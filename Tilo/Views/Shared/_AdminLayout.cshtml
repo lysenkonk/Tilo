@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="~/lib/mainStyle.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <style>
-
         .placeholder {
             visibility: collapse;
             display: none
@@ -28,7 +27,7 @@
     <title>@ViewBag.Title</title>
 </head>
 <body class="m-1 p-1">
-    <div class="bg-info p-2 row">
+    <div class="bg-dark p-2 row">
         <div class="col">
             <h4>@ViewBag.Title</h4>
         </div>
@@ -39,15 +38,15 @@
                 </a>
             </li>
             <li>
-                <a asp-controller="Orders" asp-action="Index"
-                   class="@GetClassForButton("Orders")">
+                <a asp-controller="Orders" asp-action="Index" class="btn btn-sm btn-info"
+                   @*class="@GetClassForButton("Orders")"*@>
                     Orders
                 </a>
             </li>
         </ul>
         <div class="col-2">
-            <a class="btn btn-sm btn-primary"
-               asp-action="Logout" asp-controller="Account">Log  Out</a>
+            <a class="btn btn-sm btn-info"
+               asp-action="Logout" asp-controller="Account" >Log  Out</a>
         </div>
     </div>
 

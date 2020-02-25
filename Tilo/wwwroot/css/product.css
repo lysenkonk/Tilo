@@ -4,7 +4,15 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
-
+.marginTop30 {
+    margin-top: 30px;
+}
+.marginTop0{
+    margin-top: 0px;
+}
+.marginTop25 {
+    margin-top: 25px;
+}
 /*element.style {
 }*/
 
@@ -14,9 +22,13 @@
 }*/
 a {
     background-color: transparent;
-    color: #6f6f6e;
+    color: black;
+    /*color: #6f6f6e;*/
 }
- a,link {
+    a hover {
+        color: #6f6f6e;
+    }
+    a,link {
         transition: color .1s ease-in-out;
 }
 body {

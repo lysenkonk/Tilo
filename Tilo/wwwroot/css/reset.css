@@ -68,3 +68,8 @@ button {
         background: none;
         border: none;
     }
+
+
+.btn-success {
+    background-color: none;
+}

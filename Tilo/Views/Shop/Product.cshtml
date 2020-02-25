@@ -36,178 +36,88 @@
 
                                                 </div>
                                             </div>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="eProductView_sliderNav">
-                                    <div class="eProductView_sliderNavBtn">
-                                        <div class="o-svg o-svg--slider-arrow-top">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                                                <path fill="#010101" d="M22.4 64.1l28.4-27.6 28.5 27.6 1.5-.9-30-29.1-30 29.1 1.6.9z"></path>
-                                            </svg>
-                                        </div>
+                                    @*<div class="eProductView_sliderNavBtn">
+                <div class="o-svg o-svg--slider-arrow-top">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <path fill="#010101" d="M22.4 64.1l28.4-27.6 28.5 27.6 1.5-.9-30-29.1-30 29.1 1.6.9z"></path>
+                    </svg>
+                </div>
 
-                                    </div>
+            </div>*@
                                     <div class="slick-slider slick-vertical">
                                         <div class="slick-list draggable">
                                             <div class="slick-track">
-                                                @foreach(var image in @Model.product.Images)
-                                                {
-                                                <div class="eProductView_image slick-slide" style="width:176px">
-                                                    <img width="170" class="sm_img"  name ="@image.Name" src="@Url.Content("/files/Sm/" + @image.Name)" />
-                                                </div>
-                                                }
-                                                @*@if (@Model.product.Images.Count > 2)
+                                                @foreach (var image in @Model.product.Images)
                                                 {
                                                     <div class="eProductView_image slick-slide" style="width:176px">
-                                                        <img width="170" src="@Url.Content("/files/Sm/" + @Model.product.Images[2].Name)" />
+                                                        <img width="170" class="sm_img" name="@image.Name" src="@Url.Content("/files/Sm/" + @image.Name)" />
                                                     </div>
                                                 }
-                                                @if (@Model.product.Images.Count > 3)
-                                                {
-                                                    <div class="eProductView_image slick-slide" style="width:176px">
-                                                        <img width="170" src="@Url.Content("/files/Sm/" + @Model.product.Images[3].Name)" />
-                                                    </div>
-                                                }*@
+
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="eProductView_sliderNavBtn jsSliderNavPrev">
-                                        <div class="o-svg o-svg--slider-arrow-bottom">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                                                <path fill="#010101" d="M23.1 34.1l28.4 27.6L80 34.1l1.5.9-30 29.1-30-29.1 1.6-.9z"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
+                                    @*<div class="eProductView_sliderNavBtn jsSliderNavPrev">
+                <div class="o-svg o-svg--slider-arrow-bottom">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <path fill="#010101" d="M23.1 34.1l28.4 27.6L80 34.1l1.5.9-30 29.1-30-29.1 1.6-.9z"></path>
+                    </svg>
+                </div>
+            </div>*@
                                 </div>
                             </div>
                             <div class="eProductView_data">
                                 <div class="eProductView_row mProductView_name">
-                                    <h1 itemprop="name" class="eProductView_name">
-                                        @Model.product.Name
-                                    </h1>
+                                                             <h1 itemprop="name" class="eProductView_name">
+                                         @Model.product.Name
+                                     </h1>
                                 </div>
-                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="eProductView_row mProductView_price">
-
-                                    <div class="eProductView_price"><span class="woocommerce-Price-amount amount">@Model.product.Price &nbsp;<span class="woocommerce-Price-currencySymbol">грн</span></span></div>
-
-                                    <meta itemprop="price" content="1200">
-                                    <meta itemprop="priceCurrency" content="UAH">
-                                    <link itemprop="availability" href="http://schema.org/InStock">
-
-                                </div>
-                                <div class="eProductView_row mProductView_img">
-                                    <div class="eProductView_mobSlider"></div>
-                                </div>
-                                <div itemprop="description" class="eProductView_row mProductView_description">
-                                    <div class="eProductView_description">
-                                        <p>
-                                            @Model.product.Description
-                                        </p>                                        
-                                        <p>
-                                            Цвет: @Model.product.Color
-                                        </p>
-                                    </div>
-                                </div>
-                                @*<div class="eProductView_row mProductView_params">
-                                    <div class="eProductView_category">
-                                        <div class="eProductView_categoryTitle">Категория:</div>
-                                        <div class="eProductView_categoryItems">
-                                            <a asp-action="List" asp-controller="Shop" asp-route-category="@Model.Category.Name"> @Model.Category.Name</a>
-                                        </div>
-                                    </div>
-                                </div>*@
-                                <div class="eProductView_row">
-                                    <div class="mProductView_form">
-                                        <form class="variations_form cart " asp-action="AddToCart"
-                                              asp-controller="Cart" method="post" enctype="multipart/form-data" id="@Model.product.Id">
-                                            <input type="hidden" asp-for="@Model.product.Id" />
-                                            <input type="hidden" asp-for="@Model.product.Name" />
-                                            <input type="hidden" asp-for="@Model.product.Color" />
-
-                                            @*<input type="hidden" name="Id" value="@Model.product.ID" />
-                                            <input type="hidden" name="Name"
-                                                   value="@Model.product.Name" />
-                                            <input type="hidden" name="Price"
-                                                   value="@Model.product.Price" />*@
-                                            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                                            <span class="card-text p-1">
-                                                @(Model.product.Description
-                                                            ?? "(No Description Available")
-                                                <button type="submit"
-                                                        class="btn btn-success btn-sm pull-right"
-                                                        style="float:right">
-                                                    Add To Cart
-                                                </button>
-                                            </span>
-                                            @*<table class="variations" cellspacing="0" style="display: none;">
-            <tbody>
-                <tr>
-                    <td class="label"><label for="pa_size">Размер трусов</label></td>
-                    <td class="value">
-                        <select id="pa_size" class="" name="attribute_pa_size" data-attribute_name="attribute_pa_size"><option value="">Выбрать размер</option><option value="xs-ru" class="attached enabled">XS</option><option value="s-ru" class="attached enabled">S</option><option value="l-ru" class="attached enabled">L</option><option value="m-ru" class="attached enabled"></option></select><a class="reset_variations" href="#" style="visibility: hidden;">Очистить</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>*@
-
-                                            <label asp-for="@Model.product.Size" class="col-sm-2 col-form-label-size">Размер:</label>
-
-                                            <div class="col-sm-10">
-                                                <select id="editable-select-size" asp-for="@Model.product.Size" class="form-control" asp-items="@(new SelectList(Model.Sizes, "Size"))">
-
-                                                    <option value="@Model.product.Size"></option>
-                                                </select>
-                                                <span asp-validation-for="@Model.product.Size" class="text-danger"></span>
-                                            </div>
-
-
-
-                                            @*<div class="eProductView_size">
-            <input type="radio" name="size" id="size_xs-ru" value="xs-ru"><label style="    text-align: center;" for="size_xs-ru">XS</label><input type="radio" name="size" id="size_s-ru" value="s-ru"><label style="    text-align: center;" for="size_s-ru">S</label><input type="radio" name="size" id="size_l-ru" value="l-ru"><label style="    text-align: center;" for="size_l-ru">L</label><input type="radio" name="size" id="size_m-ru" value="m-ru"><label style="    text-align: center;" for="size_m-ru">M</label>
-        </div>*@
-
-                                            @*<div class="eProductView_guide">
-            <a class="open-popup-link" href="#ct_size_guide">
-                <div class="eProductView_icon">
-                    <div class="o-svg o-svg--guide">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 25.7">
-                            <path d="M28.6 4.7H3.4l3.3-3.3L5.3 0l-5 5a1 1 0 0 0 0 1.4l5 5L6.7 10 3.4 6.7h25.2L25.3 10l1.4 1.4 5-5c.4-.4.4-1 0-1.4l-5-5-1.4 1.4 3.3 3.3zM0 14.7v10c0 .6.4 1 1 1h4v-7h2v7h3v-5h2v5h3v-7h2v7h3v-5h2v5h3v-7h2v7h4c.6 0 1-.4 1-1v-10c0-.6-.4-1-1-1H1c-.6 0-1 .4-1 1z"></path>
-                        </svg>
-                    </div>
-                </div><p>Size Guide</p>
-            </a>
-        </div><div class="clearfix"></div>*@
-                                            @*<div class="single_variation_wrap">
-        <div class="woocommerce-variation single_variation" style="display: none;"></div>
-        <div class="eProductView_actions">
-            <div style="display: none">
-                <div class="quantity">
-                    <input type="number" step="1" min="" max="" name="quantity" value="1" title="Кол-во" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
-                </div>
-            </div>
-            <button type="submit" class="bBtn mAddToCart ">
-                <span class="eBtn_text">Добавить в корзину</span>
-            </button>
-            <input type="hidden" name="add-to-cart" value="10753">
-            <input type="hidden" name="product_id" value="10753">
-            <input type="hidden" name="variation_id" class="variation_id" value="">
-        </div>*@
-
-                                            @*</div>*@
-                                        </form>
-                                    </div>
-                                </div>
-                            
+                            <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="eProductView_row mProductView_price">
+                                <div class="eProductView_price"><span class="woocommerce-Price-amount amount">@Model.product.Price &nbsp;<span class="woocommerce-Price-currencySymbol">грн</span></span></div>
                             </div>
+
+
+                            <div class="eProductView_row">
+                                <div class="mProductView_form">
+                                    <form class="variations_form cart " asp-action="AddToCart"
+                                          asp-controller="Cart" method="post" enctype="multipart/form-data" id="@Model.product.Id">
+                                        <input type="hidden" asp-for="@Model.product.Id" />
+                                        <input type="hidden" asp-for="@Model.product.Name" />
+                                        <input type="hidden" asp-for="@Model.product.Color" />
+
+                                        <label asp-for="@Model.product.Size" class="col-sm-2 col-form-label-size">Размер:</label>
+                                        <div class="col-sm-10">
+                                            <select id="editable-select-size" asp-for="@Model.product.Size" class="form-control" asp-items="@(new SelectList(Model.Sizes, "Size"))">
+
+                                                <option value="@Model.product.Size"></option>
+                                            </select>
+                                            <span asp-validation-for="@Model.product.Size" class="text-danger"></span>
+                                        </div>
+                                        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                        <span class="card-text p-1">
+                                            @(Model.product.Description
+                                                                         ?? "(No Description Available")
+                                            <button type="submit"
+                                                    class="btn btn-primary btn-sm center-block"
+                                                    style=" background-color:black; margin-top:20px">
+                                                Add To Cart
+                                            </button>
+                                        </span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 <script>
     $(function () {
         var bgImg = document.getElementById("img_Bg");
@@ -218,12 +128,10 @@
         }
 
         function tabbedImage(e) {
-
             let imgName = e.target.getAttribute("name");
             //let imgName = imgTitle.slice(0, imgTitle.indexOf("."));
             let imgSrc = "/Files/Bg/" + imgName;
             bgImg.setAttribute('src', imgSrc);
-
         }
     })
 </script>

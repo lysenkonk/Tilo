@@ -14,6 +14,9 @@ namespace Tilo.Models
         {
             _context = ctx;
         }
+        public Product  GetProduct(long key) => _context.Products
+            .Include(p => p.Images).Include(p => p.Category).First(o => o.Id == key);
+
         public IQueryable<Product> Products => _context.Products.Include(p => p.Images).Include(p => p.Category);
 
         public IQueryable<string> Colors => _context.Products.Select(x => x.Color).Distinct().OrderBy(x => x);

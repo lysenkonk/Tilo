@@ -31,8 +31,7 @@ namespace Tilo.Controllers
         [HttpPost]
         public IActionResult AddToCart(Product product, string returnUrl)
         {
-            Product prodCurrent = productRepository.Products.FirstOrDefault(p => p.Size == product.Size && p.Name == product.Name && p.Color == product.Color);
-
+            Product prodCurrent = productRepository.Products.FirstOrDefault(p => p.Size == product.Size && p.Name == product.Name && p.Color == product.Color);        
             SaveCart(GetCart().AddItem(prodCurrent, 1));
             return RedirectToAction(nameof(Index), new { returnUrl });
         }
@@ -55,15 +54,12 @@ namespace Tilo.Controllers
             order.Lines = GetCart().Selections.Select(s => new OrderLine
             {
                 ProductId = s.ProductId,
-                Quantity = s.Quantity,
-                //Product = s.Product,
-                //Order = order
+                Quantity = s.Quantity
             }).ToArray();
 
             ordersRepository.AddOrder(order);
             
             SaveCart(new Cart());
-            //return RedirectToAction("Completed");
             bool isSuccess = await SendMessage(order);
             if (isSuccess)
             {
@@ -73,13 +69,6 @@ namespace Tilo.Controllers
             {
                 return RedirectToAction("NotCompleted");
             }
-        }
-
-        public IActionResult AddAndSaveOrder(Order order)
-        {
-            
-            SaveCart(new Cart());
-            return RedirectToAction("Completed");
         }
 
         public IActionResult NotCompleted()
@@ -107,7 +96,6 @@ namespace Tilo.Controllers
             {
                 return false;
             }
-
         }
 
         private Cart GetCart() =>

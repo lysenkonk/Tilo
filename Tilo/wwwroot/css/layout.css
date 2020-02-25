@@ -487,7 +487,7 @@ header .menu {
     z-index: 12;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 780px) {
     header .menu {
         display: block;
     }
@@ -549,24 +549,22 @@ header .menu .ulItem {
     }
 
         header .menu .ulItem a:hover {
-            background-color: #222;
-            color: #fff;
-            text-decoration: none;
-        }
-
-
-        /*header .menu .ulItem a:hover,*/
-        header .menu .ulItem a:active {
-            color: #6b1d23;
             text-decoration: underline;
         }
 
-        header .menu .ulItem a:focus {
-            /*color: #6b1d23;*/
-            background-color: #222;
-            color: #fff;
+
+
+        header .menu .ulItem a:active {
+            background-color: white;
+            color: black;
             text-decoration: none;
         }
+        /*
+        header .menu .ulItem a:focus {
+            background-color: #222;
+            color: black;
+            text-decoration: none;
+        }*/
 
 
 
@@ -1106,7 +1104,7 @@ header .mask {
 .catalog .products .product .description .information {
     padding: 5px 5px 5px 5px;
     background-color: #ffffff;
-    color: #2d2d2d;
+    color: black;
     min-height: 70px;
     margin-top: -8px;
 }
@@ -1230,19 +1228,20 @@ header .mask {
     justify-content: center;
 }
 
-    .pagination a {
+    /*.pagination a {
         color: black;
-    }
+    }*/
 
 .btn-primary {
-    background-color: white;
-    border-color: black;
+    background-color: black;
+    border-color:white;
+    color: white;
 }
 
     .btn-primary:hover {
-        color: white;
-        background-color: black;
-        border-color: #204d74;
+        color: black;
+        background-color: white;
+        border-color: black;
     }
 
 btn.focus, .btn:focus, .btn:hover {

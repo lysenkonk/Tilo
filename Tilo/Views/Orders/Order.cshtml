@@ -4,7 +4,7 @@
     Layout = "_AdminLayout";
 }
 
-<h3 class="p-2 bg-primary text-white text-center">Create/Update Order</h3>
+<h3 class="p-2 bg-dark text-white text-center">Create/Update Order</h3>
 <form asp-action="AddOrUpdateOrder" method="post">
     <div class="form-group">
         <label asp-for="Id"></label>
@@ -22,7 +22,7 @@
         <label asp-for="Phone"></label>
         <input asp-for="Phone" class="form-control" />
     </div>
-    <h6 class="mt-1 p-2 bg-primary text-white text-center">Products Ordered</h6>
+    <h6 class="mt-1 p-2 bg-dark text-white text-center">Products Ordered</h6>
     <div class="container-fluid">
         <div class="row">
             <div class="col font-weight-bold">Product</div>
@@ -33,7 +33,7 @@
 
         </div>
         @{ int counter = 0; }
-        @foreach (OrderLine line in ViewBag.Lines)
+        @foreach (OrderLine line in Model.Lines)
         {
             <input type="hidden" name="lines[@counter].Id" value="@line.Id" />
             <input type="hidden" name="lines[@counter].ProductId"

@@ -747,7 +747,7 @@ img.hover-shadow {
 }
 
     .sidenavAdm .title {
-        background: powderblue;
+        background: #343a40;
         height: 44px;
         font: 20px "trebuchet ms",helvetica,sans-serif;
         color: #fff;
@@ -780,7 +780,6 @@ img.hover-shadow {
                 height: 32px;
                 text-decoration: none;
                 background: rgba(86, 61, 124, .15);
-                ;
                 overflow: hidden;
                 font-size: 14px
             }

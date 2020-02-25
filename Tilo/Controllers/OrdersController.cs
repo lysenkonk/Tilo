@@ -16,7 +16,6 @@ namespace Tilo.Controllers
             ordersRepository = orderRepo;
         }
 
-
         public IActionResult Index()
         {
             return View(ordersRepository.Orders);
@@ -27,11 +26,22 @@ namespace Tilo.Controllers
             var products = productRepository.Products;
             Order order = id == 0 ? new Order() : ordersRepository.GetOrder(id);
             IDictionary<long, OrderLine> linesMap = order.Lines?.ToDictionary(l => l.ProductId) ?? new Dictionary<long, OrderLine>();
-            ViewBag.Lines = products.Select(p => linesMap.ContainsKey(p.Id)
-                            ? linesMap[p.Id]
-                            : new OrderLine { Product = p, ProductId = p.Id, Quantity = 0 });
+            //ViewBag.Lines = products.Select(p => linesMap.ContainsKey(p.Id)
+            //                ? linesMap[p.Id]
+            //                : new OrderLine { Product = p, ProductId = p.Id, Quantity = 0 });
+
+            IQueryable<OrderLine> prod = products.Select(p => linesMap.ContainsKey(p.Id)
+            ? linesMap[p.Id] : new OrderLine { Product = p, ProductId = p.Id, Quantity = 0 });
+            ViewBag.Lines = prod;
             return View(order);
         }
+        public IActionResult Order(long id)
+        {
+            var products = productRepository.Products;
+            Order order = id == 0 ? new Order() : ordersRepository.GetOrder(id);
+            return View(order);
+        }
+
         [HttpPost]
         public IActionResult AddOrUpdateOrder(Order order)
         {
@@ -47,9 +57,10 @@ namespace Tilo.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult DeleteOrder(Order order)
+
+        public IActionResult DeleteOrder(long id)
         {
-            ordersRepository.DeleteOrder(order);
+            ordersRepository.DeleteOrder(ordersRepository.GetOrder(id));
             return RedirectToAction(nameof(Index));
         }
     }
