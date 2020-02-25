@@ -46,6 +46,7 @@ namespace Tilo.Controllers
             }
 
             IQueryable<Product> ProductsWithTheSameNames = _repository.Products.Where(p => p.Name == product.Name && p.Category == product.Category);
+            IEnumerable<Product> ProductsWithTheSame = _repository.Products.Where(p => p.Name == product.Name && p.Category != product.Category );
             IQueryable<string> Sizes = ProductsWithTheSameNames.Select(x => x.Size).Distinct().OrderBy(x => x);
             //foreach(var p in ProductsWithTheSameNames)
             //{
@@ -54,6 +55,7 @@ namespace Tilo.Controllers
             var viewModel = new ProductView
             {
                 product = product,
+                Products = ProductsWithTheSame,
                 Sizes = Sizes
             };
             return View(viewModel);
