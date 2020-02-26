@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Tilo.Models;
@@ -10,6 +11,7 @@ using Tilo.Services;
 
 namespace Tilo.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly ProductsService _productsService;

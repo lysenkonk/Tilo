@@ -2,10 +2,11 @@
 using Tilo.Models;
 using System.Collections.Generic;
 using System.Linq;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Tilo.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private IProductRepository productRepository;

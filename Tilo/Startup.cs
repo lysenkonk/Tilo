@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Tilo.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Tilo.Services;
 
 namespace Tilo
@@ -36,13 +38,20 @@ namespace Tilo
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddTransient<ICategoryRepository, EFCategoryRepository>();
             services.AddTransient<IFileModelRepository, EFFileModelRepository>();
-            
+
+
+
             services.AddTransient<ProductsService>();
             services.AddTransient<EmailService>();
             services.AddTransient<IOrdersRepository, EFOrdersRepository>();
             services.AddDistributedMemoryCache();
             services.AddDbContext<ApplicationDbContext>(options =>
           options.UseSqlServer(conString));
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
+    options.UseSqlServer(Configuration["Data:TiloIdentity:ConnectionString"]));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppIdentityDbContext>();
 
             services.AddDistributedSqlServerCache(options => {
                 options.ConnectionString = conString;
@@ -58,6 +67,10 @@ namespace Tilo
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddMemoryCache();
+
 
 
         }
@@ -77,7 +90,7 @@ namespace Tilo
             app.UseStaticFiles();
             app.UseStatusCodePages();
             app.UseSession();
-
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
@@ -114,7 +127,7 @@ namespace Tilo
                    );
             });
             SeedData.EnsurePopulated(app);
-            //IdentitySeedData.EnsurePopulated(app).Wait();
+            IdentitySeedData.EnsurePopulated(app).Wait();
         }
     }
 }
