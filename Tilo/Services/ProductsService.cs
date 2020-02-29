@@ -31,6 +31,8 @@ namespace Tilo.Services
 
         public IEnumerable<Product> Products => _repository.Products;
         public IEnumerable<Category> Categories => _categoryRepository.Categories;
+        public IEnumerable<Category> ParentCategories => _repository.Categories.Where(p => p.ParentCategory == null);
+
         public IQueryable<string> Colors => _repository.Products.Select(x => x.Color).Distinct().OrderBy(x => x);
         public IQueryable<string> Sizes => _repository.Products.Select(x => x.Size).Distinct().OrderBy(x => x);
 

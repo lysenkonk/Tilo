@@ -1,19 +1,38 @@
-﻿@model IEnumerable<Category>
+﻿@model ICategoryRepository
 
-    <li>
-        <a class="tab"
-           asp-action="Index"
-           asp-controller="Admin"
-           asp-route-category="">
-            <span style="font-weight:bold;">
-                All products
-            </span>
-        </a>
-    </li>
-    @foreach (Category category in Model)
+@*<li>
+    <a class="tab"
+       asp-action="Index"
+       asp-controller="Admin"
+       asp-route-category="">
+        <span style="font-weight:bold;">
+            All products
+        </span>
+    </a>
+</li>*@
+@foreach (var p in Model.ParentCategories)
+{
+<li>
+    <a class="tab"
+       asp-action="List"
+       asp-controller="Admin"
+       asp-route-category="@p.Name"
+       asp-route-page="1">
+        <span style="">
+            @p.Name
+        </span>
+    </a>
+        @foreach (var c in p.ChildCategories)
+        {
+            <a class="tab" asp-action="List" asp-controller="Admin" asp-route-category="@c.Name">@c.Name</a>
+        }
+</li>
+
+}
+@*@foreach (Category category in Model)
     {
-        <li>
-            <a class="tab"
+        <li class=" nav-justified">
+            <a class= "tab"
                asp-action="List"
                asp-controller="Admin"
                asp-route-category="@category.Name"
@@ -23,4 +42,4 @@
                 </span>
             </a>
         </li>
-    }
+    }*@

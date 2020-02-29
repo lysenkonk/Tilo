@@ -17,7 +17,7 @@ namespace Tilo.Components
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedCategory = RouteData?.Values["category"];
-            return View(categoriesRep.Categories);
+            return View(categoriesRep);
         }
     }
 }
