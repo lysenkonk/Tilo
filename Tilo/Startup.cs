@@ -94,19 +94,10 @@ namespace Tilo
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    name: "Shop",
-                    template: "Shop",
-                    defaults: new {controller = "Shop", action = "Index" }
-                    );
 
                 routes.MapRoute(
                     name: "List",
-                    template: "List",
+                    template: "Shop/{action}",
                     defaults: new {controller = "Shop", action = "List" }
                     );
 
@@ -125,6 +116,15 @@ namespace Tilo
                    template: "{category}/{page}",
                    defaults: new { controller = "Admin", action = "Index" }
                    );
+
+                routes.MapRoute(
+                    name: "Shop",
+                    template: "Shop",
+                    defaults: new { controller = "Shop", action = "Index" }
+                    );
+                routes.MapRoute(
+                name: "default",
+                template: "{controller=Home}/{action=Index}/{id?}");
             });
             SeedData.EnsurePopulated(app);
             IdentitySeedData.EnsurePopulated(app).Wait();
