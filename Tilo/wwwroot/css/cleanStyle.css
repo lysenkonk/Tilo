@@ -701,7 +701,8 @@ img.hover-shadow {
 
             #navAdm li a:hover {
                 text-decoration: none;
-                background: white;
+                background: #006d84;
+                ;
             }
 
             #navAdm li a span {

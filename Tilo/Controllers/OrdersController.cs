@@ -21,7 +21,7 @@ namespace Tilo.Controllers
         {
             return View(ordersRepository.Orders);
         }
-
+        [Route("Admin/EditOrder")]
         public IActionResult EditOrder(long id)
         {
             var products = productRepository.Products;
@@ -36,13 +36,14 @@ namespace Tilo.Controllers
             ViewBag.Lines = prod;
             return View(order);
         }
+        [Route("Admin/Order")]
         public IActionResult Order(long id)
         {
             var products = productRepository.Products;
             Order order = id == 0 ? new Order() : ordersRepository.GetOrder(id);
             return View(order);
         }
-
+        [Route("Admin/AddOrUpdateOrder")]
         [HttpPost]
         public IActionResult AddOrUpdateOrder(Order order)
         {
@@ -58,6 +59,7 @@ namespace Tilo.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        [Route("Admin/DeleteOrder")]
 
         public IActionResult DeleteOrder(long id)
         {

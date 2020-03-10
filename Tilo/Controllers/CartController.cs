@@ -21,7 +21,7 @@ namespace Tilo.Controllers
             productRepository = prepo;
             ordersRepository = orepo;
         }
-
+        
         public IActionResult Index(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
@@ -29,6 +29,7 @@ namespace Tilo.Controllers
         }
 
         [HttpPost]
+        [Route("Cart/AddToCart")]
         public IActionResult AddToCart(Product product, string returnUrl)
         {
             Product prodCurrent = productRepository.Products.FirstOrDefault(p => p.Size == product.Size && p.Name == product.Name && p.Color == product.Color);        
@@ -37,18 +38,20 @@ namespace Tilo.Controllers
         }
 
         [HttpPost]
+        [Route("Cart/RemoveFromCart")]
         public IActionResult RemoveFromCart(long productId, string returnUrl)
         {
             SaveCart(GetCart().RemoveItem(productId));
             return RedirectToAction(nameof(Index), new { returnUrl });
         }
-
+        [Route("Cart/CreateOrder")]
         public IActionResult CreateOrder()
         {
             return View();
         }
 
         [HttpPost]
+        [Route("Cart/CreateOrder")]
         public async Task<IActionResult> CreateOrder(Order order)
         {
             order.Lines = GetCart().Selections.Select(s => new OrderLine
@@ -70,11 +73,12 @@ namespace Tilo.Controllers
                 return RedirectToAction("NotCompleted");
             }
         }
-
+        [Route("Cart/NotCompleted")]
         public IActionResult NotCompleted()
         {
             return View();
         }
+        [Route("Cart/Completed")]
         public IActionResult Completed()
         {
              return View();

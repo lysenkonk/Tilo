@@ -2,28 +2,37 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2 class="m-3">Your Details</h2>
-<form asp-action="CreateOrder" method="post" class="m-4">
-    <div class="form-group">
-        <label>Your Name:</label>
-        <input asp-for="CustomerName" class="form-control" />
-        <span asp-validation-for="@Model.CustomerName" class="text-danger"></span>
 
-    </div>
-    <div class="form-group">
-        <label> Your email</label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+<div class="container">
+    <div id="content">
+        <div class="bProductView">
+            <div class="bWrap">
+                <h2 class="m-3">Your Details</h2>
+                <form asp-action="CreateOrder" method="post" class="m-4">
+                    <div class="form-group">
+                        <label>Your Name:</label>
+                        <input asp-for="CustomerName" class="form-control" />
+                        <span asp-validation-for="@Model.CustomerName" class="text-danger"></span>
 
-    </div>
-    <div class="form-group">
-        <label>Your mobile phone number:</label>
-        <input asp-for="Phone" class="form-control" />
-        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label> Your email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
 
+                    </div>
+                    <div class="form-group">
+                        <label>Your mobile phone number:</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+
+                    </div>
+                    <div class="text-center m-2">
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
     </div>
-    <div class="text-center m-2">
-        <button type="submit" class="btn btn-primary">Place Order</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-    </div>
-</form>

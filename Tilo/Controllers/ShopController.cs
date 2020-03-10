@@ -19,7 +19,7 @@ namespace Tilo.Controllers
             _repository = repo;
             _repoCategories = categories;
         }
-
+        [Route("Shop")]
         public ViewResult Index()
         {
             //var temp = _repoCategories.Categories.First(p => p.Name == "nh");
@@ -34,7 +34,7 @@ namespace Tilo.Controllers
 
             return View(Products);
         }
-
+        [Route("Product/{id}")]
         public ViewResult Product(int id)
         {
             //int categoryId = _repoCategories.Categories.First(p => p.Name == "Трусы");
@@ -60,7 +60,8 @@ namespace Tilo.Controllers
             };
             return View(viewModel);
         }
-
+        [Route("Shop/List")]
+        [Route("{category}/{page}")]
         public ViewResult List(string category, int page = 1)
         {
             var viewModel = new ProductsViewModel
@@ -80,7 +81,6 @@ namespace Tilo.Controllers
                 },
                 CurrentCategory = category
             };
-
             return View(viewModel);
         }
     }

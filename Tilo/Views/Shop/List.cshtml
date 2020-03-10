@@ -15,7 +15,9 @@
                             <li class="product inner-appearing-object">
                                 <div class="picture img">
                                     <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
-                                        <img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)">
+                                        @*<img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)">*@
+                                        <img src="@Url.Content("/files/Sm/" + p.Images[0].Name)">
+
                                     </a>
                                 </div>
                                 <div class="description">                                   

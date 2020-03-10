@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,16 +24,17 @@ namespace Tilo.Controllers
         }
 
         //-------------------------------------------------------------------------Catalog actions----------------------------
+        [Route("Admin")]
         public ViewResult Index()
         {
             return View("Index", _productsService.Products);
         }
-
+        [Route("Admin/Categories")]
         public ViewResult Categories()
         {
             return View("Categories", _productsService.Categories);
         }
-
+        [Route("Admin/List")]
         public ViewResult List(string category, int page = 1)
         {
             IEnumerable<Product> products = _productsService.Products
@@ -50,7 +51,7 @@ namespace Tilo.Controllers
             //var items = Products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             return View("Index", products);
         }
-
+        [Route("Admin/Edit")]
         public IActionResult Edit(int productId)
         {
             var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
@@ -71,6 +72,7 @@ namespace Tilo.Controllers
         }
 
         [HttpPost]
+        [Route("Admin/Edit")]
         public async Task<IActionResult> Edit(Product product)
         {
 
@@ -88,8 +90,8 @@ namespace Tilo.Controllers
             };
             return View(viewModel);
         }
-
-            public async Task<IActionResult> RemoveImage(int productId, string imageName)
+        [Route("Admin/RemoveImage")]
+        public async Task<IActionResult> RemoveImage(int productId, string imageName)
         {
             if (!isProduct(productId))
             {
@@ -100,7 +102,7 @@ namespace Tilo.Controllers
 
             return RedirectToAction("Edit", new { productId });
         }
-
+        [Route("Admin/AddImage")]
         public async Task<IActionResult> AddImage(int productId, IFormFile uploadedFile)
         {
             if (!isProduct(productId))
@@ -124,7 +126,7 @@ namespace Tilo.Controllers
         //    };
         //    return View(viewModel);
         //}
-
+        [Route("Admin/Create")]
         public IActionResult Create()
         {
             Product product = new Product();
@@ -140,7 +142,7 @@ namespace Tilo.Controllers
             return View("Edit", viewModel);
         }
 
-
+        [Route("Admin/CreateCategory")]
         public IActionResult CreateCategory()
         {
             var viewModel = new AdminCategoryModel
@@ -153,6 +155,7 @@ namespace Tilo.Controllers
 
 
         [HttpPost]
+        [Route("Admin/CreateCategory/{category}")]
         public async Task<IActionResult> CreateCategory(Category category)
         {
             category.ParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory;
@@ -185,7 +188,7 @@ namespace Tilo.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [Route("Admin/Delete")]
         public async Task<IActionResult> Delete(int productId)
         {
             Product deletedProduct = await _productsService.DeleteProductAsync(productId);
@@ -195,7 +198,7 @@ namespace Tilo.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        [Route("Admin/DeleteCategory")]
         public async Task<IActionResult> DeleteCategory(int categoryID)
         {
             Category deletedCategory = await _productsService._categoryRepository.DeleteCategoryAsync(categoryID);
@@ -206,7 +209,7 @@ namespace Tilo.Controllers
             return RedirectToAction("Categories");
         }
 
-
+        [Route("Admin/EditCategory")]
         public IActionResult EditCategory(int categoryID)
         {
             var category = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.ID == categoryID);
@@ -224,6 +227,7 @@ namespace Tilo.Controllers
         }
 
         [HttpPost]
+        [Route("Admin/EditCategory")]
         public async Task<IActionResult> EditCategory(Category category)
         {
 

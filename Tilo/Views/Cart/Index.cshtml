@@ -77,14 +77,14 @@
                 }
                 else
                 {
-                    <a asp-action="List" asp-controller="Shop" class="btn btn-outline-primary">
+                    <a asp-controller="Shop" asp-action="List" class="btn btn-outline-primary">
                         Continue Shopping
                     </a>
                 }
 
                 @if (Model.Selections.Count() != 0)
                 {
-                    <a asp-action="CreateOrder" class="btn btn-primary">
+                    <a asp-action="CreateOrder"  asp-controller="Cart" class="btn btn-primary">
                         Place Order
                     </a>
                 }

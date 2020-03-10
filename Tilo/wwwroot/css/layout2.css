@@ -167,7 +167,7 @@ header .mask {
     float: left;
     overflow: hidden;
     z-index: 6;
-    /*height: 450px;/*change*/ */ width: 280px;
+    width: 280px;
 }
 
     .new-products .products .product.accessory,
@@ -201,7 +201,7 @@ header .mask {
     .new-products .products .product,
     .catalog .products .product {
         width: 290px;
-        /*height: 450px; /*change*/ */
+        /*height: 450px;  */
     }
 
         .new-products .products .product img,
@@ -213,7 +213,7 @@ header .mask {
         .catalog .products .product.accessory {
             height: 452px;
         }
-}
+
 
 .new-products .products .product .picture,
 .catalog .products .product .picture {

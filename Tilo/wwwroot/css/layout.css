@@ -993,7 +993,7 @@ header .mask {
 @media (min-width: 768px) {
     .new-products .products .product .picture,
     .catalog .products .product .picture {
-        height: 320px; /*change*/
+        height: 230px;
     }
 }
 

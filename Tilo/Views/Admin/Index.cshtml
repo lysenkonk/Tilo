@@ -49,7 +49,7 @@
                 @product.Price
             </div>
             <div class="col-md-2">
-                <a asp-action="Edit" class="btn btn-sm btn-warning"
+                <a asp-action="Edit" class="btn btn-sm btn-info"
                    asp-route-productId="@product.Id">
                     Edit
                 </a>
@@ -60,11 +60,9 @@
             </div>
         </div>
     }
-
 </div>
 
-
-<div>
-    <a asp-action="Create" class="btn btn-primary">Add Product</a>
-    <a asp-action="CreateCategory" class="btn btn-primary">Add Category</a>
+<div class="container">
+    <a asp-action="Create" class="btn btn-info">Add Product</a>
+    <a asp-action="CreateCategory" class="btn btn-info">Add Category</a>
 </div>

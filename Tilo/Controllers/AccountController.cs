@@ -20,6 +20,8 @@ namespace Tilo.Controllers
         }
 
         [AllowAnonymous]
+        [Route("Account/Login")]
+
         public ViewResult Login(string returnUrl)
         {
             return View(new LoginModel { ReturnUrl = returnUrl });
@@ -28,6 +30,8 @@ namespace Tilo.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Route("Account/Login")]
+
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
             if (ModelState.IsValid)
@@ -39,7 +43,7 @@ namespace Tilo.Controllers
                     if ((await signInManager.PasswordSignInAsync(user,
                         loginModel.Password, false, false)).Succeeded)
                     {
-                        return Redirect(loginModel?.ReturnUrl ?? "/Admin/Index");
+                        return Redirect(loginModel?.ReturnUrl ?? "/Admin");
                     }
                 }
             }

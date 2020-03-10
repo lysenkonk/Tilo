@@ -9,7 +9,8 @@ namespace Tilo.Models
     {
         IQueryable<Product> Products { get; }
 
-        IQueryable<string> Colors { get; }
+        IEnumerable<string> Colors { get; }
+        IEnumerable<string> Sizes { get; }
 
         IEnumerable<Category> Categories { get; }
 

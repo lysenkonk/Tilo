@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tilo.Models;
@@ -33,8 +32,8 @@ namespace Tilo.Services
         public IEnumerable<Category> Categories => _categoryRepository.Categories;
         public IEnumerable<Category> ParentCategories => _repository.Categories.Where(p => p.ParentCategory == null);
 
-        public IQueryable<string> Colors => _repository.Products.Select(x => x.Color).Distinct().OrderBy(x => x);
-        public IQueryable<string> Sizes => _repository.Products.Select(x => x.Size).Distinct().OrderBy(x => x);
+        public IEnumerable<string> Colors => new string[] { "чёрный", "белый", "красный", "зелёный", "синий", "айвори", "марсала", "оранжевый", "розовый", "желтый" };
+        public IEnumerable<string> Sizes => new string[] { "70", "75", "80", "A", "B", "C", "D", "E", "XS", "S", "M", "L" };
 
         public async Task<Product> SaveProductAsync(Product product)
         {
