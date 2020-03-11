@@ -69,9 +69,12 @@
                             </div>
                             <div class="eProductView_data">
                                 <div class="eProductView_row mProductView_name">
-                                    <h1 itemprop="name" class="eProductView_name">
-                                        @Model.product.Name
-                                    </h1>
+                                    <a asp-action="Product" asp-controller="Shop" asp-route-id="@Model.product.Id">
+
+                                        <h1 itemprop="name" class="eProductView_name">
+                                            @Model.product.Name
+                                        </h1>
+                                        </a>
                                 </div>
                                 <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="eProductView_row mProductView_price">
                                     <div class="eProductView_price"><span class="woocommerce-Price-amount amount">@Model.product.Price &nbsp;<span class="woocommerce-Price-currencySymbol">грн</span></span></div>
