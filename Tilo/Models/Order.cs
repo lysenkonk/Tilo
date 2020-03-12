@@ -20,6 +20,7 @@ namespace Tilo.Models
         [RegularExpression(@"^\d{10}$",
             ErrorMessage = "Please enter your phone xxxxxxxxxx")]
         public string Phone { get; set; }
+        public DateTime dateTime { get; set; }
 
         public IEnumerable<OrderLine> Lines { get; set; }
     }

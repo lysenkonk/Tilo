@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,7 @@ namespace Tilo.Models
 
         public void AddOrder(Order order)
         {
+            order.dateTime = DateTime.Now;
             var entry = context.Orders.Add(order);
             context.SaveChanges();
         }
