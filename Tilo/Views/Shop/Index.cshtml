@@ -50,8 +50,6 @@
                         {
                         <li class="product inner-appearing-object">
                             <a href="#" class="rightClickLink"></a>
-                            @if (p.Images.Count > 0)
-                            {
                                 <div class="picture img">
                                     <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
                                         @if (p.Images.Count > 0)
@@ -64,7 +62,6 @@
                                         }
                                     </a>
                                 </div>
-                            }
                                 <div class="description">
                                     <div class="information">
                                         <div class="name">
