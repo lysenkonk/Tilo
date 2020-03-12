@@ -16,7 +16,9 @@
         <div class="col-md-1 font-weight-bold text-center">Id</div>
         <div class="col-md-2 font-weight-bold text-center">NameCustomer</div>
         <div class="col-md-2 font-weight-bold text-center">Email</div>
-        <div class="col-md-2 font-weight-bold text-center">TotalPrice</div>
+        <div class="col-md-2 font-weight-bold text-center">Date</div>
+
+        <div class="col-md-1 font-weight-bold text-center">TotalPrice</div>
         @*<div class="col-md-1 font-weight-bold">Status</div>*@
         <div class="col-md-3 font-weight-bold text-center">Actions</div>
     </div>
@@ -31,43 +33,45 @@
 
         <div class="row">
 
-                <div class="col-md-1 text-center">
-                    <a asp-action="Order" asp-controller="Orders"
-                       asp-route-id="@o.Id">@o.Id</a>
-                </div>
-                <div class="col-md-2 text-center">@o.CustomerName</div>
-                <div class="col-md-2 text-center">@o.Email</div>
-                <div class="col-md-2 text-center">
-                    @o.Lines.Sum(l => l.Quantity * l.Product.Price)
-                </div>
-                @*<div class="col">
-                @o.Lines.Sum(l => l.Quantity
-                     * (l.Product.RetailPrice - l.Product.PurchasePrice))
-            </div>*@
-              
-                <div class="col-md-3 text-center">
-                    <a asp-action="Order" class="btn btn-sm btn-info" asp-controller="Orders"
-                       asp-route-id="@o.Id">View</a>
-                    <a asp-action="EditOrder" class="btn btn-sm btn-info"
-                       asp-route-id="@o.Id">
-                        Edit
-                    </a>
-                    <a asp-action="DeleteOrder" asp-controller="Orders" class="btn btn-sm btn-danger"
-                       asp-route-id="@o.Id">
-                        Delete
-                    </a>
-                </div>
+            <div class="col-md-1 text-center">
+                <a asp-action="Order" asp-controller="Orders"
+                   asp-route-id="@o.Id">@o.Id</a>
+            </div>
+            <div class="col-md-2 text-center">@o.CustomerName</div>
+            <div class="col-md-2 text-center">@o.Email</div>
+            <div class="col-md-2 text-center">@o.dateTime.ToString()</div>
 
-                @*<div class="col-md-2 text-right">
-                <form asp-action="DeleteOrder" method="post">
-                    <input type="hidden" name="Id" value="@o.Id" />
-                    <a asp-action="EditOrder" asp-route-id="@o.Id"
-                       class="btn btn-outline-primary">Edit</a>
-                    <button type="submit" class="btn btn-outline-danger">
-                        Delete
-                    </button>
-                </form>
-            </div>*@
+            <div class="col-md-1 text-center">
+                @o.Lines.Sum(l => l.Quantity * l.Product.Price)
+            </div>
+            @*<div class="col">
+            @o.Lines.Sum(l => l.Quantity
+                 * (l.Product.RetailPrice - l.Product.PurchasePrice))
+        </div>*@
+
+            <div class="col-md-3 text-center">
+                <a asp-action="Order" class="btn btn-sm btn-info" asp-controller="Orders"
+                   asp-route-id="@o.Id">View</a>
+                <a asp-action="EditOrder" class="btn btn-sm btn-info"
+                   asp-route-id="@o.Id">
+                    Edit
+                </a>
+                <a asp-action="DeleteOrder" asp-controller="Orders" class="btn btn-sm btn-danger"
+                   asp-route-id="@o.Id">
+                    Delete
+                </a>
+            </div>
+
+            @*<div class="col-md-2 text-right">
+            <form asp-action="DeleteOrder" method="post">
+                <input type="hidden" name="Id" value="@o.Id" />
+                <a asp-action="EditOrder" asp-route-id="@o.Id"
+                   class="btn btn-outline-primary">Edit</a>
+                <button type="submit" class="btn btn-outline-danger">
+                    Delete
+                </button>
+            </form>
+        </div>*@
         </div>
         }
     </div>
