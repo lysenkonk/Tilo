@@ -38,7 +38,7 @@ namespace Tilo.Controllers
         public ViewResult List(string category, int page = 1)
         {
             IEnumerable<Product> products = _productsService.Products
-             .Where(p => category == null || p.Category.Name == category);
+             .Where(p => category == null || p.Category?.Name == category).Where(p => p.Category != null);
 
 
             //IEnumerable<Product> Products = _productsService.Products
@@ -75,6 +75,7 @@ namespace Tilo.Controllers
         [Route("Admin/Edit")]
         public async Task<IActionResult> Edit(Product product)
         {
+
 
             if (ModelState.IsValid)
             {
@@ -126,12 +127,25 @@ namespace Tilo.Controllers
         //    };
         //    return View(viewModel);
         //}
-        [Route("Admin/Create")]
-        public IActionResult Create()
-        {
-            Product product = new Product();
-            product.Category = _productsService.Categories.FirstOrDefault();
 
+        [Route("Admin/Create")]
+        public IActionResult Create(int categoryID)
+        {
+            var category = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.ID == categoryID);
+
+            if (category == null)
+                return NotFound();
+
+            Product product = new Product();
+
+            if (category.Name == "Комплекты")
+            {
+                //Category bra = _productsService.Categories.FirstOrDefault(p => p.Name == );
+                //Category tr = _productsService.Categories.FirstOrDefault(p => p.Name == "Трусики");
+
+                product.Products = new List<Product> { new Product("Бра"), new Product("Трусики") };
+            }
+            product.Category = category;
             var viewModel = new AdminProductViewModel
             {
                 Product = product,

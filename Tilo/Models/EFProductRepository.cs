@@ -15,9 +15,9 @@ namespace Tilo.Models
             _context = ctx;
         }
         public Product GetProduct(long key) => _context.Products
-            .Include(p => p.Images).Include(p => p.Category).First(o => o.Id == key);
+            .Include(p => p.Images).Include(p => p.Category).Include(p => p.Products).First(o => o.Id == key);
 
-        public IQueryable<Product> Products => _context.Products.Include(p => p.Images).Include(p => p.Category);
+        public IQueryable<Product> Products => _context.Products.Include(p => p.Images).Include(p => p.Category).Include(p => p.Products);
 
         //public IQueryable<string> Colors => _context.Products.Select(x => x.Color).Distinct().OrderBy(x => x);
         public IEnumerable<string> Colors => new string[]{"чёрный", "белый", "красный", "зелёный", "синий", "айвори","марсала", "оранжевый", "розовый", "желтый"};
@@ -56,6 +56,13 @@ namespace Tilo.Models
                     dbEntry.Description = product.Description;
                     dbEntry.Price = product.Price;
                     dbEntry.Color = product.Color;
+                    if(product.Products != null)
+                    {
+                        for(int i = 0; i < dbEntry.Products.Count; i++)
+                        {
+                            dbEntry.Products[i] = product.Products[i];
+                        }
+                    }
                     dbEntry.Size = product.Size;
                 }
             }

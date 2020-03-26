@@ -300,3 +300,7 @@ a {
     font-size: 36px;
     cursor: pointer;
 }
+/*///////////////////////////////////////////////////////////////Admin EditProduct*/
+#selection {
+    visibility: hidden;
+}

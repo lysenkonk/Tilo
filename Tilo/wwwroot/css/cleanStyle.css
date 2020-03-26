@@ -123,11 +123,11 @@ a {
     font: bold 14px "trebuchet ms", helvetica, sans-serif;
     text-transform: uppercase;
     border-radius: 3px;
-    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -moz-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
+    /*background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -moz-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aabb44), color-stop(49%, #96af39), color-stop(50%, #87a732), color-stop(100%, #6e9a26));
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -webkit-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -o-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
-    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -ms-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -ms-linear-gradient(top, #aabb44 0, #96af39 49%, #87a732 50%, #6e9a26 100%);*/
 }
 
 .order-form .fast-order-button {
@@ -136,21 +136,21 @@ a {
     padding: 9px 0 0 0;
     width: 124px;
     background: #d36f14;
-    background: -moz-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
+    /*background: -moz-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ec8a31), color-stop(50%, #e97a16), color-stop(50%, #d36f14), color-stop(100%, #549b09));
     background: -webkit-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
     background: -o-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
     background: -ms-linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
     background: linear-gradient(top, #ec8a31 0, #e97a16 50%, #d36f14 100%);
-    -pie-background: linear-gradient(#ec8a31, #e97a16, #d36f14);
+    -pie-background: linear-gradient(#ec8a31, #e97a16, #d36f14);*/
 }
 
 .order-form .button:hover {
-    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -moz-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
+    /*background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -moz-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9eaf40), color-stop(49%, #8ca435), color-stop(50%, #7e9c2f), color-stop(100%, #679024));
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -webkit-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -o-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
-    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -ms-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center, -ms-linear-gradient(top, #9eaf40 0, #8ca435 49%, #7e9c2f 50%, #679024 100%);*/
 }
 
 .order-form .fast-order-button:hover {
@@ -381,7 +381,7 @@ p {
 
         .item-box .info .visual-block .video .videowrap,
         .item-box .info .visual-block.large .video .zoomwrap {
-            margin: 5pxpx;
+            margin: 5px;
         }
 
         .item-box .info .visual-block .video .zoomwrap {
@@ -500,7 +500,7 @@ p {
 
 #nav li {
     float: left;
-    background: url(../Files/design/separatop01.gif) no-repeat 0 2px;
+    /*background: url(../Files/design/separatop01.gif) no-repeat 0 2px;*/
     padding: 0 0 0 1px
 }
 
@@ -517,7 +517,7 @@ p {
 
         #nav li a:hover {
             text-decoration: none;
-            background: url(../Files/design/nav-l.gif) no-repeat
+            /*background: url(../Files/design/nav-l.gif) no-repeat*/
         }
 
         #nav li a span {
@@ -684,7 +684,7 @@ img.hover-shadow {
 
     #navAdm li {
         float: left;
-        background: url(../Files/design/separatop01.gif) no-repeat 0 2px;
+        /*background: url(../Files/design/separatop01.gif) no-repeat 0 2px;*/
         padding: 0 0 0 1px
     }
 
@@ -702,7 +702,7 @@ img.hover-shadow {
             #navAdm li a:hover {
                 text-decoration: none;
                 background: #006d84;
-                ;
+                
             }
 
             #navAdm li a span {
@@ -727,7 +727,7 @@ img.hover-shadow {
         display: none;
         height: 40px;
         width: 40px;
-        background: url(../Files/design/ontop.png) no-repeat;
+        /*background: url(../Files/design/ontop.png) no-repeat;*/
         cursor: pointer
     }
 
@@ -770,7 +770,7 @@ img.hover-shadow {
         }
 
             .sidenavAdm ul li .tab:hover {
-                background: url(../Files/design/design-02.png) no-repeat -211px -66px;
+                /*background: url(../Files/design/design-02.png) no-repeat -211px -66px;*/
                 color: #303030;
                 text-decoration: none
             }
@@ -789,12 +789,12 @@ img.hover-shadow {
                     float: left;
                     margin: 7px 0 0 26px;
                     display: inline;
-                    background: url(../Files/design/dot01.gif) repeat-x 0 100%
+                    /*background: url(../Files/design/dot01.gif) repeat-x 0 100%*/
                 }
 
             .sidenavAdm ul li .list {
                 padding: 0 25px 1px;
-                background: url(../Files/design/bg-sidebar-drop-b.gif) no-repeat 0 100%
+                /*background: url(../Files/design/bg-sidebar-drop-b.gif) no-repeat 0 100%*/
             }
 
                 .sidenavAdm ul li .list li {
@@ -821,7 +821,7 @@ img.hover-shadow {
 }
 
     .sidenav .title {
-        background: url(../Files/design/design-01.png) no-repeat scroll -79px -1px transparent;
+        /*background: url(../Files/design/design-01.png) no-repeat scroll -79px -1px transparent;*/
         height: 44px;
         font: 20px "trebuchet ms",helvetica,sans-serif;
         color: #fff;
@@ -843,7 +843,7 @@ img.hover-shadow {
         }
 
             .sidenav ul li .tab:hover {
-                background: url(../Files/design/design-02.png) no-repeat -211px -66px;
+                /*background: url(../Files/design/design-02.png) no-repeat -211px -66px;*/
                 color: #303030;
                 text-decoration: none
             }
@@ -853,12 +853,12 @@ img.hover-shadow {
                 float: left;
                 margin: 7px 0 0 26px;
                 display: inline;
-                background: url(../Files/design/dot01.gif) repeat-x 0 100%
+                /*background: url(../Files/design/dot01.gif) repeat-x 0 100%*/
             }
 
             .sidenav ul li .list {
                 padding: 0 25px 1px;
-                background: url(../Files/design/bg-sidebar-drop-b.gif) no-repeat 0 100%
+                /*background: url(../Files/design/bg-sidebar-drop-b.gif) no-repeat 0 100%*/
             }
 
                 .sidenav ul li .list li {
@@ -879,14 +879,14 @@ img.hover-shadow {
                     }
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .feedback {
-    background: url(../Files/design/bg-feedback-c.gif) repeat-y;
+    /*background: url(../Files/design/bg-feedback-c.gif) repeat-y;*/
     width: 100%;
     overflow: hidden;
     margin: 10px 0 20px
 }
 
     .feedback .head {
-        background: url(../Files/design/bg-feedback-t.gif) no-repeat;
+        /*background: url(../Files/design/bg-feedback-t.gif) no-repeat;*/
         overflow: hidden;
         height: 1%;
         padding: 7px 15px 18px
@@ -906,7 +906,7 @@ img.hover-shadow {
         margin: 0;
         padding: 0 0 1px;
         list-style: none;
-        background: url(../Files/design/bg-feedback-b.gif) no-repeat 0 100%
+        /*background: url(../Files/design/bg-feedback-b.gif) no-repeat 0 100%*/
     }
 
         .feedback .list li {
@@ -918,11 +918,11 @@ img.hover-shadow {
         color: #3f3f3f;
         padding: 3px 0 5px 8px;
         margin: 0 0 3px;
-        background: #eaf1e1 url(../Files/design/bg-name-t.gif) no-repeat
+        /*background: #eaf1e1 url(../Files/design/bg-name-t.gif) no-repeat*/
     }
 
     .feedback strong {
-        background: #eaf1e1 url(../Files/design/bg-name-b.gif) no-repeat 0 100%;
+        /*background: #eaf1e1 url(../Files/design/bg-name-b.gif) no-repeat 0 100%;*/
         font-size: 11px
     }
 
@@ -988,7 +988,7 @@ img.hover-shadow {
         .item-box .info .container2 .opener span {
             float: left;
             font-weight: bold;
-            background: url(../Files/design/dot01.gif) repeat-x 0 100%;
+            /*background: url(../Files/design/dot01.gif) repeat-x 0 100%;*/
         }
 
         .order-form .row2 .opener:hover span,
@@ -1019,7 +1019,7 @@ img.hover-shadow {
     margin: 0;
     padding: 3px 0 0 8px;
     list-style: none;
-    background: url(../Files/design/bg-tab01.gif) no-repeat;
+    /*background: url(../Files/design/bg-tab01.gif) no-repeat;*/
     width: 400px;
     overflow: hidden;
 }
@@ -1030,13 +1030,13 @@ img.hover-shadow {
 
         .order-form .tab li a {
             float: left;
-            background: url(../Files/design/bg-tab01-l.gif) no-repeat;
+            /*background: url(../Files/design/bg-tab01-l.gif) no-repeat;*/
             text-decoration: none;
         }
 
         .order-form .tab li span {
             float: left;
-            background: url(../Files/design/bg-tab01-r.gif) no-repeat 100% 0;
+            /*background: url(../Files/design/bg-tab01-r.gif) no-repeat 100% 0;*/
             height: 27px;
             padding: 11px 12px 0;
         }
@@ -1044,7 +1044,7 @@ img.hover-shadow {
         .order-form .tab li em {
             float: left;
             font-style: normal;
-            background: url(../Files/design/dot01.gif) repeat-x 0 100%;
+            /*background: url(../Files/design/dot01.gif) repeat-x 0 100%;*/
         }
 
 #tab1:hover {
@@ -1056,11 +1056,11 @@ img.hover-shadow {
 }
 
 .order-form .tab li.active a {
-    background: url(../Files/design/bg-tab01-l-h.gif) no-repeat;
+    /*background: url(../Files/design/bg-tab01-l-h.gif) no-repeat;*/
 }
 
     .order-form .tab li.active a span {
-        background: url(../Files/design/bg-tab01-r-h.gif) no-repeat 100% 0;
+        /*background: url(../Files/design/bg-tab01-r-h.gif) no-repeat 100% 0;*/
         font-weight: bold;
         color: #000;
     }
@@ -1134,23 +1134,23 @@ img.hover-shadow {
     font: bold 14px "trebuchet ms",helvetica,sans-serif;
     text-transform: uppercase;
     border-radius: 3px;
-    background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-moz-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
+    /*background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-moz-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-webkit-gradient(linear,left top,left bottom,color-stop(0,#ab4),color-stop(49%,#96af39),color-stop(50%,#87a732),color-stop(100%,#6e9a26));
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-webkit-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
     background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-o-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
-    background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-ms-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%)
+    background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-ms-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%)*/
 }
 
-    .order-form .button:hover {
+    /*.order-form .button:hover {
         background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-moz-linear-gradient(top,#9eaf40 0,#8ca435 49%,#7e9c2f 50%,#679024 100%);
         background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-webkit-gradient(linear,left top,left bottom,color-stop(0,#9eaf40),color-stop(49%,#8ca435),color-stop(50%,#7e9c2f),color-stop(100%,#679024));
         background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-webkit-linear-gradient(top,#9eaf40 0,#8ca435 49%,#7e9c2f 50%,#679024 100%);
         background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-o-linear-gradient(top,#9eaf40 0,#8ca435 49%,#7e9c2f 50%,#679024 100%);
         background: url(../Files/design/cartico.png) no-repeat scroll 20px center,-ms-linear-gradient(top,#9eaf40 0,#8ca435 49%,#7e9c2f 50%,#679024 100%)
-    }
+    }*/
 
 .button_order {
-    background: url(../Files/design/design-01.png) no-repeat scroll -221px -53px transparent;
+    /*background: url(../Files/design/design-01.png) no-repeat scroll -221px -53px transparent;*/
     width: 85px;
     height: 22px;
     display: block;
@@ -1164,7 +1164,7 @@ img.hover-shadow {
 }
 
     .button_order:hover {
-        background: url(../Files/design/design-01.png) no-repeat scroll -221px -81px transparent
+        /*background: url(../Files/design/design-01.png) no-repeat scroll -221px -81px transparent*/
     }
 
     .button_order:active {
@@ -1243,7 +1243,7 @@ img.hover-shadow {
     width: 100%;
     overflow: hidden;
     height: 98px;
-    background: url(../Files/design/bg-footer.png) repeat-x;
+    /*background: url(../Files/design/bg-footer.png) repeat-x;*/
     text-align: center;
     padding: 19px 0 0
 }
@@ -1264,7 +1264,7 @@ img.hover-shadow {
     .sorting-form .row2 {
         margin: 0;
         padding: 6px 10px 12px;
-        background: url(../Files/design/line02.gif) repeat-x 0 100%
+        /*background: url(../Files/design/line02.gif) repeat-x 0 100%*/
     }
 
     .sorting-form .col {
@@ -1350,7 +1350,7 @@ img.hover-shadow {
         .set-proposals .head .sorting em {
             float: left;
             font-style: normal;
-            background: url(../Files/design/dot01.gif) repeat-x 0 100%
+            /*background: url(../Files/design/dot01.gif) repeat-x 0 100%*/
         }
 
         .set-proposals .head .sorting a:hover em {
@@ -1395,7 +1395,7 @@ img.hover-shadow {
             position: absolute;
             left: 0;
             top: -1px;
-            background: url(../Files/design/design-02.png) no-repeat -370px -137px;
+            /*background: url(../Files/design/design-02.png) no-repeat -370px -137px;*/
             width: 8px;
             height: 4px
         }
@@ -1404,7 +1404,7 @@ img.hover-shadow {
             position: absolute;
             right: 0;
             top: -1px;
-            background: url(../Files/design/design-02.png) no-repeat -370px -132px;
+            /*background: url(../Files/design/design-02.png) no-repeat -370px -132px;*/
             width: 8px;
             height: 4px
         }
@@ -1415,7 +1415,7 @@ img.hover-shadow {
         }
 
         .set-proposals .list .box {
-            background: url(../Files/design/line01.gif) repeat-x 0 100%;
+            /*background: url(../Files/design/line01.gif) repeat-x 0 100%;*/
             height: 295px;
             overflow: hidden;
             min-width: 200px;
@@ -1426,11 +1426,11 @@ img.hover-shadow {
 
             .set-proposals .list .box:hover {
                 border: solid 1px #9db948;
-                background: url(../Files/design/line01-h.gif) repeat-x 0 100%
+                /*background: url(../Files/design/line01-h.gif) repeat-x 0 100%*/
             }
 
             .set-proposals .list .box .button {
-                background: url(../Files/design/button09.png) no-repeat;
+                /*background: url(../Files/design/button09.png) no-repeat;*/
                 width: 120px;
                 height: 20px;
                 color: #fff;
@@ -1446,7 +1446,7 @@ img.hover-shadow {
             }
 
                 .set-proposals .list .box .button:hover {
-                    background: url(../Files/design/button09-h.png) no-repeat
+                    /*background: url(../Files/design/button09-h.png) no-repeat*/
                 }
 
             .set-proposals .list .box:hover .button {
@@ -1464,11 +1464,11 @@ img.hover-shadow {
         }
 
             .set-proposals .list .visual .orange {
-                background: url(../Files/design/productLabelOrange.png) repeat scroll 0 0 transparent
+                /*background: url(../Files/design/productLabelOrange.png) repeat scroll 0 0 transparent*/
             }
 
             .set-proposals .list .visual .gift {
-                background: url(../Files/design/productLabelGift.png) repeat scroll 0 0 transparent
+                /*background: url(../Files/design/productLabelGift.png) repeat scroll 0 0 transparent*/
             }
 
         .set-proposals .list .name {
@@ -1509,7 +1509,7 @@ img.hover-shadow {
             height: 28px;
             margin: 0 2px 0 0;
             text-decoration: none;
-            background: url(../Files/design/ico01.png) no-repeat
+            /*background: url(../Files/design/ico01.png) no-repeat*/
         }
 
         .set-proposals .list .basket {
@@ -1517,7 +1517,7 @@ img.hover-shadow {
             height: 28px;
             text-decoration: none;
             display: inline-block;
-            background: url(../Files/design/ico02.png) no-repeat
+            /*background: url(../Files/design/ico02.png) no-repeat*/
         }
 
 .page {
@@ -1537,7 +1537,7 @@ img.hover-shadow {
         background: -moz-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
         background: -webkit-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
         background: -o-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
-        background: -ms-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
+        /*background: -ms-linear-gradient(top,#e1f2c9 0,#c8ddac 100%);*/
         background: linear-gradient(top,#e1f2c9 0,#c8ddac 100%);
         border-radius: 2px;
         width: 28px;
@@ -1638,7 +1638,7 @@ img.hover-shadow {
         height: 1%;
         margin: 0 0 11px;
         display: block;
-        widht: auto
+        width: auto
     }
 
     .main-order-form .col {
@@ -1667,7 +1667,7 @@ img.hover-shadow {
         }
 
     .main-order-form .wrap {
-        background: url(../Files/design/input.gif) no-repeat;
+        /*background: url(../Files/design/input.gif) no-repeat;*/
         height: 30px;
         float: left
     }
@@ -1675,7 +1675,7 @@ img.hover-shadow {
     .main-order-form .wrap2 {
         float: left;
         padding: 0 7px;
-        background: url(../Files/design/input-r.gif) no-repeat 100% 0
+        /*background: url(../Files/design/input-r.gif) no-repeat 100% 0*/
     }
 
     .main-order-form .wrap input {
@@ -1751,12 +1751,12 @@ img.hover-shadow {
         height: 1%;
         padding: 10px 0 13px;
         margin: 32px 0 0;
-        background: url(../Files/design/line04.gif) repeat-x;
+        /*background: url(../Files/design/line04.gif) repeat-x;*/
         position: relative
     }
 
         .main-order-form .button .br, .payment-box .button .br {
-            background: url(../Files/design/dot06.gif) no-repeat;
+            /*background: url(../Files/design/dot06.gif) no-repeat;*/
             position: absolute;
             bottom: 0;
             width: 1px;
@@ -1827,11 +1827,11 @@ img.hover-shadow {
         }
 
 .flowers-button {
-    background: url(../Files/design/button13-altl.gif) no-repeat
+    /*background: url(../Files/design/button13-altl.gif) no-repeat*/
 }
 
     .flowers-button span {
-        background: url(../Files/design/button13-altr.gif) no-repeat 100% 0;
+        /*background: url(../Files/design/button13-altr.gif) no-repeat 100% 0;*/
         padding: 9px 32px 0 15px !important
     }
 
@@ -1842,18 +1842,18 @@ img.hover-shadow {
 }
 
     .payment-box .head {
-        background: url(../Files/design/bg-head-c.gif) repeat-x;
+        /*background: url(../Files/design/bg-head-c.gif) repeat-x;*/
         width: 100%;
         margin: 0 0 1px
     }
 
     .payment-box .l {
-        background: url(../Files/design/bg-head-l.gif) no-repeat;
+        /*background: url(../Files/design/bg-head-l.gif) no-repeat;*/
         width: 100%
     }
 
     .payment-box .r {
-        background: url(../Files/design/bg-head-r.gif) no-repeat 100% 0;
+        /*background: url(../Files/design/bg-head-r.gif) no-repeat 100% 0;*/
         overflow: hidden;
         height: 43px;
         text-align: center;
@@ -1885,7 +1885,7 @@ img.hover-shadow {
         }
 
             .payment-box .list li .wrap {
-                background: #eaede6 url(../Files/design/bg-payment-tl.gif) no-repeat;
+                /*background: #eaede6 url(../Files/design/bg-payment-tl.gif) no-repeat;*/
                 overflow: hidden;
                 width: 100%
             }
@@ -1893,7 +1893,7 @@ img.hover-shadow {
             .payment-box .list li .br {
                 width: 100%;
                 overflow: hidden;
-                background: url(../Files/design/bg-payment-br.gif) no-repeat 100% 100%
+                /*background: url(../Files/design/bg-payment-br.gif) no-repeat 100% 100%*/
             }
 
         .payment-box .list .visual {
@@ -1914,7 +1914,7 @@ img.hover-shadow {
         position: absolute;
         right: 20px;
         top: 7px;
-        background: url(../Files/design/button19.gif) no-repeat;
+        /*background: url(../Files/design/button19.gif) no-repeat;*/
         width: 81px;
         height: 20px;
         padding: 5px 0 0;
@@ -1935,7 +1935,7 @@ img.hover-shadow {
             font-size: 13px;
             font-weight: 400;
             font: 14px "trebuchet ms",helvetica,sans-serif;
-            background: url(../Files/design/button13-altl.gif) no-repeat;
+            /*background: url(../Files/design/button13-altl.gif) no-repeat;*/
             color: #fff;
             text-transform: uppercase
         }
@@ -1944,7 +1944,7 @@ img.hover-shadow {
                 float: left;
                 padding: 9px 15px 0;
                 height: 28px;
-                background: url(../Files/design/button13-r.gif) no-repeat 100% 0
+                /*background: url(../Files/design/button13-r.gif) no-repeat 100% 0*/
             }
 
 .main-order-form .title {
@@ -1957,9 +1957,9 @@ img.hover-shadow {
     background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#d9e7be),color-stop(100%,#adc47c));
     background: -webkit-linear-gradient(top,#d9e7be 0,#adc47c 100%);
     background: -o-linear-gradient(top,#d9e7be 0,#adc47c 100%);
-    background: -ms-linear-gradient(top,#d9e7be 0,#adc47c 100%);
+    /*background: -ms-linear-gradient(top,#d9e7be 0,#adc47c 100%);*/
     background: linear-gradient(top,#d9e7be 0,#adc47c 100%);
-    -pie-background: linear-gradient(#d9e7be,#adc47c)
+    /*-pie-background: linear-gradient(#d9e7be,#adc47c)*/
 }
 
 .main-order-form .block {
@@ -1994,9 +1994,9 @@ img.hover-shadow {
         background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ecf0e9),color-stop(100%,#f5f8f5));
         background: -webkit-linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
         background: -o-linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
-        background: -ms-linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
+        /*background: -ms-linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
         background: linear-gradient(top,#ecf0e9 0,#f5f8f5 100%);
-        -pie-background: linear-gradient(#ecf0e9,#f5f8f5)
+        -pie-background: linear-gradient(#ecf0e9,#f5f8f5)*/
     }
 
     .main-order-form .block .wrap, .main-order-form .block input {
@@ -2049,9 +2049,9 @@ img.hover-shadow {
     background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#a3bb39),color-stop(50%,#8db128),color-stop(50%,#72ad1f),color-stop(100%,#549b09));
     background: -webkit-linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
     background: -o-linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
-    background: -ms-linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
+    /*background: -ms-linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
     background: linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%);
-    -pie-background: linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%)
+    -pie-background: linear-gradient(top,#a3bb39 0,#8db128 50%,#72ad1f 50%,#549b09 100%)*/
 }
 
 .main-order-form .btn {
@@ -2065,8 +2065,8 @@ img.hover-shadow {
     background: -moz-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
     background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ab4),color-stop(49%,#96af39),color-stop(50%,#87a732),color-stop(100%,#6e9a26));
     background: -webkit-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
-    background: -o-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
-    background: -ms-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%)
+    /*background: -o-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%);
+    background: -ms-linear-gradient(top,#ab4 0,#96af39 49%,#87a732 50%,#6e9a26 100%)*/
 }
 
     .main-order-form .btn b {

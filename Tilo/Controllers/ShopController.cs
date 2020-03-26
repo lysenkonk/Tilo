@@ -42,12 +42,30 @@ namespace Tilo.Controllers
                 .FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
-                return View("Product not found");
+                return View("Product not found");   
             }
-
-            IQueryable<Product> ProductsWithTheSameNames = _repository.Products.Where(p => p.Name == product.Name && p.Category == product.Category);
-            IEnumerable<Product> ProductsWithTheSame = _repository.Products.Where(p => p.Name == product.Name && p.Category != product.Category );
-            IQueryable<string> Sizes = ProductsWithTheSameNames.Select(x => x.Size).Distinct().OrderBy(x => x);
+            IQueryable<Product> ProductsWithTheSameNames;                       
+            IEnumerable<Product> ProductsWithTheSame = _repository.Products.Where(p => p.Name == product.Name && p.Category != product.Category);
+            Dictionary<string, IList<string>> Sizes;
+            if (product.Products != null && product.Products.Count > 0)
+            {
+                Sizes = new Dictionary<string, IList<string>>();
+                foreach (var prod in product.Products)
+                {
+                    ProductsWithTheSameNames = _repository.Products.Where(p => p.Name == prod.Name && p.Category == prod.Category);
+                    IList<string> sizes = ProductsWithTheSameNames.Select(x => x.Size).Distinct().OrderBy(x => x).ToList();
+                    Sizes.Add(prod.Name, sizes);
+                }
+            }
+            else
+            {
+                ProductsWithTheSameNames = _repository.Products.Where(p => p.Name == product.Name && p.Category == product.Category);
+                IList<string> sizes = ProductsWithTheSameNames.Select(x => x.Size).Distinct().OrderBy(x => x).ToList();
+                Sizes = new Dictionary<string, IList<string>>
+                {
+                    { product.Name,  sizes }
+                };
+            }
             //foreach(var p in ProductsWithTheSameNames)
             //{
 

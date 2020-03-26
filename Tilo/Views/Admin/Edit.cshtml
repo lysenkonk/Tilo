@@ -7,8 +7,11 @@
 
 
 <div class="container">
-    <form asp-action="Edit" method="post">
+    <form asp-action="Edit" name="productEdit" method="post">
         <input type="hidden" asp-for="Product.Id" />
+        <input type="hidden" asp-for="@Model.Product.Size" value="noSize" />
+
+
         <div class="form-group row">
             <label asp-for="@Model.Product.Name" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
@@ -16,19 +19,12 @@
                 <input asp-for="Product.Name" class="form-control" />
             </div>
         </div>
-        <div class="form-group row">
-            <label asp-for="@Model.Product.Description" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <div> <span asp-validation-for="@Model.Product.Description" class="text-danger"></span></div>
-                <textarea asp-for="Product.Description" rows="5" class="form-control vresize"> </textarea>
 
-            </div>
-        </div>
         <div class="form-group row">
-            <label asp-for="@Model.Product.Category.Name" class="col-sm-2 col-form-label"></label>
+            <label asp-for="@Model.Product.Category.ID" class="col-sm-2 col-form-label">Категория</label>
             <div class="col-sm-10">
                 <select id="editable-select" asp-for="@Model.Product.Category.Name" class="form-control" asp-items="@(new SelectList(Model.Categories, "Name", "Name", "CategoryId"))">
-                    <option value="@Model.Product.Category.Name">Choose the category</option>
+                    <option value="@Model.Product.Category.Name">@Model.Product.Category.Name</option>
                 </select>
                 <span asp-validation-for="@Model.Product.Category.Name" class="text-danger"></span>
             </div>
@@ -40,26 +36,108 @@
                 <input asp-for="Product.Price" class="form-control" />
             </div>
         </div>
-
-        <div class="form-group row">
-            <label asp-for="@Model.Product.Size" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <select id="editable-select" asp-for="@Model.Product.Size" class="form-control" asp-items="@(new SelectList(Model.Sizes, "Size"))">
-                    <option value="@Model.Product.Size"></option>
-                </select>
-                <span asp-validation-for="@Model.Product.Size" class="text-danger"></span>
-            </div>
-        </div>
-
         <div class="form-group row">
             <label asp-for="@Model.Product.Color" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
                 <select id="editable-select" asp-for="@Model.Product.Color" class="form-control" asp-items="@(new SelectList(Model.Colors, "Color"))">
-                    <option value="@Model.Product.Color"></option>
+                    <option value="@Model.Product.Color">@Model.Product.Color</option>
                 </select>
                 <span asp-validation-for="@Model.Product.Color" class="text-danger"></span>
             </div>
         </div>
+        <div class="form-group row">
+            <label asp-for="@Model.Product.Description" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <div> <span asp-validation-for="@Model.Product.Description" class="text-danger"></span></div>
+                <textarea asp-for="@Model.Product.Description" rows="5" class="form-control vresize"> </textarea>
+
+            </div>
+        </div>
+        @if (Model.Product.Products != null)
+        {
+            <div id="selection">
+                @for (int i = 0; i < Model.Product.Products.Count; i++)
+                {
+                    @*<div class="form-group row">
+                        <label asp-for="@prod.Description" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <div> <span asp-validation-for="@prod.Description" class="text-danger"></span></div>
+                            <textarea asp-for="@prod.Description" rows="5" class="form-control vresize"> </textarea>
+
+                        </div>
+                    </div>*@
+                    <input type="hidden" asp-for="@Model.Product.Products[i].Id" />
+                    <input type="hidden" asp-for="@Model.Product.Products[i].Name" value="@Model.Product.Products[i].Name" />
+                    <input type="hidden" asp-for="@Model.Product.Products[i].Color" value="black" />
+                    @*<input type="hidden" asp-for="@Model.Product.Products[i].Category.Name" />*@
+                    <input type="hidden" asp-for="@Model.Product.Products[i].Name" value="@Model.Product.Name" />
+                    <input type="hidden" asp-for="@Model.Product.Products[i].Description" value="Color: @Model.Product.Color" />
+
+
+                    <div class="form-group row">
+                        <label asp-for="@Model.Product.Products[i].Name" class="col-sm-2 col-form-label">@Model.Product.Products[i].Name</label>
+                        @*<div class="col-sm-10">
+                            <div> <span asp-validation-for="@prod.Name" class="text-danger"></span></div>
+                            <input asp-for="Product.Name" class="form-control" />
+                        </div>*@
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="@Model.Product.Products[i].Size" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <select id="editable-select" asp-for="@Model.Product.Products[i].Size" class="form-control" asp-items="@(new SelectList(Model.Sizes, "Size"))">
+                                <option value="@Model.Product.Products[i].Size">@Model.Product.Products[i].Size</option>
+                            </select>
+                            <span asp-validation-for="@Model.Product.Products[i].Size" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                    @*<div class="form-group row">
+                        <label asp-for="@Model.Product.Products[i].Color" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <select id="editable-select" asp-for="@Model.Product.Products[i].Color" class="form-control" asp-items="@(new SelectList(Model.Colors, "Color"))">
+                                <option value="@Model.Product.Products[i].Color">@Model.Product.Products[i].Color</option>
+                            </select>
+                            <span asp-validation-for="@Model.Product.Products[i].Color" class="text-danger"></span>
+                        </div>
+                    </div>*@
+
+                }
+            </div>
+            <input type="hidden" asp-for="@Model.Product.Size" value="noSize" />
+
+        }
+        else
+        {
+            @*<div class="form-group row">
+                <label asp-for="@Model.Product.Description" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <div> <span asp-validation-for="@Model.Product.Description" class="text-danger"></span></div>
+                    <textarea asp-for="Product.Description" rows="5" class="form-control vresize"> </textarea>
+
+                </div>
+            </div>*@
+
+            <div class="form-group row">
+                <label asp-for="@Model.Product.Size" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <select id="editable-select" asp-for="@Model.Product.Size" class="form-control" asp-items="@(new SelectList(Model.Sizes, "Size"))">
+                        <option value="@Model.Product.Size">@Model.Product.Size</option>
+                    </select>
+                    <span asp-validation-for="@Model.Product.Size" class="text-danger"></span>
+                </div>
+            </div>
+
+            @*<div class="form-group row">
+                <label asp-for="@Model.Product.Color" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <select id="editable-select" asp-for="@Model.Product.Color" class="form-control" asp-items="@(new SelectList(Model.Colors, "Color"))">
+                        <option value="@Model.Product.Color">@Model.Product.Color</option>
+                    </select>
+                    <span asp-validation-for="@Model.Product.Color" class="text-danger"></span>
+                </div>
+            </div>*@
+        }
 
         <div class="form-group row">
             <div class="col-sm-10 ml-auto">
@@ -96,17 +174,17 @@
                 </div>
             }
         }
-            <div class="col-md-3 align-self-center">
+        <div class="col-md-3 align-self-center">
 
-                <form id="form" asp-action="AddImage" asp-route-productId="@Model.Product.Id" method="post" enctype="multipart/form-data">
-                    <div class="upload-button">
-                        <a onclick="document.getElementById('file-input').click();" class="btn btn-sm btn-info">Add</a>
-                        <input id="file-input" type="file" name="uploadedFile" onchange="submitForm('form');" />
-                    </div>
-                </form>
+            <form id="form" asp-action="AddImage" asp-route-productId="@Model.Product.Id" method="post" enctype="multipart/form-data">
+                <div class="upload-button">
+                    <a onclick="document.getElementById('file-input').click();" class="btn btn-sm btn-info">Add</a>
+                    <input id="file-input" type="file" name="uploadedFile" onchange="submitForm('form');" />
+                </div>
+            </form>
 
-            </div>
         </div>
+    </div>
 </div>
 <div class="text-center">
     <a asp-action="Index" class="btn btn-primary">Back to List</a>
@@ -116,7 +194,9 @@
     function submitForm(formId) {
         document.getElementById(formId).submit();
     }
-
     $('#editable-select').editableSelect();
+ 
 </script>
+@*<script src="~/js/createProduct.js"></script>*@
+
 

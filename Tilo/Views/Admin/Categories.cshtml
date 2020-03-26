@@ -48,10 +48,14 @@
 
         </div>
 
-        <div class="col-md-2">
+            <div class="col-md-2">
                 <a asp-action="EditCategory" class="btn btn-sm btn-info"
                    asp-route-categoryId="@category.ID">
                     Edit
+                </a>
+                <a asp-action="Create" class="btn btn-sm btn-info"
+                   asp-route-categoryId="@category.ID">
+                    Add product
                 </a>
                 <a asp-action="DeleteCategory" class="btn btn-sm btn-danger"
                    asp-route-categoryId="@category.ID">

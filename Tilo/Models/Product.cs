@@ -29,9 +29,23 @@ namespace Tilo.Models
 
         //public int CategoryId { get; set; }
 
-        [Required(ErrorMessage = "Please specify a category")]
+        //[Required(ErrorMessage = "Please specify a category")]
         public Category Category { get; set; }
 
+        public List<Product> Products { get; set; }
+
         public List<FileModel> Images { get; set; } = new List<FileModel>();
+
+        public Product() { }
+
+        public Product(Category category, string name = null)
+        {
+            Category = category;
+            Name = name;
+        }
+        public Product( string name = null)
+        {
+            Name = name;
+        }
     }
 }

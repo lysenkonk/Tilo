@@ -29,6 +29,11 @@ namespace Tilo.Models
 
             modelBuilder.Entity<Category>().HasIndex(p => p.Name);
             modelBuilder.Entity<Product>().HasIndex(p => p.Description);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Category)
+                .WithMany()
+                .IsRequired(false);
         }
     }
 }

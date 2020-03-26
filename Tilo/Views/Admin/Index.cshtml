@@ -42,9 +42,13 @@
             <div class="col-md-3">
                 @product.Name
             </div>
+
             <div class="col-md-2">
-                @product.Category.Name
-            </div>
+                @if (product.Category != null)
+                {
+                    @product.Category.Name
+                }
+                </div>
             <div class="col-md-1">
                 @product.Price
             </div>
