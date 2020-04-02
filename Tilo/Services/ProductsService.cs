@@ -33,7 +33,7 @@ namespace Tilo.Services
         public IEnumerable<Category> ParentCategories => _repository.Categories.Where(p => p.ParentCategory == null);
 
         public IEnumerable<string> Colors => new string[] { "чёрный", "белый", "красный", "зелёный", "синий", "айвори", "марсала", "оранжевый", "розовый", "желтый" };
-        public IEnumerable<string> Sizes => new string[] { "70", "75", "80", "A", "B", "C", "D", "E", "XS", "S", "M", "L" };
+        public List<Models.Size> SizesForCreateProduct = new List<Models.Size> {  new Models.Size("70"), new Models.Size("70"), new Models.Size("80") , new Models.Size("A"), new Models.Size("B"), new Models.Size("C"), new Models.Size("D"), new Models.Size("E"), new Models.Size("XS"), new Models.Size("S"), new Models.Size("M"), new Models.Size("L"), new Models.Size("One size") };
 
         public async Task<Product> SaveProductAsync(Product product)
         {

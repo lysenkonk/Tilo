@@ -16,8 +16,8 @@ namespace Tilo.Models
         [Required(ErrorMessage = "Please enter a description")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Please enter a size")]
-        public string Size { get; set; }
+        //[Required(ErrorMessage = "Please enter a size")]
+        public List<Size> Sizes { get; set; }
 
         [Required]
         [Range(0, int.MaxValue,

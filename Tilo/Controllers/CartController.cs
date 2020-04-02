@@ -32,7 +32,7 @@ namespace Tilo.Controllers
         [Route("Cart/AddToCart")]
         public IActionResult AddToCart(Product product, string returnUrl)
         {
-            Product prodCurrent = productRepository.Products.FirstOrDefault(p => p.Size == product.Size && p.Name == product.Name && p.Color == product.Color);        
+            Product prodCurrent = productRepository.Products.FirstOrDefault(p => p.Name == product.Name && p.Color == product.Color);        
             SaveCart(GetCart().AddItem(prodCurrent, 1));
             return RedirectToAction(nameof(Index), new { returnUrl });
         }

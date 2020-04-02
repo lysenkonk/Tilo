@@ -43,7 +43,7 @@
                 <div class="col">@line.Product.Name</div>
                 <div class="col">@line.Product.Category.Name</div>
                 <div class="col">@line.Product.Color</div>
-                <div class="col">@line.Product.Size</div>
+                <div class="col">@line.Product.Sizes.ToString()</div>
                 <div class="col">
                     <input type="number" name="lines[@counter].Quantity"
                            value="@line.Quantity" />

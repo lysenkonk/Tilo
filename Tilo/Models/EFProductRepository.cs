@@ -15,13 +15,13 @@ namespace Tilo.Models
             _context = ctx;
         }
         public Product GetProduct(long key) => _context.Products
-            .Include(p => p.Images).Include(p => p.Category).Include(p => p.Products).First(o => o.Id == key);
+            .Include(p => p.Images).Include(p => p.Sizes).Include(p => p.Category).Include(p => p.Products).First(o => o.Id == key);
 
         public IQueryable<Product> Products => _context.Products.Include(p => p.Images).Include(p => p.Category).Include(p => p.Products);
 
         //public IQueryable<string> Colors => _context.Products.Select(x => x.Color).Distinct().OrderBy(x => x);
         public IEnumerable<string> Colors => new string[]{"чёрный", "белый", "красный", "зелёный", "синий", "айвори","марсала", "оранжевый", "розовый", "желтый"};
-        public IEnumerable<string> Sizes => new string[] { "70", "75", "80", "A", "B", "C", "D", "E", "XS", "S", "M", "L" };
+        //public IEnumerable<string> Sizes => new string[] { "70", "75", "80", "A", "B", "C", "D", "E", "XS", "S", "M", "L" };
 
         public IEnumerable<Category> Categories => _context.Categories;
 
@@ -63,7 +63,14 @@ namespace Tilo.Models
                             dbEntry.Products[i] = product.Products[i];
                         }
                     }
-                    dbEntry.Size = product.Size;
+
+                    if (product.Sizes != null)
+                    {
+                        for (int i = 0; i < dbEntry.Sizes.Count; i++)
+                        {
+                            dbEntry.Sizes[i] = product.Sizes[i];
+                        }
+                    }
                 }
             }
             await _context.SaveChangesAsync();

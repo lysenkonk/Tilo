@@ -9,6 +9,6 @@ namespace Tilo.Models.ViewModels
     {
         public Product product { get; set; }
         public IEnumerable<Product> Products { get; set; }
-        public Dictionary<string, IList<string>> Sizes { get; set; }
+        //public Dictionary<string, IList<string>> Sizes { get; set; }
     }
 }

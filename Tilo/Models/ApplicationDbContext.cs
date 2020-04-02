@@ -19,6 +19,7 @@ namespace Tilo.Models
         public DbSet<FileModel> FileModels { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
+        public DbSet<Size> Sizes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

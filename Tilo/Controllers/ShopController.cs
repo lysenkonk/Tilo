@@ -44,37 +44,11 @@ namespace Tilo.Controllers
             {
                 return View("Product not found");   
             }
-            IQueryable<Product> ProductsWithTheSameNames;                       
-            IEnumerable<Product> ProductsWithTheSame = _repository.Products.Where(p => p.Name == product.Name && p.Category != product.Category);
-            Dictionary<string, IList<string>> Sizes;
-            if (product.Products != null && product.Products.Count > 0)
-            {
-                Sizes = new Dictionary<string, IList<string>>();
-                foreach (var prod in product.Products)
-                {
-                    ProductsWithTheSameNames = _repository.Products.Where(p => p.Name == prod.Name && p.Category == prod.Category);
-                    IList<string> sizes = ProductsWithTheSameNames.Select(x => x.Size).Distinct().OrderBy(x => x).ToList();
-                    Sizes.Add(prod.Name, sizes);
-                }
-            }
-            else
-            {
-                ProductsWithTheSameNames = _repository.Products.Where(p => p.Name == product.Name && p.Category == product.Category);
-                IList<string> sizes = ProductsWithTheSameNames.Select(x => x.Size).Distinct().OrderBy(x => x).ToList();
-                Sizes = new Dictionary<string, IList<string>>
-                {
-                    { product.Name,  sizes }
-                };
-            }
-            //foreach(var p in ProductsWithTheSameNames)
-            //{
-
-            //}
+            IEnumerable<Product> ProductsWithTheSame = _repository.Products.Where(p => p.Category == product.Category);
             var viewModel = new ProductView
             {
                 product = product,
-                Products = ProductsWithTheSame,
-                Sizes = Sizes
+                Products = ProductsWithTheSame
             };
             return View(viewModel);
         }

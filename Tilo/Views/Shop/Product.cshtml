@@ -92,25 +92,25 @@
                                             {
                                                 foreach (var prod in Model.product.Products)
                                                 {
-                                                    <label asp-for="@prod.Size" class="col-sm-2 col-form-label-size">Размер @prod.Name:</label>
+                                                    <label asp-for="@prod.Sizes" class="col-sm-2 col-form-label-size">Размер @prod.Name:</label>
                                                     <div class="col-sm-10">
-                                                        <select id="editable-select-size" asp-for="@prod.Size" class="form-control" asp-items="@(new SelectList(Model.Sizes[prod.Name], "Size"))">
-                                                            <option value="@prod.Size"></option>
+                                                        <select id="editable-select-size" asp-for="@prod.Sizes" class="form-control" asp-items="@(new SelectList(prod.Sizes, "Size"))">
+                                                            <option value="@prod.Sizes"></option>
                                                         </select>
-                                                        <span asp-validation-for="@prod.Size" class="text-danger"></span>
+                                                        <span asp-validation-for="@prod.Sizes" class="text-danger"></span>
                                                     </div>
 
                                                 }
                                             }
                                             else
                                             {
-                                                <label asp-for="@Model.product.Size" class="col-sm-2 col-form-label-size">Размер:</label>
+                                                <label asp-for="@Model.product.Sizes" class="col-sm-2 col-form-label-size">Размер:</label>
                                                 <div class="col-sm-10">
-                                                    <select id="editable-select-size" asp-for="@Model.product.Size" class="form-control" asp-items="@(new SelectList(Model.Sizes[@Model.product.Name], "Size"))">
+                                                    <select id="editable-select-size" asp-for="@Model.product.Sizes" class="form-control" asp-items="@(new SelectList(Model.product.Sizes, "Size"))">
 
-                                                        <option value="@Model.product.Size"></option>
+                                                        <option value="@Model.product.Sizes"></option>
                                                     </select>
-                                                    <span asp-validation-for="@Model.product.Size" class="text-danger"></span>
+                                                    <span asp-validation-for="@Model.product.Sizes" class="text-danger"></span>
                                                 </div>
                                             }
                                             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />

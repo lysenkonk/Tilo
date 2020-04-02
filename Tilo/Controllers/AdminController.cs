@@ -65,7 +65,7 @@ namespace Tilo.Controllers
                 Product = product,
                 Categories = _productsService.Categories,
                 Colors = _productsService.Colors,
-                Sizes = _productsService.Sizes
+                SizesForCreateProduct = _productsService.SizesForCreateProduct
         }; 
 
             return View(viewModel);
@@ -73,12 +73,46 @@ namespace Tilo.Controllers
 
         [HttpPost]
         [Route("Admin/Edit")]
-        public async Task<IActionResult> Edit(Product product)
+        public async Task<IActionResult> Edit(Product product, List<string> sizes, List<string> Top, List<string> Bottom)
         {
 
 
-            if (ModelState.IsValid)
+             if (ModelState.IsValid)
             {
+                if(product.Sizes == null && sizes.Count > 0)
+                {
+                    product.Sizes = new List<Size>();
+                }
+               foreach(var s in sizes)
+                {
+                    product.Sizes.Add(new Size(s));
+                }
+
+                if (Top != null)
+                {
+                    Product prod = product.Products.FirstOrDefault(p => p.Name == "Top");
+                    if(prod.Sizes == null)
+                    {
+                        prod.Sizes = new List<Size>();
+                    }
+                    foreach (var s in Top)
+                    {
+                        prod.Sizes.Add(new Size(s));
+                    }
+                }
+                if (Bottom != null)
+                {
+                    Product prod = product.Products.FirstOrDefault(p => p.Name == "Bottom");
+                    if (prod.Sizes == null)
+                    {
+                        prod.Sizes = new List<Size>();
+                    }
+                    foreach (var s in Bottom)
+                    {
+                        prod.Sizes.Add(new Size(s));
+                    }
+                }
+
                 await _productsService.SaveProductAsync(product);
                 TempData["message"] = $"{product.Name} has been saved";
             }
@@ -87,7 +121,7 @@ namespace Tilo.Controllers
                 Product = product,
                 Categories = _productsService.Categories,
                 Colors = _productsService.Colors,
-                Sizes = _productsService.Sizes
+                SizesForCreateProduct = product.Sizes
             };
             return View(viewModel);
         }
@@ -143,7 +177,7 @@ namespace Tilo.Controllers
                 //Category bra = _productsService.Categories.FirstOrDefault(p => p.Name == );
                 //Category tr = _productsService.Categories.FirstOrDefault(p => p.Name == "Трусики");
 
-                product.Products = new List<Product> { new Product("Бра"), new Product("Трусики") };
+                product.Products = new List<Product> { new Product("Top"), new Product("Bottom") };
             }
             product.Category = category;
             var viewModel = new AdminProductViewModel
@@ -151,7 +185,7 @@ namespace Tilo.Controllers
                 Product = product,
                 Categories = _productsService.Categories,
                 Colors = _productsService.Colors,
-                Sizes = _productsService.Sizes
+                SizesForCreateProduct = _productsService.SizesForCreateProduct
             };
             return View("Edit", viewModel);
         }
