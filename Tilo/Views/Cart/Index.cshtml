@@ -35,10 +35,13 @@
                                 <img width="170" class="sm_img" name="@line.Product.Images[0].Name" src="@Url.Content("/files/Sm/" + @line.Product.Images[0].Name)" />
                             }
                         </div>
-                        <div class="col-sm-2 col-xs-1  marginTop30  text-center">@line.Product.Sizes</div>
+                        @if(line.Product.Sizes != null)
+                        {
+                            <div class="col-sm-2 col-xs-1  marginTop30  text-center"></div>
+                        }
                         <div class="col-sm-2 col-xs-1  marginTop30 text-center">@line.Quantity</div>
                         @*<input type="number" id="quantity" name="quantity" value="@line.Quantity"
-                               min="1" max="10">*@
+        min="1" max="10">*@
                         <div class="col-sm-1 col-xs-1  marginTop30 text-center">
                             $@line.Product.Price.ToString("f2")
                         </div>

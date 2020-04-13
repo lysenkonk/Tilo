@@ -18,7 +18,8 @@
                 <input asp-for="Product.Name" class="form-control" />
             </div>
         </div>
-
+        @if(Model.Product.Category != null)
+        {
         <div class="form-group row">
             <label asp-for="@Model.Product.Category.ID" class="col-sm-2 col-form-label">Категория</label>
             <div class="col-sm-10">
@@ -28,6 +29,7 @@
                 <span asp-validation-for="@Model.Product.Category.Name" class="text-danger"></span>
             </div>
         </div>
+        }
         <div class="form-group row">
             <label asp-for="@Model.Product.Price" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
@@ -52,19 +54,19 @@
 
             </div>
         </div>
-        @if (Model.Product.Products != null)
+        @if (Model.Product.Products != null && Model.Product.Products.Count > 0)
         {
             <div id="selection">
                 @for (int i = 0; i < Model.Product.Products.Count; i++)
                 {
                     @*<div class="form-group row">
-                            <label asp-for="@prod.Description" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                                <div> <span asp-validation-for="@prod.Description" class="text-danger"></span></div>
-                                <textarea asp-for="@prod.Description" rows="5" class="form-control vresize"> </textarea>
+                        <label asp-for="@prod.Description" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            <div> <span asp-validation-for="@prod.Description" class="text-danger"></span></div>
+                            <textarea asp-for="@prod.Description" rows="5" class="form-control vresize"> </textarea>
 
-                            </div>
-                        </div>*@
+                        </div>
+                    </div>*@
                     <input type="hidden" asp-for="@Model.Product.Products[i].Id" />
                     <input type="hidden" asp-for="@Model.Product.Products[i].Name" value="@Model.Product.Products[i].Name" />
                     <input type="hidden" asp-for="@Model.Product.Products[i].Color" value="black" />
@@ -75,7 +77,7 @@
                     <div class="form-group row">
                         <label asp-for="@Model.Product.Products[i].Sizes" class="col-sm-2 col-form-label">@Model.Product.Products[i].Name:</label>
                         <div class="col-sm-10">
-                            <select multiple id="editable-select"  name="@Model.Product.Products[i].Name" asp-for="@Model.Product.Products[i].Sizes" class="form-control" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))">
+                            <select multiple id="editable-select" name="@Model.Product.Products[i].Name" asp-for="@Model.Product.Products[i].Sizes" class="form-control" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name", Model.Product.Sizes))">
                                 @*<option value="@Model.Product.Products[i].Sizes">@Model.Product.Products[i].Sizes</option>*@
                             </select>
                             @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
@@ -100,10 +102,13 @@
         {
 
             <div class="row">
-                @*<label asp-for="@Model.Product.Sizes" class="col-sm-2 col-form-label"></label>*@
+                <label asp-for="@Model.Product.Sizes" class="col-sm-2 col-form-label"> Размер:</label>
                 <div class="col-sm-10">
-                    <select multiple="multiple" class="form-control" name="sizes" asp-for="@Model.Product.Sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))">
-                        @*<option >/option>*@
+                    <select multiple="multiple" class="form-control" name="sizes" asp-for="@Model.Product.Sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name", Model.Product.Sizes))">
+                        @foreach (var size in Model.Product.Sizes)
+                        {
+                        <option selected value="@size.Name">@size.Name</option> 
+                        }
                     </select>
                     @*<span asp-validation-for="@Model.Product.Sizes" class="text-danger"></span>*@
                 </div>

@@ -90,41 +90,52 @@
                                             <input type="hidden" asp-for="@Model.product.Color" />
                                             @if (Model.product.Products.Count > 0)
                                             {
-                                                foreach (var prod in Model.product.Products)
+
+                                                <label class="col-sm-2 col-form-label-size">Выбирите размер:</label>
+
+                                                @for (int i = 0; i < Model.product.Products.Count; i++)
                                                 {
-                                                    <label asp-for="@prod.Sizes" class="col-sm-2 col-form-label-size">Размер @prod.Name:</label>
-                                                    <div class="col-sm-10">
-                                                        <select id="editable-select-size" asp-for="@prod.Sizes" class="form-control" asp-items="@(new SelectList(prod.Sizes, "Size"))">
-                                                            <option value="@prod.Sizes"></option>
-                                                        </select>
-                                                        <span asp-validation-for="@prod.Sizes" class="text-danger"></span>
-                                                    </div>
+                                                    if (Model.product.Products[i].Sizes != null)
+                                                    {
+                                                        <label asp-for="@Model.product.Products[i].Sizes" class="col-sm-2 col-form-label">@Model.product.Products[i].Name:</label>
+                                                        <div class="col-sm-10">
+                                                            <select multiple id="editable-select" name="@Model.product.Products[i].Name" asp-for="@Model.product.Products[i].Sizes" class="form-control" asp-items="@(new SelectList(Model.product.Products[i].Sizes, "Name", "Name"))">
+                                                                @*<option value="@Model.Product.Products[i].Sizes">@Model.Product.Products[i].Sizes</option>*@
+                                                            </select>
+                                                            @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
+
+                                                        </div>
+                               
+                                                   }
 
                                                 }
                                             }
                                             else
                                             {
-                                                <label asp-for="@Model.product.Sizes" class="col-sm-2 col-form-label-size">Размер:</label>
-                                                <div class="col-sm-10">
-                                                    <select id="editable-select-size" asp-for="@Model.product.Sizes" class="form-control" asp-items="@(new SelectList(Model.product.Sizes, "Size"))">
+                                                if (@Model.product.Sizes != null)
+                                                {
+                                                    <label asp-for="@Model.product.Sizes" class="col-sm-2 col-form-label-size">Размер:</label>
+                                                    <div class="col-sm-10">
+                                                        <select id="editable-select-size" asp-for="@Model.product.Sizes" class="form-control" asp-items="@(new SelectList(Model.product.Sizes, "Name", "Name"))">
 
-                                                        <option value="@Model.product.Sizes"></option>
-                                                    </select>
-                                                    <span asp-validation-for="@Model.product.Sizes" class="text-danger"></span>
-                                                </div>
+                                                            <option value="@Model.product.Sizes"></option>
+                                                        </select>
+                                                        @*<span asp-validation-for="@Model.product.Sizes" class="text-danger"></span>*@
+                                                    </div>
+                                                }
                                             }
                                             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
                                             <span class="card-text p-1">
                                                 @(Model.product.Description
-                                                                                                     ?? "(No Description Available")
+                                                                                                                                     ?? "(No Description Available")
                                                 <button type="submit"
                                                         class="btn btn-primary btn-sm center-block"
                                                         style=" background-color:black; margin-top:20px">
                                                     Add To Cart
                                                 </button>
                                             </span>
-                                        </form>
-                                    </div>
+                                            </form>
+                                        </div>
                                 </div>
                             </div>
 

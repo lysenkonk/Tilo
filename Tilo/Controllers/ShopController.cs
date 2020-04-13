@@ -30,7 +30,7 @@ namespace Tilo.Controllers
             //    p.ChildCategories = _repoCategories.Categories.Where(e => e.ParentCategory.Name == p.Name).ToList();
             //}
             int count = _repository.Products.Count();
-            IQueryable<Product> Products = _repository.Products.Skip(count - 10).Take(10);
+            IQueryable<Product> Products = _repository.Products.Skip(count - 10).Where(p => p.Category != null).Take(10);
 
             return View(Products);
         }

@@ -88,7 +88,7 @@ namespace Tilo.Controllers
                     product.Sizes.Add(new Size(s));
                 }
 
-                if (Top != null)
+                if (Top.Count > 0)
                 {
                     Product prod = product.Products.FirstOrDefault(p => p.Name == "Top");
                     if(prod.Sizes == null)
@@ -100,7 +100,7 @@ namespace Tilo.Controllers
                         prod.Sizes.Add(new Size(s));
                     }
                 }
-                if (Bottom != null)
+                if (Bottom.Count > 0)
                 {
                     Product prod = product.Products.FirstOrDefault(p => p.Name == "Bottom");
                     if (prod.Sizes == null)
