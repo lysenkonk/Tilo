@@ -75,9 +75,11 @@ namespace Tilo.Controllers
         [Route("Admin/Edit")]
         public async Task<IActionResult> Edit(Product product, List<string> sizes, List<string> Top, List<string> Bottom)
         {
+            //Product productCurrent = product.Products.FirstOrDefault(p => p.Id == product.Id);
+            //if(productCurrent.Sizes)
 
 
-             if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 if(product.Sizes == null && sizes.Count > 0)
                 {
