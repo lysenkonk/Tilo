@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Tilo.Models;
 using Tilo.Models.ViewModels;
 
 namespace Tilo.Controllers
 {
+    [ViewComponent(Name = "EditProduct")]
     public class ShopController : Controller
     {
         private IProductRepository _repository;
@@ -74,6 +76,12 @@ namespace Tilo.Controllers
                 CurrentCategory = category
             };
             return View(viewModel);
+        }
+
+        public IViewComponentResult Invoke(AdminProductViewModel model)
+        {
+            return new ViewViewComponentResult();
+
         }
 
     }
