@@ -694,3 +694,6 @@ body {
             display: -ms-flexbox;
             display: flex;
         }
+.text-center{
+    padding-top: 2em;
+}

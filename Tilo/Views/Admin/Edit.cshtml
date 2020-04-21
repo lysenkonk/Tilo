@@ -59,31 +59,33 @@
         else
         {
 
-            <div class="row">
-                <label asp-for="@Model.Product.Sizes" class="col-sm-2 col-form-label"> Размеры в наличии:</label>
-                <select class="form-control">
+        <div class="row">
+            <label asp-for="@Model.Product.Sizes" class="col-sm-4 col-form-label"> Размеры в наличии:</label>
+            <div class="col-sm-2">
+                <select multiple="multiple" class="form-control">
                     @foreach (var size in Model.Product.Sizes)
                     {
                         <option selected>@size.Name</option>
                     }
                 </select>
-                <label asp-for="@Model.Product.Sizes" class="col-sm-2 col-form-label"> Добавить размер:</label>
+            </div>
+                <label asp-for="@Model.Product.Sizes" class="col-sm-4 col-form-label"> Добавить размер:</label>
 
-                <div class="col-sm-10">
+                <div class="col-sm-2">
                     <select multiple="multiple" class="form-control" name="sizes" asp-for="@Model.Product.Sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
                     @*<span asp-validation-for="@Model.Product.Sizes" class="text-danger"></span>*@
                 </div>
             </div>
-        }
-        <div class="form-group row">
-            <div class="col-sm-10 ml-auto">
-                <button class="btn btn-primary" type="submit">Save</button>
-                <a asp-action="Create" class="btn btn-warning">Clean</a>
-                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            }
+            <div class="form-group row">
+                <div class="col-sm-12 ml-auto">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <a asp-action="Create" class="btn btn-warning">Clean</a>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
 
+                </div>
             </div>
-        </div>
-    </form>
+</form>
 </div>
 
 <div class="container">
