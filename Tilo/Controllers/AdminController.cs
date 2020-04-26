@@ -75,7 +75,7 @@ namespace Tilo.Controllers
         [Route("Admin/Edit")]
         public async Task<IActionResult> Edit(Product product, List<string> sizes, List<string> Top, List<string> Bottom)
         {
-            //Product productCurrent = product.Products.FirstOrDefault(p => p.Id == product.Id);
+            Product productCurrent = _productsService.Products.FirstOrDefault(p => p.Id == product.Id);
             //if(productCurrent.Sizes)
 
 
@@ -87,7 +87,11 @@ namespace Tilo.Controllers
                 }
                foreach(var s in sizes)
                 {
-                    product.Sizes.Add(new Size(s));
+                    Size theSameSize = productCurrent.Sizes.FirstOrDefault(size => size.Name == s);
+                    if (theSameSize == null)
+                    {
+                        product.Sizes.Add(new Size(s));
+                    }
                 }
 
                 if (Top.Count > 0)
@@ -116,6 +120,7 @@ namespace Tilo.Controllers
                 }
 
                 await _productsService.SaveProductAsync(product);
+                product.Sizes = productCurrent.Sizes;
                 TempData["message"] = $"{product.Name} has been saved";
             }
             var viewModel = new AdminProductViewModel
@@ -123,7 +128,7 @@ namespace Tilo.Controllers
                 Product = product,
                 Categories = _productsService.Categories,
                 Colors = _productsService.Colors,
-                SizesForCreateProduct = product.Sizes
+                SizesForCreateProduct = _productsService.SizesForCreateProduct
             };
             return View(viewModel);
         }

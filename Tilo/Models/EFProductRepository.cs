@@ -63,7 +63,7 @@ namespace Tilo.Models
 
                     if (product.Sizes != null)
                     {
-                        dbEntry.Sizes = new List<Size>(product.Sizes);
+                        dbEntry.Sizes.AddRange(product.Sizes);
                     }
                 }
             }

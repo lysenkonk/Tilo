@@ -62,7 +62,7 @@
         <div class="row">
             <label asp-for="@Model.Product.Sizes" class="col-sm-4 col-form-label"> Размеры в наличии:</label>
             <div class="col-sm-2">
-                <select multiple="multiple" class="form-control">
+                <select multiple="multiple" name="sizes"  class="form-control" asp-for="@Model.Product.Sizes">
                     @foreach (var size in Model.Product.Sizes)
                     {
                         <option selected>@size.Name</option>
@@ -72,7 +72,7 @@
                 <label asp-for="@Model.Product.Sizes" class="col-sm-4 col-form-label"> Добавить размер:</label>
 
                 <div class="col-sm-2">
-                    <select multiple="multiple" class="form-control" name="sizes" asp-for="@Model.Product.Sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
+                    <select multiple="multiple" class="form-control" name="sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
                     @*<span asp-validation-for="@Model.Product.Sizes" class="text-danger"></span>*@
                 </div>
             </div>
