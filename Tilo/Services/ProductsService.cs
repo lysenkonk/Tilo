@@ -116,5 +116,10 @@ namespace Tilo.Services
             else
                 return; // TODO make proper hadling
         }
+
+        public async Task<Product> RemoveSizes(long productId, List<string> sizes)
+        {     
+            return await _repository.RemoveSizeAsync(productId, sizes);
+        }
     }
 }

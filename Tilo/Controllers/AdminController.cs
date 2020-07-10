@@ -133,7 +133,16 @@ namespace Tilo.Controllers
             return View(viewModel);
         }
         [Route("AdminCategoryModel/RemoveSizes")]
-        public    
+        public  async Task<IActionResult> RemoveSizes(int productId, List<string> sizes)
+        {
+            if (!isProduct(productId))
+            {
+                return RedirectToAction("Create");
+            }
+            await _productsService.RemoveSizes(productId, sizes);
+
+            return View("Edit", productId);
+        }
         [Route("Admin/RemoveImage")]
         public async Task<IActionResult> RemoveImage(int productId, string imageName)
         {

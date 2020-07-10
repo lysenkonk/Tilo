@@ -21,5 +21,7 @@ namespace Tilo.Models
         Task<FileModel> AddImageAsync(long productId, FileModel image);
 
         Task<FileModel> RemoveImageAsync(long productId, string fileName);
+
+        Task<Product> RemoveSizeAsync(long productId, List<string> sizes);
     }
 }

@@ -83,6 +83,23 @@ namespace Tilo.Models
 
             return dbEntry;
         }
+         public async Task<Product> RemoveSizeAsync(long productId, List<string> sizes)
+        {
+            Product dbEntry = _context.Products.Include(p => p.Sizes).FirstOrDefault(p => p.Id == productId);
+
+            if (dbEntry == null)
+                throw new Exception("404 Not Found product");
+            Size sizeEntry;
+            foreach (var size in sizes)
+            {
+                sizeEntry = dbEntry.Sizes.FirstOrDefault(s => s.Name == size);
+                if (sizeEntry == null)
+                    throw new Exception("404 Not Found Image");
+                dbEntry.Sizes.Remove(sizeEntry);
+                await _context.SaveChangesAsync();
+            }
+            return dbEntry;
+        }
 
         public async Task<FileModel> AddImageAsync(long productId, FileModel image)
         {
