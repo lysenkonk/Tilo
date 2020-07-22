@@ -7,6 +7,7 @@ using Tilo.Models;
 using Tilo.Infrastructure;
 using Tilo.Services;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Tilo.Controllers
 {
@@ -22,19 +23,21 @@ namespace Tilo.Controllers
             ordersRepository = orepo;
         }
         
-        public IActionResult Index(string returnUrl)
+        public IActionResult Index(string returnUrl, List<string> size)
         {
             ViewBag.returnUrl = returnUrl;
+            ViewBag.Size = size;
             return View(GetCart());
         }
 
         [HttpPost]
         [Route("Cart/AddToCart")]
-        public IActionResult AddToCart(Product product, string returnUrl)
+        public IActionResult AddToCart(Product product, List<string> size, string returnUrl)
         {
-            Product prodCurrent = productRepository.Products.FirstOrDefault(p => p.Name == product.Name && p.Color == product.Color);        
-            SaveCart(GetCart().AddItem(prodCurrent, 1));
-            return RedirectToAction(nameof(Index), new { returnUrl });
+            Product prodCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
+            
+            SaveCart(GetCart().AddItem(prodCurrent,size, 1));
+            return RedirectToAction(nameof(Index), new { returnUrl, size});
         }
 
         [HttpPost]

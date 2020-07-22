@@ -8,7 +8,7 @@ namespace Tilo.Models
     {
         private List<OrderLine> selections = new List<OrderLine>();
 
-        public Cart AddItem(Product p, int quantity)
+        public Cart AddItem(Product p, List<string> size, int quantity)
         {
             OrderLine line = selections
                 .Where(l => l.ProductId == p.Id).FirstOrDefault();
@@ -21,7 +21,7 @@ namespace Tilo.Models
                 selections.Add(new OrderLine
                 {
                     ProductId = p.Id,
-                    Product = p,
+                    Product = p,              
                     Quantity = quantity
                 });
             }
