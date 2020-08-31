@@ -7,7 +7,7 @@
 
 
 <div class="container">
-    <form asp-action="Edit" name="productEdit" method="post">
+    <form asp-action="Edit"  method="post">
         <input type="hidden" asp-for="Product.Id" />
         <div class="form-group row">
             <label asp-for="@Model.Product.Name" class="col-sm-2 col-form-label"></label>
@@ -58,38 +58,44 @@
         }
         else
         {
+            @if (Model.Product.Category.Name != "Комплекты")
+            {
+                <div class="row">           
+                    <label class="col-sm-4 col-form-label"> Размеры в наличии:</label>
+                    <div class="col-sm-2">
+                        @if (@Model.Product.Sizes != null)
+                        {
+                            <select multiple="multiple" name="sizes" class="form-control" asp-for="@Model.Product.Sizes">
+                                @foreach (var size in Model.Product.Sizes)
+                                {
+                                    <option>@size.Name</option>
+                                }
+                            </select>
+                        }
+                            @*<a asp-action="RemoveSizes" class="btn btn-sm btn-warning"
+                       asp-route-productId="@Model.Product.Id">
+                        Delete
+                    </a>*@
+                        </div>
+                        <label asp-for="@Model.Product.Sizes" class="col-sm-4 col-form-label"> Добавить размер:</label>
 
-        <div class="row">
-            <label asp-for="@Model.Product.Sizes" class="col-sm-4 col-form-label"> Размеры в наличии:</label>
-            <div class="col-sm-2">
-                <select multiple="multiple" name="sizes" class="form-control" asp-for="@Model.Product.Sizes">
-                    @foreach (var size in Model.Product.Sizes)
-                    {
-                        <option selected>@size.Name</option>
-                    }
-                </select>
-                <a asp-action="RemoveSizes" class="btn btn-sm btn-warning"
-                   asp-route-productId="@Model.Product.Id"   asp-route-sizeForDelete="sizes">
-                    Delete
-                </a>
-            </div>
-                <label asp-for="@Model.Product.Sizes" class="col-sm-4 col-form-label"> Добавить размер:</label>
-
-                <div class="col-sm-2">
-                    <select multiple="multiple" class="form-control" name="sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
-                    @*<span asp-validation-for="@Model.Product.Sizes" class="text-danger"></span>*@
-                </div>
-            </div>
+                        <div class="col-sm-2">
+                            <select multiple="multiple" class="form-control" name="sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
+                            @*<span asp-validation-for="@Model.Product.Sizes" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                }
             }
             <div class="form-group row">
                 <div class="col-sm-12 ml-auto">
+                    <button asp-action="RemoveSizes"  class="btn btn-sm btn-warning" asp-route-productId="@Model.Product.Id">Delete Sizes</button>
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a asp-action="Create" class="btn btn-warning">Clean</a>
                     <a asp-action="Index" class="btn btn-secondary">Cancel</a>
 
                 </div>
             </div>
-</form>
+</form> 
 </div>
 
 <div class="container">

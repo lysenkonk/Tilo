@@ -17,8 +17,8 @@ namespace Tilo.Controllers
         private readonly ProductsService _productsService;
 
         public int pageSize = 20;
-        
-        public AdminController (ProductsService service)
+
+        public AdminController(ProductsService service)
         {
             _productsService = service;
         }
@@ -49,9 +49,14 @@ namespace Tilo.Controllers
 
             //var count = products.Count();
             //var items = Products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var categoryCurrent = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.Name == category);
+
+            ViewBag.categoryID = categoryCurrent.ID;
             return View("Index", products);
         }
-        [Route("Admin/Edit")]
+        //[HttpGet]
+        [Route("Edit/{productId}")]
+        [Route("Admin/Edit/{productId}")]
         public IActionResult Edit(int productId)
         {
             var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
@@ -59,113 +64,146 @@ namespace Tilo.Controllers
             if (product == null)
                 return NotFound();
 
-            var viewModel = new AdminProductViewModel
-
-            {
-                Product = product,
-                Categories = _productsService.Categories,
-                Colors = _productsService.Colors,
-                SizesForCreateProduct = _productsService.SizesForCreateProduct
-        }; 
-
+            var viewModel = CreateAdminViewModel(product);
             return View(viewModel);
         }
 
         [HttpPost]
-        [Route("Admin/Edit")]
-        public async Task<IActionResult> Edit(Product product, List<string> sizes, List<string> Top, List<string> Bottom)
+        [Route("Admin/Edit/{productId}")]
+        public async Task<IActionResult> Edit(Product product, List<string> sizes)
         {
             Product productCurrent = _productsService.Products.FirstOrDefault(p => p.Id == product.Id);
             //if(productCurrent.Sizes)
 
-
             if (ModelState.IsValid)
             {
-                if(product.Sizes == null && sizes.Count > 0)
+                if (sizes.Count > 0)
                 {
-                    product.Sizes = new List<Size>();
-                }
-               foreach(var s in sizes)
-                {
-                    Size theSameSize = productCurrent.Sizes.FirstOrDefault(size => size.Name == s);
-                    if (theSameSize == null)
-                    {
-                        product.Sizes.Add(new Size(s));
-                    }
-                }
 
-                if (Top.Count > 0)
-                {
-                    Product prod = product.Products.FirstOrDefault(p => p.Name == "Top");
-                    if(prod.Sizes == null)
+                    if (product.Sizes == null)
                     {
-                        prod.Sizes = new List<Size>();
+                        product.Sizes = new List<Size>();
+                        foreach (var s in sizes)
+                        {
+                            product.Sizes.Add(new Size(s));
+                        }
                     }
-                    foreach (var s in Top)
+                    if (productCurrent != null)
                     {
-                        prod.Sizes.Add(new Size(s));
-                    }
-                }
-                if (Bottom.Count > 0)
-                {
-                    Product prod = product.Products.FirstOrDefault(p => p.Name == "Bottom");
-                    if (prod.Sizes == null)
-                    {
-                        prod.Sizes = new List<Size>();
-                    }
-                    foreach (var s in Bottom)
-                    {
-                        prod.Sizes.Add(new Size(s));
+                        foreach (var s in sizes)
+                        {
+                            Size theSameSize = productCurrent.Sizes.FirstOrDefault(size => size.Name == s);
+                            if (theSameSize == null)
+                            {
+                                productCurrent.Sizes.Add(new Size(s));
+                            }
+                        }
+                        product.Sizes = productCurrent.Sizes;
                     }
                 }
 
                 await _productsService.SaveProductAsync(product);
-                product.Sizes = productCurrent.Sizes;
                 TempData["message"] = $"{product.Name} has been saved";
             }
-            var viewModel = new AdminProductViewModel
-            {
-                Product = product,
-                Categories = _productsService.Categories,
-                Colors = _productsService.Colors,
-                SizesForCreateProduct = _productsService.SizesForCreateProduct
-            };
+            var viewModel = CreateAdminViewModel(product);
+
             return View(viewModel);
         }
-        [Route("AdminCategoryModel/RemoveSizes")]
-        public  async Task<IActionResult> RemoveSizes(int productId, List<string> sizes)
+        [Route("Admin/AddSizes")]
+        public async Task<IActionResult> AddSize(int productId, List<string> sizes)
         {
-            if (!isProduct(productId))
+            Product productCurrent = _productsService.Products.FirstOrDefault(p => p.Id == productId);
+            //if(productCurrent.Sizes)
+
+            if (sizes.Count > 0)
+            {
+                if (productCurrent.Sizes == null)
+                {
+                    productCurrent.Sizes = new List<Size>();
+                    foreach (var s in sizes)
+                    {
+                        productCurrent.Sizes.Add(new Size(s));
+                    }
+                } else if (productCurrent != null)
+                {
+                    foreach (var s in sizes)
+                    {
+                        Size theSameSize = productCurrent.Sizes.FirstOrDefault(size => size.Name == s);
+                        if (theSameSize == null)
+                        {
+                            productCurrent.Sizes.Add(new Size(s));
+                        }
+                    }
+                }
+                await _productsService.SaveProductAsync(productCurrent);
+                TempData["message"] = $"{productCurrent.Name} has been saved";
+            }
+            if (productCurrent.Category == null)
+            {
+                foreach (var product in _productsService.Products)
+                {
+                    if (product.Products.Contains(productCurrent))
+                    {
+                        productCurrent = product;
+                    }
+                }
+            }
+            var viewModel = CreateAdminViewModel(productCurrent);           
+            return View("Edit", viewModel);
+        }
+        [Route("Admin/RemoveSizes")]
+        public async Task<IActionResult> RemoveSizes(int productId, List<string> sizes)
+        {
+            Product product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
+            Product mainProduct = _productsService.Products.FirstOrDefault(p => p.Products.Contains(product));
+
+            if (!isProduct(product.Id))
             {
                 return RedirectToAction("Create");
             }
-            await _productsService.RemoveSizes(productId, sizes);
+            await _productsService.RemoveSizes(product.Id, sizes);
 
-            return View("Edit", productId);
+
+            if (mainProduct != null)
+            {
+                product = mainProduct;
+            }
+            var viewModel = CreateAdminViewModel(product);
+
+            return View("Edit", viewModel);
         }
+        [HttpPost]
         [Route("Admin/RemoveImage")]
         public async Task<IActionResult> RemoveImage(int productId, string imageName)
         {
+            Product product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
+
             if (!isProduct(productId))
-            {  
+            {
                 return RedirectToAction("Create");
             }
 
             await _productsService.RemoveImage(productId, imageName);
 
-            return RedirectToAction("Edit", new { productId });
+            var viewModel = CreateAdminViewModel(product);
+
+            return View("Edit", viewModel);
+
         }
         [Route("Admin/AddImage")]
         public async Task<IActionResult> AddImage(int productId, IFormFile uploadedFile)
         {
+            Product product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
+
             if (!isProduct(productId))
             {
                 return RedirectToAction("Create");
             }
 
             await _productsService.AddImage(productId, uploadedFile);
+            var viewModel = CreateAdminViewModel(product);
 
-            return RedirectToAction("Edit", new { productId });
+            return View("Edit", viewModel);
         }
 
         //public IActionResult ListPhotos(int page = 1)
@@ -198,13 +236,8 @@ namespace Tilo.Controllers
                 product.Products = new List<Product> { new Product("Top"), new Product("Bottom") };
             }
             product.Category = category;
-            var viewModel = new AdminProductViewModel
-            {
-                Product = product,
-                Categories = _productsService.Categories,
-                Colors = _productsService.Colors,
-                SizesForCreateProduct = _productsService.SizesForCreateProduct
-            };
+
+            var viewModel = CreateAdminViewModel(product);
             return View("Edit", viewModel);
         }
 
@@ -213,7 +246,7 @@ namespace Tilo.Controllers
         {
             var viewModel = new AdminCategoryModel
             {
-                Category = new Category("Name", new Category("ParentName")), 
+                Category = new Category("Name", new Category("ParentName")),
                 Categories = _productsService.Categories
             };
             return View("Category", viewModel);
@@ -229,13 +262,13 @@ namespace Tilo.Controllers
             var c = _productsService.Categories.SingleOrDefault(curent => curent.Name == category.Name && curent.ParentCategory.Name == category.ParentCategory.Name);
             //string nameParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory.Name;
 
-            if (c != null) 
+            if (c != null)
             {
                 if (c.ParentCategory != null && c.ParentCategory.Name != null)
                 {
                     if (c.Name == category.Name && category.ParentCategory.Name == c.ParentCategory.Name)
                         TempData["message"] = $"That category is already exist";
-                }else
+                } else
                 {
                     TempData["message"] = $"That category is already exist";
                 }
@@ -251,7 +284,7 @@ namespace Tilo.Controllers
 
                 TempData["message"] = $"{category.Name} has been saved";
             }
-            return RedirectToAction("Index");
+            return View("Index", _productsService.Products);
         }
 
         [Route("Admin/Delete")]
@@ -262,7 +295,7 @@ namespace Tilo.Controllers
             {
                 TempData["message"] = $"{deletedProduct.Name} was deleted";
             }
-            return RedirectToAction("Index");
+            return View("Index", _productsService.Products);
         }
         [Route("Admin/DeleteCategory")]
         public async Task<IActionResult> DeleteCategory(int categoryID)
@@ -314,7 +347,7 @@ namespace Tilo.Controllers
 
 
 
-        private bool isProduct(int productId)
+        private bool isProduct(long productId)
         {
             var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
             if (product == null)
@@ -324,6 +357,20 @@ namespace Tilo.Controllers
             }
             return true;
         }
+
+        private AdminProductViewModel CreateAdminViewModel(Product product)
+        {
+            var viewModel = new AdminProductViewModel
+            {
+                Product = product,
+                Categories = _productsService.Categories,
+                Colors = _productsService.Colors,
+                SizesForCreateProduct = _productsService.SizesForCreateProduct
+            };
+            return viewModel;
+        }
+
+       
 
         //public async Task<IActionResult> AddCategory(string categoryName, string parentCategory = null) 
         //{

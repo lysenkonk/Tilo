@@ -101,27 +101,26 @@ namespace Tilo
                 //    defaults: new {controller = "Shop", action = "List" }
                 //    );
 
-                   //routes.MapRoute(
-                   //    name: "Product",
-                   //    template: "Product/{id}",
-                   //    defaults: new { controller = "Shop", action = "Product"  }
-                   //    );
-                   //routes.MapRoute(
-                   //    name: "admin",
-                   //   template: "Admin/{action}/{productId?}",
-                   //    defaults: new { controller = "Admin"}
-                   //    );
-                   //routes.MapRoute(
-                   //   name: "categoryNavAdmin",
-                   //   template: "{category}/{page}",
-                   //   defaults: new { controller = "Admin", action = "Index" }
-                   //);
-            //routes.MapRoute(
-            //    name: "Shop",
-            //    template: "Shop",
-            //    defaults: new { controller = "Shop", action = "Index" }
-            //    );
-            routes.MapRoute(
+                //routes.MapRoute(
+                //    name: "Product",
+                //    template: "Product/{id}",
+                //    defaults: new { controller = "Shop", action = "Product"  }
+                //    );
+                routes.MapRoute(
+                    name: "admin",
+                   template: "Admin/{action}/{productId}"
+                    );
+                //routes.MapRoute(
+                //   name: "categoryNavAdmin",
+                //   template: "{category}/{page}",
+                //   defaults: new { controller = "Admin", action = "Index" }
+                //);
+                //routes.MapRoute(
+                //    name: "Shop",
+                //    template: "Shop",
+                //    defaults: new { controller = "Shop", action = "Index" }
+                //    );
+                routes.MapRoute(
             name: "default",
             template: "{controller=Home}/{action=Index}/{id?}");
             });

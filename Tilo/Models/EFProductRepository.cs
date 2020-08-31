@@ -27,13 +27,17 @@ namespace Tilo.Models
 
         public async Task<Product> SaveProductAsync(Product product)
         {
-            Category category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
-            if (product.Id == 0)
+            Category category = null;
+            if (product.Category != null)
             {
+                category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
                 if (category != null)
                 {
-                    product.Category = category;
+                    product.Category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
                 }
+            }
+            if (product.Id == 0)
+            {              
                 _context.Products.Add(product);
             }
             else
@@ -45,11 +49,14 @@ namespace Tilo.Models
                     
                     if(category != null)
                     {
-                        dbEntry.Category = category;
+                        dbEntry.Category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
                     }
                     else
                     {
-                        dbEntry.Category = new Category(product.Category.Name);
+                        if (product.Category != null)
+                        {
+                            dbEntry.Category = new Category(product.Category.Name);
+                        }
                     }
                
                     dbEntry.Name = product.Name;
@@ -61,9 +68,13 @@ namespace Tilo.Models
                         dbEntry.Products = new List<Product>(product.Products);
                     }
 
-                    if (product.Sizes != null)
+                    foreach (var s in product.Sizes)
                     {
-                        dbEntry.Sizes.AddRange(product.Sizes);
+                        Size theSameSize = dbEntry.Sizes.FirstOrDefault(size => size.Name == s.Name);
+                        if (theSameSize == null)
+                        {
+                            dbEntry.Sizes.Add(s);
+                        }
                     }
                 }
             }
