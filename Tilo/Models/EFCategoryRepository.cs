@@ -27,14 +27,14 @@ namespace Tilo.Models
             context = ctx;
             _repository = repository;
             //_productsService = service;
-            setChildCategories();
+            SetChildCategories();
             _appEnvironment = appEnvironment;
 
         }
         public IEnumerable<Category> Categories => context.Categories;
         public IEnumerable<Category> ParentCategories => context.Categories.Where(p => p.ParentCategory == null);
 
-        void setChildCategories()
+        void SetChildCategories()
         {
             foreach (var p in ParentCategories)
             {

@@ -157,7 +157,7 @@ namespace Tilo.Controllers
             Product product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
             Product mainProduct = _productsService.Products.FirstOrDefault(p => p.Products.Contains(product));
 
-            if (!isProduct(product.Id))
+            if (!IsProduct(product.Id))
             {
                 return RedirectToAction("Create");
             }
@@ -178,7 +178,7 @@ namespace Tilo.Controllers
         {
             Product product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
 
-            if (!isProduct(productId))
+            if (!IsProduct(productId))
             {
                 return RedirectToAction("Create");
             }
@@ -195,7 +195,7 @@ namespace Tilo.Controllers
         {
             Product product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
 
-            if (!isProduct(productId))
+            if (!IsProduct(productId))
             {
                 return RedirectToAction("Create");
             }
@@ -347,7 +347,7 @@ namespace Tilo.Controllers
 
 
 
-        private bool isProduct(long productId)
+        private bool IsProduct(long productId)
         {
             var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
             if (product == null)

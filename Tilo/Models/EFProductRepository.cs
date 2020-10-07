@@ -67,13 +67,15 @@ namespace Tilo.Models
                     {
                         dbEntry.Products = new List<Product>(product.Products);
                     }
-
-                    foreach (var s in product.Sizes)
+                    if (product.Sizes != null)
                     {
-                        Size theSameSize = dbEntry.Sizes.FirstOrDefault(size => size.Name == s.Name);
-                        if (theSameSize == null)
+                        foreach (var s in product.Sizes)
                         {
-                            dbEntry.Sizes.Add(s);
+                            Size theSameSize = dbEntry.Sizes.FirstOrDefault(size => size.Name == s.Name);
+                            if (theSameSize == null)
+                            {
+                                dbEntry.Sizes.Add(s);
+                            }
                         }
                     }
                 }
