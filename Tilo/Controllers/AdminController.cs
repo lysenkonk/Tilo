@@ -299,9 +299,9 @@ namespace Tilo.Controllers
             return View("Index", _productsService.Products);
         }
         [Route("Admin/DeleteCategory")]
-        public async Task<IActionResult> DeleteCategory(int categoryID)
+        public async Task<IActionResult> DeleteCategory(int categoryId)
         {
-            Category deletedCategory = await _productsService._categoryRepository.DeleteCategoryAsync(categoryID);
+            Category deletedCategory = await _productsService._categoryRepository.DeleteCategoryAsync(categoryId);
             if (deletedCategory != null)
             {
                 TempData["message"] = $"{deletedCategory.Name} was deleted";
@@ -309,10 +309,10 @@ namespace Tilo.Controllers
             return RedirectToAction("Categories");
         }
 
-        [Route("Admin/EditCategory")]
-        public IActionResult EditCategory(int categoryID)
+        [Route("Admin/EditCategory/{categoryId}")]
+        public IActionResult EditCategory(int categoryId)
         {
-            var category = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.ID == categoryID);
+            var category = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.ID == categoryId);
 
             if (category == null)
                 return NotFound();
@@ -341,7 +341,7 @@ namespace Tilo.Controllers
                 Category = category,
                 Categories = _productsService.Categories
             };
-            return View("Category", viewModel);
+            return View("Categories", _productsService.Categories);
         }
 
 
