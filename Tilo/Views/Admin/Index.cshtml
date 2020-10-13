@@ -67,6 +67,9 @@
 </div>
 
 <div class="container">
+    @if (@ViewBag.categoryID != null)
+    {
     <a asp-action="Create" asp-route-categoryID=@ViewBag.categoryID class="btn btn-info">Add Product</a>
+    }
     <a asp-action="CreateCategory" class="btn btn-info">Add Category</a>
 </div>

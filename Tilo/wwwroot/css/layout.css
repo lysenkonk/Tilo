@@ -131,6 +131,9 @@ header {
     padding: 5px;
 }
 /*----------------------------------------------------------------------------------------*/
+.bg-black{
+    background-color: black;
+}
 
 header .logo {
     /*float: left;
@@ -716,7 +719,7 @@ img {
     -webkit-animation-duration: 1.5s;*/
     opacity: unset;
     animation-name: fade;
-    animation-duration: 1.5s;
+    animation-duration: 5s;
 }
 
 @-webkit-keyframes fade {
@@ -1328,7 +1331,7 @@ li.itemPicture {
         text-transform: uppercase;
         /*font-family: heliosCondC-Bold;*/
         text-decoration: none;
-        color: white;
+        /*color: white;*/
         transition: 0.3s ease all;
     }
 
@@ -1341,6 +1344,7 @@ li.itemPicture {
             /*display: block;*/
             /*transform: scaleX(0.87);*/
             letter-spacing: 0.8px;
+            color: white;
         }
 
 .footer-secondary-menu {
@@ -1501,6 +1505,7 @@ li.item a.g-bar i {
         }
 
         .col-md-6 a.subscribe-btn span {
+            color: black;
             font-size: 12px;
             text-transform: uppercase;
             font-family: heliosCondC-Bold;

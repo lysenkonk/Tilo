@@ -15,9 +15,10 @@ namespace Tilo.Models
             _context = ctx;
         }
         public Product GetProduct(long key) => _context.Products
-            .Include(p => p.Images).Include(p => p.Sizes).Include(p => p.Category).Include(p => p.Products).First(o => o.Id == key);
+            .Include(p => p.Images).Include(p => p.Sizes).Include(p => p.Category).Include(p => p.Products).ThenInclude(subProduct => subProduct.Sizes).Include(p => p.Sizes).First(o => o.Id == key);
+        //public IEnumerable<Product> Products => _repository.Products.Include(p => p.Images).Include(p => p.Category).Include(p => p.Products).ThenInclude(subProduct => subProduct.Sizes).Include(p => p.Sizes);
 
-        public IQueryable<Product> Products =>  _context.Products.Include(p => p.Images).Include(p => p.Category).Include(p => p.Products).Include(p => p.Sizes);
+        public IQueryable<Product> Products =>  _context.Products.Include(p => p.Images).Include(p => p.Category).Include(p => p.Products).ThenInclude(subProduct => subProduct.Sizes).Include(p => p.Sizes);
 
         //public IQueryable<string> Colors => _context.Products.Select(x => x.Color).Distinct().OrderBy(x => x);
         public IEnumerable<string> Colors => new string[]{"чёрный", "белый", "красный", "зелёный", "синий", "айвори","марсала", "оранжевый", "розовый", "желтый"};

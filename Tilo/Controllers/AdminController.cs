@@ -69,6 +69,7 @@ namespace Tilo.Controllers
         }
 
         [HttpPost]
+        [Route("Admin/Edit")]
         [Route("Admin/Edit/{productId}")]
         public async Task<IActionResult> Edit(Product product, List<string> sizes)
         {
@@ -284,7 +285,7 @@ namespace Tilo.Controllers
 
                 TempData["message"] = $"{category.Name} has been saved";
             }
-            return View("Index", _productsService.Products);
+            return View("Categories", _productsService.Categories);
         }
 
         [Route("Admin/Delete")]

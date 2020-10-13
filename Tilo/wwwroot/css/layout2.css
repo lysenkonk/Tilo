@@ -18,19 +18,8 @@ header .mask {
     /*animation: mail-slider-appearing 1.7s ease .5s forwards;*/
 }
 
-    .main-slider .mask.loaded,
-    header .mask.loaded {
-        /*-webkit-transition: all .7s linear  0.5s;*/
-        /*transition: all .7s linear  0.5s;*/
-        /*-webkit-transform: translate3d(0, 0, 0) translateX(100%);*/
-        /*transform: translate3d(0, 0, 0)  translateX(100%);*/
-        /*will-change: transform;*/
-    }
-
-/*header .mask{*/
-/*background-color: #ffff00;*/
-/*}*/
-@keyframes mail-slider-appearing {
+  
+/*@keyframes mail-slider-appearing {
     from {
         left: 0;
     }
@@ -38,7 +27,7 @@ header .mask {
     to {
         left: 100%;
     }
-}
+}*/
 
 .new-products {
     position: relative;
