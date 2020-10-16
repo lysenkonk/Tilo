@@ -54,7 +54,7 @@ namespace Tilo.Controllers
             ViewBag.categoryID = categoryCurrent.ID;
             return View("Index", products);
         }
-        //[HttpGet]
+        [HttpGet]
         [Route("Edit/{productId}")]
         [Route("Admin/Edit/{productId}")]
         public IActionResult Edit(int productId)
@@ -118,7 +118,7 @@ namespace Tilo.Controllers
 
             if (sizes.Count > 0)
             {
-                if (productCurrent.Sizes == null)
+                if (productCurrent !=null && productCurrent.Sizes == null)
                 {
                     productCurrent.Sizes = new List<Size>();
                     foreach (var s in sizes)
@@ -173,7 +173,7 @@ namespace Tilo.Controllers
 
             return View("Edit", viewModel);
         }
-        [HttpPost]
+       
         [Route("Admin/RemoveImage")]
         public async Task<IActionResult> RemoveImage(int productId, string imageName)
         {
@@ -191,6 +191,7 @@ namespace Tilo.Controllers
             return View("Edit", viewModel);
 
         }
+        [HttpPost]
         [Route("Admin/AddImage")]
         public async Task<IActionResult> AddImage(int productId, IFormFile uploadedFile)
         {

@@ -33,7 +33,11 @@ namespace Tilo.Services
         public IEnumerable<Category> ParentCategories => _repository.Categories.Where(p => p.ParentCategory == null);
 
         public IEnumerable<string> Colors => new string[] { "чёрный", "белый", "красный", "зелёный", "синий", "айвори", "марсала", "оранжевый", "розовый", "желтый" };
-        public List<Models.Size> SizesForCreateProduct = new List<Models.Size> {  new Models.Size("70"), new Models.Size("70"), new Models.Size("80") , new Models.Size("A"), new Models.Size("B"), new Models.Size("C"), new Models.Size("D"), new Models.Size("E"), new Models.Size("XS"), new Models.Size("S"), new Models.Size("M"), new Models.Size("L"), new Models.Size("One size") };
+        public List<Models.Size> SizesForCreateProduct = new List<Models.Size> {
+            new Models.Size("70 A"), new Models.Size("70 B"), new Models.Size("70 C") , new Models.Size("70 D"), new Models.Size("70 E"),new Models.Size("70 F"),
+            new Models.Size("75 A"), new Models.Size("75 B"), new Models.Size("75 C") , new Models.Size("75 D"), new Models.Size("75 E"),new Models.Size("75 F"),
+            new Models.Size("80 A"), new Models.Size("80 B"), new Models.Size("80 C") , new Models.Size("80 D"), new Models.Size("80 E"),new Models.Size("80 F"),
+            new Models.Size("XS"), new Models.Size("S"), new Models.Size("M"), new Models.Size("L"), new Models.Size("One size") };
 
         public async Task<Product> SaveProductAsync(Product product)
         {

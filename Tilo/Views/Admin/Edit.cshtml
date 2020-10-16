@@ -10,7 +10,7 @@
         <input type="hidden" asp-for="Product.Id" />
         <div class="form-group row">
             <label asp-for="@Model.Product.Name" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <div> <span asp-validation-for="@Model.Product.Name" class="text-danger"></span></div>
                 <input asp-for="Product.Name" class="form-control" />
             </div>
@@ -19,7 +19,7 @@
         {
             <div class="form-group row">
                 <label asp-for="@Model.Product.Category.ID" class="col-sm-2 col-form-label">Категория</label>
-                <div class="col-sm-10">
+                <div class="col-sm-8">
                     <select id="editable-select" asp-for="@Model.Product.Category.Name" class="form-control" asp-items="@(new SelectList(Model.Categories, "Name", "Name", "CategoryId"))">
                         <option value="@Model.Product.Category.Name">@Model.Product.Category.Name</option>
                     </select>
@@ -29,14 +29,14 @@
         }
         <div class="form-group row">
             <label asp-for="@Model.Product.Price" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
                 <input asp-for="Product.Price" class="form-control" />
             </div>
         </div>
         <div class="form-group row">
             <label asp-for="@Model.Product.Color" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <select id="editable-select" asp-for="@Model.Product.Color" class="form-control" asp-items="@(new SelectList(Model.Colors, "Color"))">
                     <option value="@Model.Product.Color">@Model.Product.Color</option>
                 </select>
@@ -45,13 +45,13 @@
         </div>
         <div class="form-group row">
             <label asp-for="@Model.Product.Description" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <div> <span asp-validation-for="@Model.Product.Description" class="text-danger"></span></div>
                 <textarea asp-for="@Model.Product.Description" rows="5" class="form-control vresize"> </textarea>
 
             </div>
         </div>
-        @if (Model.Product.Products != null && Model.Product.Products.Count > 0)
+        @if (Model.Product.Products != null && Model.Product.Products.Count > 0 || Model.Product.Category.Name == "Комплекты")
         {
             @await Component.InvokeAsync("EditProduct", Model)
         }
@@ -60,7 +60,7 @@
             @if (Model.Product.Category.Name != "Комплекты")
             {
                 <div class="row">           
-                    <label class="col-sm-4 col-form-label"> Размеры в наличии:</label>
+                    <label class="col-sm-2 col-form-label"> Размеры в наличии:</label>
                     <div class="col-sm-2">
                         @if (@Model.Product.Sizes != null)
                         {
@@ -77,7 +77,7 @@
                         Delete
                     </a>*@
                         </div>
-                        <label asp-for="@Model.Product.Sizes" class="col-sm-4 col-form-label"> Добавить размер:</label>
+                        <label asp-for="@Model.Product.Sizes" class="col-sm-2 col-form-label"> Добавить размер:</label>
 
                         <div class="col-sm-2">
                             <select multiple="multiple" class="form-control" name="sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
@@ -87,7 +87,7 @@
                 }
             }
             <div class="form-group row">
-                <div class="col-sm-12 ml-auto">
+                <div class="col-sm-10">
                     <button asp-action="RemoveSizes"  class="btn btn-sm btn-warning" asp-route-productId="@Model.Product.Id">Delete Sizes</button>
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a asp-action="Create" class="btn btn-warning">Clean</a>
@@ -106,7 +106,7 @@
             @foreach (FileModel image in @Model.Product.Images)
             {
                 <div class="col-md-3">
-                    <div class="thumbnail container text-center">
+                    <div class="thumbnail text-center">
                         <div>
                             <a href="@Url.Content("/Files/Bg/" + image.Name)">
                                 <img class="imageAdmin" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name">
@@ -137,9 +137,9 @@
 </div>
 
 <script>
-    //function submitForm(formId) {
-    //    document.getElementById(formId).submit();
-    //}
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
     //$('#editable-select').editableSelect();
 
 </script>

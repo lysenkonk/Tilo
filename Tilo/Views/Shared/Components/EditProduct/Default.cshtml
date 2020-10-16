@@ -44,7 +44,7 @@
                 Delete
             </a>*@
             </div>
-            <label asp-for="@Model.Product.Products[i].Sizes" class="col-sm-4 col-form-label"> Добавить размер:</label>
+            <label asp-for="@Model.Product.Products[i].Sizes" class="col-sm-2 col-form-label"> Добавить размер:</label>
 
             <div class="col-sm-2">
                 <select multiple="multiple" class="form-control" name="sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
@@ -53,13 +53,16 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-sm-12 ml-auto">
-                <button asp-action="RemoveSizes" class="btn btn-sm btn-warning" asp-route-productId="@Model.Product.Products[i].Id">Delete Sizes</button>
-                <button class="btn btn-primary" asp-action="AddSize" asp-route-productId="@Model.Product.Products[i].Id">Save</button>
-            </div>
+            <div class="col-sm-10">
+                @if (Model.Product.Products[i].Sizes != null)
+                {
+                    <button asp-action="RemoveSizes" class="btn btn-sm btn-warning" asp-route-productId="@Model.Product.Products[i].Id">Delete Sizes</button>
+                }
+                @if (Model.Product.Products[i].Id > 0)
+                {
+                    <button class="btn btn-primary" asp-action="AddSize" asp-route-productId="@Model.Product.Products[i].Id">Save</button>
+                }
+                </div>
         </div>
     }
-
-
-
 </div>

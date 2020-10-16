@@ -66,7 +66,17 @@ namespace Tilo.Models
                     dbEntry.Color = product.Color;
                     if(product.Products != null)
                     {
-                        dbEntry.Products = new List<Product>(product.Products);
+                        //dbEntry.Products = new List<Product>(product.Products);
+                        foreach(var p in product.Products)
+                        {
+                            foreach (var current in dbEntry.Products)
+                            {
+                                if(p.Id == current.Id)
+                                {
+                                    current.Sizes = p.Sizes;
+                                }
+                            }
+                        }
                     }
                     if (product.Sizes != null)
                     {
@@ -81,6 +91,21 @@ namespace Tilo.Models
                     }
                 }
             }
+
+
+            //try
+            //{
+            //    this._context..Entry(entity).State = EntityState.Modified;
+            //    await this.coreContext.SaveChangesAsync();
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Todo: replace with Microsoft.Extensions.Logger
+            //    Console.WriteLine(ex.ToString());
+            //    throw ex;
+            //}
+
+
             await _context.SaveChangesAsync();
             return product;
         }

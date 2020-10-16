@@ -46,7 +46,8 @@ namespace Tilo
             services.AddTransient<IOrdersRepository, EFOrdersRepository>();
             services.AddDistributedMemoryCache();
             services.AddDbContext<ApplicationDbContext>(options =>
-          options.UseSqlServer(conString));
+            options.UseSqlServer(conString)
+            );
 
             services.AddDbContext<AppIdentityDbContext>(options =>
     options.UseSqlServer(Configuration["Data:TiloIdentity:ConnectionString"]));
@@ -69,6 +70,7 @@ namespace Tilo
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMemoryCache();
 
 
@@ -120,7 +122,7 @@ namespace Tilo
                 //    template: "Shop",
                 //    defaults: new { controller = "Shop", action = "Index" }
                 //    );
-                routes.MapRoute(
+            routes.MapRoute(
             name: "default",
             template: "{controller=Home}/{action=Index}/{id?}");
             });
