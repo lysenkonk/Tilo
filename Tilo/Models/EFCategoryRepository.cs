@@ -123,15 +123,12 @@ namespace Tilo.Models
                             dbEntry.ParentCategory = new Category(category.ParentCategory.Name);
                         }
                     }
-
                     dbEntry.Name = category.Name;
                 }
             }
             await context.SaveChangesAsync();
             return category;
         }
-
-
         public async Task RemoveImage(int productId, string imageName)
         {
             await _repository.RemoveImageAsync(productId, imageName);

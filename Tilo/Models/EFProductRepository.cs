@@ -29,6 +29,7 @@ namespace Tilo.Models
         public async Task<Product> SaveProductAsync(Product product)
         {
             Category category = null;
+            Product dbEntry = null;
             if (product.Category != null)
             {
                 category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
@@ -43,7 +44,7 @@ namespace Tilo.Models
             }
             else
             {
-                Product dbEntry = _context.Products.FirstOrDefault(p => p.Id == product.Id);
+                dbEntry = _context.Products.FirstOrDefault(p => p.Id == product.Id);
 
                 if (dbEntry != null)
                 {
@@ -64,20 +65,33 @@ namespace Tilo.Models
                     dbEntry.Description = product.Description;
                     dbEntry.Price = product.Price;
                     dbEntry.Color = product.Color;
-                    if(product.Products != null)
-                    {
-                        //dbEntry.Products = new List<Product>(product.Products);
-                        foreach(var p in product.Products)
-                        {
-                            foreach (var current in dbEntry.Products)
-                            {
-                                if(p.Id == current.Id)
-                                {
-                                    current.Sizes = p.Sizes;
-                                }
-                            }
-                        }
-                    }
+
+
+                    //if(product.Products != null)
+                    //{
+                    //    //dbEntry.Products = new List<Product>(product.Products);
+                    //    foreach(var p in product.Products)
+                    //    {
+                              //dbEntry.Category = _context.Categories.FirstOrDefault(c => c.Name == product.Category.Name);
+                    //        foreach (var s in p.Sizes)
+                    //        {
+                    //            Size theSameSize = dbEntry.Sizes.FirstOrDefault(size => size.Name == s.Name);
+                    //            if (theSameSize == null)
+                    //            {
+                    //                dbEntry.Sizes.Add(s);
+                    //            }
+                    //        }
+
+
+                    //        //foreach (var current in dbEntry.Products)
+                    //        //{
+                    //        //    if(p.Id == current.Id)
+                    //        //    {
+                    //        //        p.Sizes = current.Sizes;
+                    //        //    }
+                    //        //}
+                    //    }
+                    //}
                     if (product.Sizes != null)
                     {
                         foreach (var s in product.Sizes)
@@ -89,23 +103,25 @@ namespace Tilo.Models
                             }
                         }
                     }
+
+                    if (product.Products != null && dbEntry.Products != null)
+                    {
+                        foreach (var p in product.Products)
+                        {
+                            Product theSameProduct = dbEntry.Products.FirstOrDefault(cur => cur.Id == p.Id);
+                            if (theSameProduct.Sizes != null)
+                            {
+                                if (p.Sizes == null)
+                                {
+                                    p.Sizes = new List<Size>(theSameProduct.Sizes);
+                                }
+                                else p.Sizes = theSameProduct.Sizes;
+                            }
+                        }
+                    }
                 }
             }
-
-
-            //try
-            //{
-            //    this._context..Entry(entity).State = EntityState.Modified;
-            //    await this.coreContext.SaveChangesAsync();
-            //}
-            //catch (Exception ex)
-            //{
-            //    // Todo: replace with Microsoft.Extensions.Logger
-            //    Console.WriteLine(ex.ToString());
-            //    throw ex;
-            //}
-
-
+            
             await _context.SaveChangesAsync();
             return product;
         }

@@ -22,10 +22,14 @@
             @p.Name
         </span>
     </a>
-        @foreach (var c in p.ChildCategories)
+    @foreach (var c in p.ChildCategories)
+    {
+        <a class="tab" asp-action="List" asp-controller="Admin" asp-route-category="@c.Name">@c.Name</a>
+        @*@foreach (var cChild in c.ChildCategories)
         {
-            <a class="tab" asp-action="List" asp-controller="Admin" asp-route-category="@c.Name">@c.Name</a>
-        }
+            <a class="tab" asp-action="List" asp-controller="Admin" asp-route-category="@cChild.Name">@cChild.Name</a>
+        }*@
+    }
 </li>
 
 }

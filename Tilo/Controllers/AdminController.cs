@@ -40,15 +40,6 @@ namespace Tilo.Controllers
             IEnumerable<Product> products = _productsService.Products
              .Where(p => category == null || p.Category?.Name == category).Where(p => p.Category != null);
 
-
-            //IEnumerable<Product> Products = _productsService.Products
-            //    .Where(p => category == null || p.Category.Name == category)
-            //    .OrderBy(p => p.ProductID)
-            //    .Skip((page - 1) * pageSize)
-            //    .Take(pageSize);
-
-            //var count = products.Count();
-            //var items = Products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             var categoryCurrent = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.Name == category);
 
             ViewBag.categoryID = categoryCurrent.ID;
@@ -74,7 +65,6 @@ namespace Tilo.Controllers
         public async Task<IActionResult> Edit(Product product, List<string> sizes)
         {
             Product productCurrent = _productsService.Products.FirstOrDefault(p => p.Id == product.Id);
-            //if(productCurrent.Sizes)
 
             if (ModelState.IsValid)
             {
@@ -102,7 +92,6 @@ namespace Tilo.Controllers
                         product.Sizes = productCurrent.Sizes;
                     }
                 }
-
                 await _productsService.SaveProductAsync(product);
                 TempData["message"] = $"{product.Name} has been saved";
             }
@@ -254,7 +243,6 @@ namespace Tilo.Controllers
             return View("Category", viewModel);
         }
 
-
         [HttpPost]
         [Route("Admin/CreateCategory/{category}")]
         public async Task<IActionResult> CreateCategory(Category category)
@@ -345,10 +333,6 @@ namespace Tilo.Controllers
             return View("Categories", _productsService.Categories);
         }
 
-
-
-
-
         private bool IsProduct(long productId)
         {
             var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
@@ -372,8 +356,6 @@ namespace Tilo.Controllers
             return viewModel;
         }
 
-       
-
         //public async Task<IActionResult> AddCategory(string categoryName, string parentCategory = null) 
         //{
         //    var category = _productsService.Categories.FirstOrDefault(c => c.Name == categoryName);
@@ -389,6 +371,5 @@ namespace Tilo.Controllers
         //        return RedirectToAction("Index");
         //    }
         //}
-
     }
 }
