@@ -32,7 +32,7 @@
             <div class="col-sm-2">
                 @if (@Model.Product.Products[i].Sizes != null)
                 {
-                    <select multiple="multiple" name="sizes" class="form-control" asp-for="@Model.Product.Products[i].Sizes">
+                    <select multiple="multiple" name="sizesD" class="form-control" asp-for="@Model.Product.Products[i].Sizes">
                         @foreach (var size in Model.Product.Products[i].Sizes)
                         {
                             <option>@size.Name</option>

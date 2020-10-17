@@ -57,7 +57,7 @@ namespace Tilo.Models
                     {
                         if (product.Category != null)
                         {
-                            dbEntry.Category = new Category(product.Category.Name);
+                            dbEntry.Category = product.Category;
                         }
                     }
                
@@ -103,7 +103,11 @@ namespace Tilo.Models
                             }
                         }
                     }
+                    if (dbEntry.Sizes != null && product.Sizes == null)
+                    {
+                        product.Sizes = new List<Size>(dbEntry.Sizes);
 
+                    }
                     if (product.Products != null && dbEntry.Products != null)
                     {
                         foreach (var p in product.Products)

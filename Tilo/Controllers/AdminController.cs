@@ -142,7 +142,7 @@ namespace Tilo.Controllers
             return View("Edit", viewModel);
         }
         [Route("Admin/RemoveSizes")]
-        public async Task<IActionResult> RemoveSizes(int productId, List<string> sizes)
+        public async Task<IActionResult> RemoveSizes(int productId, List<string> sizesD)
         {
             Product product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
             Product mainProduct = _productsService.Products.FirstOrDefault(p => p.Products.Contains(product));
@@ -151,7 +151,7 @@ namespace Tilo.Controllers
             {
                 return RedirectToAction("Create");
             }
-            await _productsService.RemoveSizes(product.Id, sizes);
+            await _productsService.RemoveSizes(product.Id, sizesD);
 
 
             if (mainProduct != null)

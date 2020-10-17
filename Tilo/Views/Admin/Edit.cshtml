@@ -65,7 +65,7 @@
                         @if (@Model.Product.Sizes != null)
                         {
 
-                            <select multiple="multiple" name="sizes" class="form-control" asp-for="@Model.Product.Sizes">
+                            <select multiple="multiple" name="sizesD" class="form-control" asp-for="@Model.Product.Sizes">
                                 @foreach (var size in Model.Product.Sizes)
                                 {
                                     <option>@size.Name</option>
