@@ -8,6 +8,7 @@ using Tilo.Infrastructure;
 using Tilo.Services;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System;
 
 namespace Tilo.Controllers
 {
@@ -57,29 +58,29 @@ namespace Tilo.Controllers
         [Route("Cart/CreateOrder")]
         public async Task<IActionResult> CreateOrder(Order order)
         {
-            order.Lines = GetCart().Selections.Select(s => new OrderLine
+            try
             {
-                ProductId = s.ProductId,
-                Quantity = s.Quantity
-            }).ToArray();
+                order.Lines = GetCart().Selections.Select(s => new OrderLine
+                {
+                    ProductId = s.ProductId,
+                    Quantity = s.Quantity
+                }).ToArray();
 
-            ordersRepository.AddOrder(order);
-            
-            SaveCart(new Cart());
-            bool isSuccess = await SendMessage(order);
-            if (isSuccess)
-            {
+                ordersRepository.AddOrder(order);
+
+                SaveCart(new Cart());
+                await SendMessage(order);
                 return RedirectToAction("Completed");
             }
-            else
+            catch (Exception ex)
             {
-                return RedirectToAction("NotCompleted");
+                return View("NotCompleted", ex.Message.ToString());
             }
         }
         [Route("Cart/NotCompleted")]
-        public IActionResult NotCompleted()
+        public IActionResult NotCompleted(string ex)
         {
-            return View();
+            return View("NotCompleted", ex);
         }
         [Route("Cart/Completed")]
         public IActionResult Completed()
@@ -87,8 +88,7 @@ namespace Tilo.Controllers
              return View();
         }
         
-
-        public async Task<bool> SendMessage(Order order)
+        public async Task<IActionResult> SendMessage(Order order)
         {
             long numberOrder = ordersRepository.Orders.Last<Order>().Id;
             var textMessage = "Deer " + order.CustomerName + ", your order №" + numberOrder + " is processed. Our manager will contact you";
@@ -97,11 +97,11 @@ namespace Tilo.Controllers
             try
             {
                 await emailService.SendEmailAsync(order.Email, subject, textMessage);
-                return true;
+                return RedirectToAction("Completed");
             }
-            catch
+            catch (Exception ex)
             {
-                return false;
+                throw new Exception(ex.Message.ToString());            
             }
         }
 

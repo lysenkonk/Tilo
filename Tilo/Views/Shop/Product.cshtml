@@ -89,7 +89,7 @@
                                             <input type="hidden" asp-for="@Model.product.Color" />
                                             @if (Model.product.Products.Count > 0)
                                             {
-                                                <div class="col-sm-2 col-form-label">Размер</div>
+                                                <label class="col-sm-3 col-form-label">Размер</label>
 
                                                 <div class="form-group row">
                                                   
@@ -98,14 +98,15 @@
                                                         if (Model.product.Products[i].Sizes != null)
                                                         {
                                                             @*<div class="form-group row">*@
-                                                                <label asp-for="@Model.product.Products[i].Sizes" class="col-sm-2 col-form-label">@Model.product.Products[i].Name</label>
-                                                                <div class="col-sm-10">
-                                                                    <select class="source" name="size" asp-for="@Model.product.Products[i].Sizes" asp-items="@(new SelectList(Model.product.Products[i].Sizes, "Name", "Name"))">
-                                                                        <optgroup class="select2-result-selectable" label="Enter size"></optgroup>
-                                                                    </select>
-                                                                    @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
+                                                                
+                                                    <div class="col-sm-8">
+                                                        <select class="source" name="size" asp-for="@Model.product.Products[i].Sizes" asp-items="@(new SelectList(Model.product.Products[i].Sizes, "Name", "Name"))">
+                                                            <optgroup class="select2-result-selectable" label="Enter size"></optgroup>
+                                                        </select>
+                                                        <label asp-for="@Model.product.Products[i].Sizes" class="col-sm-3   float-right">@(Model.product.Products[i].Name == "Top" ? "Бра" : "Трусики")</label>
+                                                        @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
 
-                                                                </div>
+                                                    </div>
                                                             @*</div>*@
                                                         }
                                                     }
@@ -131,11 +132,14 @@
 
                                             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
                                             <div class="card-text p-1">
+                                                <label> Цвет: @Model.product.Color</label>
+                                                </br>
                                                 @(Model.product.Description ?? "(No Description Available")
+
                                                 <button type="submit"
                                                         class="btn btn-primary btn-sm center-block"
                                                         style=" background-color:black; margin-top:20px">
-                                                    Add To Cart
+                                                    Купить
                                                 </button>
                                             </div>
                                         </form>

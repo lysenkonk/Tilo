@@ -778,16 +778,17 @@ img.hover-shadow {
             .sidenavAdm ul li .tab {
                 display: block;
                 width: 219px;
-                height: 32px;
+                /*height: 32px;*/
                 text-decoration: none;
                 background: rgba(86, 61, 124, .15);
                 overflow: hidden;
+                padding: 5px 5px 5px 10px;
                 font-size: 14px
             }
 
                 .sidenavAdm ul li .tab span {
-                    float: left;
-                    margin: 7px 0 0 26px;
+                    /*float: left;*/
+                    padding: 5px 5px 5px 20px;
                     display: inline;
                     /*background: url(../Files/design/dot01.gif) repeat-x 0 100%*/
                 }
