@@ -1,6 +1,20 @@
 ﻿@model AdminProductViewModel
 
 <div id="selection">
+
+    <div class="form-group row">
+        @*<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>*@
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-6 col-form-label">
+            <input name="name" class="form-control" />
+        </div>
+        <div class="col-sm-2 col-form-label">
+            <button asp-action="AddProductToSuit" class="btn btn-sm btn-primary"
+                    asp-route-productId="@Model.Product.Id">
+                Add Product
+            </button>
+        </div>
+    </div>
     @for (int i = 0; i < Model.Product.Products.Count; i++)
     {
         @*<div class="form-group row">
@@ -40,9 +54,9 @@
                     </select>
                 }
                 @*<a asp-action="RemoveSizes" class="btn btn-sm btn-warning"
-               asp-route-productId="@Model.Product.Id">
-                Delete
-            </a>*@
+                       asp-route-productId="@Model.Product.Id">
+                        Delete
+                    </a>*@
             </div>
             <label asp-for="@Model.Product.Products[i].Sizes" class="col-sm-2 col-form-label"> Добавить размер:</label>
 
@@ -62,7 +76,9 @@
                 {
                     <button class="btn btn-primary" asp-action="AddSize" asp-route-productId="@Model.Product.Products[i].Id">Save</button>
                 }
-                </div>
+            </div>
         </div>
     }
+
+
 </div>

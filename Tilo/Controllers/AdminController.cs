@@ -232,6 +232,24 @@ namespace Tilo.Controllers
             return View("Edit", viewModel);
         }
 
+        [Route("Admin/AddProductToSuit")]
+        public async Task<IActionResult> AddProductToSuit(int productId, string name)
+        {
+            var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
+            if (name != null)
+            {               
+                if (product == null)
+                {
+                    TempData["message"] = $"That product doesn't exist";
+                }
+                product.Products.Add(new Product(name));
+                await _productsService.SaveProductAsync(product);
+            }
+            
+            var viewModel = CreateAdminViewModel(product);
+            return View("Edit", viewModel);
+        }
+
         [Route("Admin/CreateCategory")]
         public IActionResult CreateCategory()
         {

@@ -1,4 +1,4 @@
-﻿using System;
+﻿   using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,18 +13,18 @@ namespace Tilo.Models
         [Required(ErrorMessage = "Please enter a product name")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please enter a description")]
+        //[Required(ErrorMessage = "Please enter a description")]
         public string Description { get; set; }
 
         //[Required(ErrorMessage = "Please enter a size")]
         public List<Size> Sizes { get; set; }
 
-        [Required]
+        //[Required]
         [Range(0, int.MaxValue,
             ErrorMessage = "Please enter a positive price")]
         public int Price { get; set; }
 
-        [Required(ErrorMessage = "Please enter a color")]
+       // [Required(ErrorMessage = "Please enter a color")]
         public string Color { get; set; }
 
         //public int CategoryId { get; set; }
@@ -43,9 +43,11 @@ namespace Tilo.Models
             Category = category;
             Name = name;
         }
-        public Product( string name = null)
+        public Product( string name = null, string color = "default")
         {
             Name = name;
+            Color = color;
+            Description = color;
         }
     }
 }

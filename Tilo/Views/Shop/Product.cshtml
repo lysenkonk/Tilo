@@ -111,6 +111,8 @@
                                                         }
                                                     }
                                                 </div>
+
+
                                             }
                                             else
                                             {
@@ -158,7 +160,7 @@
                             <h4>Вам также могут понравиться:</h4>
                         </div>
                         <div class="text-left">
-                            @foreach (var p in Model.Products)
+                            @foreach (var p in Model.Products.Take(5))
                             {
                                 <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
                                     @if (p.Images.Count > 0 && Model.product.Id != p.Id)
@@ -220,6 +222,12 @@
             let imgSrc = "/Files/Bg/" + imgName;
             bgImg.setAttribute('src', imgSrc);
         }
+
+
+
+
+
+
     })
 </script>
 
