@@ -63,6 +63,7 @@ namespace Tilo.Controllers
             {
                 Products = _repository.Products
                 .Where(p => category == null || p.Category.Name == category)
+                .Where(p => p.Category.Name != null)
                 .OrderBy(p => p.Id)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
@@ -71,7 +72,7 @@ namespace Tilo.Controllers
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
                     TotalItems = category == null ?
-                                _repository.Products.Count() :
+                                _repository.Products.Where(p => p.Category.Name != null).Count() :
                                 _repository.Products.Where(e => e.Category.Name == category).Count()
                 },
                 CurrentCategory = category

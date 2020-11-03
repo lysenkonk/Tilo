@@ -100,14 +100,14 @@ namespace Tilo.Controllers
             return View(viewModel);
         }
         [Route("Admin/AddSizes")]
-        public async Task<IActionResult> AddSize(int productId, List<string> sizes)
+        public async Task<IActionResult> AddSize(int productId, List<string> sizes, int priceEdit)
         {
             Product productCurrent = _productsService.Products.FirstOrDefault(p => p.Id == productId);
             //if(productCurrent.Sizes)
 
             if (sizes.Count > 0)
             {
-                if (productCurrent !=null && productCurrent.Sizes == null)
+                if (productCurrent != null && productCurrent.Sizes == null)
                 {
                     productCurrent.Sizes = new List<Size>();
                     foreach (var s in sizes)
@@ -125,16 +125,21 @@ namespace Tilo.Controllers
                         }
                     }
                 }
-                await _productsService.SaveProductAsync(productCurrent);
-                TempData["message"] = $"{productCurrent.Name} has been saved";
             }
+            if (priceEdit > 0)
+            {
+                productCurrent.Price = priceEdit;
+            }
+            await _productsService.SaveProductAsync(productCurrent);
+                TempData["message"] = $"{productCurrent.Name} has been saved";
+            
             if (productCurrent.Category == null)
             {
-                foreach (var product in _productsService.Products)
+                foreach (var productC in _productsService.Products)
                 {
-                    if (product.Products.Contains(productCurrent))
+                    if (productC.Products.Contains(productCurrent))
                     {
-                        productCurrent = product;
+                        productCurrent = productC;
                     }
                 }
             }
@@ -233,8 +238,9 @@ namespace Tilo.Controllers
         }
 
         [Route("Admin/AddProductToSuit")]
-        public async Task<IActionResult> AddProductToSuit(int productId, string name)
+        public async Task<IActionResult> AddProductToSuit(int productId, string name, int price)
         {
+            //int priceConvert = String
             var product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
             if (name != null)
             {               
@@ -242,7 +248,7 @@ namespace Tilo.Controllers
                 {
                     TempData["message"] = $"That product doesn't exist";
                 }
-                product.Products.Add(new Product(name));
+                product.Products.Add(new Product(name, price));
                 await _productsService.SaveProductAsync(product);
             }
             
@@ -369,7 +375,8 @@ namespace Tilo.Controllers
                 Product = product,
                 Categories = _productsService.Categories,
                 Colors = _productsService.Colors,
-                SizesForCreateProduct = _productsService.SizesForCreateProduct
+                SizesForCreateProduct = _productsService.SizesForCreateProduct,
+                SubProductsNames = _productsService.SubProductsNames
             };
             return viewModel;
         }

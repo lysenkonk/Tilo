@@ -43,10 +43,11 @@ namespace Tilo.Models
             Category = category;
             Name = name;
         }
-        public Product( string name = null, string color = "default")
+        public Product( string name, int price = 0 , string color = "default")
         {
             Name = name;
             Color = color;
+            Price = price;
             Description = color;
         }
     }

@@ -5,9 +5,18 @@
     <div class="form-group row">
         @*<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>*@
         <label class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-6 col-form-label">
-            <input name="name" class="form-control" />
+        <div class="col-sm-2">
+            <select class="form-control" name="name" asp-items="@(new SelectList(Model.SubProductsNames, "Name"))">
+                @*<option value="@Model.Product.Color">@Model.Product.Color</option>*@
+            </select>
         </div>
+        <div class="col-sm-2">
+            <span asp-for="Product.Price" class="text-danger"></span>
+            <input asp-for="Product.Price" name="price" class="form-control price" value="0" />
+        </div>
+        @*<div class="col-sm-6 col-form-label">
+                <input name="name" class="form-control" />
+            </div>*@
         <div class="col-sm-2 col-form-label">
             <button asp-action="AddProductToSuit" class="btn btn-sm btn-primary"
                     asp-route-productId="@Model.Product.Id">
@@ -17,68 +26,68 @@
     </div>
     @for (int i = 0; i < Model.Product.Products.Count; i++)
     {
-        @*<div class="form-group row">
-                <label asp-for="@prod.Description" class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                    <div> <span asp-validation-for="@prod.Description" class="text-danger"></span></div>
-                    <textarea asp-for="@prod.Description" rows="5" class="form-control vresize"> </textarea>
+        <form asp-action="AddSize" asp-route-productId="@Model.Product.Products[i].Id" method="post">
+            <input type="hidden" asp-for="@Model.Product.Products[i].Id" />
+            <input type="hidden" asp-for="@Model.Product.Products[i].Name" value="@Model.Product.Products[i].Name" />
+            <input type="hidden" asp-for="@Model.Product.Products[i].Color" value="black" />
+            @*<input type="hidden" asp-for="@Model.Product.Products[i].Category.Name" />*@
+            <input type="hidden" asp-for="@Model.Product.Products[i].Name" value="@Model.Product.Name" />
+            <input type="hidden" asp-for="@Model.Product.Products[i].Description" value="Color: @Model.Product.Color" />
 
+            @*<div class="form-group row">
+                    <label asp-for="@Model.Product.Products[i].Sizes" class="col-sm-2 col-form-label">@Model.Product.Products[i].Name:</label>
+                    <div class="col-sm-10">
+                        <select multiple id="editable-select" name="@Model.Product.Products[i].Name" asp-for="@Model.Product.Products[i].Sizes" class="form-control" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name", Model.Product.Sizes))">
+                        </select>
+                    </div>
+                </div>*@
+
+            <div class="row">
+                <label class="col-sm-1 col-form-label"> @Model.Product.Products[i].Name </label>
+
+                <div class="col-sm-1">
+                    <label asp-for="@Model.Product.Price">Цена</label>
+                    <span asp-validation-for="@Model.Product.Products[i].Price" class="text-danger"></span>
+                    <input asp-for="@Model.Product.Products[i].Price" name="priceEdit" class="form-control" />
                 </div>
-            </div>*@
-        <input type="hidden" asp-for="@Model.Product.Products[i].Id" />
-        <input type="hidden" asp-for="@Model.Product.Products[i].Name" value="@Model.Product.Products[i].Name" />
-        <input type="hidden" asp-for="@Model.Product.Products[i].Color" value="black" />
-        @*<input type="hidden" asp-for="@Model.Product.Products[i].Category.Name" />*@
-        <input type="hidden" asp-for="@Model.Product.Products[i].Name" value="@Model.Product.Name" />
-        <input type="hidden" asp-for="@Model.Product.Products[i].Description" value="Color: @Model.Product.Color" />
-
-        @*<div class="form-group row">
-                <label asp-for="@Model.Product.Products[i].Sizes" class="col-sm-2 col-form-label">@Model.Product.Products[i].Name:</label>
-                <div class="col-sm-10">
-                    <select multiple id="editable-select" name="@Model.Product.Products[i].Name" asp-for="@Model.Product.Products[i].Sizes" class="form-control" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name", Model.Product.Sizes))">
-                    </select>
+                <label class="col-sm-2 col-form-label"> Размеры в наличии:</label>
+                <div class="col-sm-2">
+                    @if (@Model.Product.Products[i].Sizes != null)
+                    {
+                        <select multiple="multiple" name="sizesD" class="form-control" asp-for="@Model.Product.Products[i].Sizes">
+                            @foreach (var size in Model.Product.Products[i].Sizes)
+                            {
+                                <option>@size.Name</option>
+                            }
+                        </select>
+                    }
+                    @*<a asp-action="RemoveSizes" class="btn btn-sm btn-warning"
+                           asp-route-productId="@Model.Product.Id">
+                            Delete
+                        </a>*@
                 </div>
-            </div>*@
+                <label asp-for="@Model.Product.Products[i].Sizes" class="col-sm-2 col-form-label"> Добавить размер:</label>
 
-        <div class="row">
-            <label class="col-sm-2 col-form-label"> @Model.Product.Products[i].Name</label>
-            <label class="col-sm-2 col-form-label"> Размеры в наличии:</label>
-            <div class="col-sm-2">
-                @if (@Model.Product.Products[i].Sizes != null)
-                {
-                    <select multiple="multiple" name="sizesD" class="form-control" asp-for="@Model.Product.Products[i].Sizes">
-                        @foreach (var size in Model.Product.Products[i].Sizes)
-                        {
-                            <option>@size.Name</option>
-                        }
-                    </select>
-                }
-                @*<a asp-action="RemoveSizes" class="btn btn-sm btn-warning"
-                       asp-route-productId="@Model.Product.Id">
-                        Delete
-                    </a>*@
+                <div class="col-sm-2">
+                    <select multiple="multiple" class="form-control" name="sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
+                    @*<span asp-validation-for="@Model.Product.Sizes" class="text-danger"></span>*@
+                </div>
             </div>
-            <label asp-for="@Model.Product.Products[i].Sizes" class="col-sm-2 col-form-label"> Добавить размер:</label>
 
-            <div class="col-sm-2">
-                <select multiple="multiple" class="form-control" name="sizes" asp-items="@(new SelectList(Model.SizesForCreateProduct, "Name", "Name"))"></select>
-                @*<span asp-validation-for="@Model.Product.Sizes" class="text-danger"></span>*@
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    @if (Model.Product.Products[i].Sizes != null)
+                    {
+                        <button asp-action="RemoveSizes" class="btn btn-sm btn-warning" asp-route-productId="@Model.Product.Products[i].Id">Delete Sizes</button>
+                    }
+                    @if (Model.Product.Products[i].Id > 0)
+                    {
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    }
+                </div>
             </div>
-        </div>
 
-        <div class="form-group row">
-            <div class="col-sm-10">
-                @if (Model.Product.Products[i].Sizes != null)
-                {
-                    <button asp-action="RemoveSizes" class="btn btn-sm btn-warning" asp-route-productId="@Model.Product.Products[i].Id">Delete Sizes</button>
-                }
-                @if (Model.Product.Products[i].Id > 0)
-                {
-                    <button class="btn btn-primary" asp-action="AddSize" asp-route-productId="@Model.Product.Products[i].Id">Save</button>
-                }
-            </div>
-        </div>
+
+        </form>
     }
-
-
 </div>

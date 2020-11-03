@@ -10,6 +10,7 @@ namespace Tilo.Models.ViewModels
         public IEnumerable<Category> Categories { get; set; }
         public List<Size> SizesForCreateProduct { get; set; }
         public IEnumerable<string> Colors { get; set; }
+        public IEnumerable<string> SubProductsNames { get; set; }
         public Product Product { get; set; }
     }
 }
