@@ -697,3 +697,11 @@ body {
 .text-center{
     padding-top: 2em;
 }
+label {
+    font-weight: 500;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: black;
+    color: white;
+}

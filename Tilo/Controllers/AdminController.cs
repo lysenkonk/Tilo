@@ -370,6 +370,10 @@ namespace Tilo.Controllers
 
         private AdminProductViewModel CreateAdminViewModel(Product product)
         {
+            if(_productsService.Products.FirstOrDefault(p => p.Id == product.Id) != null)
+                {
+                product = _productsService.Products.FirstOrDefault(p => p.Id == product.Id);
+                }
             var viewModel = new AdminProductViewModel
             {
                 Product = product,

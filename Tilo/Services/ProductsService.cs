@@ -29,7 +29,7 @@ namespace Tilo.Services
         }
 
         public IEnumerable<Product> Products => _repository.Products.Include(p => p.Images).Include(p => p.Category).Include(p => p.Products).ThenInclude(subProduct => subProduct.Sizes).Include(p => p.Sizes);
-        public IEnumerable<Category> Categories => _categoryRepository.Categories;
+        public IEnumerable<Category> Categories => _categoryRepository.Categories.Include(p => p.ParentCategory);
         public IEnumerable<Category> ParentCategories => _repository.Categories.Where(p => p.ParentCategory == null);
         public IEnumerable<string> SubProductsNames => new string[] { "Гартеры", "Пояс" };
 

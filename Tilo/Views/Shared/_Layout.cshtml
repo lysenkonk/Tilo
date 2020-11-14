@@ -156,10 +156,10 @@
 
                             </div>
                             <div class="ulItem left-item">
-                                <a>
-                                    <span>
+                                <a asp-action="List" asp-controller="Shop" asp-route-category="Купальники">
+                                    @*<span>*@
                                         Купальники
-                                    </span>
+                                    @*</span>*@
                                 </a>
                             </div>
                             <div class="ulItem left-item">
@@ -220,7 +220,7 @@
                     <div class="footer-main-menu">
                         <ul class="clearfix">
                             <li class="item">
-                                <a asp-action="Index" asp-controller="Shop">
+                                <a asp-action="Index" asp-controller="Shop" >
                                     <span> Новая коллекция</span>
                                 </a>
                             </li>

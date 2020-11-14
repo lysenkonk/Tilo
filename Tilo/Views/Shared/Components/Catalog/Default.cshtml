@@ -15,49 +15,28 @@
         <i class="fa fa-caret-down"></i>
     </button>
         @*</a>*@
-            <div class="dropdown-container">
-                @foreach (var c in p.ChildCategories)
-                {
+    <div class="dropdown-container">
+        @foreach (var c in p.ChildCategories)
+        {
+            @if (c.ChildCategories.Count < 1)
+            {
                 <a asp-action="List" asp-controller="Shop" asp-route-category="@c.Name" asp-route-page="1">@c.Name</a>
-                }
 
+            }
+            else
+            {
+            <button class="dropdown-btn">
+                  @c.Name
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-container">
+                @foreach (var subCategory in c.ChildCategories)
+                {
+                    <a asp-action="List" asp-controller="Shop" asp-route-category="@subCategory.Name" asp-route-page="1">@subCategory.Name</a>
+                }
             </div>
             }
-
-            @*<button class="dropdown-btn">
-                    Dropdown
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-                <button class="dropdown-btn">
-                    Dropdown
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-                <button class="dropdown-btn">
-                    Dropdown
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-                <button class="dropdown-btn">
-                    Dropdown
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>*@
+        }
+     </div>
+    }
     </div>

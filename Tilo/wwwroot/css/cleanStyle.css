@@ -788,10 +788,62 @@ img.hover-shadow {
 
                 .sidenavAdm ul li .tab span {
                     /*float: left;*/
+                    padding: 5px 5px 5px 0px;
+                    display: inline;
+                    /*background: url(../Files/design/dot01.gif) repeat-x 0 100%*/
+                }
+                /*------------------------------------------------------tab2--------*/
+                .sidenavAdm ul li .tab2:hover {
+                    /*background: url(../Files/design/design-02.png) no-repeat -211px -66px;*/
+                    color: #303030;
+                    text-decoration: none
+                }
+
+            .sidenavAdm ul li .tab2 {
+                display: block;
+                width: 219px;
+                /*height: 32px;*/
+                text-decoration: none;
+                background: rgba(86, 61, 124, .15);
+                overflow: hidden;
+                padding: 5px 5px 5px 30px;
+                font-size: 14px
+            }
+
+                .sidenavAdm ul li .tab2 span {
+                    /*float: left;*/
                     padding: 5px 5px 5px 20px;
                     display: inline;
                     /*background: url(../Files/design/dot01.gif) repeat-x 0 100%*/
                 }
+
+                .sidenavAdm ul li .tab3:hover {
+                    /*background: url(../Files/design/design-02.png) no-repeat -211px -66px;*/
+                    color: white;
+                    text-decoration: none
+                }
+
+            .sidenavAdm ul li .tab3 {
+                display: block;
+                width: 219px;
+                /*height: 32px;*/
+                text-decoration: none;
+                background: rgba(86, 61, 124, .15);
+                overflow: hidden;
+                padding: 5px 5px 5px 40px;
+                font-size: 14px;
+                color: black;
+            }
+
+                .sidenavAdm ul li .tab3 span {
+                    /*float: left;*/
+                    padding: 5px 5px 5px 30px;
+                    display: inline;
+                    /*background: url(../Files/design/dot01.gif) repeat-x 0 100%*/
+                }
+
+
+
 
             .sidenavAdm ul li .list {
                 padding: 0 25px 1px;

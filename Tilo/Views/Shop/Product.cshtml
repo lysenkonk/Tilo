@@ -88,7 +88,7 @@
                                             <input type="hidden" asp-for="@Model.product.Color" />
                                             @if (Model.product.Products.Count > 0)
                                             {
-                                                <label class="col-sm-3 col-form-label">Размер</label>
+                                                <label class="col-sm-2 col-form-label">Размер</label>
                                                 <div class="form-group row">
                                                   
                                                     @for (int i = 0; i < Model.product.Products.Count; i++)
@@ -97,11 +97,12 @@
                                                         {
                                                             @*<div class="form-group row">*@
                                                                 
-                                                    <div class="col-sm-8">
+                                                    <div class="col-sm-8 font-weight-normal">
+
                                                         <select class="source" name="size" asp-for="@Model.product.Products[i].Sizes" asp-items="@(new SelectList(Model.product.Products[i].Sizes, "Name", "Name"))">
                                                             <optgroup class="select2-result-selectable" label="Enter size"></optgroup>
                                                         </select>
-                                                        <label asp-for="@Model.product.Products[i].Sizes" class="col-sm-3   float-right">
+                                                        <label asp-for="@Model.product.Products[i].Sizes" class="col-sm-2 float-right">
                                                             @if (Model.product.Products[i].Name == "Top")
                                                             {
                                                                 <span>Бра</span>
@@ -114,7 +115,14 @@
                                                             {
                                                                 <span>@Model.product.Products[i].Name</span>
                                                             }
+
+                                                            @if (Model.product.Products[i].Price > 0)
+                                                            {
+                                                                <label asp-for=@Model.product.Products[i].Price class="col-sm-1">+@Model.product.Products[i].Price<span class="woocommerce-Price-currencySymbol">грн</span></label>
+
+                                                            }
                                                         </label>
+
                                                         @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
 
                                                     </div>
@@ -161,7 +169,7 @@
                 @if (Model.Products != null)
                 {
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-10">
 
                             <h4>Вам также могут понравиться:</h4>
                         </div>

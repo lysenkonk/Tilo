@@ -13,6 +13,16 @@
     <link rel="stylesheet" type="text/css" href="~/css/mainStyle.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -1px;
+            }
+
         .placeholder {
             visibility: collapse;
             display: none
@@ -45,7 +55,7 @@
         </ul>
         <div class="col-2">
             <a class="btn btn-sm btn-info"
-               asp-action="Logout" asp-controller="Account" >Log  Out</a>
+               asp-action="Logout" asp-controller="Account">Log  Out</a>
         </div>
     </div>
 
@@ -73,6 +83,15 @@
             @RenderBody()
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-submenu a.test').on("click", function (e) {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
+    </script>
 </body>
 </html>
 

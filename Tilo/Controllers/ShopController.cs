@@ -55,7 +55,8 @@ namespace Tilo.Controllers
             };
             return View(viewModel);
         }
-        [Route("Shop/List")]
+        [HttpGet]
+        [Route("Shop/List/")]
         [Route("{category}/{page}")]
         public ViewResult List(string category, int page = 1)
         {

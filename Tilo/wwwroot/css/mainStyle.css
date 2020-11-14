@@ -177,6 +177,12 @@
 .container {
     text-align: center;
 }
+
+/*priceEditSubProducts*/
+.price {
+    width: 70px;
+    text-align: center;
+}
 /*02.11.2020 form Edit product view*/
     /*.container .row:first-child div {
         background-color: white;

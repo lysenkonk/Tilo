@@ -9,6 +9,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using Tilo.Models;
 using Tilo.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tilo.Models
 {
@@ -31,14 +32,14 @@ namespace Tilo.Models
             _appEnvironment = appEnvironment;
 
         }
-        public IEnumerable<Category> Categories => context.Categories;
+        public IQueryable<Category> Categories => context.Categories.Include(p => p.ParentCategory);
         public IEnumerable<Category> ParentCategories => context.Categories.Where(p => p.ParentCategory == null);
 
         void SetChildCategories()
         {
             foreach (var p in ParentCategories)
             {
-                p.ChildCategories = context.Categories.Where(e => e.ParentCategory.ID == p.ID).ToList();
+                p.ChildCategories = context.Categories.Where(e => e.ParentCategory.ID == p.ID).Include(c => c.ChildCategories).ToList();
             }
         }
         public async Task<Category> AddCategoryAsync(string categoryName, string categoryParent)
