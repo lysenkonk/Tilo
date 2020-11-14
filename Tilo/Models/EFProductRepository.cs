@@ -21,7 +21,7 @@ namespace Tilo.Models
         public IQueryable<Product> Products =>  _context.Products.Include(p => p.Images).Include(p => p.Category).Include(p => p.Products).ThenInclude(subProduct => subProduct.Sizes).Include(p => p.Sizes);
 
         //public IQueryable<string> Colors => _context.Products.Select(x => x.Color).Distinct().OrderBy(x => x);
-        public IEnumerable<string> Colors => new string[]{"чёрный", "белый", "красный", "зелёный", "синий", "айвори","марсала", "оранжевый", "розовый", "желтый", "голубой", "изумрудный", "морская волна", "серый", "фиолетовый" };
+        public IEnumerable<string> Colors => new string[]{"чёрный", "белый", "красный", "зелёный", "синий", "айвори","марсала", "оранжевый", "розовый", "желтый", "голубой", "изумрудный", "морская волна", "серый", "фиолетовый", "серебряный", "золотой"};
         //public IEnumerable<string> Sizes => new string[] { "70", "75", "80", "A", "B", "C", "D", "E", "XS", "S", "M", "L" };
 
         public IEnumerable<Category> Categories => _context.Categories;
