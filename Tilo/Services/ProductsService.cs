@@ -73,6 +73,7 @@ namespace Tilo.Services
                 throw new Exception("404 Not Found"); // TODO make proper hadling
 
             FileModel file = null;
+            Image image = Image.FromStream(uploadedFile.OpenReadStream(), true, true);
             if (uploadedFile != null)
             {
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + BigFilesFolder + uploadedFile.FileName, FileMode.Create))
@@ -80,7 +81,7 @@ namespace Tilo.Services
                     await uploadedFile.CopyToAsync(fileStream);
                 }
 
-                Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), 195, 195);
+                Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), image.Width / 3, image.Height / 3);
                 resized.Save(_appEnvironment.WebRootPath + SmallFilesFolder + uploadedFile.FileName, ImageFormat.Png);
                 file = new FileModel { Name = uploadedFile.FileName };
             }

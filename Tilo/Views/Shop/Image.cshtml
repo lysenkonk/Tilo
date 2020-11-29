@@ -1,10 +1,12 @@
 ﻿@model Product
 @if (Model.Images.Count > 0)
 {
-       <img height="550" id="img_Bg"  class="zoom-in" name ="@Model.Images[0].Name"  src="@Url.Content("/files/Bg/" + @Model.Images[0].Name)">
+    //if(Model.Category.Name == "Портупеи")
+
+       <img width="400" id="img_Bg"  class="zoom-in" name ="@Model.Images[0].Name"  src="@Url.Content("/files/Bg/" + @Model.Images[0].Name)">
 }
 else
 {
-    <img height="550" id="img_Bg" src="@Url.Content("/Files/main/img/noPhoto.jpg")" class="zoom-in">
+    <img width="400"  id="img_Bg" src="@Url.Content("/Files/main/img/noPhoto.jpg")" class="zoom-in">
 }
  

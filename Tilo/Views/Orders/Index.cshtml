@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-2 text-center">@o.CustomerName</div>
             <div class="col-md-2 text-center">@o.Email</div>
-            <div class="col-md-2 text-center">@o.dateTime.ToString()</div>
+            <div class="col-md-2 text-center">@o.dateTime.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("uk-UA"))</div>
 
             <div class="col-md-1 text-center">
                 @o.Lines.Sum(l => l.Quantity * l.Product.Price)
@@ -52,10 +52,10 @@
             <div class="col-md-3 text-center">
                 <a asp-action="Order" class="btn btn-sm btn-info" asp-controller="Orders"
                    asp-route-id="@o.Id">View</a>
-                <a asp-action="EditOrder" class="btn btn-sm btn-info"
+                @*<a asp-action="EditOrder" class="btn btn-sm btn-info"
                    asp-route-id="@o.Id">
                     Edit
-                </a>
+                </a>*@
                 <a asp-action="DeleteOrder" asp-controller="Orders" class="btn btn-sm btn-danger"
                    asp-route-id="@o.Id">
                     Delete

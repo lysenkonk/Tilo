@@ -21,7 +21,6 @@ namespace Tilo.Controllers
 
         [AllowAnonymous]
         [Route("Account/Login")]
-
         public ViewResult Login(string returnUrl)
         {
             return View(new LoginModel { ReturnUrl = returnUrl });

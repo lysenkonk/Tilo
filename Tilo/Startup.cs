@@ -49,6 +49,7 @@ namespace Tilo
             options.UseSqlServer(conString)
             );
 
+
             services.AddDbContext<AppIdentityDbContext>(options =>
     options.UseSqlServer(Configuration["Data:TiloIdentity:ConnectionString"]));
             services.AddIdentity<IdentityUser, IdentityRole>()

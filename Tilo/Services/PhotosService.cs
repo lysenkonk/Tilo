@@ -30,13 +30,15 @@ namespace Tilo.Services
         public async Task<FileModel> SavePhoto(IFormFile uploadedFile)
         {
             FileModel photo = null;
+            Image image = Image.FromStream(uploadedFile.OpenReadStream(), true, true);
             if (uploadedFile != null)
             {
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + BigGalleryFolder + uploadedFile.FileName, FileMode.Create))
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-                Bitmap resized = ResizePhoto(uploadedFile.OpenReadStream(), 195, 195);
+                
+                Bitmap resized = ResizePhoto(uploadedFile.OpenReadStream(), image.Width / 3, image.Height / 3);
                 resized.Save(_appEnvironment.WebRootPath + SmallGalleryFolder + uploadedFile.FileName, ImageFormat.Png);
                 photo = new FileModel { Name = uploadedFile.FileName };
             }

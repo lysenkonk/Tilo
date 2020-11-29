@@ -543,11 +543,11 @@ header .menu .ulItem {
         font-family: "Roboto",sans-serif;
         font-size: 1.2rem;
         color: black;
-        height: 51px;
-        line-height: 51px;
+        height: 60px;
+        line-height: 20px;
         text-align: center;
         font-weight: 600;
-        padding: 0px 15px;
+        padding: 30px 15px;
         /*border-top: 1px solid #f3f3f3;*/
     }
 
@@ -1748,4 +1748,13 @@ button.custom-button:hover:before {
 }
 #editable-select-size {
     width: 50%;
+}
+/*-------------------------------------------------------------------------------------------------------*/
+#subscribe
+{
+    padding-top: 20px;
+    color: black;
+}
+.email{
+    color: #333;
 }

@@ -70,7 +70,8 @@
 
         }*/
     </style>
-    <title></title>
+    <title>
+    </title>
 </head>
 
 <body>
@@ -256,13 +257,29 @@
                             </a>
                         </li>
                         <li class="item">
-                            <a class="custom-button subscribe-btn">
-                                <span>
-                                    подписаться на рассылку
-                                </span>
-                            </a>
+                            <form id="subscribe" asp-action="Subscribe" asp-controller="Shop">
+                                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                <a>
+                                    @*<span class="email">*@
+                                    <input type="email" required="" name="email" placeholder="Email" />
+                                    @*</span>*@
+                                </a>
+                                <input type="submit" value="Подписаться на рассылку" />
+                            </form>
                         </li>
-                    </ul>
+                        @if (ViewBag.Text != null)
+                        {
+                        <li class="item">
+                            <span>
+
+                                @ViewBag.Text
+
+                            </span>
+                            
+                        </li>
+                        }
+
+                        </ul>
                     <div class="col-md-3">
                         <ul class="clearfix">
                             <li class="item">

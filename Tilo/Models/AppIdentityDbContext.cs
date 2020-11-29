@@ -12,5 +12,7 @@ namespace Tilo.Models
     {
         public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options)
             : base(options) { }
+
+        public DbSet<IdentityUser> AspNetUsers { get; set; }
     }
 }

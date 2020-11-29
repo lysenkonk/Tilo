@@ -50,8 +50,8 @@
                                             <div class="slick-track">
                                                 @foreach (var image in @Model.product.Images)
                                                 {
-                                                    <div class="eProductView_image slick-slide" style="width:176px">
-                                                        <img width="170" class="sm_img" name="@image.Name" src="@Url.Content("/files/Sm/" + @image.Name)" />
+                                                    <div class="eProductView_image slick-slide">
+                                                        <img class="sm_img" name="@image.Name" src="@Url.Content("/files/Sm/" + @image.Name)" />
                                                     </div>
                                                 }
 
