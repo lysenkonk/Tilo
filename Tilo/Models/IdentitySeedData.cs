@@ -12,8 +12,8 @@ namespace Tilo.Models
 {
     public static class IdentitySeedData
     {
-        private const string adminUser = "admintilo";
-        private const string adminPassword = "09Ti01LOka_";
+        private const string adminUser = "Admin";
+        private const string adminPassword = "Secret123$";
 
         public static async Task EnsurePopulated(IApplicationBuilder app)
         {
@@ -24,12 +24,10 @@ namespace Tilo.Models
             UserManager<IdentityUser> userManager = app.ApplicationServices
              .GetRequiredService<UserManager<IdentityUser>>();
 
-            IdentityUser user = await userManager.FindByNameAsync(adminUser);
+            IdentityUser user = await userManager.FindByIdAsync(adminUser);
             if (user == null)
-            {
-                user = new IdentityUser("admintilo");
-                var result = await userManager.CreateAsync(user, adminPassword);
-            }
+                user = new IdentityUser("Admin");
+            await userManager.CreateAsync(user, adminPassword);
         }
     }
 }

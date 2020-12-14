@@ -15,35 +15,18 @@ namespace Tilo.Controllers
     public class AdminController : Controller
     {
         private readonly ProductsService _productsService;
-        private readonly PhotosService _photosService;
 
         public int pageSize = 20;
 
-        public AdminController(ProductsService service, PhotosService photosService)
+        public AdminController(ProductsService service)
         {
             _productsService = service;
-            _photosService = photosService;
         }
 
         //-------------------------------------------------------------------------Catalog actions----------------------------
         [Route("Admin")]
         public ViewResult Index()
         {
-            //List<string> photoNames = new List<string>();
-            ////IEnumerable<Product> products = _productsService.Products.Where
-            //foreach (var product in _productsService.Products)
-            //{
-            //    foreach (var photoName in product.Images)
-            //    {
-            //        photoNames.Add(photoName.Name);
-            //    }
-            //}
-            //foreach(var photoName in photoNames)
-            //{
-            //    _photosService.AddThumbnailPhotoToNewFolderPhoto(photoName);
-            //}
-
-
             return View("Index", _productsService.Products);
         }
         [Route("Admin/Categories")]
@@ -213,10 +196,7 @@ namespace Tilo.Controllers
                 return RedirectToAction("Create");
             }
 
-            if (product.Images.Exists(p => p.Name == uploadedFile.FileName))
-            {
-                TempData["message"] = $"That filename already exist";
-            }else await _productsService.AddImage(productId, uploadedFile);
+            await _productsService.AddImage(productId, uploadedFile);
             var viewModel = CreateAdminViewModel(product);
 
             return View("Edit", viewModel);

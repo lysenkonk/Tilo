@@ -13,7 +13,7 @@ namespace Tilo.Services
             {
                 var emailMessage = new MimeMessage();
 
-                emailMessage.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
+                emailMessage.From.Add(new MailboxAddress("Tiloshowroom", "kostjja2019@gmail.com"));
                 emailMessage.To.Add(new MailboxAddress(email));
                 emailMessage.Subject = subject;
                 emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -21,16 +21,15 @@ namespace Tilo.Services
                     Text = message
                 };
 
-                using (SmtpClient client = new SmtpClient())
+                using (SmtpClient  client = new SmtpClient())
                 {
-                    await client.ConnectAsync("mail.tiloshowroom.com", 25, false);
-                    await client.AuthenticateAsync("admin@tiloshowroom.com", "winteR$2021");
+                    await client.ConnectAsync("smtp.gmail.com", 465, true);
 
                     await client.SendAsync(emailMessage);
                     await client.DisconnectAsync(true);
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw new Exception(ex.Message.ToString());
             }

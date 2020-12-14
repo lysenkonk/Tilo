@@ -4,14 +4,12 @@ using System.Threading.Tasks;
 using Tilo.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-
-using System.Linq;
-using System.Drawing;
+using Microsoft.AspNetCore.Http;
 using System.IO;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using Microsoft.AspNetCore.Http;
-
+using System.Linq;
 namespace Tilo.Services
 {
     public class ProductsService
@@ -82,9 +80,8 @@ namespace Tilo.Services
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-                double k = (double)image.Width / 190;
-                int height = (int)((double)image.Height / k);
-                Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), 190, height);
+
+                Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), image.Width / 3, image.Height / 3);
                 resized.Save(_appEnvironment.WebRootPath + SmallFilesFolder + uploadedFile.FileName, ImageFormat.Png);
                 file = new FileModel { Name = uploadedFile.FileName };
             }

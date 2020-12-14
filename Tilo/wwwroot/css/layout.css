@@ -643,7 +643,7 @@ img {
 
 /* Slideshow container */
 .slideshow-container {
-    max-width: 1100px;
+    max-width: 1460px;
     position: relative;
     margin: auto;
     margin-top: 40px;
@@ -929,7 +929,7 @@ header .mask {
     float: left;
     overflow: hidden;
     z-index: 6;
-    /*height: 450px;/*change*/  /*width: 280px;*/
+    /*height: 450px;/*change*/ */ width: 280px;
 }
 
     .new-products .products .product.accessory,
@@ -963,7 +963,7 @@ header .mask {
     .new-products .products .product,
     .catalog .products .product {
         width: 20%;
-        /*height: 450px; /*change*/ 
+        /*height: 450px; /*change*/ */
     }
 
         .new-products .products .product img,
@@ -984,11 +984,6 @@ header .mask {
     width: 100%;
     text-align: center;
     background-color: #ffffff;
-    display: table-cell;
-    vertical-align: middle;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
 }
 
 .new-products .products .product img,
@@ -996,10 +991,6 @@ header .mask {
     max-width: 100%;
     max-height: 100%;
     position: relative;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    border-radius: 3px;
 }
 
 @media (min-width: 768px) {
@@ -1143,7 +1134,6 @@ header .mask {
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 10px;
-    margin-top: 10px;
     height: 30px;
 }
 
@@ -1767,8 +1757,4 @@ button.custom-button:hover:before {
 }
 .email{
     color: #333;
-}
-/************************************************************************************************************/
-.mySlides img{
-    border-radius: 5px;
 }
