@@ -131,7 +131,7 @@ header {
     padding: 5px;
 }
 /*----------------------------------------------------------------------------------------*/
-.bg-black{
+.bg-black {
     background-color: black;
 }
 
@@ -562,7 +562,7 @@ header .menu .ulItem {
             color: black;
             text-decoration: none;
         }
-        /*
+    /*
         header .menu .ulItem a:focus {
             background-color: #222;
             color: black;
@@ -643,7 +643,7 @@ img {
 
 /* Slideshow container */
 .slideshow-container {
-    max-width: 1460px;
+    max-width: 1100px;
     position: relative;
     margin: auto;
     margin-top: 40px;
@@ -929,7 +929,7 @@ header .mask {
     float: left;
     overflow: hidden;
     z-index: 6;
-    /*height: 450px;/*change*/ */ width: 280px;
+    /*height: 450px;/*change*/ /*width: 280px;*/
 }
 
     .new-products .products .product.accessory,
@@ -963,7 +963,7 @@ header .mask {
     .new-products .products .product,
     .catalog .products .product {
         width: 20%;
-        /*height: 450px; /*change*/ */
+        /*height: 450px; /*change*/
     }
 
         .new-products .products .product img,
@@ -984,6 +984,11 @@ header .mask {
     width: 100%;
     text-align: center;
     background-color: #ffffff;
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .new-products .products .product img,
@@ -991,6 +996,10 @@ header .mask {
     max-width: 100%;
     max-height: 100%;
     position: relative;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
 }
 
 @media (min-width: 768px) {
@@ -1134,6 +1143,7 @@ header .mask {
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 10px;
+    margin-top: 10px;
     height: 30px;
 }
 
@@ -1231,13 +1241,13 @@ header .mask {
     justify-content: center;
 }
 
-    /*.pagination a {
+/*.pagination a {
         color: black;
     }*/
 
 .btn-primary {
     background-color: black;
-    border-color:white;
+    border-color: white;
     color: white;
 }
 
@@ -1252,6 +1262,7 @@ btn.focus, .btn:focus, .btn:hover {
     background-color: black;
     border-color: #204d74;
 }
+
 @media (min-width: 768px) {
     .col-md-3 {
         width: 25%;
@@ -1317,6 +1328,7 @@ li.item {
     padding: 0;
     padding-left: 12px;
 }
+
 li.itemPicture {
     margin-bottom: 0px;
     height: 16px;
@@ -1326,26 +1338,26 @@ li.itemPicture {
     margin-top: -10px;
 }
 
-    li.item a {
-        display: inline-block;
-        text-transform: uppercase;
-        /*font-family: heliosCondC-Bold;*/
-        text-decoration: none;
-        /*color: white;*/
+li.item a {
+    display: inline-block;
+    text-transform: uppercase;
+    /*font-family: heliosCondC-Bold;*/
+    text-decoration: none;
+    /*color: white;*/
+    transition: 0.3s ease all;
+}
+
+    li.item a:focus {
+        color: #75ded5;
         transition: 0.3s ease all;
     }
 
-        li.item a:focus {
-            color: #75ded5;
-            transition: 0.3s ease all;
-        }
-
-        li.item a span {
-            /*display: block;*/
-            /*transform: scaleX(0.87);*/
-            letter-spacing: 0.8px;
-            color: white;
-        }
+    li.item a span {
+        /*display: block;*/
+        /*transform: scaleX(0.87);*/
+        letter-spacing: 0.8px;
+        color: white;
+    }
 
 .footer-secondary-menu {
     float: left;
@@ -1746,15 +1758,20 @@ button.custom-button:hover:before {
     padding-left: 0px;
     padding-top: 5px;
 }
+
 #editable-select-size {
     width: 50%;
 }
 /*-------------------------------------------------------------------------------------------------------*/
-#subscribe
-{
+#subscribe {
     padding-top: 20px;
     color: black;
 }
-.email{
+
+.email {
     color: #333;
+}
+/************************************************************************************************************/
+.mySlides img {
+    border-radius: 5px;
 }

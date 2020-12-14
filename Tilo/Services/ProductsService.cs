@@ -4,12 +4,14 @@ using System.Threading.Tasks;
 using Tilo.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-using System.IO;
+
+using System.Linq;
 using System.Drawing;
+using System.IO;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Linq;
+using Microsoft.AspNetCore.Http;
+
 namespace Tilo.Services
 {
     public class ProductsService
@@ -80,8 +82,9 @@ namespace Tilo.Services
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-
-                Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), image.Width / 3, image.Height / 3);
+                double k = (double)image.Width / 190;
+                int height = (int)((double)image.Height / k);
+                Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), 190, height);
                 resized.Save(_appEnvironment.WebRootPath + SmallFilesFolder + uploadedFile.FileName, ImageFormat.Png);
                 file = new FileModel { Name = uploadedFile.FileName };
             }
@@ -124,7 +127,7 @@ namespace Tilo.Services
         }
 
         public async Task<Product> RemoveSizes(long productId, List<string> sizes)
-        {     
+        {
             return await _repository.RemoveSizeAsync(productId, sizes);
         }
     }

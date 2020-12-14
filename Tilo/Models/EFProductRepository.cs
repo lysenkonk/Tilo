@@ -39,7 +39,11 @@ namespace Tilo.Models
                 }
             }
             if (product.Id == 0)
-            {              
+            {
+                if (product.Color == null)
+                {
+                    product.Color = "white";
+                }
                 _context.Products.Add(product);
             }
             else

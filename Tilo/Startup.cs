@@ -22,7 +22,7 @@ namespace Tilo
     {
         public Startup(IConfiguration configuration)
         {
-                 Configuration = configuration;
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -34,7 +34,7 @@ namespace Tilo
 
             services.AddMvc();
             string conString = Configuration["Data:TiloProducts:ConnectionString"];
-        
+
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddTransient<ICategoryRepository, EFCategoryRepository>();
             services.AddTransient<IFileModelRepository, EFFileModelRepository>();
@@ -42,6 +42,7 @@ namespace Tilo
 
 
             services.AddTransient<ProductsService>();
+            services.AddTransient<PhotosService>();
             services.AddTransient<EmailService>();
             services.AddTransient<IOrdersRepository, EFOrdersRepository>();
             services.AddDistributedMemoryCache();
@@ -123,9 +124,9 @@ namespace Tilo
                 //    template: "Shop",
                 //    defaults: new { controller = "Shop", action = "Index" }
                 //    );
-            routes.MapRoute(
-            name: "default",
-            template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                name: "default",
+                template: "{controller=Home}/{action=Index}/{id?}");
             });
             SeedData.EnsurePopulated(app);
             IdentitySeedData.EnsurePopulated(app).Wait();

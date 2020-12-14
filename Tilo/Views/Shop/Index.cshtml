@@ -1,24 +1,24 @@
 ﻿@*@model ICategoryRepository*@
-@model IQueryable<Product> 
+@model IQueryable<Product>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="slideshow-container">
     <div class="mySlides fade">
-        <img src="~/files/main/slider/IMG_5308-1.jpg" style="width:100%">
+        <img src="~/files/main/slider/1D2A4399.jpg" style="width:100%">
         @*<div class="text">Caption Text</div>*@
     </div>
 
     <div class="mySlides fade">
-        <img src="~/files/main/slider/tiloMainPage.jpg" style="width:100%">
+        <img src="~/files/main/slider/IMG_9911.jpg" style="width:100%">
     </div>
 
 </div>
 
 <div style="text-align:center">
-    <span class="dot" @*onclick="currentSlide(1)"*@></span>
-    <span class="dot" @*onclick="currentSlide(2)"*@></span>
+    <span class="dot" @*onclick="currentSlide(1)" *@></span>
+    <span class="dot" @*onclick="currentSlide(2)" *@></span>
 </div>
 
 <section class="new-products appear-from-nowhere shown">
@@ -46,8 +46,8 @@
                     <ul class="products">
                         @foreach (var p in Model)
                         {
-                        <li class="product inner-appearing-object">
-                            <a href="#" class="rightClickLink"></a>
+                            <li class="product inner-appearing-object">
+                                <a href="#" class="rightClickLink"></a>
                                 <div class="picture img">
                                     <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
                                         @if (p.Images.Count > 0)
@@ -75,7 +75,7 @@
                                 </div>
                             </li>
                         }
-                            @*<li class="product inner-appearing-object">
+                        @*<li class="product inner-appearing-object">
                                 <a href="#" class="rightClickLink"></a>
                                 <div class="picture img">
                                     <img src="~/files/main/newProducts/1.jpg" />
@@ -160,7 +160,7 @@
 
                                 </div>
                             </li>*@
-                        </ul>
+                    </ul>
 
                 </div>
             </div>
