@@ -36,6 +36,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                @*@if (@Model.product.Category.Name != "Подарочный сертификат")
+                                {*@
                                 <div class="eProductView_sliderNav">
                                     @*<div class="eProductView_sliderNavBtn">
                                             <div class="o-svg o-svg--slider-arrow-top">
@@ -66,6 +68,7 @@
                                             </div>
                                         </div>*@
                                 </div>
+                                    @*}*@
                             </div>
 
                             <div class="eProductView_data">
@@ -166,10 +169,11 @@
                         </div>
                     </div>
                 </div>
-                @if (Model.Products != null)
+                
+                @if (Model.Products != null && Model.product.Category.Name != "Подарочный сертификат")
                 {
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-12">
 
                             <h4>Вам также могут понравиться:</h4>
                         </div>
@@ -179,7 +183,7 @@
                                 <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
                                     @if (p.Images.Count > 0 && Model.product.Id != p.Id)
                                     {
-                                        <img width="200" class="sm_img" name="@p.Images[0].Name" src="@Url.Content("/files/Sm/" + @p.Images[0].Name)" />
+                                        <img  class="sm_img" name="@p.Images[0].Name" src="@Url.Content("/files/Sm/" + @p.Images[0].Name)" />
                                     }
                                 </a>
                             }

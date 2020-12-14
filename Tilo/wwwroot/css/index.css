@@ -24,12 +24,12 @@ html, body {
 }
 
 .main-page-img {
-    background-image: url(../files/main/img/first.jpeg);
+    background-image: url(../files/main/img/firstPage2.jpg);
 }
 
-@media all and (max-width: 640px) {
+@media all and (max-width: 720px) {
     .main-page-img {
-        background-image: url(../files/main/img/IMG_5359-made.jpg);
+        background-image: url(../files/main/img/phoneMainPage2.png);
     }
 }
 

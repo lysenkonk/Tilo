@@ -42,6 +42,7 @@ namespace Tilo
 
 
             services.AddTransient<ProductsService>();
+            services.AddTransient<PhotosService>();
             services.AddTransient<EmailService>();
             services.AddTransient<IOrdersRepository, EFOrdersRepository>();
             services.AddDistributedMemoryCache();
