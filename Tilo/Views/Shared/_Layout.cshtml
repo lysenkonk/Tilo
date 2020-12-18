@@ -159,7 +159,7 @@
                             <div class="ulItem left-item">
                                 <a asp-action="List" asp-controller="Shop" asp-route-category="Купальники">
                                     @*<span>*@
-                                        Купальники
+                                    Купальники
                                     @*</span>*@
                                 </a>
                             </div>
@@ -221,12 +221,12 @@
                     <div class="footer-main-menu">
                         <ul class="clearfix">
                             <li class="item">
-                                <a asp-action="Index" asp-controller="Shop" >
+                                <a asp-action="Index" asp-controller="Shop">
                                     <span> Новая коллекция</span>
                                 </a>
                             </li>
                             <li class="item">
-                                <a class="mallki-link">
+                                <a asp-action="List" asp-controller="Shop" asp-route-category="Подарочный сертификат">
                                     <span>
                                         Подарочные сертификаты
                                     </span>
@@ -269,17 +269,17 @@
                         </li>
                         @if (ViewBag.Text != null)
                         {
-                        <li class="item">
-                            <span>
+                            <li class="item">
+                                <span>
 
-                                @ViewBag.Text
+                                    @ViewBag.Text
 
-                            </span>
-                            
-                        </li>
+                                </span>
+
+                            </li>
                         }
 
-                        </ul>
+                    </ul>
                     <div class="col-md-3">
                         <ul class="clearfix">
                             <li class="item">
@@ -357,5 +357,6 @@
         }
     </script>
     <script src="~/js/zoom.js"></script>
+    @*<script src="https://kit.fontawesome.com/4caef0ad30.js" crossorigin="anonymous"></script>*@
 </body>
 </html>

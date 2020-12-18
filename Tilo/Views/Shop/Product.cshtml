@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div id="container">
     <div id="content">
         @*<div id="ct_size_guide"></div>*@
@@ -38,15 +39,7 @@
                                 </div>
                                 @*@if (@Model.product.Category.Name != "Подарочный сертификат")
                                     {*@
-                                <div class="eProductView_sliderNav">
-                                    @*<div class="eProductView_sliderNavBtn">
-                                            <div class="o-svg o-svg--slider-arrow-top">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                                                    <path fill="#010101" d="M22.4 64.1l28.4-27.6 28.5 27.6 1.5-.9-30-29.1-30 29.1 1.6.9z"></path>
-                                                </svg>
-                                            </div>
-
-                                        </div>*@
+                                <div class="eProductView_sliderNav">                                 
                                     <div class="slick-slider slick-vertical">
                                         <div class="slick-list draggable">
                                             <div class="slick-track">
@@ -60,13 +53,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @*<div class="eProductView_sliderNavBtn jsSliderNavPrev">
-                                            <div class="o-svg o-svg--slider-arrow-bottom">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                                                    <path fill="#010101" d="M23.1 34.1l28.4 27.6L80 34.1l1.5.9-30 29.1-30-29.1 1.6-.9z"></path>
-                                                </svg>
-                                            </div>
-                                        </div>*@
                                 </div>
                                 @*}*@
                             </div>
@@ -79,92 +65,134 @@
                                         </h1>
                                     </a>
                                 </div>
-                                <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="eProductView_row mProductView_price">
-                                    <div class="eProductView_price"><span class="woocommerce-Price-amount amount">@Model.product.Price &nbsp;<span class="woocommerce-Price-currencySymbol">грн</span></span></div>
-                                </div>
-                                <div class="eProductView_row">
-                                    <div class="mProductView_form">
-                                        <form class="variations_form cart " asp-action="AddToCart"
-                                              asp-controller="Cart" method="post" enctype="multipart/form-data" id="@Model.product.Id">
-                                            <input type="hidden" asp-for="@Model.product.Id" />
-                                            <input type="hidden" asp-for="@Model.product.Name" />
-                                            <input type="hidden" asp-for="@Model.product.Color" />
-                                            @if (Model.product.Products.Count > 0)
-                                            {
-                                                <label class="col-sm-2 col-form-label">Размер</label>
-                                                <div class="form-group row">
+                                @if (Model.product.Category.Name != "Подарочный сертификат")
+                                {
+                                    <div itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="eProductView_row mProductView_price">
+                                        <div class="eProductView_price"><span class="woocommerce-Price-amount amount">@Model.product.Price &nbsp;<span class="woocommerce-Price-currencySymbol">грн</span></span></div>
+                                    </div>
+                                }
+                                    <div class="eProductView_row">
+                                        <div class="mProductView_form">
+                                            <form class="variations_form cart " asp-action="AddToCart"
+                                                  asp-controller="Cart" method="post" enctype="multipart/form-data" id="@Model.product.Id">
+                                                <input type="hidden" asp-for="@Model.product.Id" />
+                                                <input type="hidden" asp-for="@Model.product.Name" />
+                                                <input type="hidden" asp-for="@Model.product.Category.Name" />
 
-                                                    @for (int i = 0; i < Model.product.Products.Count; i++)
-                                                    {
-                                                        if (Model.product.Products[i].Sizes != null)
-                                                        {
-                                                            @*<div class="form-group row">*@
-
-                                                            <div class="col-sm-8 font-weight-normal">
-
-                                                                <select class="source" name="size" asp-for="@Model.product.Products[i].Sizes" asp-items="@(new SelectList(Model.product.Products[i].Sizes, "Name", "Name"))">
-                                                                    <optgroup class="select2-result-selectable" label="Enter size"></optgroup>
-                                                                </select>
-                                                                <label asp-for="@Model.product.Products[i].Sizes" class="col-sm-2 float-right">
-                                                                    @if (Model.product.Products[i].Name == "Top")
-                                                                    {
-                                                                        <span>Бра</span>
-                                                                    }
-                                                                    else if (Model.product.Products[i].Name == "Bottom")
-                                                                    {
-                                                                        <span>Трусики</span>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <span>@Model.product.Products[i].Name</span>
-                                                                    }
-
-                                                                    @if (Model.product.Products[i].Price > 0)
-                                                                    {
-                                                                        <label asp-for=@Model.product.Products[i].Price class="col-sm-1">+@Model.product.Products[i].Price<span class="woocommerce-Price-currencySymbol">грн</span></label>
-
-                                                                    }
-                                                                </label>
-
-                                                                @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
-
-                                                            </div>
-                                                            @*</div>*@
-                                                        }
-                                                    }
-                                                </div>
-                                            }
-                                            else
-                                            {
-                                                @if (Model.product.Sizes != null)
+                                                @if (Model.product.Category.Name == "Подарочный сертификат")
                                                 {
                                                     <div class="form-group row">
-                                                        <label asp-for="@Model.product.Sizes" class="col-sm-2 col-form-label">Размер</label>
-                                                        <div class="col-sm-10">
-                                                            <select style="width:70%;" class="source" name="size" asp-for="@Model.product.Sizes" asp-items="@(new SelectList(Model.product.Sizes, "Name", "Name"))">
-                                                                <optgroup class="select2-result-selectable" label="Enter size"></optgroup>
+                                                        <label asp-for="@Model.product.Price" class="col-sm-3 col-form-label">Номинал</label>
+                                                        <div class="col-sm-9">
+                                                            <select style="width:70%;" class="source" asp-for="@Model.product.Price" asp-items="@ViewBag.PricesForSertivicate">
+                                                                @*<optgroup class="select2-result-selectable"></optgroup>*@
                                                             </select>
                                                         </div>
                                                     </div>
                                                 }
-                                            }
 
-                                            <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                                            <div class="card-text p-1">
-                                                <label> Цвет: @Model.product.Color</label>
-                                                </br>
-                                                @(Model.product.Description ?? "(No Description Available")
 
-                                                <button type="submit"
-                                                        class="btn btn-primary btn-sm center-block"
-                                                        style=" background-color:black; margin-top:20px">
-                                                    Купить
-                                                </button>
-                                            </div>
-                                        </form>
+                                                @if (Model.product.Category.Name != "Подарочный сертификат")
+                                                {
+                                                    <input type="hidden" asp-for="@Model.product.Color" />
+                                                    @if (Model.product.Products.Count > 0)
+                                                    {
+                                                        <label class="col-sm-2 col-form-label">Размер</label>
+                                                        <div class="form-group row">
+
+                                                            @for (int i = 0; i < Model.product.Products.Count; i++)
+                                                            {
+                                                                if (Model.product.Products[i].Sizes != null)
+                                                                {
+                                                                    @*<div class="form-group row">*@
+
+                                                                    <div class="col-sm-8 font-weight-normal">
+
+                                                                        <select class="source" name="size" asp-for="@Model.product.Products[i].Sizes" asp-items="@(new SelectList(Model.product.Products[i].Sizes, "Name", "Name"))">
+                                                                            <optgroup class="select2-result-selectable" label="Enter size"></optgroup>
+                                                                        </select>
+                                                                        <label asp-for="@Model.product.Products[i].Sizes" class="col-sm-2 float-right">
+                                                                            @if (Model.product.Products[i].Name == "Top")
+                                                                            {
+                                                                                <span>Бра</span>
+                                                                            }
+                                                                            else if (Model.product.Products[i].Name == "Bottom")
+                                                                            {
+                                                                                <span>Трусики</span>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <span>@Model.product.Products[i].Name</span>
+                                                                            }
+
+                                                                            @if (Model.product.Products[i].Price > 0)
+                                                                            {
+                                                                                <label asp-for=@Model.product.Products[i].Price class="col-sm-1">+@Model.product.Products[i].Price<span class="woocommerce-Price-currencySymbol">грн</span></label>
+                                                                            }
+                                                                        </label>
+
+                                                                        @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
+
+                                                                    </div>
+                                                                    @*</div>*@
+                                                                }
+                                                            }
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        @if (Model.product.Sizes != null)
+                                                        {
+                                                            <div class="form-group row">
+                                                                <label asp-for="@Model.product.Sizes" class="col-sm-2 col-form-label">Размер</label>
+                                                                <div class="col-sm-10">
+                                                                    <select style="width:70%;" class="source" name="size" asp-for="@Model.product.Sizes" asp-items="@(new SelectList(Model.product.Sizes, "Name", "Name"))">
+                                                                        <optgroup class="select2-result-selectable" label="Enter size"></optgroup>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    }
+                                                }
+                                                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                                <div class="card-text p-1">
+                                                    @if (Model.product.Category.Name != "Подарочный сертификат")
+                                                    {
+                                                        <label> Цвет: @Model.product.Color</label>
+                                                    }
+                                                    </br>
+                                                    @(Model.product.Description ?? "(No Description Available")
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-sm-4 center-block" style="min-width:150px; text-align:center">
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quantity">
+                                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input type="text" name="quantity" class="form-control input-number" style="min-width:40px; text-align:center" value="1" min="1" max="9">
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity">
+                                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-10 center-block">
+                                                        <button type="submit"
+                                                                class="btn btn-primary btn-sm center-block"
+                                                                style=" background-color:black; margin-top:20px">
+                                                            Купить
+                                                        </button>
+                                                    </div>
+                                                </div>
+</form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                         </div>
                     </div>
@@ -174,8 +202,7 @@
                 {
                     <div class="row">
                         <div class="col-12">
-
-                            <h4>Вам также могут понравиться:</h4>
+                           <h4>Вам также могут понравиться:</h4>
                         </div>
                         <div class="text-left">
                             @foreach (var p in Model.Products.Take(5))
@@ -221,6 +248,79 @@
 
 
 
+    $('.btn-number').click(function (e) {
+        e.preventDefault();
+
+        fieldName = $(this).attr('data-field');
+        type = $(this).attr('data-type');
+        var input = $("input[name='" + fieldName + "']");
+        var currentVal = parseInt(input.val());
+        if (!isNaN(currentVal)) {
+            if (type == 'minus') {
+
+                if (currentVal > input.attr('min')) {
+                    input.val(currentVal - 1).change();
+                }
+                if (parseInt(input.val()) == input.attr('min')) {
+                    $(this).attr('disabled', true);
+                }
+
+            } else if (type == 'plus') {
+
+                if (currentVal < input.attr('max')) {
+                    input.val(currentVal + 1).change();
+                }
+                if (parseInt(input.val()) == input.attr('max')) {
+                    $(this).attr('disabled', true);
+                }
+
+            }
+        } else {
+            input.val(0);
+        }
+    });
+    $('.input-number').focusin(function () {
+        $(this).data('oldValue', $(this).val());
+    });
+    $('.input-number').change(function () {
+
+        minValue = parseInt($(this).attr('min'));
+        maxValue = parseInt($(this).attr('max'));
+        valueCurrent = parseInt($(this).val());
+
+        name = $(this).attr('name');
+        if (valueCurrent >= minValue) {
+            $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+        } else {
+            alert('Sorry, the minimum value was reached');
+            $(this).val($(this).data('oldValue'));
+        }
+        if (valueCurrent <= maxValue) {
+            $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+        } else {
+            alert('Sorry, the maximum value was reached');
+            $(this).val($(this).data('oldValue'));
+        }
+
+
+    });
+    $(".input-number").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+            // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) ||
+            // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            // let it happen, don't do anything
+            return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+
+
     function submitForm(formId) {
         document.getElementById(formId).submit();
     }
@@ -240,12 +340,6 @@
             let imgSrc = "/Files/Bg/" + imgName;
             bgImg.setAttribute('src', imgSrc);
         }
-
-
-
-
-
-
     })
 </script>
 

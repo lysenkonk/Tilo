@@ -33,11 +33,19 @@ namespace Tilo.Controllers
 
         [HttpPost]
         [Route("Cart/AddToCart")]
-        public IActionResult AddToCart(Product product, List<string> size, string returnUrl)
+        public IActionResult AddToCart(Product product, List<string> size, string returnUrl, int quantity)
         {
-            Product prodCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
-            
-            SaveCart(GetCart().AddItem(prodCurrent,size, 1));
+            Product prodCurrent;
+
+
+            if (product.Category.Name == "Подарочный сертификат")
+            {
+                prodCurrent = productRepository.Products.FirstOrDefault(p => p.Category.Name == product.Category.Name && p.Price == product.Price);
+                //int price = product.Price;
+            } else prodCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
+
+
+            SaveCart(GetCart().AddItem(prodCurrent,size, quantity));
             return RedirectToAction(nameof(Index), new { returnUrl, size});
         }
 

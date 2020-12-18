@@ -68,24 +68,27 @@ namespace Tilo.Services
             }
             return resized;
         }
-        //public void AddThumbnailPhotoToNewFolderPhoto(string fileName)
-        //{
-        //    try
-        //    {
-        //        using (var fileSteam = new FileStream(_appEnvironment.WebRootPath + BigGalleryFolder + fileName, FileMode.Open))
-        //        {
-        //            Image image = Image.FromStream(fileSteam, true, true);
-        //            double k = (double)image.Width / 190;
-        //            int height = (int)((double)image.Height / k);
-        //            Bitmap resized = ResizePhoto(fileSteam, 190, height);
-        //            resized.Save(_appEnvironment.WebRootPath + SmallGalleryFolder2 + fileName, ImageFormat.Png);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw e;
-        //    }
-        //}
+        public async void AddThumbnailPhotoToNewFolderPhoto(string fileName)
+        {
+            try
+            {
+                string filePath = _appEnvironment.WebRootPath + BigGalleryFolder + fileName;
+                using(MemoryStream ms = new MemoryStream())
+                using (var fileSteam = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite))
+                {
+                    await fileSteam.CopyToAsync(ms);
+                    Image image = Image.FromStream(ms, true, true);
+                    double k = (double)image.Width / 190;
+                    int height = (int)((double)image.Height / k);
+                    Bitmap resized = ResizePhoto(fileSteam, 190, height);
+                    resized.Save(_appEnvironment.WebRootPath + SmallGalleryFolder2 + fileName, ImageFormat.Png);
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         private void RemovePhotoFiles(string photoName)
         {
             if (File.Exists(_appEnvironment.WebRootPath + BigGalleryFolder + photoName))

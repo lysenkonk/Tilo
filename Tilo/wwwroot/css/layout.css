@@ -184,7 +184,6 @@ header .logo img {
     /*height: 125px;*/
 }
 
-}
 
 @media (min-width: 1600px) {
     header .logo {
@@ -998,7 +997,7 @@ header .mask {
     position: relative;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
+    /*-khtml-border-radius: 3px;*/
     border-radius: 3px;
 }
 
@@ -1278,7 +1277,6 @@ btn.focus, .btn:focus, .btn:hover {
     height: 180px;
 }
 
-}
 
 .bWrap {
     max-width: 1250px;
@@ -1292,7 +1290,6 @@ btn.focus, .btn:focus, .btn:hover {
     }
 }
 
-}
 
 .row {
     position: relative;
@@ -1614,12 +1611,11 @@ button.custom-button1:hover .before {
     height: 31px;
     width: 1px;
     border: transparent;
-    /*border-right: 1px solid #ffffff;*/
-    /*border-bottom: 1px solid #ffffff;*/
+    /*border-right: 1px solid #ffffff;
+   border-bottom: 1px solid #ffffff;*/
     background-color: #ffffff;
     transition: .3s ease all;
     opacity: 0.5;
-    */
 }
 
 /*a.custom-button:after,

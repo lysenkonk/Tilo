@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.DependencyInjection;
 using Tilo.Models;
@@ -70,6 +71,8 @@ namespace Tilo.Controllers
                 return View("Product not found");   
             }
             IEnumerable<Product> ProductsWithTheSame = _repository.Products.Where(p => p.Category == product.Category);
+            IEnumerable<int> listPricesForSertificate = new List<int>() { 500, 1000, 1500, 2000 }.AsEnumerable();
+            ViewBag.PricesForSertivicate = new SelectList(listPricesForSertificate, "Price");
             var viewModel = new ProductView
             {
                 product = product,
