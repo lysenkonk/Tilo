@@ -21,7 +21,7 @@ namespace Tilo.Services
                     Text = message
                 };
 
-                using (SmtpClient  client = new SmtpClient())
+                using (SmtpClient client = new SmtpClient())
                 {
                     await client.ConnectAsync("smtp.gmail.com", 465, true);
 
@@ -29,11 +29,10 @@ namespace Tilo.Services
                     await client.DisconnectAsync(true);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message.ToString());
             }
         }
     }
 }
-

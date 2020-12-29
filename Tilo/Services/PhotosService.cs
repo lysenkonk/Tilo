@@ -73,15 +73,18 @@ namespace Tilo.Services
             try
             {
                 string filePath = _appEnvironment.WebRootPath + BigGalleryFolder + fileName;
-                using(MemoryStream ms = new MemoryStream())
-                using (var fileSteam = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite))
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    await fileSteam.CopyToAsync(ms);
-                    Image image = Image.FromStream(ms, true, true);
-                    double k = (double)image.Width / 190;
-                    int height = (int)((double)image.Height / k);
-                    Bitmap resized = ResizePhoto(fileSteam, 190, height);
-                    resized.Save(_appEnvironment.WebRootPath + SmallGalleryFolder2 + fileName, ImageFormat.Png);
+                    using (var fileSteam = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                    {
+                        await fileSteam.CopyToAsync(ms);
+                        Image image = Image.FromStream(ms, true, true);
+                        double k = (double)image.Width / 190;
+                        int height = (int)((double)image.Height / k);
+                        Bitmap resized = ResizePhoto(fileSteam, 190, height);
+                        resized.Save(_appEnvironment.WebRootPath + SmallGalleryFolder2 + fileName, ImageFormat.Png);
+                        ms.Close();
+                    }
                 }
             }
             catch (Exception e)

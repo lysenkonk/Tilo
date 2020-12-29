@@ -21,5 +21,13 @@ namespace Tilo.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //[Route("/{TenantId}/Home/Error")]
+        //public IActionResult Error(string TenantId)
+        //{
+        //    string Id = TenantId;
+        //    // Here you can write your logic and decide what to do based on TenantId
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

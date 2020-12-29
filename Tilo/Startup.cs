@@ -88,7 +88,18 @@ namespace Tilo
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(appBuilder =>
+                {
+                    appBuilder.Use(async (ctx, next) => {
+                        ctx.Request.Path = "/Home/Error";
+                        await next();
+                    });
+                    appBuilder.UseMvc(routes => {
+                        routes.MapRoute(
+                            name: "sth-wrong",
+                            template: "{controller=Home}/{action=Error}");
+                    });
+                });
             }
 
             app.UseStaticFiles();

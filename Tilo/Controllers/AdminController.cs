@@ -29,19 +29,19 @@ namespace Tilo.Controllers
         [Route("Admin")]
         public ViewResult Index()
         {
-            List<string> photoNames = new List<string>();
-            //IEnumerable<Product> products = _productsService.Products.Where
-            foreach (var product in _productsService.Products)
-            {
-                foreach (var photoName in product.Images)
-                {
-                    photoNames.Add(photoName.Name);
-                }
-            }
-            foreach (var photoName in photoNames)
-            {
-                _photosService.AddThumbnailPhotoToNewFolderPhoto(photoName);
-            }
+            //List<string> photoNames = new List<string>();
+            //IEnumerable<Product> products = _productsService.Products.Where(p => p.Images.Count > 0);
+            //foreach (var product in _productsService.Products)
+            //{
+            //    foreach (var photoName in product.Images)
+            //    {
+            //        photoNames.Add(photoName.Name);
+            //    }
+            //}
+            //foreach (var photoName in photoNames)
+            //{
+            //    _photosService.AddThumbnailPhotoToNewFolderPhoto(photoName);
+            //}
 
 
             return View("Index", _productsService.Products);
@@ -109,8 +109,16 @@ namespace Tilo.Controllers
                         product.Sizes = productCurrent.Sizes;
                     }
                 }
-                await _productsService.SaveProductAsync(product);
-                TempData["message"] = $"{product.Name} has been saved";
+                try
+                {
+                    await _productsService.SaveProductAsync(product);
+                    TempData["message"] = $"{product.Name} has been saved";
+                }
+                catch(Exception exp)
+                {
+                    TempData["message"] = $"{product.Name} hasn't been saved {exp.Message}" ;
+                }
+                
             }
             var viewModel = CreateAdminViewModel(product);
 
@@ -417,5 +425,6 @@ namespace Tilo.Controllers
         //        return RedirectToAction("Index");
         //    }
         //}
+
     }
 }
