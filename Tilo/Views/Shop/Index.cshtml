@@ -52,11 +52,11 @@
                                     <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
                                         @if (p.Images.Count > 0)
                                         {
-                                            <img src="@Url.Content("/files/Sm/" + p.Images[0].Name)">
+                                            <img src="@Url.Content("/files/Sm2/" + p.Images[0].Name)">
                                         }
                                         else
                                         {
-                                            <img src="@Url.Content("/files/Sm/noPhoto.jpg")" class="zoom-in">
+                                            <img src="@Url.Content("/files/Sm2/noPhoto.jpg")" class="zoom-in">
                                         }
                                     </a>
                                 </div>

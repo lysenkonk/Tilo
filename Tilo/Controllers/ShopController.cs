@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -55,8 +56,8 @@ namespace Tilo.Controllers
             //    p.ChildCategories = _repoCategories.Categories.Where(e => e.ParentCategory.Name == p.Name).ToList();
             //}
             int count = _repository.Products.Count();
-            IQueryable<Product> Products = _repository.Products.Where(p => p.Category != null).Take(10);
-            //IQueryable<Product> Products = _repository.Products.Take(10);
+            IQueryable<Product> Products = _repository.Products.Where(p => p.Category != null && p.Category.Name != "Подарочный сертификат").OrderByDescending(p => p.Id).Take(10);
+
 
             return View(Products);
         }
@@ -73,6 +74,20 @@ namespace Tilo.Controllers
             IEnumerable<Product> ProductsWithTheSame = _repository.Products.Where(p => p.Category == product.Category);
             IEnumerable<int> listPricesForSertificate = new List<int>() { 500, 1000, 1500, 2000 }.AsEnumerable();
             ViewBag.PricesForSertivicate = new SelectList(listPricesForSertificate, "Price");
+            //string pattern = @"\b\d{1}\.\D+";
+            //List<string> descrList = new List<string>();
+            //descrList.Add(product.Description.Substring(0, product.Description.IndexOf(':')));
+            //string[] str = Regex.Split(product.Description, pattern);
+            //Regex reg = new Regex(@"\b\d{1}\.\D+");
+
+            //MatchCollection matches = reg.Matches(product.Description);
+            //List<string> str3 = new List<string>();
+            //foreach(var st in matches)
+            //{
+            //    str3.Add(st.ToString());
+            //}
+            //descrList.AddRange(Regex.Split(product.Description, pattern).ToList());
+            //ViewBag.descrList = words.ToList<string>();
             var viewModel = new ProductView
             {
                 product = product,

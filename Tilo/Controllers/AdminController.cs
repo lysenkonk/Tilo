@@ -30,7 +30,7 @@ namespace Tilo.Controllers
         public ViewResult Index()
         {
             //List<string> photoNames = new List<string>();
-            //IEnumerable<Product> products = _productsService.Products.Where(p => p.Images.Count > 0);
+            //IEnumerable<Product> products = _productsService.Products.Where(p => p.Images.Count > 0 && p.Category != null && p.Category.Name == "Портупеи");
             //foreach (var product in _productsService.Products)
             //{
             //    foreach (var photoName in product.Images)
@@ -40,7 +40,7 @@ namespace Tilo.Controllers
             //}
             //foreach (var photoName in photoNames)
             //{
-            //    _photosService.AddThumbnailPhotoToNewFolderPhoto(photoName);
+            //    _photosService.SavePhotoAlbumOrient(photoName);
             //}
 
 
@@ -220,8 +220,10 @@ namespace Tilo.Controllers
             {
                 return RedirectToAction("Create");
             }
-
-            await _productsService.AddImage(productId, uploadedFile);
+            if(product.Category.Name == "Портупеи")
+            {
+                await _productsService.AddImageAlbumOrient(productId, uploadedFile);
+            }else await _productsService.AddImage(productId, uploadedFile);
             var viewModel = CreateAdminViewModel(product);
 
             return View("Edit", viewModel);
@@ -249,7 +251,7 @@ namespace Tilo.Controllers
 
             Product product = new Product();
 
-            if (category.Name == "Комплекты")
+            if (category.Name == "Комплекты" || category.Name == "Ролевое бельё")
             {
                 //Category bra = _productsService.Categories.FirstOrDefault(p => p.Name == );
                 //Category tr = _productsService.Categories.FirstOrDefault(p => p.Name == "Трусики");

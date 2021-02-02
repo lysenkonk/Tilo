@@ -73,3 +73,6 @@ button {
 .btn-success {
     background-color: none;
 }
+img {
+    border-radius: 3px;
+}

@@ -10,8 +10,17 @@ namespace Tilo.Models
 
         public Cart AddItem(Product p, List<string> size, int quantity)
         {
+            if(size != null)
+            {
+                p.Sizes.Clear();
+                foreach (var s in size)
+                {
+                    p.Sizes.Add(new Size(s));
+                }
+            }
+           
             OrderLine line = selections
-                .Where(l => l.ProductId == p.Id).FirstOrDefault();
+                .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name && l.Product.Sizes == p.Sizes).FirstOrDefault();
             if (line != null)
             {
                 line.Quantity += quantity;
@@ -21,7 +30,7 @@ namespace Tilo.Models
                 selections.Add(new OrderLine
                 {
                     ProductId = p.Id,
-                    Product = p,              
+                    Product = p,
                     Quantity = quantity
                 });
             }

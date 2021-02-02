@@ -84,13 +84,13 @@ header {
 }
 
 .header > div {
-    color: black;
+    /*color: black;*/
     position: absolute;
     z-index: 100
 }
 
 .header__menu {
-    top: 60px;
+    top: 25px;
     left: 40px
 }
 
@@ -242,7 +242,6 @@ a {
     margin-left: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor: pointer;
-    /*font-style: italic;*/
     font-weight: 900;
     font-size: 14px;
     z-index: 13;
@@ -251,56 +250,136 @@ a {
     margin-top: 42px;
 }
 
+@media (min-width: 1020px) {
+    .phones {
+        /*margin-left: 5%;*/
+        display: block;
+    }
+}
 
-@media (min-width: 768px) {
+@media (max-width: 1020px) {
+    .phones {
+        margin-left: 1%;
+        display: block;
+    }
+}
+@media (max-width: 860px) {
+    .phones {
+        margin-left: 1%;
+        display: block;
+        margin-left: -40px;
+    }
+}
+
+@media (max-width: 720px) {
     .phones {
         display: block;
-        margin-left: 5%;
-        /*margin-top: 60px;*/
+        margin-top: 18px;
+        color: white;
+        /*margin-left: 0px;*/
     }
 }
-
-#btnMenu {
-    display: block;
-    float: right;
-    padding: 10px;
-    margin-top: 2px;
-    font-weight: bold;
-}
-
-#menu-open-button {
-    padding: 5px;
-}
-/*----------------------------------------------------------------------------------------*/
-.sidepanel {
-    width: 0;
-    margin: auto;
-    background-color: none;
-    overflow: hidden;
-    transition: 0.5s;
-    padding-top: 450px;
-    color: black;
-}
-
-    .sidepanel a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 22px;
-        text-align: center;
-        color: black;
+/*@media (min-width: 540px) {
+    .phones {
         display: block;
-        transition: 0.3s;
+        margin-top: 22px;
+        color: white;
+    }
+}*/
+@media (max-width: 539px) {
+    .phones {
+    display: none;
+    }
+ }
+@media (min-width: 720px) {
+    .header__menu {
+        top: 50px;
+    }
+}
+@media (max-width: 540px) {
+    .header__logo-wrap {
+        top: 20px;
+        left: 55%;
+        transform: none;
     }
 
-        .sidepanel a:hover {
-            color: #f1f1f1;
+    .header__logo {
+        width: 150px;
+    }
+
+    .header__menu {
+        top: 20px;
+        left: 40px;
+    }
+}
+
+
+    #btnMenu {
+        display: block;
+        float: right;
+        padding: 10px;
+        margin-top: 2px;
+        font-weight: bold;
+    }
+
+    #menu-open-button {
+        padding: 5px;
+    }
+    /*----------------------------------------------------------------------------------------*/
+    .sidepanel {
+        width: 0;
+        margin: auto;
+        background-color: none;
+        overflow: hidden;
+        transition: 0.5s;
+        padding-top: 450px;
+        color: black;
+    }
+
+        .sidepanel a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 22px;
+            text-align: center;
+            color: white;
+            display: block;
+            transition: 0.3s;
         }
 
-#closebtn {
-    font-size: 36px;
-    cursor: pointer;
-}
-/*///////////////////////////////////////////////////////////////Admin EditProduct*/
-#selection {
-    visibility: hidden;
-}
+            .sidepanel a:hover {
+                color: #f1f1f1;
+            }
+
+    #closebtn {
+        font-size: 36px;
+        cursor: pointer;
+    }
+    /*///////////////////////////////////////////////////////////////Admin EditProduct*/
+    #selection {
+        visibility: hidden;
+    }
+    /*23.01------------------------------------------------------------------------------*/
+    @media (max-width: 768px) {
+
+        header__logo img {
+            margin-left: 70px;
+        }
+
+        .header__links {
+            display: none;
+        }
+
+        .header__logo-wrap {
+            top: 20px;
+            left: 60%;
+            transform: none;
+        }
+
+
+        .sidepanel {
+            padding-top: 250px;
+        }
+    }
+
+
+

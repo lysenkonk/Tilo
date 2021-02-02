@@ -71,7 +71,9 @@ namespace Tilo.Controllers
                 order.Lines = GetCart().Selections.Select(s => new OrderLine
                 {
                     ProductId = s.ProductId,
-                    Quantity = s.Quantity
+                    Quantity = s.Quantity,
+                    Product = s.Product
+                    
                 }).ToArray();
 
                 ordersRepository.AddOrder(order);
@@ -99,7 +101,7 @@ namespace Tilo.Controllers
         public async Task<IActionResult> SendMessage(Order order)
         {
             long numberOrder = ordersRepository.Orders.Last<Order>().Id;
-            var textMessage = "Deer " + order.CustomerName + ", your order №" + numberOrder + " is processed. Our manager will contact you";
+            var textMessage = "Здравствуйте, " + order.CustomerName + ",рады сообщить, что Ваш заказ №" + numberOrder + " будет обработан в ближайшее время!" + "\n"+ infoAboutOrder(order);
             EmailService emailService = new EmailService();
             string subject = "Order №" + numberOrder + " is processed. With love your Tiloshowroom";
             try
@@ -111,6 +113,32 @@ namespace Tilo.Controllers
             {
                 throw new Exception(ex.Message.ToString());            
             }
+        }
+
+
+        private string infoAboutOrder(Order order)
+        {
+
+            string orderLinesJoinAll = "";
+            int priceAllOrder = 0;
+            
+
+            foreach (var orderLine in order.Lines)
+            {
+                string sizes = "";
+                if (orderLine.Product.Sizes != null || orderLine.Product.Sizes.Count > 0)
+                {
+                    foreach(var s in orderLine.Product.Sizes)
+                    {
+                        sizes += s + "; ";
+                    }
+                }
+                orderLinesJoinAll += orderLine.Product.Name + "(" + sizes + ")" + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + ";" + "\n"; 
+                priceAllOrder += orderLine.Quantity * orderLine.Product.Price;
+            }
+            orderLinesJoinAll += "Всего к оплате: " + priceAllOrder + "; ";
+            return orderLinesJoinAll;
+
         }
 
         private Cart GetCart() =>

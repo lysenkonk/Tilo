@@ -139,8 +139,8 @@ namespace Tilo
                 name: "default",
                 template: "{controller=Home}/{action=Index}/{id?}");
             });
-            SeedData.EnsurePopulated(app);
-            IdentitySeedData.EnsurePopulated(app).Wait();
+            //SeedData.EnsurePopulated(app);
+            //IdentitySeedData.EnsurePopulated(app).Wait();
         }
     }
 }

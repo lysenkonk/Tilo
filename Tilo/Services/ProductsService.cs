@@ -17,7 +17,7 @@ namespace Tilo.Services
     public class ProductsService
     {
         private const string BigFilesFolder = "/Files/Bg/";
-        private const string SmallFilesFolder = "/Files/Sm/";
+        private const string SmallFilesFolder = "/Files/Sm2/";
 
         public readonly IProductRepository _repository;
         public readonly ICategoryRepository _categoryRepository;
@@ -91,6 +91,114 @@ namespace Tilo.Services
 
             await _repository.AddImageAsync(product.Id, file);
         }
+        //--------------------------------------------------------------------------------------------------------------------------------
+        public async Task AddImageAlbumOrient(int productId, IFormFile uploadedFile)
+        {
+            Bitmap resizedB = null;
+            try
+            {
+                Product product = await _repository.Products.FirstOrDefaultAsync(p => p.Id == productId);
+
+                if (product == null)
+                    throw new Exception("404 Not Found"); // TODO make proper hadling
+
+                FileModel photo = null;
+               
+                if (uploadedFile != null)
+                {
+                    //using (var fileStream = new FileStream(_appEnvironment.WebRootPath + BigGalleryFolder + uploadedFile.FileName, FileMode.Create))
+                    //{
+                    //await uploadedFile.CopyToAsync(fileStream);
+                    resizedB = ResizePhotoAlbumOrient(uploadedFile.OpenReadStream());
+                    resizedB.Save(_appEnvironment.WebRootPath + BigFilesFolder + uploadedFile.FileName, ImageFormat.Png);
+                    //}
+
+                    //Image image = Image.FromStream(uploadedFile.OpenReadStream(), true, true);
+                    double k = (double)resizedB.Width / 190;
+                    int height = (int)((double)resizedB.Height / k);
+                    int width = 190;
+                    //Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), 190, height);
+                    //resized.Save(_appEnvironment.WebRootPath + SmallGalleryFolder + uploadedFile.FileName, ImageFormat.Png);
+                    //photo = new FileModel { Name = uploadedFile.FileName };
+
+                    var resized = new Bitmap(width, height);
+                    using (var graphics = Graphics.FromImage(resized))
+                    {
+                        graphics.CompositingQuality = CompositingQuality.HighSpeed;
+                        graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        graphics.CompositingMode = CompositingMode.SourceCopy;
+                        graphics.DrawImage(resizedB, 0, 0, width, height);
+                    }
+
+                    resized.Save(_appEnvironment.WebRootPath + SmallFilesFolder + uploadedFile.FileName, ImageFormat.Png);
+
+                    photo = new FileModel { Name = uploadedFile.FileName };
+                }
+
+                await _repository.AddImageAsync(product.Id, photo);
+            }
+            finally
+            {
+                if (resizedB != null)
+                    resizedB.Dispose();
+            }
+        }
+
+
+        private static Bitmap ResizePhotoAlbumOrient(Stream stream)
+        {
+            Bitmap imageCut = null;
+            Bitmap resized = null;
+            //try
+            //{
+
+                using (var sourceImage = new Bitmap(stream))
+                {
+                int targetWidth = 0;
+                int targetHeight = 0;
+                int x = sourceImage.Width / 4 - 30;
+                if ((double)sourceImage.Width / sourceImage.Height > 1.2)
+                {
+                    targetWidth = sourceImage.Width / 2 + 255;
+                    targetHeight = sourceImage.Height;
+                    x = sourceImage.Width / 4 - 125;
+                }
+                else if ((double)sourceImage.Width / sourceImage.Height < 0.7)
+                {
+                    targetWidth = sourceImage.Width / 2 + 60;
+                    targetHeight = sourceImage.Height;
+                    x = sourceImage.Width / 4 - 80;
+                }
+                else if (sourceImage.Width / sourceImage.Height < 0.5)
+                {
+
+                }
+                    int y = 0;
+                    Rectangle cropArea = new Rectangle(x, y, targetWidth, targetHeight);
+
+                    imageCut = sourceImage.Clone(cropArea, sourceImage.PixelFormat);
+                    resized = new Bitmap(targetWidth, targetHeight);
+
+                    using (var graphics = Graphics.FromImage(resized))
+                    {
+                        graphics.CompositingQuality = CompositingQuality.HighSpeed;
+                        graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        graphics.CompositingMode = CompositingMode.SourceCopy;
+                        graphics.DrawImage(imageCut, 0, 0, targetWidth, targetHeight);
+                    }
+
+                    return resized;
+                }
+            //}
+            //finally
+            //{
+            //    if (resized != null)
+            //        resized.Dispose();
+            //    if (imageCut != null)
+            //        imageCut.Dispose();
+            //}
+        }
+        //---------------------------------------------------------------------------------------------------------------------------------
 
         public async Task RemoveImage(int productId, string imageName)
         {

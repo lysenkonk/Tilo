@@ -1,5 +1,5 @@
 ﻿ html, body {
-    min-width: 320px;
+    min-width: 380px;
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -111,8 +111,9 @@ body {
 
 
 @media (max-width:720px) {
-    .eProductView_sliderNav{     
-        display: none;
+    .eProductView_sliderNav {
+        margin-left: 5px;
+        margin-top: -5px;
     }
 }
 
@@ -704,4 +705,47 @@ label {
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
     background-color: black;
     color: white;
+}
+.text-indent{
+    text-indent: 1em;
+}
+
+
+
+
+@media(max-width: 540px) {
+    .eProductView_body {
+        display: -ms-flexbox;
+        display: flex;
+        margin: 0 -10px;
+        flex-direction: column;
+    }
+
+
+    .eProductView_images {
+        width: 100%;
+    }
+
+    div.product {
+         margin-top: 10px; 
+
+    }
+
+    .new-products .products {
+        /* width: 1000000px; */
+        margin-top: 10px;
+
+    }
+}
+
+.size {
+    min-width: 60px;
+}
+
+
+.center-block {
+    /*min-width: 150px;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    text-align: center;*/
 }
