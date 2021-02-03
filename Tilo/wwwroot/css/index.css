@@ -86,12 +86,13 @@ header {
 .header > div {
     /*color: black;*/
     position: absolute;
-    z-index: 100
+    /*z-index: 102*/
 }
 
 .header__menu {
-    top: 25px;
-    left: 40px
+    top: 22px;
+    left: 40px;
+    z-index: 103;
 }
 
     .header__menu:hover {
@@ -279,13 +280,20 @@ a {
         /*margin-left: 0px;*/
     }
 }
-/*@media (min-width: 540px) {
-    .phones {
-        display: block;
-        margin-top: 22px;
-        color: white;
+
+@media (min-width: 721px) {
+    .menuImg {
+        width: 40px;
     }
-}*/
+}
+
+@media (max-width: 720px) {
+    .menuImg {
+        width: 60px;
+    }
+}
+
+
 @media (max-width: 539px) {
     .phones {
     display: none;
@@ -293,7 +301,7 @@ a {
  }
 @media (min-width: 720px) {
     .header__menu {
-        top: 50px;
+        top: 55px;
     }
 }
 @media (max-width: 540px) {
@@ -316,15 +324,20 @@ a {
 
     #btnMenu {
         display: block;
-        float: right;
+        /*float: right;
         padding: 10px;
         margin-top: 2px;
-        font-weight: bold;
+        font-weight: bold;*/
     }
 
     #menu-open-button {
+        width:150px;
         padding: 5px;
+        z-index:103
     }
+#menu-open-button:hover{
+cursor:pointer;
+}
     /*----------------------------------------------------------------------------------------*/
     .sidepanel {
         width: 0;
@@ -341,13 +354,13 @@ a {
             text-decoration: none;
             font-size: 22px;
             text-align: center;
-            color: white;
+            color: black;
             display: block;
             transition: 0.3s;
         }
 
             .sidepanel a:hover {
-                color: #f1f1f1;
+                color: black;
             }
 
     #closebtn {
@@ -374,12 +387,21 @@ a {
             left: 60%;
             transform: none;
         }
-
-
-        .sidepanel {
+        .sidepanel a {
+            color: white
+        }
+            .sidepanel {
             padding-top: 250px;
+            
+        }
+        #closebtn {
+        color: white
         }
     }
 
 
 
+/*#menuFirstPage
+{
+    z-index: 102
+}*/

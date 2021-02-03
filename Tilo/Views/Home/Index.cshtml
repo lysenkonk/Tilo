@@ -14,27 +14,25 @@
 </head>
 <body>
     <header class="header">
-        <div class="header__menu">
-            <div id="menuFirstPage">
+        <div class="header__menu" >
+            <div id="menu-open-button">
                 <picture>
-                    <source  media="(min-width: 100px)and (max-width: 720px)"
-                            srcset="~/files/main/img/white-menu.jpg">
+                    <source media="(min-width: 100px) and (max-width: 720px)"
+                            srcset="~/files/main/img/white-menu.jpg" width="60">
 
-                    <source media="(min-width: 720px)and (max-width: 1800px)"
-                            srcset="~/files/main/img/menu_black.png" >
-                    <img src="~/files/main/img/menu_black.png"
-                         id="menu-open-button" width="60" alt="MENU"/>
+                    <source media="(min-width: 720px) and (max-width: 1800px)"
+                            srcset="~/files/main/img/menu_black.png" width="40" >
+                    <img class="menuImg" src="~/files/main/img/menu_black.png"
+                         alt="MENU" />
                 </picture>
-                @*<p id="btnMenu">MЕНЮ</p>*@
             </div>
-        </div>
+                <p id="btnMenu"></p>
+            </div>
         <div class="phones" id="phone">
-            <div>
                 <pre>
                     +38 095 216 74 24
                     г.Киев (ул. Крещатик 46)
                 </pre>
-            </div>
         </div>
         <div class="header__logo-wrap">
             <h1 class="header__logo">
@@ -43,7 +41,7 @@
                     <source media="(min-width: 100px)and (max-width: 720px)"
                             srcset="~/files/main/logo/logoWhite1.png">
 
-                    <source media="(min-width: 720px)and (max-width:1800px)"
+                    <source media="(min-width: 720px)and (max-width: 1800px)"
                             srcset="~/files/main/logo/tilo_n.png">
 
                         <img src="~/files/main/logo/tilo_n.png" alt="LOGO" />
@@ -52,13 +50,13 @@
         </div>
         <div class="header__links">
             <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
-                <img src="~/files/main/img/instagram.png" width=32 height=36 />
+                <img src="~/files/main/img/instagram.png" width=26 height=30 />
             </a>
             <a href="https://www.instagram.com/tilo_showroom_/" class="header__link" id="logoYouTb">
-                <img src="~/files/main/img/youtube.png" width=33 height=38 />
+                <img src="~/files/main/img/youtube.png" width=29 height=34 />
             </a>
             <a href="https://www.facebook.com/TILO.showroom/" class="header__link">
-                <img src="~/files/main/img/facebook.png" width=32 height=34 />
+                <img src="~/files/main/img/facebook.png" width=26 height=28 />
             </a>
         </div>
     </header>
