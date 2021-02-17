@@ -16,7 +16,7 @@ namespace Tilo.Models
     public class EFCategoryRepository : ICategoryRepository
     {
         private const string BigFilesFolder = "/Files/Bg/";
-        private const string SmallFilesFolder = "/Files/Sm/";
+        private const string SmallFilesFolder = "/Files/Sm2/";
 
         private ApplicationDbContext context;
         //private readonly ProductsService _productsService;

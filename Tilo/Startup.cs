@@ -121,6 +121,10 @@ namespace Tilo
                 //    template: "Product/{id}",
                 //    defaults: new { controller = "Shop", action = "Product"  }
                 //    );
+                //routes.MapRoute(
+                //  name: "admin",
+                // template: "Admin/{action}"
+                //  );
                 routes.MapRoute(
                     name: "admin",
                    template: "Admin/{action}/{productId}"

@@ -1,14 +1,39 @@
 ﻿.container {
-    width: 510px;
+    width: 370px;
 }
-
-@media (min-width: 768px) {
+@media (min-width: 400px) {
     .container {
-        width: 700px;
+        width: 400px;
+        min-width: 400px;
+    }
+}
+@media (min-width: 450px) {
+    .container {
+        width: 450px;
+        min-width: 450px;
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 600px) {
+    .container {
+        width: 600px;
+        min-width: 600px;
+    }
+}
+
+@media (min-width: 700px) {
+    .container {
+        width: 700px;
+        min-width: 700px;
+    }
+}
+@media (min-width: 780px) {
+    .container {
+        width: 780px;
+    }
+}
+
+@media (min-width: 890px) {
     .container {
         width: 890px;
     }
@@ -76,3 +101,4 @@ button {
 img {
     border-radius: 3px;
 }
+

@@ -38,14 +38,14 @@
                 </div>
                 <div class="phones col-xs-3">
                     <div class="phones" style="z-index: 10">
-                        <a href="https://www.instagram.com/tilo_showroom_/" class="header__link">
-                            <img src="~/files/main/img/instagram.png" width=26 height=30 />
+                        <a href="https://www.instagram.com/tilo_showroom_/" class="header__link" id="logoInst">
+                            <img src="~/files/main/img/instagram.png"/>
                         </a>
-                        <a href="https://www.instagram.com/tilo_showroom_/" class="header__link" id="logoYouTb">
-                            <img src="~/files/main/img/youtube.png" width=29 height=34 />
+                        <a href="https://www.instagram.com/tilo_showroom_/" class="header__link" id="logoYouT">
+                            <img src="~/files/main/img/youtube.png"/>
                         </a>
-                        <a href="https://www.facebook.com/TILO.showroom/" class="header__link">
-                            <img src="~/files/main/img/facebook.png" width=26 height=28 />
+                        <a href="https://www.facebook.com/TILO.showroom/" class="header__link" id="logoFace">
+                            <img src="~/files/main/img/facebook.png" />
                         </a>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                                 </a>
                             </li>
                             <li class="item">
-                                <a class="mallki-link">
+                                <a>
                                     <span> Сотрудничество</span>
                                 </a>
                             </li>
@@ -214,14 +214,10 @@
                         {
                             <li class="item">
                                 <span>
-
                                     @ViewBag.Text
-
-                                </span>
-
+                               </span>
                             </li>
                         }
-
                     </ul>
                     <div class="footerMobile col-md-3">
                         <ul class="clearfix">
@@ -242,32 +238,33 @@
                             <li class="item">
                                 <a class="mallki-link">
                                     <span>
+                                        +38 095 216 74 24
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="item">
+                                <a class="mallki-link">
+                                    <span>
                                         Пн-пт 13.00 - 20.00,
                                     </span>
+                                    <br>
                                     <span>
                                         Cб. 13.00 - 18.00
                                     </span>
                                 </a>
                             </li>
                             @*<li class="item">
-                                    <a class="mallki-link">
-                                        <span>
-                                            Cб. 13.00 - 18.00
-                                        </span>
-                                    </a>
-                                </li>*@
-                            <li class="item">
-                                <a class="mallki-link">
-                                    <span>
-                                        +38 095 216 74 24
-                                    </span>
-                                </a>
-                            </li>
+            <a class="mallki-link">
+                <span>
+                    Cб. 13.00 - 18.00
+                </span>
+            </a>
+        </li>*@
+
                         </ul>
                     </div>
                 </div>
             </div>
-
         </div>
     </footer>
     <script>
@@ -287,13 +284,11 @@
                 }
             });
         }
-
         /* Set the width of the sidebar to 250px (show it) */
         function openNav() {
             if (document.getElementById("mySidepanel").style.width = "380px")
                 document.getElementById("mySidepanel").style.width = "380px";
         }
-
         /* Set the width of the sidebar to 0 (hide it) */
         function closeNav() {
             document.getElementById("mySidepanel").style.width = "0";

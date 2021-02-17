@@ -33,19 +33,35 @@ namespace Tilo.Controllers
 
         [HttpPost]
         [Route("Cart/AddToCart")]
-        public IActionResult AddToCart(Product product, List<string> size, string returnUrl, int quantity)
+        public IActionResult AddToCart(Product product, string s, string returnUrl, int quantity)
         {
             Product prodCurrent;
-
+            string size = product.Sizes != null ? product.Sizes[0].Name : null;
 
             if (product.Category.Name == "Подарочный сертификат")
             {
                 prodCurrent = productRepository.Products.FirstOrDefault(p => p.Category.Name == product.Category.Name && p.Price == product.Price);
                 //int price = product.Price;
-            } else prodCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
+            } else if(product.Products != null)
+            {
+                Product item = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
+                prodCurrent = product;
+                prodCurrent.Images = item.Images;
+            }
+            else prodCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
 
+            if(product.Products != null)
+            {
+                SaveCart(GetCart().AddItem(product, "suit size ", quantity));
+                foreach (var currentProduct in product.Products)
+                {
+                    if(currentProduct.Sizes != null)
+                        {
+                            SaveCart(GetCart().AddItem(currentProduct, currentProduct.Sizes[0].Name, quantity));
+                        }
+                }
+            } else SaveCart(GetCart().AddItem(prodCurrent, size , quantity));
 
-            SaveCart(GetCart().AddItem(prodCurrent,size, quantity));
             return RedirectToAction(nameof(Index), new { returnUrl, size});
         }
 
@@ -53,6 +69,13 @@ namespace Tilo.Controllers
         [Route("Cart/RemoveFromCart")]
         public IActionResult RemoveFromCart(long productId, string returnUrl)
         {
+           //Product product = productRepository.Products.FirstOrDefault(p => p.Id == productId);
+
+           // if (product.Products != null && product.Products.Count > 0)
+           // {
+           //    IQueryable<Product> productsChild = productRepository.Products.Where(p => p.Id == productId);
+           // }
+            
             SaveCart(GetCart().RemoveItem(productId));
             return RedirectToAction(nameof(Index), new { returnUrl });
         }
@@ -71,9 +94,9 @@ namespace Tilo.Controllers
                 order.Lines = GetCart().Selections.Select(s => new OrderLine
                 {
                     ProductId = s.ProductId,
-                    Quantity = s.Quantity,
-                    Product = s.Product
-                    
+                    Quantity = s.Quantity
+                    //Product = productRepository.Products.FirstOrDefault(p => p.Id == s.ProductId);
+
                 }).ToArray();
 
                 ordersRepository.AddOrder(order);
@@ -115,25 +138,30 @@ namespace Tilo.Controllers
             }
         }
 
-
         private string infoAboutOrder(Order order)
         {
 
             string orderLinesJoinAll = "";
             int priceAllOrder = 0;
             
-
             foreach (var orderLine in order.Lines)
             {
                 string sizes = "";
-                if (orderLine.Product.Sizes != null || orderLine.Product.Sizes.Count > 0)
+                try
                 {
-                    foreach(var s in orderLine.Product.Sizes)
+                    if (orderLine.Product.Sizes != null && orderLine.Product.Sizes.Count > 0)
                     {
-                        sizes += s + "; ";
+                        foreach (var s in orderLine.Product.Sizes)
+                        {
+                            sizes += s + "; ";
+                        }
                     }
                 }
-                orderLinesJoinAll += orderLine.Product.Name + "(" + sizes + ")" + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + ";" + "\n"; 
+                catch(Exception ex)
+                {
+                    throw new Exception(ex.Message.ToString());
+                }
+                orderLinesJoinAll += orderLine.Product.Name + " " + "(" + sizes + ")" + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + ";" + "\n"; 
                 priceAllOrder += orderLine.Quantity * orderLine.Product.Price;
             }
             orderLinesJoinAll += "Всего к оплате: " + priceAllOrder + "; ";

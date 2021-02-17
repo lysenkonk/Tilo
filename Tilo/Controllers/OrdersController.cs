@@ -60,9 +60,9 @@ namespace Tilo.Controllers
             return RedirectToAction(nameof(Index));
         }
         [Route("Admin/DeleteOrder")]
-
         public IActionResult DeleteOrder(long id)
         {
+
             ordersRepository.DeleteOrder(ordersRepository.GetOrder(id));
             return RedirectToAction(nameof(Index));
         }

@@ -8,16 +8,16 @@ namespace Tilo.Models
     {
         private List<OrderLine> selections = new List<OrderLine>();
 
-        public Cart AddItem(Product p, List<string> size, int quantity)
+        public Cart AddItem(Product p, string size, int quantity)
         {
-            if(size != null)
-            {
-                p.Sizes.Clear();
-                foreach (var s in size)
-                {
-                    p.Sizes.Add(new Size(s));
-                }
-            }
+            //if(size != null)
+            //{
+            //    p.Sizes.Clear();
+            //    foreach (var s in size)
+            //    {
+            //        p.Sizes.Add(new Size(s));
+            //    }
+            //}
            
             OrderLine line = selections
                 .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name && l.Product.Sizes == p.Sizes).FirstOrDefault();

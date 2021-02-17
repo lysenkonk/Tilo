@@ -7,14 +7,14 @@
     <div id="content">
         <div class="bProductView">
             <div class="bWrap">
-                <h2 class="m-1 text-center">Your Cart</h2>
-                <div class="row">
-                    <div class="col-sm-2 col-xs-2   font-weight-bold text-center">Product</div>
+                <h2 class="m-1 text-cent">Your Cart</h2>
+                <div class="row border-bottom">
+                    <div class="col-sm-1 col-xs-1   font-weight-bold text-center">Product</div>
                     <div class="col-sm-2 col-xs-2  font-weight-bold text-center"></div>
-                    <div class="col-sm-2 col-xs-2 font-weight-bold text-center">Size</div>
+                    <div class="col-sm-1 col-xs-1 font-weight-bold text-center">Size</div>
                     <div class="col-sm-2 col-xs-2 font-weight-bold text-center">Quantity</div>
-                    <div class="col-sm-1 col-xs-1 font-weight-bold text-center">Price</div>
-                    <div class="col-sm-1 col-xs-1 font-weight-bold text-center">Subtotal</div>
+                    <div class="col-sm-2 col-xs-2 font-weight-bold text-center">Price</div>
+                    <div class="col-sm-2 col-xs-2 font-weight-bold text-center">Subtotal</div>
                 </div>
                 @if (Model.Selections.Count() == 0)
                 {
@@ -24,37 +24,48 @@
                 {
                     @foreach (OrderLine line in Model.Selections)
                     {
-                    <div class="row">
-                        <div class="col-sm-2 col-xs-2  marginTop30 text-center">
+                    <div class="row  border-bottom">
+                        <div class="col-sm-1 col-xs-1  marginTop30 text-center">
                             @line.Product.Name
                         </div>
                         <div class="col-sm-2 col-xs-2 marginTop0 text-center">
 
                             @if (line.Product.Images.Count > 0)
                             {
-                                <img width="170" class="sm_img" name="@line.Product.Images[0].Name" src="@Url.Content("/files/Sm/" + @line.Product.Images[0].Name)" />
+                                <img  class="sm_img" name="@line.Product.Images[0].Name" src="@Url.Content("/files/Sm2/" + @line.Product.Images[0].Name)" />
                             }
                         </div>
-                        @if (ViewBag.Size != null)
+                        @if (line.Product.Sizes != null && line.Product.Sizes.Count > 0)
                         {
-                            <div class="col-sm-2 col-xs-1  marginTop30  text-center">
+                            <div class="col-sm-1 col-xs-1  marginTop30  text-center">
 
-                                @foreach (  var size in ViewBag.Size)
+                                @*@foreach (  var size in ViewBag.Size)
                                 {
                                     @size 
                                     <span>;</span>
-                                }
+                                }*@
+                                @line.Product.Sizes[0].Name
 
                             </div>
+                        }else if(line.Product.Category.Name == "Комплекты")
+                        {
+                            <div class="col-sm-1 col-xs-1  marginTop30  text-center">
+                                :
+                            </div>
+
+                        }else
+                        {
+                            <div class="col-sm-1 col-xs-1  marginTop30  text-center">
+                                One size
+                            </div>
+
                         }
-                        <div class="col-sm-2 col-xs-1  marginTop30 text-center">@line.Quantity</div>
-                        @*<input type="number" id="quantity" name="quantity" value="@line.Quantity"
-        min="1" max="10">*@
-                        <div class="col-sm-1 col-xs-1  marginTop30 text-center">
-                            $@line.Product.Price.ToString("f2")
+                        <div class="col-sm-2 col-xs-2  marginTop30 text-center">@line.Quantity</div>
+                        <div class="col-sm-2 col-xs-2  marginTop30 text-center">
+                            $@line.Product.Price.ToString("f0")
                         </div>
                         <div class="col-sm-1  col-xs-1 marginTop30  text-center">
-                            $@((line.Product.Price * line.Quantity).ToString("f2"))
+                            $@((line.Product.Price * line.Quantity).ToString("f0"))
                         </div>
                         <div class="col-sm-1 col-xs-1  marginTop25  text-center">
                             <form asp-action="RemoveFromCart">
@@ -74,7 +85,7 @@
                     <div class="col text-right font-weight-bold">Total:</div>
                     <div class="col text-right font-weight-bold">
                         $@(Model.Selections.Sum(l => l.Product.Price
-                                                               * l.Quantity).ToString("f2"))
+                                                               * l.Quantity).ToString("f0"))
                     </div>
                     <div class="col"></div>
                 </div>

@@ -37,7 +37,7 @@ namespace Tilo.Controllers
 
         private IProductRepository _repository;
         private ICategoryRepository _repoCategories;
-        public int PageSize = 10;
+        public int PageSize = 9;
 
         public ShopController(IProductRepository repo, ICategoryRepository categories)
         {

@@ -282,7 +282,7 @@ namespace Tilo.Controllers
             var viewModel = CreateAdminViewModel(product);
             return View("Edit", viewModel);
         }
-
+        [HttpGet]
         [Route("Admin/CreateCategory")]
         public IActionResult CreateCategory()
         {
@@ -293,14 +293,23 @@ namespace Tilo.Controllers
             };
             return View("Category", viewModel);
         }
-
         [HttpPost]
         [Route("Admin/CreateCategory/{category}")]
         public async Task<IActionResult> CreateCategory(Category category)
         {
             category.ParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory;
+            Category c = null;
+            if (category.ParentCategory != null)
+            {
+                try
+                {
+                    c = _productsService.Categories.SingleOrDefault(curent => curent.Name == category.Name && curent.ParentCategory!=null && curent.ParentCategory.Name == category.ParentCategory.Name);
+                }catch(Exception ex)
+                {
+                }
 
-            var c = _productsService.Categories.SingleOrDefault(curent => curent.Name == category.Name && curent.ParentCategory.Name == category.ParentCategory.Name);
+            }
+            else c = _productsService.Categories.FirstOrDefault(curent => curent.Name == category.Name);
             //string nameParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory.Name;
 
             if (c != null)
@@ -325,7 +334,7 @@ namespace Tilo.Controllers
 
                 TempData["message"] = $"{category.Name} has been saved";
             }
-            return View("Categories", _productsService.Categories);
+            return RedirectToAction("Categories");
         }
 
         [Route("Admin/Delete")]

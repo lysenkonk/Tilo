@@ -16,6 +16,9 @@
 
 <div class="container">
     <div class="row">
+            <a asp-action="CreateCategory" asp-controller="Admin" class="btn btn-info">Add Category</a>
+    </div>
+    <div class="row">
         <div class="col-md-1">
             ID
         </div>
@@ -23,7 +26,7 @@
             Name
         </div>
         <div class="col-md-2">
-           ParentName
+            ParentName
         </div>
         <div class="col-md-2">
             Actions
@@ -41,12 +44,10 @@
             </div>
             <div class="col-md-2">
                 @if (category.ParentCategory != null)
-                 {
-                      @category.ParentCategory.Name
-                 }
-
-
-        </div>
+                {
+                    @category.ParentCategory.Name
+                }
+            </div>
 
             <div class="col-md-2">
                 <a asp-action="EditCategory" class="btn btn-sm btn-info"
@@ -67,7 +68,4 @@
 </div>
 
 
-<div>
-    @*<a asp-action="Create" class="btn btn-info">Add Product</a>*@
-    <a asp-action="CreateCategory" class="btn btn-info">Add Category</a>
-</div>
+

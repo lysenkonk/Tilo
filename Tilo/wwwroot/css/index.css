@@ -6,7 +6,7 @@ body {
     display: block;
     height: 100%;
     font-family: "Roboto",sans-serif;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 html, body {
@@ -29,7 +29,7 @@ html, body {
 
 @media all and (max-width: 720px) {
     .main-page-img {
-        background-image: url(../files/main/img/phoneMainPage2.png);
+        background-image: url(../files/main/img/phoneMainPage.jpg);
     }
 }
 
@@ -269,6 +269,7 @@ a {
         margin-left: 1%;
         display: block;
         margin-left: -40px;
+        font-size: 12px;
     }
 }
 
@@ -294,7 +295,7 @@ a {
 }
 
 
-@media (max-width: 539px) {
+@media (max-width: 640px) {
     .phones {
     display: none;
     }
@@ -317,7 +318,7 @@ a {
 
     .header__menu {
         top: 20px;
-        left: 40px;
+        left: 10px;
     }
 }
 
@@ -384,7 +385,7 @@ cursor:pointer;
 
         .header__logo-wrap {
             top: 20px;
-            left: 60%;
+            left: 38%;
             transform: none;
         }
         .sidepanel a {
@@ -398,10 +399,13 @@ cursor:pointer;
         color: white
         }
     }
+@media (max-width: 720px) {
 
-
-
-/*#menuFirstPage
+    .sidepanel a {
+        color: white
+    }
+}
+    /*#menuFirstPage
 {
     z-index: 102
 }*/

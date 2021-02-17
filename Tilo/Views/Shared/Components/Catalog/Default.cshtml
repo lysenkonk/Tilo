@@ -1,15 +1,18 @@
 ﻿@model ICategoryRepository
 
 <div id="mySidepanel" class="sidepanel">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="sidepanel_head">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <span>Menu</span>
+    </div>
     @foreach (var p in Model.ParentCategories)
     {
         @*<a asp-action="List" asp-controller="Shop" asp-route-category="@Model.product.Category.Name">@Model.product.Category.Name</a>*@
         @*<a asp-action="List" asp-controller="Shop" asp-route-category="@p.Name">*@
-    <button class="dropdown-btn">
+    <button class="dropdown-btn" asp-action="List" asp-controller="Shop" asp-route-category="@p.Name" asp-route-page="1">
         @if (p.ChildCategories.Count < 1)
         {
-            <a asp-action="List" asp-controller="Shop" asp-route-category="@p.Name" asp-route-page="1">@p.Name</a>
+            @p.Name
         }
         else {@p.Name}
         <i class="fa fa-caret-down"></i>
