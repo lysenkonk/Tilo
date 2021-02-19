@@ -71,7 +71,7 @@ header {
 }
 
 #logoYouT img {
-    width: 25px;
+    width: 27px;
     height: 30px;
     margin-top: -1px;
 }
@@ -344,11 +344,14 @@ header .hamburger-menu {
         margin-top: 59px;
     }
 }
-
+header .hamburger-menu:hover {
+    cursor: pointer;
+}
 header .hamburger-menu:active .hamburger,
 header .hamburger-menu:focus .hamburger,
 header .hamburger-menu:hover .hamburger {
     color: #75ded5;
+    cursor: pointer;
 }
 
 /*------------------------------------------------------------*/
@@ -580,6 +583,7 @@ header .menu .ulItem {
 
         header .menu .ulItem a:hover {
             text-decoration: underline;
+            cursor: pointer;
         }
 
 
@@ -953,7 +957,7 @@ header .menu .ulItem {
     /*********************************************/
     @media (min-width: 768px) {
         .new-products .products {
-            margin-top: 40px;
+            margin-top: 60px;
         }
     }
 
@@ -1752,36 +1756,45 @@ button.custom-button:after {
     }
     /*********************************************************************************Menu***************************************/
     /* The sidepanel menu */
-    .sidepanel {
-        height: auto;
-        width: 0;
-        position: fixed;
-        z-index: 10;
-        top: 30px;
-        left: 100px;
-        /* background-color: #111; */
-        background-color: white;
-        overflow-y: hidden;
-        padding-top: 60px;
-        transition: 0.5s;
-    }
+.sidepanel {
+    height: auto;
+    width: 0;
+    position: fixed;
+    z-index: 10;
+    top: 30px;
+    left: 100px;
+    /* background-color: #111; */
+    background-color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    -webkit-box-shadow: 0 0 5px #808080;
+    box-shadow: 0 0 5px #808080;
+}
 
         /* The sidepanel links */
         .sidepanel a {
-            padding: 8px 8px 8px 32px;
+            /*padding: 8px 8px 8px 32px;*/
             text-decoration: none;
-            font-size: 25px;
-            color: black;
+            font-size: 14px;
+            /*color: black;*/
             display: block;
             transition: 0.3s;
+            /*border-bottom: 1px solid #ccc;*/
         }
-
+            .sidepanel a:hover {
+                cursor: pointer;
+                /*color: #09589c;*/
+            }
 
     @media(min-width: 780px) {
         .sidepanel {
-            padding-top: 70px
+            padding-top: 0px
         }
-
+            .sidepanel a {
+                font-size: 16px;
+            }
         .slideshow-container {
             margin-top: 50px
         }
@@ -1789,18 +1802,23 @@ button.custom-button:after {
 
 
     /* When you mouse over the navigation links, change their color */
-    .sidepanel .dropdown-container a:hover {
-        text-decoration: underline;
-    }
+.sidepanel .dropdown-container a:hover {
+    cursor: pointer;
+    /*color: white;*/
+    /*color: #09589c;*/
+}
+
 
     /* Position and style the close button (top right corner) */
-    .sidepanel .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-    }
+.sidepanel .closebtn {
+    position: absolute;
+    /*top: 68px;*/
+    color: white;
+    /*right: 25px;*/
+    font-size: 30px;
+    padding-left: 22px;
+    /*margin-left: 50px;*/
+}
 
     /* Style the button that is used to open the sidepanel */
     .openbtn {
@@ -1830,18 +1848,20 @@ button.custom-button:after {
             overflow-x: hidden;
             padding-top: 0px;
             transition: 0.5s;
-            padding-bottom: 20px;
+            padding-bottom: 30px;
+            -webkit-box-shadow: 0 0 5px #808080;
+            box-shadow: 0 0 5px #808080;
         }
 
             /* The sidepanel links */
-            .sidepanel a {
+            /*.sidepanel a {
                 padding: 8px 8px 8px 32px;
                 text-decoration: none;
                 font-size: 25px;
                 color: white;
                 display: block;
                 transition: 0.3s;
-            }
+            }*/
 
 
             /* When you mouse over the navigation links, change their color */
@@ -1853,9 +1873,12 @@ button.custom-button:after {
             .sidepanel .closebtn {
                 position: absolute;
                 top: 0;
-                right: 25px;
-                font-size: 36px;
-                margin-left: 50px;
+                /*right: 25px;*/
+                font-size: 30px;
+                /*margin-left: 50px;*/
+                color: white;
+                padding-left: 20px;
+                padding-top: 5px;
             }
 
         /* Style the button that is used to open the sidepanel */
@@ -1875,35 +1898,40 @@ button.custom-button:after {
     /*********************************************************************DropdownBtn*****************/
     /* Style the sidenav links and the dropdown button */
     .dropdown-btn {
-        padding: 8px 8px 8px 32px;
         text-decoration: none;
-        font-size: 25px;
+        font-size: 16px;
         /*color: #818181;*/
         color: black;
         display: block;
         transition: 0.3s;
-        border-bottom: 1px solid #ccc;
+        /*border-bottom: 1px solid #ccc;*/
         width: 100%;
         text-align: left;
     }
 
         /* On mouse-over */
         .dropdown-btn:hover {
-            background: none;
-            text-decoration: underline;
+            /*text-decoration: underline;*/
+            cursor: pointer;
+            /*text-decoration: underline;*/
         }
+
+.sidepanel .dropdown-container button:hover {
+    cursor: pointer;
+    /*text-decoration: underline;*/
+}
 
     #mySidepanel .dropdown-btn:focus {
         outline: none;
         /*text-decoration: underline;*/
-    }
+}
     /* Add an active class to the active dropdown button */
-    .active {
-        /*background-color: green;*/
-        background: none;
-        border: none;
-        color: #818181;
-    }
+.active {
+    /*background-color: green;*/
+    background: none;
+    /*border: none;*/
+    /*text-decoration: underline;*/
+}
 
     /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
     .dropdown-container {
@@ -1912,10 +1940,14 @@ button.custom-button:after {
     }
 
     /* Optional: Style the caret down icon */
-    .fa-caret-down {
-        float: right;
-        padding-right: 8px;
-    }
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+    width: 4px;
+    display: inline-block;
+    color: black;
+}
+    
     /*-----------------------------------------------------------------ProductView------------------------ */
     .col-form-label-size {
         font-weight: 500;
@@ -2076,7 +2108,7 @@ button.custom-button:after {
     }
 
     .sm_img {
-        width: 100px;
+        width: 70px;
     }
 
     @media (max-width: 720px) {
@@ -2089,10 +2121,13 @@ button.custom-button:after {
         text-align: center
     }
     /*--------------------sidepanel_head---------------------*/
-    .sidepanel_head {
-        background-color: #111;
-        padding: 5px;
-        height: 50px;
+.sidepanel_head {
+    background-color: #111;
+    padding: 5px;
+    height: 50px;
+    font-size: 25px;
+    border-radius: 3px;
+
     }
 
         .sidepanel_head span {
@@ -2103,6 +2138,7 @@ button.custom-button:after {
             line-height: 1.42857;
             font-family: Poppins,sans-serif;
             font-size: 14px;
+            padding: 14px 8px 8px 310px;
         }
 
     @media (max-width: 767px) {
@@ -2114,3 +2150,33 @@ button.custom-button:after {
             margin-top: 12px;
         }
     }
+.borderGrey {
+    border-bottom: 0.5px solid #ccc;
+}
+/*.borderGreyThin {
+    border-bottom: 0.1px solid #6f6f6e;
+}*/
+.paddingA {
+    padding: 8px 8px 8px 22px;
+}
+
+/*----------------------------------------------------------------*/
+.positionGlyphicon
+{
+font-size: 14px;
+float: right;
+padding-right: 22px
+}
+.backgroundAndFontColor {
+    background-color: black;
+    color: white;
+}
+.whiteGlyphicon {
+color: white;
+}
+.borderRadius{
+    border-radius: 3px;
+}
+.paddingLNone{
+    padding-left: 0;
+}

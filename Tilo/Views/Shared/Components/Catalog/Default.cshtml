@@ -9,37 +9,46 @@
     {
         @*<a asp-action="List" asp-controller="Shop" asp-route-category="@Model.product.Category.Name">@Model.product.Category.Name</a>*@
         @*<a asp-action="List" asp-controller="Shop" asp-route-category="@p.Name">*@
-    <button class="dropdown-btn" asp-action="List" asp-controller="Shop" asp-route-category="@p.Name" asp-route-page="1">
+    <button class="dropdown-btn  borderGrey paddingA borderRadius">
         @if (p.ChildCategories.Count < 1)
         {
-            @p.Name
+            <a class="borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@p.Name" asp-route-page="1">
+                @p.Name
+            </a>
         }
-        else {@p.Name}
-        <i class="fa fa-caret-down"></i>
-    </button>
-        @*</a>*@
-    <div class="dropdown-container">
-        @foreach (var c in p.ChildCategories)
+        else
         {
-            @if (c.ChildCategories.Count < 1)
-            {
-                <a asp-action="List" asp-controller="Shop" asp-route-category="@c.Name" asp-route-page="1">@c.Name</a>
+            @p.Name
+            <span><i class="glyphicon glyphicon-menu-down positionGlyphicon borderRadius"></i></span>
 
-            }
-            else
-            {
-            <button class="dropdown-btn">
-                  @c.Name
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-container">
-                @foreach (var subCategory in c.ChildCategories)
+        }
+
+    </button>
+
+            @*</a>*@
+            <div class="dropdown-container paddingLNone">
+                @foreach (var c in p.ChildCategories)
                 {
-                    <a asp-action="List" asp-controller="Shop" asp-route-category="@subCategory.Name" asp-route-page="1">@subCategory.Name</a>
+                    @if (c.ChildCategories.Count < 1)
+                    {
+                        <a class="paddingA backgroundAndFontColor borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@c.Name" asp-route-page="1">@c.Name</a>
+
+                    }
+                    else
+                    {
+                        <button class="dropdown-btn  paddingA backgroundAndFontColor borderRadius">
+                            @c.Name
+                            <span><i class="glyphicon glyphicon-menu-down positionGlyphicon whiteGlyphicon"></i></span>
+
+                        </button>
+                        <div class="dropdown-container">
+                            @foreach (var subCategory in c.ChildCategories)
+                            {
+                                <a class="borderGrey paddingA  borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@subCategory.Name" asp-route-page="1">@subCategory.Name</a>
+                            }
+                        </div>
+                    }
                 }
             </div>
             }
-        }
-     </div>
-    }
-    </div>
+        </div>

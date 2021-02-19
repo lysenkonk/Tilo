@@ -130,7 +130,7 @@
                                                                                     <span>@Model.product.Products[i].Name</span>
                                                                                 }
 
-                                                                                @if (Model.product.Products[i].Price > 0)
+                                                                                @if (Model.product.Products[i].Price > 0 && Model.product.Products[i].Name != "Top" && Model.product.Products[i].Name != "Bottom" )
                                                                                 {
                                                                                     <input type="hidden" name="product.Products[@i].Price" asp-for="@Model.product.Products[i].Price" />
                                                                                     <label asp-for=@Model.product.Products[i].Price class="col-sm-1">+@Model.product.Products[i].Price<span class="woocommerce-Price-currencySymbol">грн</span></label>

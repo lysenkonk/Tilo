@@ -161,7 +161,7 @@ namespace Tilo.Controllers
                 {
                     throw new Exception(ex.Message.ToString());
                 }
-                orderLinesJoinAll += orderLine.Product.Name + " " + "(" + sizes + ")" + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + ";" + "\n"; 
+                orderLinesJoinAll += orderLine.Product.Name + " "  + sizes + " " + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + ";" + "\n"; 
                 priceAllOrder += orderLine.Quantity * orderLine.Product.Price;
             }
             orderLinesJoinAll += "Всего к оплате: " + priceAllOrder + "; ";
