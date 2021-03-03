@@ -292,17 +292,18 @@ namespace Tilo.Controllers
                 Categories = _productsService.Categories
             };
             return View("Category", viewModel);
-        }
+        } 
         [HttpPost]
         [Route("Admin/CreateCategory/{category}")]
         public async Task<IActionResult> CreateCategory(Category category)
         {
-            category.ParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory;
+            
             Category c = null;
             if (category.ParentCategory != null)
             {
                 try
                 {
+                    category.ParentCategory = category.ParentCategory.Name == "ParentName" ? null : category.ParentCategory;
                     c = _productsService.Categories.SingleOrDefault(curent => curent.Name == category.Name && curent.ParentCategory!=null && curent.ParentCategory.Name == category.ParentCategory.Name);
                 }catch(Exception ex)
                 {
@@ -336,6 +337,12 @@ namespace Tilo.Controllers
             }
             return RedirectToAction("Categories");
         }
+
+
+        //[HttpPost]
+        //[Route("Admin/CreateCategory/{category}")]
+        //public async Task<IActionResult> CreateCategory(Category category)
+        //{
 
         [Route("Admin/Delete")]
         public async Task<IActionResult> Delete(int productId)
@@ -376,7 +383,7 @@ namespace Tilo.Controllers
         }
 
         [HttpPost]
-        [Route("Admin/EditCategory")]
+        [Route("Admin/EditCategory/{category}")]
         public async Task<IActionResult> EditCategory(Category category)
         {
 

@@ -56,11 +56,15 @@
                     <input asp-for="@Model.ParentCategory" class="form-control" />
                 </div>
             </div>*@
-        }
+            }
             <div class="form-group row">
                 <div class="col-sm-10 ml-auto">
+                    @if (Model.Category.ID == 0)
+                    {
                     <button class="btn btn-info" type="submit">Save</button>
+                    }
                     <a asp-action="CreateCategory" class="btn btn-warning">Clean</a>
+                    <button asp-action="EditCategory" class="btn btn-info">Edit</button> 
                     <a asp-action="Categories" asp-controller="Admin" class="btn btn-secondary">Cancel</a>
                 </div>
             </div>

@@ -7,111 +7,149 @@
     <div id="content">
         <div class="bProductView">
             <div class="bWrap">
-                <h2 class="m-1 text-cent">Your Cart</h2>
-                <div class="row border-bottom">
-                    <div class="col-sm-1 col-xs-1   font-weight-bold text-center">Product</div>
-                    <div class="col-sm-2 col-xs-2  font-weight-bold text-center"></div>
-                    <div class="col-sm-1 col-xs-1 font-weight-bold text-center">Size</div>
-                    <div class="col-sm-2 col-xs-2 font-weight-bold text-center">Quantity</div>
-                    <div class="col-sm-2 col-xs-2 font-weight-bold text-center">Price</div>
-                    <div class="col-sm-1 col-xs-1 font-weight-bold text-center">Subtotal</div>
-                </div>
-                @if (Model.Selections.Count() == 0)
-                {
-                    <div class="row mt-2"><div class="col-12"><h4>Cart is Empty</h4></div></div>
-                }
-                else
-                {
-                    @foreach (OrderLine line in Model.Selections)
+                <div class="wrapCart">
+                    @if (Model.Selections.Count() == 0)
                     {
-                    <div class="row  border-bottom">
-                        <div class="col-sm-1 col-xs-1  marginTop30 text-center">
-                            @line.Product.Name
-                        </div>
-                        <div class="col-sm-2 col-xs-2 marginTop0 text-center">
-
-                            @if (line.Product.Images.Count > 0)
-                            {
-                                <img  class="sm_img" name="@line.Product.Images[0].Name" src="@Url.Content("/files/Sm2/" + @line.Product.Images[0].Name)" />
-                            }
-                        </div>
-                        @if (line.Product.Sizes != null && line.Product.Sizes.Count > 0)
-                        {
-                            <div class="col-sm-1 col-xs-1  marginTop30  text-center">
-
-                                @*@foreach (  var size in ViewBag.Size)
-                                {
-                                    @size 
-                                    <span>;</span>
-                                }*@
-                                @line.Product.Sizes[0].Name
-
-                            </div>
-                        }else if(line.Product.Category.Name == "Комплекты")
-                        {
-                            <div class="col-sm-1 col-xs-1  marginTop30  text-center">
-                                :
-                            </div>
-
-                        }else
-                        {
-                            <div class="col-sm-1 col-xs-1  marginTop30  text-center">
-                                One size
-                            </div>
-
-                        }
-                        <div class="col-sm-2 col-xs-2  marginTop30 text-center">@line.Quantity</div>
-                        <div class="col-sm-2 col-xs-2  marginTop30 text-center">
-                            $@line.Product.Price.ToString("f0")
-                        </div>
-                        <div class="col-sm-1  col-xs-1 marginTop30  text-center">
-                            $@((line.Product.Price * line.Quantity).ToString("f0"))
-                        </div>
-                        <div class="col-sm-1 col-xs-1  marginTop25  text-center">
-                            <form asp-action="RemoveFromCart">
-                                <button type="submit" name="productId"
-                                        value="@line.ProductId"
-                                        class="btn btn-sm btn-outline-danger">
-                                    Remove
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                        <div class="row mt-2"><div class="col-12"><h4>Cart is Empty</h4></div></div>
                     }
-                }
-                <div class="row mt-2">
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col text-right font-weight-bold">Total:</div>
-                    <div class="col text-right font-weight-bold">
-                        $@(Model.Selections.Sum(l => l.Product.Price
-                                                               * l.Quantity).ToString("f0"))
-                    </div>
-                    <div class="col"></div>
-                </div>
-            </div>
-            <div class="text-center m-2">
-                @if (ViewBag.returnUrl != null)
-                {
-                    <a href="@ViewBag.returnUrl" class="btn btn-outline-primary">
-                        Continue Shopping
-                    </a>
-                }
-                else
-                {
-                    <a asp-controller="Shop" asp-action="List" class="btn btn-outline-primary">
-                        Continue Shopping
-                    </a>
-                }
+                    else
+                    {
+                        @foreach (OrderLine line in Model.Selections.Where(l => l.Product.Category != null))
+                        {
+                            <div class="rowalignAndHeight">
+                                <div class="col-sm-12 col-xs-12 marginTop0 text-center">
 
-                @if (Model.Selections.Count() != 0)
-                {
-                    <a asp-action="CreateOrder"  asp-controller="Cart" class="btn btn-primary">
-                        Place Order
-                    </a>
-                }
-            </div>
+                                    @if (line.Product.Images.Count > 0)
+                                    {
+                                        <img class="sm_img" name="@line.Product.Images[0].Name" src="@Url.Content("/files/Sm2/" + @line.Product.Images[0].Name)" />
+                                    }
+                                    <form asp-action="RemoveFromCart">
+                                        <button type="submit" name="productId"
+                                                value="@line.ProductId"
+                                                class="btn btn-sm btn-outline-danger">
+                                            Удалить
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="row alignAndHeight">
+                                <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Товар:</div>
+                                <div class="col-sm-10 col-xs-10   text-right">
+                                    @line.Product.Name
+                                </div>
+                            </div>
+                            @if (line.Product.Sizes != null && line.Product.Sizes.Count > 0)
+                            {
+                                <div class="row alignAndHeight">
+                                    <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Размер:</div>
+                                    <div class="col-sm-10 col-xs-10    text-right">
+
+                                        @line.Product.Sizes[0].Name
+
+                                    </div>
+                                </div>
+                            }
+                            else if (line.Product.Category.Name == "Комплекты"  || line.Product.Category.Name == "Ролевое бельё")
+                            {
+                                @for (int i = 0; i < line.Product.Products.Count; i++)
+                                {
+                                    if (line.Product.Products[i].Sizes != null)
+                                    {
+                                        <div class="row alignAndHeight">
+                                        <div class="col-sm-2 col-xs-2   font-weight-bold text-left">
+                                        @if (line.Product.Products[i].Name == "Top")
+                                        {
+                                            <span>Бра:</span>
+                                        }
+                                        else if (line.Product.Products[i].Name == "Bottom")
+                                        {
+                                            <span>Трусики:</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@line.Product.Products[i].Name:</span>
+                                        }
+                                    </div>
+                                    <div class="col-sm-10 col-xs-10   text-right">@line.Product.Products[@i].Sizes[0].Name</div>
+                                      </div>
+                                    }
+                                 }
+                             } else {
+                                        @*<div class="col-sm-10 col-xs-10 text-right">
+                                            One size
+                                        </div>*@
+                                    }
+                                    <div class="row alignAndHeight">
+                                        <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Количество:</div>
+
+                                        <div class="col-sm-10 col-xs-10   text-right">@line.Quantity</div>
+                                    </div>
+                                    <div class="row alignAndHeight border-bottom">
+                                        <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Цена:</div>
+                                        <div class="col-sm-10 col-xs-10   text-right">
+                                                @if (line.Product.Category.Name == "Комплекты" || line.Product.Category.Name == "Ролевое бельё")
+                                                {
+                                                    var price = 0;
+                                                    foreach (var p in line.Product.Products)
+                                                    {
+                                                        if (p.Sizes != null && p.Sizes.Count > 0 && p.Price > 0)
+                                                        {
+                                                            price += p.Price;
+                                                        }
+                                                    }
+                                                    if (line.Product.Price != 0)
+                                                    {
+                                                        price += line.Product.Price;
+                                                    }
+                                                    @price.ToString("f0");
+                                                }
+                                                else
+                                                {@line.Product.Price.ToString("f0");}
+
+                                            </div>
+                                    </div>
+                                    @*<div class="row alignAndHeight">
+                            <div class="col-sm-12 col-xs-12   text-right">
+                                <form asp-action="RemoveFromCart">
+                                    <button type="submit" name="productId"
+                                            value="@line.ProductId"
+                                            class="btn btn-sm btn-outline-danger">
+                                        Удалить
+                                    </button>
+                                </form>
+                            </div>
+                        </div>*@
+                                }
+                            }
+                            <div class="row alignAndHeight border-bottom">
+                                <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Сумма:</div>
+                                <div class="col text-right font-weight-bold">
+                                    @(Model.Selections.Sum(l => l.Product.Price * l.Quantity).ToString("f0"))
+                                </div>
+                            </div>
+                            <div class="text-center m-2">
+                                @if (ViewBag.returnUrl != null)
+                                {
+                                    <a href="@ViewBag.returnUrl" class="btn btn-outline-primary">
+                                        Продолжить покупки
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Shop" asp-action="List" class="btn btn-outline-primary">
+                                        Продолжить покупки
+                                    </a>
+                                }
+
+                                @if (Model.Selections.Count() != 0)
+                                {
+                                    <a asp-action="CreateOrder" asp-controller="Cart" class="btn btn-primary">
+                                        Заказать
+                                    </a>
+                                }
+                            </div>
+                        </div>
         </div>
-
+            </div>
     </div>
-        </div>
+</div>

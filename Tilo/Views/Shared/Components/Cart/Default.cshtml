@@ -2,8 +2,8 @@
 @if (Model?.Selections?.Count() > 0)
 {
     <div>
-        @Model.Selections.Count() items,
-        $@(Model.Selections.Sum(l => l.Quantity
+        @Model.Selections.Where(l => l.Product.Category != null).Count() items,
+        @(Model.Selections.Sum(l => l.Quantity
                        * l.Product.Price).ToString("f2"))
     </div>
     if (ViewContext.RouteData.Values["controller"] as string != "Cart")

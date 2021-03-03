@@ -1318,7 +1318,7 @@ header .menu .ulItem {
         padding-top: 31px;
         border-top: 1px solid #d7d7d7;
         background-color: black;
-        height: 180px;
+        height: 150px;
     }
 
 
@@ -1331,8 +1331,8 @@ header .menu .ulItem {
 
     @media (max-width:767.98px) {
         .bWrap {
-            padding: 0 10px;
-            font-size: 13px
+            font-size: 13px;
+
         }
     }
 
@@ -1366,6 +1366,7 @@ header .menu .ulItem {
         .footerMobile {
             text-align: center;
             line-height: 1.8;
+            font-size: 10px
         }
 
         .footer2 {
@@ -1389,9 +1390,9 @@ header .menu .ulItem {
             text-align: center;
         }
 
-        .bWrap {
+        /*.bWrap {
             padding: 0 10px;
-        }
+        }*/
     }
 
     @media (min-width: 1280px) {
@@ -2036,7 +2037,7 @@ button.custom-button:after {
 
 @media (min-width: 580px) and (max-width: 800px){
     header .logo {
-        margin-left: 120px;
+        margin-left: 100px;
         /*margin-top: -20px;*/
     }
 }
@@ -2113,7 +2114,7 @@ button.custom-button:after {
 
     @media (max-width: 720px) {
         .sm_img {
-            width: 50px;
+            width: 100px;
         }
     }
 
@@ -2179,4 +2180,18 @@ color: white;
 }
 .paddingLNone{
     padding-left: 0;
+}
+/*--------------------------------------------Cart------------------------*/
+.alignAndHeight {
+    height: 25px;
+    align-content: center;
+}
+@media (max-width: 700px) {
+    .wrapCart {
+        background-color: black;
+        color: white;
+        border-radius: 3px;
+        padding-bottom: 10px;
+        padding: 10px;
+    }
 }

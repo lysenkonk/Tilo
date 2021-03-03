@@ -520,10 +520,9 @@
             font-size: 12px
         }*/
 
-        .bFooter {
-            /*padding-top: 21px;*/
+        /*.bFooter {
             height: 200px;
-        }
+        }*/
     }
 
     @media(min-width: 1600px) {
