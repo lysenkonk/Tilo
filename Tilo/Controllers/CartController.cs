@@ -42,13 +42,18 @@ namespace Tilo.Controllers
             {
                 prodCurrent = productRepository.Products.FirstOrDefault(p => p.Category.Name == product.Category.Name && p.Price == product.Price);
                 //int price = product.Price;
-            } else if(product.Products != null)
+            }
+            else if (product.Products != null)
             {
                 Product item = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
                 prodCurrent = product;
                 prodCurrent.Images = item.Images;
             }
-            else prodCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
+            else {
+                prodCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
+                prodCurrent.Sizes = null;
+                prodCurrent.Sizes = new List<Size> { new Size(size) };
+            }
 
             if(product.Products != null)
             {

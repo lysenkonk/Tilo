@@ -153,7 +153,7 @@
 
         .slick-slide img {
             display: block;
-            width: 100%;
+            /*width: 100%;*/
         }
     }
 
@@ -170,7 +170,7 @@
             order: 0;
             /*overflow: hidden;*/
             max-width: 212px;
-            padding: 0 10px;
+            padding: 0px 10px;
         }
 
             .eProductView_sliderNav .eProductView_image {
@@ -267,7 +267,7 @@
         /*max-width: 317px*/
     }
 
-    @media (max-width:1024.98px) {
+    @media (max-width: 800.98px) {
         .eProductView_data {
             width: 100%;
             margin: 0 auto;
@@ -542,7 +542,7 @@
             /* max-width: 570px; */
             box-sizing: inherit;
             /* display: flex; */
-            padding-left: 100px;
+            padding-left: 20px;
             /* justify-content: right; */
         }
     }
@@ -789,6 +789,7 @@
         .breadCrumbs {
             color: black;
             border-bottom: 1px solid #b6b6b6;
+            margin: 15px 0 25px 0px;
             border-top: 1px solid #b6b6b6;
         }
     }
@@ -885,7 +886,7 @@
         }
 
         .size {
-            padding-right: 40px;
+            /*padding-right: 40px;*/
         }
     }
     /*.source {
@@ -912,6 +913,7 @@
 
         .sizeM {
             /*width: 350px;*/
+            /*padding-left: 5px;*/
         }
 
         .source {
@@ -933,7 +935,7 @@
 
     @media(min-width: 1340px) {
         .size {
-            padding-right: 80px;
+            /*padding-right: 80px;*/
         }
     }
 
@@ -949,3 +951,97 @@
         text-align: justify;
         line-height: 1.8
     }
+.sizeM input {
+    display: none;
+}
+/*-----------------------------------badge size------------------------------*/
+.badgeSize {
+    display: inline-block;
+    min-width: 15px;
+    padding: 4px 7px 3px 7px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    color: #808080;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-bottom: 2px;
+    background-color: rgba(0, 0, 0, .12);
+    border-radius: 3px;
+}
+
+@media (max-width:960px) {
+    .badgeSize, .sizeSuit label  {
+        font-size: 12px;
+    }
+}
+
+.badgeSize:hover {
+    cursor: pointer;
+    color: white;
+}
+/*.badgeSize:visited {
+    background-color: black;
+    color: white;
+}*/ 
+/*.badgeSize:active {
+    background-color: black;
+    color: white;
+}*/
+.badgeSize:focus {
+    background-color: black;
+    color: white;
+}
+
+.badgeSize i {
+    background-color: black;
+}
+.sizeSuit0, .sizeSuit1, .sizeSuit2, .sizeSuit3, .sizeSuit4, .sizeSuit5 {
+    display: inline-block;
+     min-width: 15px;
+    padding: 4px 7px 3px 7px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    color: #808080;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-bottom: 2px;
+    background-color: rgba(0, 0, 0, .12);
+    border-radius: 3px;
+}
+    .sizeSuit0:focus, .sizeSuit1:focus, .sizeSuit2:focus, .sizeSuit3:focus, .sizeSuit4:focus, .sizeSuit5:focus {
+        background-color: black;
+        color: white;
+    }
+    /*.sizeSuit0:selected, .sizeSuit1:selected, .sizeSuit2:active, .sizeSuit3:active, .sizeSuit4:active, .sizeSuit5:active {
+        background-color: black;
+        color: white;
+    }*/
+.selected {
+    background-color: black;
+    color: white;
+}
+.inline {
+    display: inline;
+}
+.paddingL {
+    margin-left: 30px;
+}
+.paddingR {
+    margin-right: 30px;
+}
+.width60 {
+    width: 60px;
+    padding-right: 20px;
+    display: inline-block;
+}
+.width80 {
+    width: 120px;
+    display: inline-block;
+}
+.paddingLeft0{
+    padding-left: 0;
+}

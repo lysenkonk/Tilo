@@ -99,75 +99,86 @@
 
                                                         @if (Model.product.Products.Count > 0)
                                                         {
-                                                            <label class="size col-sm-2 col-form-label">Размер</label>
-                                                            <div class="form-group row">
+                                                            @*<label class="size col-sm-2 col-form-label">Размер</label>*@
+                                                            
 
                                                                 @for (int i = 0; i < Model.product.Products.Count; i++)
                                                                 {
-                                                                    if (Model.product.Products[i].Sizes != null)
+                                                                    <div class="form-group row">
+                                                                    @if (Model.product.Products[i].Sizes != null)
                                                                     {
                                                                         @*<div class="form-group row">*@
                                                                         <input type="hidden" name="product.Products[@i].Name" asp-for="@Model.product.Products[i].Name" />
-                                                                        <div class="col-sm-8 font-weight-normal">
-                                                                            <select class="source" name="product.Products[@i].Sizes[0].Name" asp-for="@Model.product.Products[i].Sizes" asp-items="@(new SelectList(Model.product.Products[i].Sizes, "Name", "Name"))">
-                                                                                <optgroup class="select2-result-selectable" name="Nsize" value="@Model.product.Products[i].Name" label="Enter size">@Model.product.Products[i].Name</optgroup>
-                                                                                @*<input type="hidden" name="name" asp-for="@Model.product.Category.Name" />*@
-
-                                                                            </select>
-
-
-                                                                            <label asp-for="@Model.product.Products[i].Sizes" class="col-sm-2 float-right">
+                                                                        <div class="col-sm-10 sizeM center-block  font-weight-normal"  data-toggle="buttons">
+                                                                            <div asp-for="@Model.product.Products[i].Sizes" class=" inline">
                                                                                 @if (Model.product.Products[i].Name == "Top")
                                                                                 {
-                                                                                    <span>Бра</span>
+                                                                                    <span class="width80">Размер бюста</span>
                                                                                 }
                                                                                 else if (Model.product.Products[i].Name == "Bottom")
                                                                                 {
-                                                                                    <span>Трусики</span>
+                                                                                    <span class="width80">Размер трусиков</span>
                                                                                 }
                                                                                 else
                                                                                 {
-                                                                                    <span>@Model.product.Products[i].Name</span>
+                                                                                    <span class="width60">@Model.product.Products[i].Name</span>
                                                                                 }
-
-                                                                                @if (Model.product.Products[i].Price > 0 && Model.product.Products[i].Name != "Top" && Model.product.Products[i].Name != "Bottom" )
+                                                                            </div>
+                                                                            @{string sizeSuit = "sizeSuit" + i;}
+                                                                            <label id="@Model.product.Products[i].Name">
+                                                                                @foreach (var s in Model.product.Products[i].Sizes)
                                                                                 {
-                                                                                    <input type="hidden" name="product.Products[@i].Price" asp-for="@Model.product.Products[i].Price" />
-                                                                                    <label asp-for=@Model.product.Products[i].Price class="col-sm-1">+@Model.product.Products[i].Price<span class="woocommerce-Price-currencySymbol">грн</span></label>
+                                                                                <label tabindex="1" class=@sizeSuit>
+                                                                                    <input id="@s.Name" type="radio" value="@s.Name" name="product.Products[@i].Sizes[0].Name" />
+                                                                                    @s.Name
+                                                                                </label>
                                                                                 }
                                                                             </label>
-
-                                                                            @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
-
-                                                                        </div>
                                                                         @*</div>*@
+                                                                            @if (Model.product.Products[i].Price > 0 && Model.product.Products[i].Name != "Top" && Model.product.Products[i].Name != "Bottom")
+                                                                            {
+                                                                                <input type="hidden" name="product.Products[@i].Price" asp-for="@Model.product.Products[i].Price" />
+                                                                                <label asp-for=@Model.product.Products[i].Price class="col-sm-1 inline  float-right">+@Model.product.Products[i].Price<span class="woocommerce-Price-currencySymbol">грн</span></label>
+                                                                            }
+                                                                            @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
+                                                                        @*</div>*@
+                                                                        </div>
+
                                                                     }
+                                                                                                                               </div>
                                                                 }
-                                                            </div>
                                                         }
                                                         else
                                                         {
                                                             @if (Model.product.Sizes != null)
                                                             {
                                                                 <div class="form-group">
-                                                                    <div class="col-sm-10 sizeM center-block">
-                                                                        <label asp-for="@Model.product.Sizes" class="size">Размер</label>
-                                                                        <select class="source" name="product.Sizes[0].Name" asp-for="@Model.product.Sizes" asp-items="@(new SelectList(Model.product.Sizes, "Name", "Name"))">
-                                                                            <optgroup class="select2-result-selectable" label="Enter size"></optgroup>
-                                                                        </select>
-                                                                    </div>
+                                                                    <div class="col-sm-10 sizeM center-block" data-toggle="buttons">
+                                                                        <label asp-for="@Model.product.Sizes" class="size">Размер:</label>
+                                                                            @foreach (var s in Model.product.Sizes)
+                                                                            {
+
+                                                                                @*<label class="btn btn-primary">*@
+                                                                                @*@Html.RadioButton("product.Sizes[0].Name", s.Name)*@
+                                                                                <input id="@s.Name" type="radio"  value="@s.Name" name="product.Sizes[0].Name" />
+                                                                                <label tabindex="0" for="@s.Name" class="badgeSize">@s.Name</label>
+                                                                                @*</label>*@
+
+                                                                            }
+                                                                            @*<select class="source" name="product.Sizes[0].Name" asp-for="@Model.product.Sizes" asp-items="@(new SelectList(Model.product.Sizes, "Name", "Name"))">
+                                                                                <optgroup class="badge badge-secondary"  label="Enter size"></optgroup>
+                                                                               </select>*@
+                                                                        </div>
                                                                 </div>
                                                             }
                                                         }
                                                     }
-
-
                                                 </div>
-                                                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                                                <div class="card-text p-1">
+                                                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()"  />
+                                                <div>
                                                     @if (Model.product.Category.Name != "Подарочный сертификат")
                                                     {
-                                                        <label> Цвет: @Model.product.Color</label>
+                                                        <label class="col-sm-8 center-block inline paddingBottom5 "> Цвет: @Model.product.Color</label>
                                                     }
                                                     <br />
 
@@ -178,7 +189,9 @@
                                                     }
                                                     else
                                                     {
+                                                        <p class="col-sm-12 center-block paddingBottom5">
                                                         @(Model.product.Description ?? "(No Description Available")
+                                                            </p>
                                                     }
 
                                                 </div>
@@ -220,13 +233,13 @@
                 @if (Model.Products != null && Model.product.Category.Name != "Подарочный сертификат")
                 {
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 paddingBottom5">
                            <h4>Вам также могут понравится:</h4>
                         </div>
                         <div class="text-left">
                             @foreach (var p in Model.Products.Take(5))
                             {
-                                <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
+                                <a class="paddingLeftRight5" asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
                                     @if (p.Images.Count > 0 && Model.product.Id != p.Id)
                                     {
                                         <img class="sm_img" name="@p.Images[0].Name" src="@Url.Content("/files/Sm2/" + @p.Images[0].Name)" />
@@ -240,10 +253,66 @@
         </div>
     </div>
 </div>
-<script>
+<script> 
 
     $(document).ready(function () {
 
+        $('.sizeSuit0').click(function (e) {
+            $(e.currentTarget).siblings().removeClass('selected');
+            //$(e.currentTarget).siblings().removeClass('active');
+            $(e.currentTarget).addClass('selected');
+            //$(e.currentTarget).addClass('focus');
+
+         });
+
+        $('.sizeSuit1').click(function (e) {
+            //e.preventDefault();
+            //$(e.currentTarget).siblings().removeClass('focus');
+            $(e.currentTarget).siblings().removeClass('selected');
+            //$(e.currentTarget).siblings().removeClass('active');
+
+            $(e.currentTarget).addClass('selected');
+            //$(e.currentTarget).addClass('focus');
+
+
+
+        });
+
+        $('.sizeSuit2').click(function (e) {
+            //e.preventDefault();
+            //$(e.currentTarget).siblings().removeClass('focus');
+            $(e.currentTarget).siblings().removeClass('selected');
+
+            $(e.currentTarget).addClass('selected');
+            //$(e.currentTarget).addClass('focus');
+
+
+
+        });
+
+        $('.sizeSuit3').click(function (e) {
+            $(e.currentTarget).siblings().removeClass('selected');
+
+            //$(e.currentTarget).siblings().removeClass('focus');
+            $(e.currentTarget).addClass('focus');
+
+        });
+
+
+        $('.sizeSuit4').click(function (e) {
+            $(e.currentTarget).siblings().removeClass('selected');
+
+            $(e.currentTarget).addClass('selected');
+
+
+        });
+
+        $('.sizeSuit5').click(function (e) {
+            $(e.currentTarget).siblings().removeClass('selected');
+
+            $(e.currentTarget).addClass('selected');
+
+        });
         $('.source').select2();
 
         $(document).on("click", ".select2-results__group", function () {
@@ -265,7 +334,7 @@
         });
     });
 
-
+ 
 
     $('.btn-number').click(function (e) {
         e.preventDefault();

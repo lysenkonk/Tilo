@@ -111,7 +111,7 @@
                                             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
                                             <div class="card-text p-1">
                                                 <label> Цвет: @Model.product.Color</label>
-                                                </br>
+                                                <br>
                                                 @(Model.product.Description ?? "(No Description Available")
 
                                                 <button type="submit"
@@ -150,7 +150,6 @@
                 }
             </div>
         </div>
-    </div>
 </div>
 <script>
 

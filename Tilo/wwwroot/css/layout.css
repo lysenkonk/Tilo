@@ -1325,20 +1325,21 @@ header .menu .ulItem {
     .bWrap {
         max-width: 1250px;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 0 80px;
         font-size: 14px
     }
 
     @media (max-width:767.98px) {
         .bWrap {
             font-size: 13px;
-
+            padding: 0 40px;
         }
     }
 
     @media (max-width:960px) {
         .bWrap {
-            font-size: 13px
+            font-size: 13px;
+            padding: 0 40px;
         }
     }
 
@@ -2107,14 +2108,19 @@ button.custom-button:after {
             margin-left: auto;
         }
     }
-
+     
     .sm_img {
-        width: 70px;
+        width: 130px;
     }
+@media (max-width: 920px) {
+    .sm_img {
+        width: 90px;
+    }
+}
 
     @media (max-width: 720px) {
         .sm_img {
-            width: 100px;
+            width: 60px;
         }
     }
 
@@ -2194,4 +2200,10 @@ color: white;
         padding-bottom: 10px;
         padding: 10px;
     }
+}
+.paddingLeftRight5{
+    padding-right: 5px;
+}
+.paddingBottom5 {
+    padding-bottom: 5px;
 }

@@ -1,16 +1,22 @@
 ﻿@model Cart
 @if (Model?.Selections?.Count() > 0)
 {
-    <div>
-        @Model.Selections.Where(l => l.Product.Category != null).Count() items,
-        @(Model.Selections.Sum(l => l.Quantity
-                       * l.Product.Price).ToString("f2"))
-    </div>
-    if (ViewContext.RouteData.Values["controller"] as string != "Cart")
+    @if (Model.Selections.Where(l => l.Product.Category != null).Count() > 0)
     {
-        <a asp-action="Index" asp-controller="Cart"
-           class="btn btn-sm btn-light">
-            Checkout
-        </a>
+        <div>
+            @Model.Selections.Where(l => l.Product.Category != null).Count() items,
+
+
+            @(Model.Selections.Sum(l => l.Quantity
+                                           * l.Product.Price).ToString("f2"))
+
+        </div>
     }
-}
+    @if (ViewContext.RouteData.Values["controller"] as string != "Cart")
+    {
+            <a asp-action="Index" asp-controller="Cart"
+               class="btn btn-sm btn-light">
+                Checkout
+            </a>
+     }
+ }

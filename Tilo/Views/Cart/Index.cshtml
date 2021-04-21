@@ -49,106 +49,112 @@
                                     </div>
                                 </div>
                             }
-                            else if (line.Product.Category.Name == "Комплекты"  || line.Product.Category.Name == "Ролевое бельё")
+                            else if (line.Product.Category.Name == "Комплекты" || line.Product.Category.Name == "Ролевое бельё")
                             {
                                 @for (int i = 0; i < line.Product.Products.Count; i++)
                                 {
                                     if (line.Product.Products[i].Sizes != null)
                                     {
                                         <div class="row alignAndHeight">
-                                        <div class="col-sm-2 col-xs-2   font-weight-bold text-left">
-                                        @if (line.Product.Products[i].Name == "Top")
-                                        {
-                                            <span>Бра:</span>
-                                        }
-                                        else if (line.Product.Products[i].Name == "Bottom")
-                                        {
-                                            <span>Трусики:</span>
-                                        }
-                                        else
-                                        {
-                                            <span>@line.Product.Products[i].Name:</span>
-                                        }
-                                    </div>
-                                    <div class="col-sm-10 col-xs-10   text-right">@line.Product.Products[@i].Sizes[0].Name</div>
-                                      </div>
-                                    }
-                                 }
-                             } else {
-                                        @*<div class="col-sm-10 col-xs-10 text-right">
-                                            One size
-                                        </div>*@
-                                    }
-                                    <div class="row alignAndHeight">
-                                        <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Количество:</div>
-
-                                        <div class="col-sm-10 col-xs-10   text-right">@line.Quantity</div>
-                                    </div>
-                                    <div class="row alignAndHeight border-bottom">
-                                        <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Цена:</div>
-                                        <div class="col-sm-10 col-xs-10   text-right">
-                                                @if (line.Product.Category.Name == "Комплекты" || line.Product.Category.Name == "Ролевое бельё")
+                                            <div class="col-sm-2 col-xs-2   font-weight-bold text-left">
+                                                @if (line.Product.Products[i].Name == "Top")
                                                 {
-                                                    var price = 0;
-                                                    foreach (var p in line.Product.Products)
-                                                    {
-                                                        if (p.Sizes != null && p.Sizes.Count > 0 && p.Price > 0)
-                                                        {
-                                                            price += p.Price;
-                                                        }
-                                                    }
-                                                    if (line.Product.Price != 0)
-                                                    {
-                                                        price += line.Product.Price;
-                                                    }
-                                                    @price.ToString("f0");
+                                                    <span>Бра:</span>
+                                                }
+                                                else if (line.Product.Products[i].Name == "Bottom")
+                                                {
+                                                    <span>Трусики:</span>
                                                 }
                                                 else
-                                                {@line.Product.Price.ToString("f0");}
-
+                                                {
+                                                    <span>@line.Product.Products[i].Name:</span>
+                                                }
                                             </div>
-                                    </div>
-                                    @*<div class="row alignAndHeight">
-                            <div class="col-sm-12 col-xs-12   text-right">
-                                <form asp-action="RemoveFromCart">
-                                    <button type="submit" name="productId"
-                                            value="@line.ProductId"
-                                            class="btn btn-sm btn-outline-danger">
-                                        Удалить
-                                    </button>
-                                </form>
-                            </div>
-                        </div>*@
+                                            <div class="col-sm-10 col-xs-10   text-right">@line.Product.Products[@i].Sizes[0].Name</div>
+                                        </div>
+                                    }
                                 }
                             }
-                            <div class="row alignAndHeight border-bottom">
-                                <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Сумма:</div>
-                                <div class="col text-right font-weight-bold">
-                                    @(Model.Selections.Sum(l => l.Product.Price * l.Quantity).ToString("f0"))
-                                </div>
+                            else
+                            {
+                                @*<div class="col-sm-10 col-xs-10 text-right">
+                        One size
+                    </div>*@
+                            }
+                            <div class="row alignAndHeight">
+                                <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Количество:</div>
+
+                                <div class="col-sm-10 col-xs-10   text-right">@line.Quantity</div>
                             </div>
-                            <div class="text-center m-2">
-                                @if (ViewBag.returnUrl != null)
-                                {
-                                    <a href="@ViewBag.returnUrl" class="btn btn-outline-primary">
-                                        Продолжить покупки
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a asp-controller="Shop" asp-action="List" class="btn btn-outline-primary">
-                                        Продолжить покупки
-                                    </a>
+                            <div class="row alignAndHeight border-bottom">
+                                <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Цена:</div>
+                                <div class="col-sm-10 col-xs-10   text-right">
+                                    @if (line.Product.Category.Name == "Комплекты" || line.Product.Category.Name == "Ролевое бельё")
+                                    {
+                                        var price = 0;
+                                        foreach (var p in line.Product.Products)
+                                        {
+                                            if (p.Sizes != null && p.Sizes.Count > 0 && p.Price > 0)
+                                            {
+                                                price += p.Price;
+                                            }
+                                        }
+                                        if (line.Product.Price != 0)
+                                        {
+                                            price += line.Product.Price;
+                                        }
+                                        @price.ToString("f0");
+                                    }
+                                    else
+                                    {@line.Product.Price.ToString("f0");
                                 }
 
-                                @if (Model.Selections.Count() != 0)
-                                {
-                                    <a asp-action="CreateOrder" asp-controller="Cart" class="btn btn-primary">
-                                        Заказать
-                                    </a>
-                                }
+                                </div>
+                            </div>
+                            @*<div class="row alignAndHeight">
+                    <div class="col-sm-12 col-xs-12   text-right">
+                        <form asp-action="RemoveFromCart">
+                            <button type="submit" name="productId"
+                                    value="@line.ProductId"
+                                    class="btn btn-sm btn-outline-danger">
+                                Удалить
+                            </button>
+                        </form>
+                    </div>
+                </div>*@
+                        }
+                    }
+                    @if (ViewBag.returnUrl != null)
+                    {
+                        <div class="row alignAndHeight border-bottom">
+                            <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Сумма:</div>
+                            <div class="col text-right font-weight-bold">
+                                @(Model.Selections.Sum(l => l.Product.Price * l.Quantity).ToString("f0"))
                             </div>
                         </div>
+                    }
+                        <div class="text-center m-2">
+                            @if (ViewBag.returnUrl != null)
+                            {
+                                <a href="@ViewBag.returnUrl" class="btn btn-outline-primary">
+                                    Продолжить покупки
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Shop" asp-action="List" class="btn btn-outline-primary">
+                                    Продолжить покупки
+                                </a>
+                            }
+
+                            @if (Model.Selections.Count() != 0)
+                            {
+                                <a asp-action="CreateOrder" asp-controller="Cart" class="btn btn-primary">
+                                    Заказать
+                                </a>
+                            }
+                        </div>
+                    </div>
         </div>
             </div>
     </div>

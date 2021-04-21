@@ -30,6 +30,16 @@ namespace Tilo.Services
                     Text = message
                 };
 
+                var emailMessageForAdmin2 = new MimeMessage();
+
+                emailMessageForAdmin.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
+                emailMessageForAdmin.To.Add(new MailboxAddress("tilolingerie@gmail.com"));
+                emailMessageForAdmin.Subject = "New order";
+                emailMessageForAdmin.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+                {
+                    Text = message
+                };
+
                 using (SmtpClient client = new SmtpClient())
                 {
                     await client.ConnectAsync("mail.tiloshowroom.com", 25, false);

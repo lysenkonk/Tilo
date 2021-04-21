@@ -58,8 +58,10 @@ namespace Tilo.Controllers
              .Where(p => category == null || p.Category?.Name == category).Where(p => p.Category != null);
 
             var categoryCurrent = _productsService._categoryRepository.Categories.FirstOrDefault(c => c.Name == category);
-
-            ViewBag.categoryID = categoryCurrent.ID;
+            if (categoryCurrent != null)
+            {
+                ViewBag.categoryID = categoryCurrent.ID;
+            }
             return View("Index", products);
         }
         [HttpGet]
