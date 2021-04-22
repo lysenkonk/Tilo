@@ -109,7 +109,7 @@
                                                                     {
                                                                         @*<div class="form-group row">*@
                                                                         <input type="hidden" name="product.Products[@i].Name" asp-for="@Model.product.Products[i].Name" />
-                                                                        <div class="col-sm-10 sizeM center-block  font-weight-normal"  data-toggle="buttons">
+                                                                        <div class="col-sm-12 sizeM center-block  font-weight-normal"  data-toggle="buttons">
                                                                             <div asp-for="@Model.product.Products[i].Sizes" class=" inline">
                                                                                 @if (Model.product.Products[i].Name == "Top")
                                                                                 {
@@ -153,7 +153,7 @@
                                                             @if (Model.product.Sizes != null)
                                                             {
                                                                 <div class="form-group">
-                                                                    <div class="col-sm-10 sizeM center-block" data-toggle="buttons">
+                                                                    <div class="col-sm-12 sizeM center-block" data-toggle="buttons">
                                                                         <label asp-for="@Model.product.Sizes" class="size">Размер:</label>
                                                                             @foreach (var s in Model.product.Sizes)
                                                                             {

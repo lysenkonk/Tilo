@@ -74,14 +74,19 @@ namespace Tilo.Controllers
         [Route("Cart/RemoveFromCart")]
         public IActionResult RemoveFromCart(long productId, string returnUrl)
         {
-           //Product product = productRepository.Products.FirstOrDefault(p => p.Id == productId);
+           Product product = productRepository.Products.FirstOrDefault(p => p.Id == productId);
 
-           // if (product.Products != null && product.Products.Count > 0)
-           // {
-           //    IQueryable<Product> productsChild = productRepository.Products.Where(p => p.Id == productId);
-           // }
+            if (product.Products != null && product.Products.Count > 0)
+            {
+              IQueryable<Product> productsChild = productRepository.Products.Where(p => p.Id == productId);
+                foreach(var prod in productsChild)
+                {
+                    SaveCart(GetCart().RemoveItem(prod.Id));
+                }
+            }
             
             SaveCart(GetCart().RemoveItem(productId));
+
             return RedirectToAction(nameof(Index), new { returnUrl });
         }
         [Route("Cart/CreateOrder")]
