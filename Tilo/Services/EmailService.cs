@@ -12,7 +12,8 @@ namespace Tilo.Services
             try
             {
                 var emailMessage = new MimeMessage();
-                emailMessage.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
+
+                emailMessage.From.Add(new MailboxAddress("Tiloshowroom", "kostjja2019@gmail.com"));
                 emailMessage.To.Add(new MailboxAddress(email));
                 emailMessage.Subject = subject;
                 emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -20,33 +21,11 @@ namespace Tilo.Services
                     Text = message
                 };
 
-                var emailMessageForAdmin = new MimeMessage();
-
-                emailMessageForAdmin.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
-                emailMessageForAdmin.To.Add(new MailboxAddress("lysenkonk@gmail.com"));
-                emailMessageForAdmin.Subject = "New order";
-                emailMessageForAdmin.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-                {
-                    Text = message
-                };
-
-                var emailMessageForAdmin2 = new MimeMessage();
-
-                emailMessageForAdmin.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
-                emailMessageForAdmin.To.Add(new MailboxAddress("tilolingerie@gmail.com"));
-                emailMessageForAdmin.Subject = "New order";
-                emailMessageForAdmin.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-                {
-                    Text = message
-                };
-
                 using (SmtpClient client = new SmtpClient())
                 {
-                    await client.ConnectAsync("mail.tiloshowroom.com", 25, false);
-                    await client.AuthenticateAsync("admin@tiloshowroom.com", "winteR$2021");
+                    await client.ConnectAsync("smtp.gmail.com", 465, true);
 
                     await client.SendAsync(emailMessage);
-                    await client.SendAsync(emailMessageForAdmin);
                     await client.DisconnectAsync(true);
                 }
             }
