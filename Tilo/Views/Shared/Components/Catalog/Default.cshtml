@@ -5,48 +5,62 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <span>Menu</span>
     </div>
+    <button class="dropdown-btn  borderGrey paddingA borderRadius">
+        <a class="borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="Подарочный сертификат" asp-route-page="1">
+            Подарочный сертификат
+        </a>
+    </button>
     @foreach (var p in Model.ParentCategories)
     {
         @*<a asp-action="List" asp-controller="Shop" asp-route-category="@Model.product.Category.Name">@Model.product.Category.Name</a>*@
         @*<a asp-action="List" asp-controller="Shop" asp-route-category="@p.Name">*@
-    <button class="dropdown-btn  borderGrey paddingA borderRadius">
+
+
         @if (p.ChildCategories.Count < 1)
         {
-            <a class="borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@p.Name" asp-route-page="1">
-                @p.Name
-            </a>
+            @if (p.Name != "Подарочный сертификат")
+            {
+                <button class="dropdown-btn  borderGrey paddingA borderRadius">
+
+                    <a class="borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@p.Name" asp-route-page="1">
+                        @p.Name
+                    </a>
+                </button>
+
+            }
         }
         else
         {
-            @p.Name
-            <span><i class="glyphicon glyphicon-menu-down positionGlyphicon borderRadius"></i></span>
+            <button class="dropdown-btn  borderGrey paddingA borderRadius">
+
+                @p.Name
+                <span><i class="glyphicon glyphicon-menu-down positionGlyphicon borderRadius"></i></span>
+            </button>
+
         }
-
-    </button>
-
-            @*</a>*@
-            <div class="dropdown-container paddingLNone">
-                @foreach (var c in p.ChildCategories)
+        @*</a>*@
+        <div class="dropdown-container paddingLNone">
+            @foreach (var c in p.ChildCategories)
+            {
+                @if (c.ChildCategories.Count < 1)
                 {
-                    @if (c.ChildCategories.Count < 1)
-                    {
-                        <a class="paddingA backgroundAndFontColor borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@c.Name" asp-route-page="1">@c.Name</a>
-                    }
-                    else
-                    {
-                        <button class="dropdown-btn  paddingA backgroundAndFontColor borderRadius">
-                            @c.Name
-                            <span><i class="glyphicon glyphicon-menu-down positionGlyphicon whiteGlyphicon"></i></span>
-
-                        </button>
-                        <div class="dropdown-container">
-                            @foreach (var subCategory in c.ChildCategories)
-                            {
-                                <a class="borderGrey paddingA  borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@subCategory.Name" asp-route-page="1">@subCategory.Name</a>
-                            }
-                        </div>
-                    }
+                    <a class="paddingA backgroundAndFontColor borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@c.Name" asp-route-page="1">@c.Name</a>
                 }
-            </div>
+                else
+                {
+                    <button class="dropdown-btn  paddingA backgroundAndFontColor borderRadius">
+                        @c.Name
+                        <span><i class="glyphicon glyphicon-menu-down positionGlyphicon whiteGlyphicon"></i></span>
+
+                    </button>
+                    <div class="dropdown-container">
+                        @foreach (var subCategory in c.ChildCategories)
+                        {
+                            <a class="borderGrey paddingA  borderRadius" asp-action="List" asp-controller="Shop" asp-route-category="@subCategory.Name" asp-route-page="1">@subCategory.Name</a>
+                        }
+                    </div>
+                }
             }
         </div>
+    }
+</div>
