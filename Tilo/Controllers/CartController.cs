@@ -72,22 +72,33 @@ namespace Tilo.Controllers
 
         [HttpPost]
         [Route("Cart/RemoveFromCart")]
-        public IActionResult RemoveFromCart(long productId, string returnUrl)
+        public IActionResult RemoveFromCart(Product product, string returnUrl)
         {
-           Product product = productRepository.Products.FirstOrDefault(p => p.Id == productId);
+          // Product productCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
 
             if (product.Products != null && product.Products.Count > 0)
             {
-              IQueryable<Product> productsChild = productRepository.Products.Where(p => p.Id == productId);
-                foreach(var prod in productsChild)
+                if (product.Products[0].Sizes != null)
                 {
-                    SaveCart(GetCart().RemoveItem(prod.Id));
+                    SaveCart(GetCart().RemoveSubItem(product));
                 }
+                return RedirectToAction(nameof(Index), new { returnUrl });
+
             }
-            
-            SaveCart(GetCart().RemoveItem(productId));
+            if (product.Sizes != null)
+            {
+                SaveCart(GetCart().RemoveItem(product.Id, product.Sizes));
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+        [Route("Cart/Clear")]
+        public IActionResult Clear(string returnUrl)
+        {
+           SaveCart(GetCart().Clear());
 
             return RedirectToAction(nameof(Index), new { returnUrl });
+
         }
         [Route("Cart/CreateOrder")]
         public IActionResult CreateOrder()
@@ -104,15 +115,25 @@ namespace Tilo.Controllers
                 order.Lines = GetCart().Selections.Select(s => new OrderLine
                 {
                     ProductId = s.ProductId,
-                    Quantity = s.Quantity
-                    //Product = productRepository.Products.FirstOrDefault(p => p.Id == s.ProductId);
+                    Quantity = s.Quantity,
+                    //Product = productRepository.Products.FirstOrDefault(p => p.Id == s.ProductId)
+                    //Product = s.Product
 
-                }).ToArray();
+                }).Where(p => p.ProductId != 0).ToArray();
+
+                IEnumerable<OrderLine> ordersForMessage = GetCart().Selections.Select(s => new OrderLine
+                {
+                    ProductId = s.ProductId,
+                    Quantity = s.Quantity,
+                    //Product = productRepository.Products.FirstOrDefault(p => p.Id == s.ProductId)
+                    Product = s.Product
+
+                }).Where(p => p.ProductId != 0).ToArray();
 
                 ordersRepository.AddOrder(order);
 
                 SaveCart(new Cart());
-                await SendMessage(order);
+                await SendMessage(order, ordersForMessage);
                 return RedirectToAction("Completed");
             }
             catch (Exception ex)
@@ -131,10 +152,10 @@ namespace Tilo.Controllers
              return View();
         }
         
-        public async Task<IActionResult> SendMessage(Order order)
+        public async Task<IActionResult> SendMessage(Order order, IEnumerable<OrderLine> ordersForMessage)
         {
             long numberOrder = ordersRepository.Orders.Last<Order>().Id;
-            var textMessage = "Здравствуйте, " + order.CustomerName + ",рады сообщить, что Ваш заказ №" + numberOrder + " будет обработан в ближайшее время!" + "\n"+ infoAboutOrder(order);
+            var textMessage = "Здравствуйте, " + order.CustomerName + ",рады сообщить, что Ваш заказ №" + numberOrder + " будет обработан в ближайшее время!" + "\n"+ infoAboutOrder(order, ordersForMessage);
             EmailService emailService = new EmailService();
             string subject = "Order №" + numberOrder + " is processed. With love your Tiloshowroom";
             try
@@ -148,22 +169,39 @@ namespace Tilo.Controllers
             }
         }
 
-        private string infoAboutOrder(Order order)
+        private string infoAboutOrder(Order order, IEnumerable<OrderLine> ordersForMessage)
         {
 
             string orderLinesJoinAll = "";
             int priceAllOrder = 0;
             
-            foreach (var orderLine in order.Lines)
+            foreach (var orderLine in ordersForMessage)
             {
-                string sizes = "";
+                string sizesAndNames = "";
                 try
                 {
                     if (orderLine.Product.Sizes != null && orderLine.Product.Sizes.Count > 0)
                     {
                         foreach (var s in orderLine.Product.Sizes)
                         {
-                            sizes += s + "; ";
+                            sizesAndNames += s.Name + "; ";
+                        }
+                    }
+                    if (orderLine.Product.Products != null && orderLine.Product.Products.Count > 0)
+                    {
+                        foreach (var p in orderLine.Product.Products)
+                        {
+                            if (p.Sizes != null)
+                            {
+                                string name;
+                                if (p.Name == "Bottom")
+                                    name = "Трусики";
+                                else if (p.Name == "Top")
+                                    name = "Бра";
+                                else name = p.Name;
+
+                                sizesAndNames += name + ": " + p.Sizes[0].Name + "; ";
+                            }
                         }
                     }
                 }
@@ -171,10 +209,10 @@ namespace Tilo.Controllers
                 {
                     throw new Exception(ex.Message.ToString());
                 }
-                orderLinesJoinAll += orderLine.Product.Name + " "  + sizes + " " + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + ";" + "\n"; 
+                orderLinesJoinAll += orderLine.Product.Name  + " " + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + "грн; Размер:" + " " + sizesAndNames + "\n"; 
                 priceAllOrder += orderLine.Quantity * orderLine.Product.Price;
             }
-            orderLinesJoinAll += "Всего к оплате: " + priceAllOrder + "; ";
+            orderLinesJoinAll += "Всего к оплате: " + priceAllOrder + "грн; ";
             return orderLinesJoinAll;
 
         }

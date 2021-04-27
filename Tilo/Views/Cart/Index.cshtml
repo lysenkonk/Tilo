@@ -23,13 +23,46 @@
                                     {
                                         <img class="sm_img" name="@line.Product.Images[0].Name" src="@Url.Content("/files/Sm2/" + @line.Product.Images[0].Name)" />
                                     }
-                                    <form asp-action="RemoveFromCart">
-                                        <button type="submit" name="productId"
-                                                value="@line.ProductId"
-                                                class="btn btn-sm btn-outline-danger">
-                                            Удалить
-                                        </button>
-                                    </form>
+                                        <form asp-action="RemoveFromCart" asp-controller="Cart" method="post" enctype="multipart/form-data" id="@line.Product.Id">
+
+                                            <input type="hidden" asp-for="@line.Product.Id" name="product.Id" />
+                                            <input type="hidden" name="product.Name" asp-for="@line.Product.Name" />
+
+                                            @if (line.Product.Products.Count == 0)
+                                            {
+
+                                                <input type="hidden" name="product.Sizes[0].Name" asp-for="@line.Product.Sizes[0].Name" />
+
+
+                                            }
+
+                                            <input type="hidden" asp-for="@line.Product.Price" />
+                                            @if (@line.Product.Products.Count > 0)
+                                            {
+                                                @*<label class="size col-sm-2 col-form-label">Размер</label>*@
+
+
+                                                @for (int i = 0; i < @line.Product.Products.Count; i++)
+                                                {
+                                                    <input type="hidden" name="product.Products[@i].Name" asp-for="@line.Product.Products[i].Name" />
+
+                                                    @if (line.Product.Products[i].Sizes != null)
+                                                    {
+                                                        @for (int c = 0; c < @line.Product.Products[i].Sizes.Count; c++)
+                                                        {
+                                                            <input type="hidden" name="product.Products[@i].Sizes[0].Name" asp-for="@line.Product.Products[i].Sizes[0].Name" />
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+
+                                            <button type="submit" name="product"
+                                                    value="@line.Product"
+                                                    class="btn btn-sm btn-outline-danger">
+                                                Удалить
+                                            </button>
+                                        </form>
                                 </div>
                             </div>
                             <div class="row alignAndHeight">
@@ -124,7 +157,7 @@
                 </div>*@
                         }
                     }
-                    @if (ViewBag.returnUrl != null)
+                    @if (ViewBag.returnUrl != null && Model.Selections.Count() != 0)
                     {
                         <div class="row alignAndHeight border-bottom">
                             <div class="col-sm-2 col-xs-2   font-weight-bold text-left">Сумма:</div>
@@ -151,6 +184,12 @@
                             {
                                 <a asp-action="CreateOrder" asp-controller="Cart" class="btn btn-primary">
                                     Заказать
+                                </a>
+                            }
+                            @if (Model.Selections.Count() != 0)
+                            {
+                                <a asp-action="Clear" asp-controller="Cart"  asp-route-returnUrl="@ViewBag.returnUrl" class="btn btn-primary">
+                                    Очистить корзину
                                 </a>
                             }
                         </div>
