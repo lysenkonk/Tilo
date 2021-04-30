@@ -72,7 +72,7 @@ namespace Tilo.Controllers
                 return View("Product not found");   
             }
             IEnumerable<Product> ProductsWithTheSame = _repository.Products.Where(p => p.Category == product.Category);
-            IEnumerable<int> listPricesForSertificate = new List<int>() { 500, 1000, 1500, 2000 }.AsEnumerable();
+            IEnumerable<int> listPricesForSertificate = new List<int>() { 500, 1000, 1500, 2000, 3000, 4000, 5000 }.AsEnumerable();
             ViewBag.PricesForSertivicate = new SelectList(listPricesForSertificate, "Price");
             //string pattern = @"\b\d{1}\.\D+";
             //List<string> descrList = new List<string>();

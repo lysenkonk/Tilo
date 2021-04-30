@@ -78,149 +78,153 @@
                                                 <input type="hidden" asp-for="@Model.product.Id" />
                                                 <input type="hidden" asp-for="@Model.product.Name" />
                                                 <input type="hidden" asp-for="@Model.product.Category.Name" />
-                                                <input type="hidden" asp-for="@Model.product.Price" />
 
-                                                @if (Model.product.Category.Name == "Подарочный сертификат")
+                                                @if (Model.product.Category.Name != "Подарочный сертификат")
                                                 {
-                                                    <div class="form-group row">
-                                                        <label asp-for="@Model.product.Price" class="col-sm-3 col-form-label">Номинал</label>
-                                                        <div class="col-sm-9">
-                                                            <select style="width:70%;" name="product.Price" class="source" asp-for="@Model.product.Price" asp-items="@ViewBag.PricesForSertivicate">
-                                                                @*<optgroup class="select2-result-selectable"></optgroup>*@
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                    <input type="hidden" asp-for="@Model.product.Price" />
                                                 }
 
-                                                <div class="prod">
-                                                    @if (Model.product.Category.Name != "Подарочный сертификат")
+                                                    @if (Model.product.Category.Name == "Подарочный сертификат")
                                                     {
+                                                        <div class="form-group row">
+                                                            <label asp-for="@Model.product.Price" class="col-sm-3 col-form-label">Номинал</label>
+                                                            <div class="col-sm-9">
+                                                                <select style="width:70%;" name="product.Price" class="source" asp-for="@Model.product.Price" asp-items="@ViewBag.PricesForSertivicate">
+                                                                    @*<optgroup class="select2-result-selectable"></optgroup>*@
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    }
 
-
-                                                        @if (Model.product.Products.Count > 0)
+                                                    <div class="prod">
+                                                        @if (Model.product.Category.Name != "Подарочный сертификат")
                                                         {
-                                                            @*<label class="size col-sm-2 col-form-label">Размер</label>*@
-                                                            
+
+
+                                                            @if (Model.product.Products.Count > 0)
+                                                            {
+                                                                @*<label class="size col-sm-2 col-form-label">Размер</label>*@
+
 
                                                                 @for (int i = 0; i < Model.product.Products.Count; i++)
                                                                 {
                                                                     <div class="form-group row">
-                                                                    @if (Model.product.Products[i].Sizes != null)
-                                                                    {
-                                                                        @*<div class="form-group row">*@
-                                                                        <input type="hidden" name="product.Products[@i].Name" asp-for="@Model.product.Products[i].Name" />
-                                                                        <div class="col-sm-12 sizeM center-block  font-weight-normal"  data-toggle="buttons">
-                                                                            <div asp-for="@Model.product.Products[i].Sizes" class=" inline">
-                                                                                @if (Model.product.Products[i].Name == "Top")
-                                                                                {
-                                                                                    <span class="width80">Размер бюста</span>
-                                                                                }
-                                                                                else if (Model.product.Products[i].Name == "Bottom")
-                                                                                {
-                                                                                    <span class="width80">Размер трусиков</span>
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    <span class="width60">@Model.product.Products[i].Name</span>
-                                                                                }
-                                                                            </div>
-                                                                            @{string sizeSuit = "sizeSuit" + i;}
-                                                                            <label id="@Model.product.Products[i].Name">
-                                                                                @foreach (var s in Model.product.Products[i].Sizes)
-                                                                                {
-                                                                                <label tabindex="1" class=@sizeSuit>
-                                                                                    <input id="@s.Name" type="radio" value="@s.Name" name="product.Products[@i].Sizes[0].Name" />
-                                                                                    @s.Name
+                                                                        @if (Model.product.Products[i].Sizes != null)
+                                                                        {
+                                                                            @*<div class="form-group row">*@
+                                                                            <input type="hidden" name="product.Products[@i].Name" asp-for="@Model.product.Products[i].Name" />
+                                                                            <div class="col-sm-12 sizeM center-block  font-weight-normal" data-toggle="buttons">
+                                                                                <div asp-for="@Model.product.Products[i].Sizes" class=" inline">
+                                                                                    @if (Model.product.Products[i].Name == "Top")
+                                                                                    {
+                                                                                        <span class="width80">Размер бюста</span>
+                                                                                    }
+                                                                                    else if (Model.product.Products[i].Name == "Bottom")
+                                                                                    {
+                                                                                        <span class="width80">Размер трусиков</span>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <span class="width60">@Model.product.Products[i].Name</span>
+                                                                                    }
+                                                                                </div>
+                                                                                @{string sizeSuit = "sizeSuit" + i;}
+                                                                                <label id="@Model.product.Products[i].Name">
+                                                                                    @foreach (var s in Model.product.Products[i].Sizes)
+                                                                                    {
+                                                                                        <label tabindex="1" class=@sizeSuit>
+                                                                                            <input id="@s.Name" type="radio" value="@s.Name" name="product.Products[@i].Sizes[0].Name" />
+                                                                                            @s.Name
+                                                                                        </label>
+                                                                                    }
                                                                                 </label>
+                                                                                @*</div>*@
+                                                                                @if (Model.product.Products[i].Price > 0 && Model.product.Products[i].Name != "Top" && Model.product.Products[i].Name != "Bottom")
+                                                                                {
+                                                                                    <input type="hidden" name="product.Products[@i].Price" asp-for="@Model.product.Products[i].Price" />
+                                                                                    <label asp-for=@Model.product.Products[i].Price class="col-sm-1 inline  float-right">+@Model.product.Products[i].Price<span class="woocommerce-Price-currencySymbol">грн</span></label>
                                                                                 }
-                                                                            </label>
-                                                                        @*</div>*@
-                                                                            @if (Model.product.Products[i].Price > 0 && Model.product.Products[i].Name != "Top" && Model.product.Products[i].Name != "Bottom")
-                                                                            {
-                                                                                <input type="hidden" name="product.Products[@i].Price" asp-for="@Model.product.Products[i].Price" />
-                                                                                <label asp-for=@Model.product.Products[i].Price class="col-sm-1 inline  float-right">+@Model.product.Products[i].Price<span class="woocommerce-Price-currencySymbol">грн</span></label>
-                                                                            }
-                                                                            @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
-                                                                        @*</div>*@
-                                                                        </div>
+                                                                                @*<div> <span asp-validation-for="@Model.Product.Products[i].Sizes" class="text-danger"></span></div>*@
+                                                                                @*</div>*@
+                                                                            </div>
 
-                                                                    }
-                                                                                                                               </div>
+                                                                        }
+                                                                    </div>
                                                                 }
-                                                        }
-                                                        else
-                                                        {
-                                                            @if (Model.product.Sizes != null)
+                                                            }
+                                                            else
                                                             {
-                                                                <div class="form-group">
-                                                                    <div class="col-sm-12 sizeM center-block" data-toggle="buttons">
-                                                                        <label asp-for="@Model.product.Sizes" class="size">Размер:</label>
+                                                                @if (Model.product.Sizes != null)
+                                                                {
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-12 sizeM center-block" data-toggle="buttons">
+                                                                            <label asp-for="@Model.product.Sizes" class="size">Размер:</label>
                                                                             @foreach (var s in Model.product.Sizes)
                                                                             {
 
                                                                                 @*<label class="btn btn-primary">*@
                                                                                 @*@Html.RadioButton("product.Sizes[0].Name", s.Name)*@
-                                                                                <input id="@s.Name" type="radio"  value="@s.Name" name="product.Sizes[0].Name" />
+                                                                                <input id="@s.Name" type="radio" value="@s.Name" name="product.Sizes[0].Name" />
                                                                                 <label tabindex="0" for="@s.Name" class="badgeSize">@s.Name</label>
                                                                                 @*</label>*@
 
                                                                             }
                                                                             @*<select class="source" name="product.Sizes[0].Name" asp-for="@Model.product.Sizes" asp-items="@(new SelectList(Model.product.Sizes, "Name", "Name"))">
-                                                                                <optgroup class="badge badge-secondary"  label="Enter size"></optgroup>
-                                                                               </select>*@
+                                     <optgroup class="badge badge-secondary"  label="Enter size"></optgroup>
+                                    </select>*@
                                                                         </div>
-                                                                </div>
+                                                                    </div>
+                                                                }
                                                             }
                                                         }
-                                                    }
-                                                </div>
-                                                <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()"  />
-                                                <div>
-                                                    @if (Model.product.Category.Name != "Подарочный сертификат")
-                                                    {
-                                                        <label class="col-sm-8 center-block inline paddingBottom5 "> Цвет: @Model.product.Color</label>
-                                                    }
-                                                    <br />
+                                                    </div>
+                                                    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                                    <div>
+                                                        @if (Model.product.Category.Name != "Подарочный сертификат")
+                                                        {
+                                                            <label class="col-sm-8 center-block inline paddingBottom5 "> Цвет: @Model.product.Color</label>
+                                                        }
+                                                        <br />
 
-                                                    @if (Model.product.Category.Name == "Подарочный сертификат")
+                                                        @if (Model.product.Category.Name == "Подарочный сертификат")
 
-                                                    {
-                                                        <p class="text-indent">Подарочный сертификат-идеальный подарок для близких людей к любому празднику, который можно обменять в шоу - руме на комплект нижнего белья или портупею. Вы самостоятельно можете выбрать номинал от 500грн. </p> <p class="text-indent">Условия использования подарочного сертификата:</p><p class="text-indent">1.Подарочный сертификат дает право приобрести нижнее белье на сумму указанную в сертификате в сети магазинов 'TILO showroom'.</p><p class="text-indent">2.Подарочный сертификат имеет неограниченный срок действия.</p><p class="text-indent">3.При приобретении товара на сумму больше указанной в сертификате совершается доплата к стоимости товара.Если выбранный товар стоит меньше указанной суммы в сертификате, возврат разницы не совершается.</p><p class="text-indent">4.Подарочный сертификат не подлежит обмену на денежные средства.</p>
-                                                    }
-                                                    else
-                                                    {
-                                                        <p class="col-sm-12 center-block paddingBottom5">
-                                                        @(Model.product.Description ?? "(No Description Available")
+                                                        {
+                                                            <p class="text-indent">Подарочный сертификат-идеальный подарок для близких людей к любому празднику, который можно обменять в шоу - руме на комплект нижнего белья или портупею. Вы самостоятельно можете выбрать номинал от 500грн. </p> <p class="text-indent">Условия использования подарочного сертификата:</p><p class="text-indent">1.Подарочный сертификат дает право приобрести нижнее белье на сумму указанную в сертификате в сети магазинов 'TILO showroom'.</p><p class="text-indent">2.Подарочный сертификат имеет неограниченный срок действия.</p><p class="text-indent">3.При приобретении товара на сумму больше указанной в сертификате совершается доплата к стоимости товара.Если выбранный товар стоит меньше указанной суммы в сертификате, возврат разницы не совершается.</p><p class="text-indent">4.Подарочный сертификат не подлежит обмену на денежные средства.</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p class="col-sm-12 center-block paddingBottom5">
+                                                                @(Model.product.Description ?? "(No Description Available")
                                                             </p>
-                                                    }
+                                                        }
 
-                                                </div>
-                                                <div class="row">
+                                                    </div>
+                                                    <div class="row">
 
-                                                    <div class="col-sm-10 count center-block" style="width:145px">
-                                                        <div class="input-group">
-                                                            <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quantity">
-                                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                                </button>
-                                                            </span>
-                                                            <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="9">
-                                                            <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity">
-                                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                                </button>
-                                                            </span>
+                                                        <div class="col-sm-10 count center-block" style="width:145px">
+                                                            <div class="input-group">
+                                                                <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quantity">
+                                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                                    </button>
+                                                                </span>
+                                                                <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="9">
+                                                                <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quantity">
+                                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-10 center-block">
+                                                            <button type="submit"
+                                                                    class="btn btn-primary btn-sm center-block"
+                                                                    style=" background-color:black; margin-top:20px">
+                                                                Купить
+                                                            </button>
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-sm-10 center-block">
-                                                        <button type="submit"
-                                                                class="btn btn-primary btn-sm center-block"
-                                                                style=" background-color:black; margin-top:20px">
-                                                            Купить
-                                                        </button>
-                                                    </div>
-                                                </div>
                                             </form>
                                         </div>
                                     </div>

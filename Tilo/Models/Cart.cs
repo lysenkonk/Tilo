@@ -44,7 +44,6 @@ namespace Tilo.Models
                                         if (prod.Sizes.Where(s => s.Name == current.Sizes[i].Name).FirstOrDefault() != null)
                                             count++;
                                     }
-
                                 }
                             }
 
@@ -63,12 +62,24 @@ namespace Tilo.Models
                    
                 }
             }
-           
 
-            OrderLine line = selections
-                .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name && l.Product.Sizes != null  && p.Sizes != null && l.Product.Sizes[0].Name == p.Sizes[0].Name).FirstOrDefault();
+
+            OrderLine line = null;
+            if (p.Category != null && p.Category.Name != "Подарочный сертификат")
+            {
+                line = selections
+                .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name && l.Product.Sizes != null && p.Sizes != null && l.Product.Sizes[0].Name == p.Sizes[0].Name).FirstOrDefault();
+            }else if (p.Category != null && p.Category.Name == "Подарочный сертификат")
+            {
+                line = selections
+                .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name && l.Product.Price == p.Price).FirstOrDefault();
+
+            }
+
             if (line != null && line.Product.Products == null)
             {
+                line.Quantity += quantity;
+            }else if (line != null && p.Category != null  && p.Category.Name == "Подарочный сертификат"){
                 line.Quantity += quantity;
             }
             else
@@ -101,6 +112,28 @@ namespace Tilo.Models
 
             return this;
         }
+
+        public Cart RemoveGiftCardItem(long productId, int  price)
+        {
+
+            //OrderLine lineForDelete = selections
+            //   .Where(l => l.ProductId == productId && l.Product.Price == price).FirstOrDefault();
+            //if (lineForDelete != null)
+            //{
+            //    foreach (var productForDelete in lineForDelete.Product.Products)
+            //    {
+            //        selections.RemoveAll(l => l.Product.Name == productForDelete.Name && l.Product.Price == productForDelete.Price);
+
+            //    }
+            //}
+
+            selections.RemoveAll(l => l.ProductId == productId && l.Product.Price == price);
+
+            return this;
+        }
+
+
+
         public Cart RemoveSubItem(Product product)
         {
 

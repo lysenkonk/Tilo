@@ -27,8 +27,13 @@
 
                                             <input type="hidden" asp-for="@line.Product.Id" name="product.Id" />
                                             <input type="hidden" name="product.Name" asp-for="@line.Product.Name" />
+                                            @if (line.Product.Category != null && line.Product.Category.Name != null)
+                                            {
+                                                <input type="hidden" asp-for="@line.Product.Category.Name" name="product.Category.Name" />
 
-                                            @if (line.Product.Products.Count == 0)
+                                            }
+
+                                            @if (line.Product.Sizes != null &&  line.Product.Sizes.Count != 0 && line.Product.Products != null && line.Product.Products.Count == 0)
                                             {
 
                                                 <input type="hidden" name="product.Sizes[0].Name" asp-for="@line.Product.Sizes[0].Name" />
@@ -36,7 +41,7 @@
 
                                             }
 
-                                            <input type="hidden" asp-for="@line.Product.Price" />
+                                            <input type="hidden" asp-for="@line.Product.Price" name="product.Price" />
                                             @if (@line.Product.Products.Count > 0)
                                             {
                                                 @*<label class="size col-sm-2 col-form-label">Размер</label>*@

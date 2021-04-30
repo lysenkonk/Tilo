@@ -74,7 +74,12 @@ namespace Tilo.Controllers
         [Route("Cart/RemoveFromCart")]
         public IActionResult RemoveFromCart(Product product, string returnUrl)
         {
-          // Product productCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
+            // Product productCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
+
+            if (product.Category.Name == "Подарочный сертификат")
+            {
+                SaveCart(GetCart().RemoveGiftCardItem(product.Id, product.Price));
+            }
 
             if (product.Products != null && product.Products.Count > 0)
             {
@@ -209,7 +214,13 @@ namespace Tilo.Controllers
                 {
                     throw new Exception(ex.Message.ToString());
                 }
-                orderLinesJoinAll += orderLine.Product.Name  + " " + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + "грн; Размер:" + " " + sizesAndNames + "\n"; 
+
+                string size = "";
+                if (orderLine.Product.Category.Name != "Подарочный сертификат")
+                {
+                    size = "Размер:" + " " + sizesAndNames;
+                }
+                orderLinesJoinAll += orderLine.Product.Name  + " " + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + "грн;" + size + "\n"; 
                 priceAllOrder += orderLine.Quantity * orderLine.Product.Price;
             }
             orderLinesJoinAll += "Всего к оплате: " + priceAllOrder + "грн; ";
