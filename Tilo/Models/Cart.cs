@@ -110,6 +110,7 @@ namespace Tilo.Models
 
             selections.RemoveAll(l => l.ProductId == productId && l.Product.Sizes[0].Name == sizes[0].Name);
 
+
             return this;
         }
 
