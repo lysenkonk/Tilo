@@ -2210,3 +2210,11 @@ color: white;
 .fontSize16{
     font-size: 16px;
 }
+/*---------------fix wrapCart----------------*/
+@media(min-width: 780px)
+{
+    .wrapCart
+    {
+        margin-top: 50px;
+    }
+}

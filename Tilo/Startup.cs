@@ -102,6 +102,7 @@ namespace Tilo
                 });
             }
 
+
             app.UseStaticFiles();
             app.UseStatusCodePages();
             app.UseSession();
