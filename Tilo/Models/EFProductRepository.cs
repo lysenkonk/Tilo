@@ -125,6 +125,11 @@ namespace Tilo.Models
                                 }
                                 else p.Sizes = theSameProduct.Sizes;
                             }
+                            if(theSameProduct != null)
+                            {
+                                theSameProduct.Price = p.Price;
+                            }
+
                         }
                     }
                 }

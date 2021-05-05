@@ -56,17 +56,17 @@
             {
                 <label  asp-for="@Model.Product.Price">Цена</label>
                 <span asp-validation-for="@Model.Product.Products[i].Price" class="text-danger"></span>
-                <input class="price" asp-for="@Model.Product.Products[i].Price" name="priceEdit" class="form-control" />
+                <input class="price" asp-for="@Model.Product.Products[i].Price" name="product.Products[@i].Price" class="form-control" />
             }
             </div>
             <label class="col-sm-2 col-form-label"> Размеры в наличии:</label>
             <div class="col-sm-2">
                 @if (@Model.Product.Products[i].Sizes != null)
         {
-                    <select multiple="multiple" class="form-control" asp-for="@Model.Product.Products[i].Sizes">
+                    <select multiple="multiple" name="sizesD" class="form-control" asp-for="@Model.Product.Products[i].Sizes">
                         @foreach (var size in Model.Product.Products[i].Sizes)
         {
-                            <option name="sizesD">@size.Name</option>
+                            <option >@size.Name</option>
                         }
                     </select>
                 }
@@ -91,7 +91,7 @@
                 }
                 @if (Model.Product.Products[i].Id > 0)
                 {
-                    <button type="submit" method="post" asp-action="AddSize" asp-route-productId="@Model.Product.Products[i].Id" class="btn btn-primary">Save</button>
+                    <button type="submit" method="post" asp-action="AddSize" asp-route-productId="@Model.Product.Products[i].Id" class="btn btn-primary">Save Sizes</button>
                 }
             </div>
         </div>
