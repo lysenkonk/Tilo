@@ -2218,3 +2218,11 @@ color: white;
         margin-top: 50px;
     }
 }
+.whiteSpace{
+    white-space: pre-wrap;
+}
+.descriptStyle{
+    text-indent: 1.5em;
+    text-align: justify;
+    line-height: 1.5;
+}

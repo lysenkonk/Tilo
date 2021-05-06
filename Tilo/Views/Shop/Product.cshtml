@@ -184,7 +184,6 @@
                                                         {
                                                             <label class="col-sm-8 center-block inline paddingBottom5 "> Цвет: @Model.product.Color</label>
                                                         }
-                                                        <br />
 
                                                         @if (Model.product.Category.Name == "Подарочный сертификат")
 
@@ -193,7 +192,7 @@
                                                         }
                                                         else
                                                         {
-                                                            <p class="col-sm-12 center-block paddingBottom5">
+                                                            <p class="col-sm-12 center-block paddingBottom5 whiteSpace descriptStyle">
                                                                 @(Model.product.Description ?? "(No Description Available")
                                                             </p>
                                                         }
