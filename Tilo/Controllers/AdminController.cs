@@ -78,6 +78,17 @@ namespace Tilo.Controllers
             return View(viewModel);
         }
 
+        //[Route("Admin/Edit/{Id}")]
+        //public IActionResult EditProduct(int Id)
+        //{
+        //    var product = _productsService.Products.FirstOrDefault(p => p.Id == Id);
+
+        //    if (product == null)
+        //        return NotFound();
+
+        //    var viewModel = CreateAdminViewModel(product);
+        //    return View("Edit",viewModel);
+        //}
         [HttpPost]
         [Route("Admin/Edit")]
         [Route("Admin/Edit/{productId}")]
@@ -346,15 +357,35 @@ namespace Tilo.Controllers
         //public async Task<IActionResult> CreateCategory(Category category)
         //{
 
-        [Route("Admin/Delete")]
+        //[Route("Admin/Delete")]
+        [Route("Admin/Delete/{productId}")]
         public async Task<IActionResult> Delete(int productId)
         {
+
+            Product product = _productsService.Products.FirstOrDefault(p => p.Id == productId);
+            string category = null;
+            if (product.Category != null)
+            {
+                category = product.Category.Name != null ? product.Category.Name : null;
+            }
+            Product mainProduct = _productsService.Products.FirstOrDefault(p => p.Products.Contains(product));
             Product deletedProduct = await _productsService.DeleteProductAsync(productId);
             if (deletedProduct != null)
             {
                 TempData["message"] = $"{deletedProduct.Name} was deleted";
             }
-            return View("Index", _productsService.Products);
+            if (mainProduct != null)
+            {
+                var viewModel = CreateAdminViewModel(mainProduct);
+                return View("Edit", viewModel);
+
+            }
+            if (category != null)
+            {
+                return RedirectToAction("Admin/List", category);
+            }
+            return RedirectToAction("Index");
+
         }
         [Route("Admin/DeleteCategory")]
         public async Task<IActionResult> DeleteCategory(int categoryId)
