@@ -2219,10 +2219,18 @@ color: white;
     }
 }
 .whiteSpace{
-    white-space: pre-wrap;
+    white-space:pre-line;
 }
 .descriptStyle{
     text-indent: 1.5em;
     text-align: justify;
     line-height: 1.5;
 }
+.marginLeftM5 {
+    margin-left: -10px;
+}
+/*@media(max-width: 780px) {*/
+    .descriptStyle {
+ /*margin-top: -20px;*/
+    }
+/*}*/

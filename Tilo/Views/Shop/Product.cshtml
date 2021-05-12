@@ -157,7 +157,7 @@
                                                                 @if (Model.product.Sizes != null)
                                                                 {
                                                                     <div class="form-group">
-                                                                        <div class="col-sm-12 sizeM center-block" data-toggle="buttons">
+                                                                        <div class="col-sm-12 sizeM center-block marginLeftM5" data-toggle="buttons">
                                                                             <label asp-for="@Model.product.Sizes" class="size">Размер:</label>
                                                                             @foreach (var s in Model.product.Sizes)
                                                                             {
@@ -182,7 +182,7 @@
                                                     <div>
                                                         @if (Model.product.Category.Name != "Подарочный сертификат")
                                                         {
-                                                            <label class="col-sm-8 center-block inline paddingBottom5 "> Цвет: @Model.product.Color</label>
+                                                            <label class="col-sm-8 center-block inline paddingBottom5 marginLeftM5"> Цвет: @Model.product.Color</label>
                                                         }
 
                                                         @if (Model.product.Category.Name == "Подарочный сертификат")
@@ -192,7 +192,7 @@
                                                         }
                                                         else
                                                         {
-                                                            <p class="col-sm-12 center-block paddingBottom5 whiteSpace descriptStyle">
+                                                            <p class="col-sm-12 center-block paddingBottom5 whiteSpace marginLeftM5 descriptStyle">
                                                                 @(Model.product.Description ?? "(No Description Available")
                                                             </p>
                                                         }

@@ -178,6 +178,7 @@ namespace Tilo.Controllers
         {
 
             string orderLinesJoinAll = "";
+           
             int priceAllOrder = 0;
             
             foreach (var orderLine in ordersForMessage)
@@ -205,7 +206,14 @@ namespace Tilo.Controllers
                                     name = "Бра";
                                 else name = p.Name;
 
-                                sizesAndNames += name + ": " + p.Sizes[0].Name + "; ";
+                                
+
+                                if(p.Price > 0)
+                                {
+                                    priceAllOrder += p.Price;
+                                    sizesAndNames += name + ": " + p.Sizes[0].Name;
+                                    sizesAndNames += " (+ " + p.Price + "грн)" + ";";
+                                }else sizesAndNames += name + ": " + p.Sizes[0].Name + "; ";
                             }
                         }
                     }
@@ -220,7 +228,7 @@ namespace Tilo.Controllers
                 {
                     size = "Размер:" + " " + sizesAndNames;
                 }
-                orderLinesJoinAll += orderLine.Product.Name  + " " + "x" + orderLine.Quantity + "=" + orderLine.Quantity* orderLine.Product.Price + "грн;" + size + "\n"; 
+                orderLinesJoinAll += orderLine.Product.Name   + " x " + orderLine.Quantity + " = " + orderLine.Quantity* orderLine.Product.Price + "грн; " + size + "\n"; 
                 priceAllOrder += orderLine.Quantity * orderLine.Product.Price;
             }
             orderLinesJoinAll += "Всего к оплате: " + priceAllOrder + "грн; ";
