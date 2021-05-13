@@ -140,7 +140,22 @@ namespace Tilo.Models
 
             List <OrderLine>linesForDelete = selections
                .Where(l => l.ProductId == product.Id).ToList();
-            foreach(var line in linesForDelete)
+
+
+            foreach (var p in product.Products)
+            {
+                if (p.Sizes != null && p.Sizes[0].Name != null)
+                {
+                    OrderLine subLine = selections.FirstOrDefault(l => l.Product.Name == p.Name && l.Product.Sizes[0].Name == p.Sizes[0].Name);
+                    if (subLine != null)
+                    {
+                        linesForDelete.Add(subLine);
+                    }
+                }
+                
+
+            }
+            foreach (var line in linesForDelete)
             {
                 if (line.Product.Products != null && product.Products != null && line.Product.Products.Count == product.Products.Count)
                 {
@@ -154,12 +169,25 @@ namespace Tilo.Models
 
                     if (count == product.Products.Count)
                     {
+                        foreach (var p in line.Product.Products)
+                        {
+                            selections.RemoveAll(l => l.ProductId == 0 && l.Product.Name == p.Name && l.Product.Price == p.Price && l.Product.Sizes[0].Name == p.Sizes[0].Name);
+                        }
                         selections.Remove(line);
+                        if( selections.All(l => l.Product.Id == 0))
+                        {
+                            selections.Clear();
+                            return this;
+                        }
 
-                        return this;
+
+                        //return this;
                     }
 
                 }
+                //if (line.Product.Price? (l => l.Sizes[0].Name == prod.Sizes[0].Name) != null)
+
+
             }
             return this;
         }

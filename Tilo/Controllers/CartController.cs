@@ -160,7 +160,7 @@ namespace Tilo.Controllers
         public async Task<IActionResult> SendMessage(Order order, IEnumerable<OrderLine> ordersForMessage)
         {
             long numberOrder = ordersRepository.Orders.Last<Order>().Id;
-            var textMessage = "Здравствуйте, " + order.CustomerName + ",рады сообщить, что Ваш заказ №" + numberOrder + " будет обработан в ближайшее время!" + "\n"+ infoAboutOrder(order, ordersForMessage);
+            var textMessage = "Здравствуйте, " + order.CustomerName + ", рады сообщить, что Ваш заказ №" + numberOrder + " будет обработан в ближайшее время!" + "\n"+ infoAboutOrder(order, ordersForMessage);
             EmailService emailService = new EmailService();
             string subject = "Order №" + numberOrder + " is processed. With love your Tiloshowroom";
             try
@@ -212,7 +212,7 @@ namespace Tilo.Controllers
                                 {
                                     priceAllOrder += p.Price;
                                     sizesAndNames += name + ": " + p.Sizes[0].Name;
-                                    sizesAndNames += " (+ " + p.Price + "грн)" + ";";
+                                    sizesAndNames += " (+ " + p.Price + "грн)" + "; ";
                                 }else sizesAndNames += name + ": " + p.Sizes[0].Name + "; ";
                             }
                         }
