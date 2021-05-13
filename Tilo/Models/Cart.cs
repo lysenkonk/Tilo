@@ -11,7 +11,7 @@ namespace Tilo.Models
         //{
         //    selections = new List<OrderLine>();
         //}
-        
+
 
         public Cart AddItem(Product p, string size, int quantity)
         {
@@ -23,10 +23,10 @@ namespace Tilo.Models
             //        p.Sizes.Add(new Size(s));
             //    }
             //}
-            if(p.Products != null && p.Products.Count > 1)
+            if (p.Products != null && p.Products.Count > 1)
             {
-               List<OrderLine> linesCurrent = selections
-               .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name).ToList();
+                List<OrderLine> linesCurrent = selections
+                .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name).ToList();
                 if (linesCurrent != null)
                 {
                     foreach (var lineCurrent in linesCurrent)
@@ -59,7 +59,7 @@ namespace Tilo.Models
                             return this;
                         }
                     }
-                   
+
                 }
             }
 
@@ -69,7 +69,8 @@ namespace Tilo.Models
             {
                 line = selections
                 .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name && l.Product.Sizes != null && p.Sizes != null && l.Product.Sizes[0].Name == p.Sizes[0].Name).FirstOrDefault();
-            }else if (p.Category != null && p.Category.Name == "Подарочный сертификат")
+            }
+            else if (p.Category != null && p.Category.Name == "Подарочный сертификат")
             {
                 line = selections
                 .Where(l => l.ProductId == p.Id && l.Product.Name == p.Name && l.Product.Price == p.Price).FirstOrDefault();
@@ -79,7 +80,9 @@ namespace Tilo.Models
             if (line != null && line.Product.Products == null)
             {
                 line.Quantity += quantity;
-            }else if (line != null && p.Category != null  && p.Category.Name == "Подарочный сертификат"){
+            }
+            else if (line != null && p.Category != null && p.Category.Name == "Подарочный сертификат")
+            {
                 line.Quantity += quantity;
             }
             else
@@ -114,7 +117,7 @@ namespace Tilo.Models
             return this;
         }
 
-        public Cart RemoveGiftCardItem(long productId, int  price)
+        public Cart RemoveGiftCardItem(long productId, int price)
         {
 
             //OrderLine lineForDelete = selections
@@ -138,23 +141,8 @@ namespace Tilo.Models
         public Cart RemoveSubItem(Product product)
         {
 
-            List <OrderLine>linesForDelete = selections
+            List<OrderLine> linesForDelete = selections
                .Where(l => l.ProductId == product.Id).ToList();
-
-
-            foreach (var p in product.Products)
-            {
-                if (p.Sizes != null && p.Sizes[0].Name != null)
-                {
-                    OrderLine subLine = selections.FirstOrDefault(l => l.Product.Name == p.Name && l.Product.Sizes[0].Name == p.Sizes[0].Name);
-                    if (subLine != null)
-                    {
-                        linesForDelete.Add(subLine);
-                    }
-                }
-                
-
-            }
             foreach (var line in linesForDelete)
             {
                 if (line.Product.Products != null && product.Products != null && line.Product.Products.Count == product.Products.Count)
@@ -169,29 +157,16 @@ namespace Tilo.Models
 
                     if (count == product.Products.Count)
                     {
-                        foreach (var p in line.Product.Products)
-                        {
-                            selections.RemoveAll(l => l.ProductId == 0 && l.Product.Name == p.Name && l.Product.Price == p.Price && l.Product.Sizes[0].Name == p.Sizes[0].Name);
-                        }
                         selections.Remove(line);
-                        if( selections.All(l => l.Product.Id == 0))
-                        {
-                            selections.Clear();
-                            return this;
-                        }
 
-
-                        //return this;
+                        return this;
                     }
 
                 }
-                //if (line.Product.Price? (l => l.Sizes[0].Name == prod.Sizes[0].Name) != null)
-
-
             }
             return this;
         }
-        public Cart Clear() { selections.Clear(); return this; } 
+        public Cart Clear() { selections.Clear(); return this; }
 
         public IEnumerable<OrderLine> Selections { get => selections; }
     }
