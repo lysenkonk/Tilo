@@ -150,6 +150,8 @@
                                                                             </div>
                                                                         }
                                                                         @*</div>*@
+                                                                        <input type="hidden" name="product.Products[@i].Price" asp-for="@Model.product.Products[i].Price" />
+
                                                                         @if (Model.product.Products[i].Price > 0 && Model.product.Products[i].Name != "Top" && Model.product.Products[i].Name != "Bottom")
                                                                         {
                                                                             <input type="hidden" name="product.Products[@i].Price" asp-for="@Model.product.Products[i].Price" />

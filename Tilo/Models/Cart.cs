@@ -157,9 +157,19 @@ namespace Tilo.Models
 
                     if (count == product.Products.Count)
                     {
-                        selections.Remove(line);
+                        List<Product> subProdForDelete = line.Product.Products.Where(p => p.Price > 0).ToList();
+                        foreach(var subProd in subProdForDelete)
+                        {
+                            OrderLine current = selections.FirstOrDefault(l => l.Product.Name == subProd.Name && l.Product.Price == subProd.Price);
+                            selections.Remove(current);
+                        }
 
-                        return this;
+                        selections.Remove(line);
+                        if (selections.All(l => l.Product.Id == 0))
+                        {
+                            selections.Clear();
+                            return this;
+                        }
                     }
 
                 }
