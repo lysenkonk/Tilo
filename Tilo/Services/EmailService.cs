@@ -2,12 +2,13 @@
 using MimeKit;
 using System;
 using System.Threading.Tasks;
+using Tilo.Models.ViewModels;
 
 namespace Tilo.Services
 {
     public class EmailService
     {
-        public async Task SendEmailAsync(string email, string subject, string message)
+        public async Task SendEmailAsync(string email, string subject, MailViewModel model)
         {
             try
             {
@@ -15,20 +16,25 @@ namespace Tilo.Services
                 emailMessage.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
                 emailMessage.To.Add(new MailboxAddress(email));
                 emailMessage.Subject = subject;
-                emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-                {
-                    Text = message
-                };
+
+                var builder = new BodyBuilder();
+
+                var header = builder.LinkedResources.Add(model.HeaderImage.ContentPath);
+                header.ContentId = model.HeaderImage.ContentId;
+
+                builder.HtmlBody = model.Content;
+                emailMessage.Body = builder.ToMessageBody();
+                //emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+                //{
+                //    Text = message
+                //};
 
                 var emailMessageForAdmin = new MimeMessage();
 
                 emailMessageForAdmin.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
                 emailMessageForAdmin.To.Add(new MailboxAddress("lysenkonk@gmail.com"));
                 emailMessageForAdmin.Subject = "New order";
-                emailMessageForAdmin.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-                {
-                    Text = message
-                };
+                emailMessageForAdmin.Body = builder.ToMessageBody();
 
                 //var emailMessageForAdmin2 = new MimeMessage();
 

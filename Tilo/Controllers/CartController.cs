@@ -9,6 +9,12 @@ using Tilo.Services;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
+using System.Net.Mail;
+using Microsoft.AspNetCore.Hosting;
+using MimeKit;
+using MailKit;
+using MimeKit.Utils;
+using Tilo.Models.ViewModels;
 
 namespace Tilo.Controllers
 {
@@ -17,13 +23,22 @@ namespace Tilo.Controllers
     {
         private IProductRepository productRepository;
         private IOrdersRepository ordersRepository;
+        private ITemplateHelper _templateHelper;
+        private readonly IHostingEnvironment _appEnvironment;
 
-        public CartController(IProductRepository prepo, IOrdersRepository orepo)
+        private const string SmallGalleryFolder2 = "/Files/Sm2/";
+
+
+
+        public CartController(IProductRepository prepo, IOrdersRepository orepo, IHostingEnvironment appEnvironment, ITemplateHelper helper)
         {
+            _templateHelper = helper;
             productRepository = prepo;
             ordersRepository = orepo;
+            _appEnvironment = appEnvironment;
+
         }
-        
+
         public IActionResult Index(string returnUrl, List<string> size)
         {
             ViewBag.returnUrl = returnUrl;
@@ -160,12 +175,35 @@ namespace Tilo.Controllers
         public async Task<IActionResult> SendMessage(Order order, IEnumerable<OrderLine> ordersForMessage)
         {
             long numberOrder = ordersRepository.Orders.Last<Order>().Id;
-            var textMessage = "Здравствуйте, " + order.CustomerName + ", рады сообщить, что Ваш заказ №" + numberOrder + " будет обработан в ближайшее время!" + "\n"+ infoAboutOrder(order, ordersForMessage);
+            var headerImagePath = "";
+            foreach (var currentOrder in ordersForMessage)
+            {
+                if(currentOrder.Product != null)
+                {
+                    Product item = productRepository.Products.FirstOrDefault(p => p.Id == currentOrder.Product.Id);
+                    if(item.Images[0] != null)
+                    {
+                        currentOrder.Product.Images[0].Name = item.Images[0].Name;
+                        headerImagePath = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, "wwwroot/Files/Sm2/tiloLogo.png");
+                    }
+                }
+            }
+            var textMessage = infoAboutOrder(order, ordersForMessage);
             EmailService emailService = new EmailService();
             string subject = "Order №" + numberOrder + " is processed. With love your Tiloshowroom";
             try
             {
-                await emailService.SendEmailAsync(order.Email, subject, textMessage);
+                var model = new MailViewModel();
+                var response = await _templateHelper.GetTemplateHtmlAsStringAsync<Order>("Orders/Content", order);
+
+                model.Content = response;
+                model.HeaderImage = new Models.ViewModels.LinkedResource
+                {
+                    ContentId = "header",
+                    ContentPath = headerImagePath,
+                    ContentType = "image/png"
+                };
+                await emailService.SendEmailAsync(order.Email, subject, model);
                 return RedirectToAction("Completed");
             }
             catch (Exception ex)
@@ -180,7 +218,13 @@ namespace Tilo.Controllers
             string orderLinesJoinAll = "";
            
             int priceAllOrder = 0;
-            
+            string infoAboutProduct = "";
+            var builder = new BodyBuilder();
+
+            string orderHtml = String.Format(@"<p class='text-align:center; font-weight: bold; font-size: 22px'>TILOSHOWROOM <br> </p>
+                                                <p class='text-align:center; font-align: center; font-size: 14px'>Шановний(-a) {0}, <br>
+                                                   Ваше замовлення № {1}, наш менеджер передзвонить Вам найближчим часом.<br>
+                                                   З подякою, <a href='tiloshowroom.com' target='_blank'>Tiloshowroom</a></p>", order.CustomerName, order.Id);
             foreach (var orderLine in ordersForMessage)
             {
                 string sizesAndNames = "";
@@ -226,13 +270,43 @@ namespace Tilo.Controllers
                 string size = "";
                 if (orderLine.Product.Category.Name != "Подарочный сертификат")
                 {
-                    size = "Размер:" + " " + sizesAndNames;
+                    size = sizesAndNames;
                 }
-                orderLinesJoinAll += orderLine.Product.Name   + " x " + orderLine.Quantity + " = " + orderLine.Quantity* orderLine.Product.Price + "грн; " + size + "\n"; 
+                //if(orderLine.Product.Images[0])
+                //{ 
+                string path = _appEnvironment.WebRootPath + SmallGalleryFolder2 + orderLine.Product.Images[0].Name;
+                //LinkedResource res = new LinkedResource(path, "image/png"); 
+                //res.ContentId = Guid.NewGuid().ToString();C:\Users\Nadiia\source\repos\Tilo\Tilo\wwwroot\Files\Sm2\1sertivicate1000.jpg
+                var image = builder.LinkedResources.Add(@"C:\Users\Nadiia\source\repos\Tilo\Tilo\wwwroot\Files\Sm2\1sertivicate1000.jpg");
+                image.ContentId = MimeUtils.GenerateMessageId();
+
+                orderLinesJoinAll += orderLine.Product.Name   + " x " + orderLine.Quantity + " = " + orderLine.Quantity* orderLine.Product.Price + "грн; " + size + "\n";
+                builder.HtmlBody = String.Format(@"<div class='row'>                      
+                                                                    <div class='col-sm-4'>
+                                                                       <img src=""cid:{0}"">
+                                                                     </div>
+                                                                      <div class='col-sm-4'>
+                                                                       <h3>{0}</h3>
+                                                                        <p>Розмір: {1} </p>
+                                                                       <p>Кількість: {2}</p>
+                                                                        </div>
+                                                                      <div class='col-sm-2'>
+                                                                        <h3> {3} грн </h3>
+                                                                        </div>
+                                                                     
+                                                </div>", image.ContentId, orderLine.Product.Name, size, orderLine.Quantity, orderLine.Quantity * orderLine.Product.Price);
+
                 priceAllOrder += orderLine.Quantity * orderLine.Product.Price;
             }
-            orderLinesJoinAll += "Всего к оплате: " + priceAllOrder + "грн; ";
-            return orderLinesJoinAll;
+            var priceOrder = String.Format(@"<div class='row'>                      
+                                                                    <div class='col-sm-12'>
+                                                                Всего к оплате: {0} грн
+                                                                   </div> 
+                                                </div>", priceAllOrder);
+
+            string resultHtml = orderHtml + infoAboutProduct + priceOrder;
+            //builder.HtmlBody = infoAboutProduct;
+            return builder.HtmlBody;
 
         }
 

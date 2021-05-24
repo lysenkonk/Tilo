@@ -23,6 +23,10 @@ namespace Tilo.Models
         public void AddOrder(Order order)
         {
             order.dateTime = DateTime.Now;
+            foreach(var line in order.Lines)
+            {
+                line.Product = null;
+            }
             var entry = context.Orders.Add(order);
             context.SaveChanges();
         }

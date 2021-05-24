@@ -15,6 +15,7 @@ using Tilo.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Tilo.Services;
+using Tilo.Models.ViewModels;
 
 namespace Tilo
 {
@@ -73,6 +74,7 @@ namespace Tilo
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ITemplateHelper, TemplateHelper>();
             services.AddMemoryCache();
 
 

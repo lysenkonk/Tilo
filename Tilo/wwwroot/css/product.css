@@ -55,7 +55,7 @@
         }
     }
 
-    @media (min-width:1276px) {
+    @media (min-width: 767px) {
         .bProductView {
             margin-top: 30px
         }
@@ -1059,3 +1059,4 @@
     margin-top: 0px;
     /*text-transform: uppercase*/
 }
+/***********************************************/
