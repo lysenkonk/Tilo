@@ -38,6 +38,9 @@
         marginTr {
             margin-bottom: 2px;
         }
+        marginTr20 {
+            margin-top: -20px;
+        }
         .grayColor {
             color: gray;
         }
@@ -121,7 +124,7 @@
 
                         @if (p.Sizes != null)
                         {
-                            <tr class="marginTr height30">
+                            <tr class="marginTr20 height30">
                                 @if (p.Name == "Bottom")
                                 { name = "Трусики"; }
                                 else if (p.Name == "Top")
@@ -153,7 +156,6 @@
                 }
                 else
                 {
-
                     <tr class="marginTr align">
                         @if (orderLine.Product.Images[0] != null && orderLine.Product.Images.Count > 0)
                         {
@@ -183,22 +185,6 @@
                 <td class="marginTd" colspan="2"><h4>@priceAllOrder грн</h4></td>
             </tr>
         </table>
-            @*<div class='col-sm-4'>
-                <img src="" cid:{0}"">
-            </div>
-            <div class='col-sm-4'>
-                <h3>@orderLine.Product.Name</h3>
-                <p>Розмір: @orderLine.Product.Sizes[0].Name </p>
-                <p>Кількість: @orderLine.Quantity</p>
-            </div>
-            <div class='col-sm-2'>
-                <h3> @orderLine.Product.Price </h3>
-            </div>*@
-
-
-            @*}*@
-
-
         </div>
 
 </body>

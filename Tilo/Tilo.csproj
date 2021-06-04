@@ -26,10 +26,4 @@
     
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="wwwroot\Files\Sm2\" />
-    <Folder Include="wwwroot\Files\Sm\" />
-  </ItemGroup>
-
 </Project>

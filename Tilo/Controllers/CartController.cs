@@ -176,7 +176,7 @@ namespace Tilo.Controllers
         {
 
             long numberOrder = ordersRepository.Orders.Last<Order>().Id;
-            var headerImagePath = "";
+            //var headerImagePath = "";
             foreach (var currentOrder in order.Lines)
             {
                 if(currentOrder.Product != null)
@@ -185,7 +185,7 @@ namespace Tilo.Controllers
                     if(item.Images[0] != null)
                     {
                         currentOrder.Product.Images[0].Name = item.Images[0].Name;
-                        headerImagePath = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, "wwwroot/Files/Sm2/tiloLogo.png");
+                        //headerImagePath = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, "wwwroot/Files/Sm2/tiloLogo.png");
                     }
                 }
             }
@@ -197,14 +197,14 @@ namespace Tilo.Controllers
                 var model = new MailViewModel();
 
                 model.HeaderImage = new List<Models.ViewModels.LinkedResource>();
-                headerImagePath = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, "wwwroot/Files/Sm2/tiloLogo.png");
+                //headerImagePath = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, "wwwroot/Files/Sm2/tiloLogo.png");
 
-                model.HeaderImage.Add(new Models.ViewModels.LinkedResource
-                {
-                    ContentId = "BraLayla4.jpg",
-                    ContentPath = headerImagePath,
-                    ContentType = "image/png"
-                });
+                //model.HeaderImage.Add(new Models.ViewModels.LinkedResource
+                //{
+                //    ContentId = "BraLayla4.jpg",
+                //    ContentPath = headerImagePath,
+                //    ContentType = "image/png"
+                //});
                 foreach (var currentOrder in order.Lines)
                 {
                     if (currentOrder.Product != null)
@@ -305,24 +305,24 @@ namespace Tilo.Controllers
                 string path = _appEnvironment.WebRootPath + SmallGalleryFolder2 + orderLine.Product.Images[0].Name;
                 //LinkedResource res = new LinkedResource(path, "image/png"); 
                 //res.ContentId = Guid.NewGuid().ToString();C:\Users\Nadiia\source\repos\Tilo\Tilo\wwwroot\Files\Sm2\1sertivicate1000.jpg
-                var image = builder.LinkedResources.Add(@"C:\Users\Nadiia\source\repos\Tilo\Tilo\wwwroot\Files\Sm2\1sertivicate1000.jpg");
-                image.ContentId = MimeUtils.GenerateMessageId();
+                //var image = builder.LinkedResources.Add(@"C:\Users\Nadiia\source\repos\Tilo\Tilo\wwwroot\Files\Sm2\1sertivicate1000.jpg");
+                //image.ContentId = MimeUtils.GenerateMessageId();
 
                 orderLinesJoinAll += orderLine.Product.Name   + " x " + orderLine.Quantity + " = " + orderLine.Quantity* orderLine.Product.Price + "грн; " + size + "\n";
-                builder.HtmlBody = String.Format(@"<div class='row'>                      
-                                                                    <div class='col-sm-4'>
-                                                                       <img src=""cid:{0}"">
-                                                                     </div>
-                                                                      <div class='col-sm-4'>
-                                                                       <h3>{0}</h3>
-                                                                        <p>Розмір: {1} </p>
-                                                                       <p>Кількість: {2}</p>
-                                                                        </div>
-                                                                      <div class='col-sm-2'>
-                                                                        <h3> {3} грн </h3>
-                                                                        </div>
+                //builder.HtmlBody = String.Format(@"<div class='row'>                      
+                //                                                    <div class='col-sm-4'>
+                //                                                       <img src=""cid:{0}"">
+                //                                                     </div>
+                //                                                      <div class='col-sm-4'>
+                //                                                       <h3>{0}</h3>
+                //                                                        <p>Розмір: {1} </p>
+                //                                                       <p>Кількість: {2}</p>
+                //                                                        </div>
+                //                                                      <div class='col-sm-2'>
+                //                                                        <h3> {3} грн </h3>
+                //                                                        </div>
                                                                      
-                                                </div>", image.ContentId, orderLine.Product.Name, size, orderLine.Quantity, orderLine.Quantity * orderLine.Product.Price);
+                //                                </div>", image.ContentId, orderLine.Product.Name, size, orderLine.Quantity, orderLine.Quantity * orderLine.Product.Price);
 
                 priceAllOrder += orderLine.Quantity * orderLine.Product.Price;
             }
