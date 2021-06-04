@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <style>
+        table, body {
+            color: black;
+        }
         .no-border {
             border: 1px #dddddd;
         }
@@ -27,17 +30,43 @@
         }
         .center {
             text-align: center;
-            font-size: 16px
+            font-size: 12px
         }
         .marginTd {
-            margin: 5px;
+            margin: 2px;      
         }
-        marginTr{
-            margin-bottom: 8px;
+        marginTr {
+            margin-bottom: 2px;
         }
         .grayColor {
             color: gray;
         }
+        .img{
+            width: 100px;
+        }
+        .widthTd250{
+            width: 300px;
+        }
+        .width650{
+            width: 550px;
+        }
+        .height30 {
+            height: 30px
+        }
+        .marginCenter{
+            margin-left:auto;
+            margin-right:auto;
+        }
+        th, td{
+            padding: 1px;
+        }
+        p{
+            margin: 2px;
+        }
+        h4{
+            margin: 2px;
+        }
+
     </style>
 
 
@@ -58,74 +87,101 @@
         </p>
         <p> З подякою, <a href='tiloshowroom.com' target='_blank'>Tiloshowroom.com</a></p>
     </div>
-    <div class="tableBackground center">
-        <p class="grayColor">ДЕТАЛІ ЗАМОВЛЕННЯ</p>
-        @foreach (var orderLine in Model.Lines)
-        {
-            var name = "";
-            var priceAllOrder = 0;
-        
-        <table class="no-border">
-            @*<tr class="marginTr">
-                <td class="marginTd" colspan="2"><p> </p></td>
-                <td class="marginTd" colspan="2"><p>Колір:</p></td>
-                <td class="marginTd" colspan="2"><p>Розмір:</p></td>
-                <td class="marginTd" colspan="2"><p>Кількість:</p></td>
-                <td class="marginTd" colspan="2"><p>Ціна: </p></td>
-            </tr>*@
-            @if (orderLine.Product.Products != null && orderLine.Product.Products.Count > 0)
+    <div class="tableBackground marginCenter width650">
+        <p class="grayColor center">ДЕТАЛІ ЗАМОВЛЕННЯ</p>
+
+        @{var priceAllOrder = 0; }
+
+        <table class="no-border center marginCenter">
+            @foreach (var orderLine in Model.Lines)
             {
+                var name = "";
+                var price = 0;
 
-            <tr class="marginTr">
-                <td class="marginTd" colspan="2">
-                    <h4> @orderLine.Product.Name </h4>
-                    <p>Колір:@orderLine.Product.Color</p>
-                    <p>Кількість: @orderLine.Quantity</p>
-                </td>
-                <td class="marginTd" colspan="2"><h4>@(orderLine.Product.Price * orderLine.Quantity)грн</h4></td>
-            </tr>
-
-                @foreach (var p in orderLine.Product.Products)
+                @if (orderLine.Product.Products != null && orderLine.Product.Products.Count > 0)
                 {
                     <tr class="marginTr">
+                        @if (orderLine.Product.Images[0] != null && orderLine.Product.Images.Count > 0)
+                        {
+                            <td class="marginTd"><img class="img" src="cid:@orderLine.Product.Id.ToString()" /></td>
+                        }
+                        <td class="marginTd widthTd250">
+                            <h4> @orderLine.Product.Name </h4>
+                            <p>Колір: @orderLine.Product.Color </p>
+                            <p>Кількість: @orderLine.Quantity</p>
+                        </td>
+                        <td class="marginTd"><h4>@(orderLine.Product.Price * orderLine.Quantity) грн</h4></td>
+                    </tr>
+
+                    price = orderLine.Product.Price * orderLine.Quantity;
+                    priceAllOrder = priceAllOrder + price;
+
+                    @foreach (var p in orderLine.Product.Products)
+                    {
+
                         @if (p.Sizes != null)
                         {
-                            @if (p.Name == "Bottom")
-                            { name = "Трусики"; }
-                            else if (p.Name == "Top")
-                            { name = "Бра"; }
-                            else { name = p.Name; }
+                            <tr class="marginTr height30">
+                                @if (p.Name == "Bottom")
+                                { name = "Трусики"; }
+                                else if (p.Name == "Top")
+                                { name = "Бра"; }
+                                else { name = p.Name; }
+                                <td class="marginTd"></td>
 
-                            <td class="marginTd" colspan="2"><p> @name </p></td>
 
 
-                            if (p.Price > 0)
-                            {
+                                @if (p.Price > 0)
+                                {
                                 priceAllOrder += p.Price;
                                 <td class="marginTd" colspan="2"><p>@p.Sizes[0].Name</p></td>
-                                <td class="marginTd" colspan="2"><p>@p.Price грн</p></td>
-                            }
-                            else
-                            {
-                                <td class="marginTd" colspan="2"><p>@p.Sizes[0].Name</p></td>
-                            }
+                                <td class="marginTd" colspan="2"><h4>@p.Price грн</h4></td>
+
+                                priceAllOrder = priceAllOrder + p.Price;
+                                }
+                                else
+                                {
+                                <td class="marginTd widthTd250"><p> @name: @p.Sizes[0].Name </p></td>
+                                @*<td class="marginTd"><p>@p.Sizes[0].Name</p></td>*@
+                                }
+
+                            </tr>
 
                         }
+
+                    }
+                }
+                else
+                {
+
+                    <tr class="marginTr align">
+                        @if (orderLine.Product.Images[0] != null && orderLine.Product.Images.Count > 0)
+                        {
+                            <td class="marginTd"><img class="img" src="cid:@orderLine.Product.Id.ToString()" /></td>
+                        }
+                        <td class="marginTd widthTd250">
+                            <h4> @orderLine.Product.Name </h4>
+                            <p>Колір: @orderLine.Product.Color </p>
+                            <p>Розмір: @orderLine.Product.Sizes[0].Name</p>
+                            <p>Кількість: @orderLine.Quantity</p>
+                        </td>
+                        <td class="marginTd"><h4>@(orderLine.Product.Price * orderLine.Quantity) грн</h4></td>
+
                     </tr>
+
+                    price = orderLine.Product.Price * orderLine.Quantity;
+                    priceAllOrder = priceAllOrder + price;
+
+
                 }
             }
-            else
-            {
-
-                <tr class="marginTr">
-                    <td class="marginTd" colspan="2"><p> @orderLine.Product.Name </p></td>
-                    <td class="marginTd" colspan="2"><p> @orderLine.Product.Color </p></td>
-                    <td class="marginTd" colspan="2"><p>Розмір: @orderLine.Product.Sizes[0].Name</p></td>
-                    <td class="marginTd" colspan="2"><p>Кількість: @orderLine.Quantity</p></td>
-                    <td class="marginTd" colspan="2"><p>Ціна: @(orderLine.Product.Price * orderLine.Quantity)грн</p></td>
-                </tr>
-
-            }
+            <tr class="marginTr align">
+                <td class="marginTd"></td>
+                <td class="marginTd widthTd250">
+                    <h4>Сума заказа:</h4>
+                </td>
+                <td class="marginTd" colspan="2"><h4>@priceAllOrder грн</h4></td>
+            </tr>
         </table>
             @*<div class='col-sm-4'>
                 <img src="" cid:{0}"">
@@ -141,9 +197,9 @@
 
 
             @*}*@
-        }
 
-    </div>
+
+        </div>
 
 </body>
 </html>

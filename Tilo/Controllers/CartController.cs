@@ -137,7 +137,7 @@ namespace Tilo.Controllers
                     ProductId = s.ProductId,
                     Quantity = s.Quantity,
                     //Product = productRepository.Products.FirstOrDefault(p => p.Id == s.ProductId)
-                    //Product = s.Product
+                    Product = s.Product
 
                 }).Where(p => p.ProductId != 0).ToArray();
 
@@ -174,9 +174,10 @@ namespace Tilo.Controllers
         
         public async Task<IActionResult> SendMessage(Order order, IEnumerable<OrderLine> ordersForMessage)
         {
+
             long numberOrder = ordersRepository.Orders.Last<Order>().Id;
             var headerImagePath = "";
-            foreach (var currentOrder in ordersForMessage)
+            foreach (var currentOrder in order.Lines)
             {
                 if(currentOrder.Product != null)
                 {
@@ -194,15 +195,42 @@ namespace Tilo.Controllers
             try
             {
                 var model = new MailViewModel();
+
+                model.HeaderImage = new List<Models.ViewModels.LinkedResource>();
+                headerImagePath = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, "wwwroot/Files/Sm2/tiloLogo.png");
+
+                model.HeaderImage.Add(new Models.ViewModels.LinkedResource
+                {
+                    ContentId = "BraLayla4.jpg",
+                    ContentPath = headerImagePath,
+                    ContentType = "image/png"
+                });
+                foreach (var currentOrder in order.Lines)
+                {
+                    if (currentOrder.Product != null)
+                    {
+                        Product item = productRepository.Products.FirstOrDefault(p => p.Id == currentOrder.Product.Id);
+                        if (item.Images[0] != null)
+                        {
+                            currentOrder.Product.Images[0].Name = item.Images[0].Name;
+                            var path = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, Url.Content("wwwroot/files/Sm2/" + item.Images[0].Name));
+                            string name = currentOrder.Product.Images[0].Name.Trim();
+                            model.HeaderImage.Add(new Models.ViewModels.LinkedResource
+                            {
+
+                                ContentId = currentOrder.Product.Id.ToString(),
+                                ContentPath = path,
+                                ContentType = "image/jpeg"
+                            });
+                           
+                        }
+                    }
+                }
+                order.Lines = ordersForMessage;
                 var response = await _templateHelper.GetTemplateHtmlAsStringAsync<Order>("Orders/Content", order);
 
                 model.Content = response;
-                model.HeaderImage = new Models.ViewModels.LinkedResource
-                {
-                    ContentId = "header",
-                    ContentPath = headerImagePath,
-                    ContentType = "image/png"
-                };
+               
                 await emailService.SendEmailAsync(order.Email, subject, model);
                 return RedirectToAction("Completed");
             }

@@ -18,9 +18,13 @@ namespace Tilo.Services
                 emailMessage.Subject = subject;
 
                 var builder = new BodyBuilder();
-
-                var header = builder.LinkedResources.Add(model.HeaderImage.ContentPath);
-                header.ContentId = model.HeaderImage.ContentId;
+                foreach(var pathForImage in model.HeaderImage)
+                {
+                    var image = builder.LinkedResources.Add(pathForImage.ContentPath);
+                    image.ContentId = pathForImage.ContentId;
+                }
+                //var header = builder.LinkedResources.Add(ContentPath);
+                //header.ContentId = model.HeaderImage.ContentId;
 
                 builder.HtmlBody = model.Content;
                 emailMessage.Body = builder.ToMessageBody();
