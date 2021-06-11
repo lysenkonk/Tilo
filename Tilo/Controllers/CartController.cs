@@ -182,14 +182,14 @@ namespace Tilo.Controllers
                 if(currentOrder.Product != null)
                 {
                     Product item = productRepository.Products.FirstOrDefault(p => p.Id == currentOrder.Product.Id);
-                    if(item.Images[0] != null)
+                    if(item.Images != null && item.Images.Count > 0)
                     {
                         currentOrder.Product.Images[0].Name = item.Images[0].Name;
                         //headerImagePath = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, "wwwroot/Files/Sm2/tiloLogo.png");
                     }
                 }
             }
-            var textMessage = infoAboutOrder(order, ordersForMessage);
+            //var textMessage = infoAboutOrder(order, ordersForMessage);
             EmailService emailService = new EmailService();
             string subject = "Order №" + numberOrder + " is processed. With love your Tiloshowroom";
             try
@@ -210,7 +210,7 @@ namespace Tilo.Controllers
                     if (currentOrder.Product != null)
                     {
                         Product item = productRepository.Products.FirstOrDefault(p => p.Id == currentOrder.Product.Id);
-                        if (item.Images[0] != null)
+                        if (item.Images != null && item.Images.Count > 0)
                         {
                             currentOrder.Product.Images[0].Name = item.Images[0].Name;
                             var path = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, Url.Content("wwwroot/files/Sm2/" + item.Images[0].Name));

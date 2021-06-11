@@ -39,7 +39,7 @@
             margin-bottom: 2px;
         }
         marginTr20 {
-            margin-top: -20px;
+            padding-top: -20px;
         }
         .grayColor {
             color: gray;
@@ -104,9 +104,9 @@
                 @if (orderLine.Product.Products != null && orderLine.Product.Products.Count > 0)
                 {
                     <tr class="marginTr">
-                        @if (orderLine.Product.Images[0] != null && orderLine.Product.Images.Count > 0)
+                        @if (orderLine.Product.Images != null && orderLine.Product.Images.Count > 0)
                         {
-                            <td class="marginTd"><img class="img" src="cid:@orderLine.Product.Id.ToString()" /></td>
+                            <td class="marginTd" rowspan="3"> <img class="img" src="cid:@orderLine.Product.Id.ToString()" /></td>
                         }
                         <td class="marginTd widthTd250">
                             <h4> @orderLine.Product.Name </h4>
@@ -124,31 +124,27 @@
 
                         @if (p.Sizes != null)
                         {
-                            <tr class="marginTr20 height30">
-                                @if (p.Name == "Bottom")
-                                { name = "Трусики"; }
-                                else if (p.Name == "Top")
-                                { name = "Бра"; }
-                                else { name = p.Name; }
-                                <td class="marginTd"></td>
+                    <tr class="marginTr20 height30">
+                        @if (p.Name == "Bottom")
+                        { name = "Трусики"; }
+                        else if (p.Name == "Top")
+                        { name = "Бра"; }
+                        else { name = p.Name; }
 
 
+                        @if (p.Price > 0)
+                        {
+                            priceAllOrder += p.Price;
+                            <td class="marginTd"></td>
+                            <td class="marginTd"><p> @name: @p.Sizes[0].Name</p></td>
+                            <td class="marginTd" colspan="2"><h4>@p.Price грн</h4></td>
+                        }
+                        else
+                        {
+                            <td class="marginTd widthTd250"><p> @name: @p.Sizes[0].Name </p></td>
+                        }
 
-                                @if (p.Price > 0)
-                                {
-                                priceAllOrder += p.Price;
-                                <td class="marginTd" colspan="2"><p>@p.Sizes[0].Name</p></td>
-                                <td class="marginTd" colspan="2"><h4>@p.Price грн</h4></td>
-
-                                priceAllOrder = priceAllOrder + p.Price;
-                                }
-                                else
-                                {
-                                <td class="marginTd widthTd250"><p> @name: @p.Sizes[0].Name </p></td>
-                                @*<td class="marginTd"><p>@p.Sizes[0].Name</p></td>*@
-                                }
-
-                            </tr>
+                    </tr>
 
                         }
 
@@ -157,7 +153,7 @@
                 else
                 {
                     <tr class="marginTr align">
-                        @if (orderLine.Product.Images[0] != null && orderLine.Product.Images.Count > 0)
+                        @if (orderLine.Product.Images != null && orderLine.Product.Images.Count > 0)
                         {
                             <td class="marginTd"><img class="img" src="cid:@orderLine.Product.Id.ToString()" /></td>
                         }
@@ -173,17 +169,16 @@
 
                     price = orderLine.Product.Price * orderLine.Quantity;
                     priceAllOrder = priceAllOrder + price;
-
-
                 }
             }
-            <tr class="marginTr align">
-                <td class="marginTd"></td>
-                <td class="marginTd widthTd250">
-                    <h4>Сума заказа:</h4>
-                </td>
-                <td class="marginTd" colspan="2"><h4>@priceAllOrder грн</h4></td>
-            </tr>
+                    <tr class="marginTr align">
+                            <td class="marginTd"></td>
+
+                            <td class="marginTd widthTd250">
+                                <h4>Сума замовлення:</h4>
+                            </td>
+                            <td class="marginTd" colspan="2"><h4>@priceAllOrder грн</h4></td>
+                        </tr>
         </table>
         </div>
 

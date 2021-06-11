@@ -40,15 +40,12 @@ namespace Tilo.Services
                 emailMessageForAdmin.Subject = "New order";
                 emailMessageForAdmin.Body = builder.ToMessageBody();
 
-                //var emailMessageForAdmin2 = new MimeMessage();
+                var emailMessageForAdmin2 = new MimeMessage();
 
-                //emailMessageForAdmin2.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
-                //emailMessageForAdmin2.To.Add(new MailboxAddress("tilolingerie@gmail.com"));
-                //emailMessageForAdmin2.Subject = "New order";
-                //emailMessageForAdmin2.Body = new TextPart(MimeKit.Text.TextFormat.Html)
-                //{
-                //    Text = message
-                //};
+                emailMessageForAdmin2.From.Add(new MailboxAddress("Tiloshowroom", "admin@tiloshowroom.com"));
+                emailMessageForAdmin2.To.Add(new MailboxAddress("tilolingerie@gmail.com"));
+                emailMessageForAdmin2.Subject = "New order";
+                emailMessageForAdmin2.Body = builder.ToMessageBody();
 
                 using (SmtpClient client = new SmtpClient())
                 {
@@ -57,6 +54,8 @@ namespace Tilo.Services
 
                     await client.SendAsync(emailMessage);
                     await client.SendAsync(emailMessageForAdmin);
+                    await client.SendAsync(emailMessageForAdmin2);
+
                     await client.DisconnectAsync(true);
                 }
             }
