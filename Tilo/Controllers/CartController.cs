@@ -64,25 +64,27 @@ namespace Tilo.Controllers
                 prodCurrent = product;
                 prodCurrent.Images = item.Images;
             }
-            else {
+            else
+            {
                 prodCurrent = productRepository.Products.FirstOrDefault(p => p.Id == product.Id);
                 prodCurrent.Sizes = null;
                 prodCurrent.Sizes = new List<Size> { new Size(size) };
             }
 
-            if(product.Products != null)
+            if (product.Products != null)
             {
                 SaveCart(GetCart().AddItem(product, "suit size ", quantity));
                 foreach (var currentProduct in product.Products)
                 {
-                    if(currentProduct.Sizes != null)
-                        {
-                            SaveCart(GetCart().AddItem(currentProduct, currentProduct.Sizes[0].Name, quantity));
-                        }
+                    if (currentProduct.Sizes != null)
+                    {
+                        SaveCart(GetCart().AddItem(currentProduct, currentProduct.Sizes[0].Name, quantity));
+                    }
                 }
-            } else SaveCart(GetCart().AddItem(prodCurrent, size , quantity));
+            }
+            else SaveCart(GetCart().AddItem(prodCurrent, size, quantity));
 
-            return RedirectToAction(nameof(Index), new { returnUrl, size});
+            return RedirectToAction(nameof(Index), new { returnUrl, size });
         }
 
         [HttpPost]
@@ -115,7 +117,7 @@ namespace Tilo.Controllers
         [Route("Cart/Clear")]
         public IActionResult Clear(string returnUrl)
         {
-           SaveCart(GetCart().Clear());
+            SaveCart(GetCart().Clear());
 
             return RedirectToAction(nameof(Index), new { returnUrl });
 
@@ -169,9 +171,9 @@ namespace Tilo.Controllers
         [Route("Cart/Completed")]
         public IActionResult Completed()
         {
-             return View();
+            return View();
         }
-        
+
         public async Task<IActionResult> SendMessage(Order order, IEnumerable<OrderLine> ordersForMessage)
         {
 
@@ -179,17 +181,17 @@ namespace Tilo.Controllers
             //var headerImagePath = "";
             foreach (var currentOrder in order.Lines)
             {
-                if(currentOrder.Product != null)
+                if (currentOrder.Product != null)
                 {
                     Product item = productRepository.Products.FirstOrDefault(p => p.Id == currentOrder.Product.Id);
-                    if(item.Images[0] != null)
+                    if (item.Images != null && item.Images.Count > 0)
                     {
                         currentOrder.Product.Images[0].Name = item.Images[0].Name;
                         //headerImagePath = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, "wwwroot/Files/Sm2/tiloLogo.png");
                     }
                 }
             }
-            var textMessage = infoAboutOrder(order, ordersForMessage);
+            //var textMessage = infoAboutOrder(order, ordersForMessage);
             EmailService emailService = new EmailService();
             string subject = "Order №" + numberOrder + " is processed. With love your Tiloshowroom";
             try
@@ -210,7 +212,7 @@ namespace Tilo.Controllers
                     if (currentOrder.Product != null)
                     {
                         Product item = productRepository.Products.FirstOrDefault(p => p.Id == currentOrder.Product.Id);
-                        if (item.Images[0] != null)
+                        if (item.Images != null && item.Images.Count > 0)
                         {
                             currentOrder.Product.Images[0].Name = item.Images[0].Name;
                             var path = string.Format("{0}/{1}", _appEnvironment.ContentRootPath, Url.Content("wwwroot/files/Sm2/" + item.Images[0].Name));
@@ -222,7 +224,7 @@ namespace Tilo.Controllers
                                 ContentPath = path,
                                 ContentType = "image/jpeg"
                             });
-                           
+
                         }
                     }
                 }
@@ -230,13 +232,13 @@ namespace Tilo.Controllers
                 var response = await _templateHelper.GetTemplateHtmlAsStringAsync<Order>("Orders/Content", order);
 
                 model.Content = response;
-               
+
                 await emailService.SendEmailAsync(order.Email, subject, model);
                 return RedirectToAction("Completed");
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message.ToString());            
+                throw new Exception(ex.Message.ToString());
             }
         }
 
@@ -244,7 +246,7 @@ namespace Tilo.Controllers
         {
 
             string orderLinesJoinAll = "";
-           
+
             int priceAllOrder = 0;
             string infoAboutProduct = "";
             var builder = new BodyBuilder();
@@ -278,19 +280,20 @@ namespace Tilo.Controllers
                                     name = "Бра";
                                 else name = p.Name;
 
-                                
 
-                                if(p.Price > 0)
+
+                                if (p.Price > 0)
                                 {
                                     priceAllOrder += p.Price;
                                     sizesAndNames += name + ": " + p.Sizes[0].Name;
                                     sizesAndNames += " (+ " + p.Price + "грн)" + "; ";
-                                }else sizesAndNames += name + ": " + p.Sizes[0].Name + "; ";
+                                }
+                                else sizesAndNames += name + ": " + p.Sizes[0].Name + "; ";
                             }
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw new Exception(ex.Message.ToString());
                 }
@@ -308,7 +311,7 @@ namespace Tilo.Controllers
                 //var image = builder.LinkedResources.Add(@"C:\Users\Nadiia\source\repos\Tilo\Tilo\wwwroot\Files\Sm2\1sertivicate1000.jpg");
                 //image.ContentId = MimeUtils.GenerateMessageId();
 
-                orderLinesJoinAll += orderLine.Product.Name   + " x " + orderLine.Quantity + " = " + orderLine.Quantity* orderLine.Product.Price + "грн; " + size + "\n";
+                orderLinesJoinAll += orderLine.Product.Name + " x " + orderLine.Quantity + " = " + orderLine.Quantity * orderLine.Product.Price + "грн; " + size + "\n";
                 //builder.HtmlBody = String.Format(@"<div class='row'>                      
                 //                                                    <div class='col-sm-4'>
                 //                                                       <img src=""cid:{0}"">
@@ -321,7 +324,7 @@ namespace Tilo.Controllers
                 //                                                      <div class='col-sm-2'>
                 //                                                        <h3> {3} грн </h3>
                 //                                                        </div>
-                                                                     
+
                 //                                </div>", image.ContentId, orderLine.Product.Name, size, orderLine.Quantity, orderLine.Quantity * orderLine.Product.Price);
 
                 priceAllOrder += orderLine.Quantity * orderLine.Product.Price;

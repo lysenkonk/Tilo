@@ -39,7 +39,7 @@
                                 </div>
                                 @*@if (@Model.product.Category.Name != "Подарочный сертификат")
                                     {*@
-                                <div class="eProductView_sliderNav">                                 
+                                <div class="eProductView_sliderNav">
                                     <div class="slick-slider slick-vertical">
                                         <div class="slick-list draggable">
                                             <div class="slick-track">
@@ -79,6 +79,7 @@
                                         <form class="variations_form cart " asp-action="AddToCart"
                                               asp-controller="Cart" method="post" enctype="multipart/form-data" id="@Model.product.Id">
                                             <input type="hidden" asp-for="@Model.product.Id" />
+                                            <input type="hidden" asp-for="@Model.product.Color" />
                                             <input type="hidden" asp-for="@Model.product.Name" />
                                             <input type="hidden" asp-for="@Model.product.Category.Name" />
 
@@ -183,8 +184,8 @@
 
                                                                     }
                                                                     @*<select class="source" name="product.Sizes[0].Name" asp-for="@Model.product.Sizes" asp-items="@(new SelectList(Model.product.Sizes, "Name", "Name"))">
-                                             <optgroup class="badge badge-secondary"  label="Enter size"></optgroup>
-                                            </select>*@
+                                                                         <optgroup class="badge badge-secondary"  label="Enter size"></optgroup>
+                                                                        </select>*@
                                                                 </div>
                                                             </div>
                                                         }
@@ -195,7 +196,7 @@
                                             <div>
                                                 @if (Model.product.Category.Name != "Подарочный сертификат")
                                                 {
-                                                    <label class="col-sm-8 center-block inline paddingBottom5 marginLeftM5"> Цвет: @Model.product.Color</label>
+                                                    <label class="col-sm-8 center-block inline paddingBottom5 marginLeftM5" asp-for="@Model.product.Color"> Цвет: @Model.product.Color</label>
                                                 }
 
                                                 @if (Model.product.Category.Name == "Подарочный сертификат")
@@ -250,7 +251,7 @@
                 {
                     <div class="row">
                         <div class="col-12 paddingBottom5">
-                           <h4>Вам также могут понравится:</h4>
+                            <h4>Вам также могут понравится:</h4>
                         </div>
                         <div class="text-left">
                             @foreach (var p in Model.Products.Take(5))
@@ -269,7 +270,7 @@
         </div>
     </div>
 </div>
-<script> 
+<script>
 
     $(document).ready(function () {
 
@@ -279,7 +280,7 @@
             $(e.currentTarget).addClass('selected');
             //$(e.currentTarget).addClass('focus');
 
-         });
+        });
 
         $('.sizeSuit1').click(function (e) {
             //e.preventDefault();
@@ -350,7 +351,7 @@
         });
     });
 
- 
+
 
     $('.btn-number').click(function (e) {
         e.preventDefault();
