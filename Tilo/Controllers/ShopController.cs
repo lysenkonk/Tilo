@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Tilo.Models;
 using Tilo.Models.ViewModels;
@@ -100,12 +101,39 @@ namespace Tilo.Controllers
         [Route("{category}/{page}")]
         public ViewResult List(string category, int page = 1)
         {
+            //int minPrice = FindMinPrice(_repository.Products
+            //    .Where(p => category == null || p.Category.Name == category)
+            //    .Where(p => p.Category.Name != null).ToList());
+
+            //int maxPrice = FindMaxPrice(_repository.Products
+            //    .Where(p => category == null || p.Category.Name == category)
+            //    .Where(p => p.Category.Name != null).ToList());
+
+            //if (minPrice > 0 && maxPrice > 0)
+            //{
+            //    List<int> listPrices = listPricesForFiltering(minPrice, maxPrice);
+            //    ViewBag.PricesForFiltering = new SelectList(listPrices, "Price");
+            //}
+
+            IQueryable<Product> products = _repository.Products
+               .Where(p => category == null || p.Category.Name == category)
+               .Where(p => p.Category.Name != null)
+               .OrderBy(p => p.Id);
+            if (category == "Купальники")
+            {
+                products = _repository.Products
+               .Where(p => p.Category.ParentCategory.Name == category)
+               .Where(p => p.Category.Name != null)
+               .OrderBy(p => p.Id);
+            }
+           
+
+            List<string> colors = products.Select(p => p.Color).Distinct().ToList();
+
+
             var viewModel = new ProductsViewModel
             {
-                Products = _repository.Products
-                .Where(p => category == null || p.Category.Name == category)
-                .Where(p => p.Category.Name != null)
-                .OrderBy(p => p.Id)
+                Products = products
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
                 PagingInfo = new PagingInfo
@@ -116,10 +144,141 @@ namespace Tilo.Controllers
                                 _repository.Products.Where(p => p.Category.Name != null).Count() :
                                 _repository.Products.Where(e => e.Category.Name == category).Count()
                 },
-                CurrentCategory = category
+                CurrentCategory = category,
+                FilterViewModel = new FilterViewModel(colors),
+                SortViewModel = new SortViewModel(SortState.PriceAsc)
+
             };
             return View(viewModel);
         }
+
+
+        [Route("Shop/ListFilteringProducts/")]
+        public async Task<IActionResult> ListFilteringProducts(string category, string color, int page = 1, SortState sortOrder = SortState.PriceAsc)
+        {
+
+            //filtering
+            IQueryable<Product> products = _repository.Products;
+            if (!String.IsNullOrEmpty(category))
+            {
+                products = products.Where(p => p.Category.Name == category);
+            }
+            if (category == "Купальники")
+            {
+                products = _repository.Products
+               .Where(p => p.Category.ParentCategory.Name == category)
+               .Where(p => p.Category.Name != null)
+               .OrderBy(p => p.Id);
+            }
+            
+            List<string> colors = await products.Select(p => p.Color).Distinct().ToListAsync();
+            if (!String.IsNullOrEmpty(color) && color != "все цвета" )
+            {
+                products = products.Where(p => p.Color == color);
+            }
+
+
+            //sorting
+            switch (sortOrder)
+            {
+                case SortState.PriceDesc:
+                    products = products.OrderByDescending(p => p.Price);
+                    break;
+                default:
+                    products = products.OrderBy(p => p.Price);
+                    break;
+            }
+
+            var count = await products.CountAsync();
+            var items = await products.Skip((page - 1) * PageSize).Take(PageSize).ToListAsync();
+            
+
+            ProductsViewModel viewModel = new ProductsViewModel
+            {
+                Products = items,
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = count
+                },
+                CurrentCategory = category,
+                SortViewModel = new SortViewModel(sortOrder),
+                FilterViewModel = new FilterViewModel(colors, color)         
+
+            };
+            return View("List", viewModel);
+        }
+
+
+
+
+
+        //[HttpPost]
+        //[Route("Shop/ListFilteringProductsByPrice/")]
+        //public ViewResult ListFilteringProductsByPrice(ProductsViewModel model, int page = 1)
+        //{
+        //    var viewModel = new ProductsViewModel
+        //    {
+        //        Products = _repository.GetFilteringProductsByPrice(model.CurrentCategory, model.MinPrice, model.MaxPrice)
+        //        .OrderBy(p => p.Id)
+        //        .Skip((page - 1) * PageSize)
+        //        .Take(PageSize),
+        //        PagingInfo = new PagingInfo
+        //        {
+        //            CurrentPage = page,
+        //            ItemsPerPage = PageSize,
+        //            TotalItems = model.CurrentCategory == null ?
+        //                        _repository.Products.Where(p => p.Category.Name != null).Count() :
+        //                        _repository.Products.Where(e => e.Category.Name == model.CurrentCategory).Count()
+        //        },
+        //        CurrentCategory = model.CurrentCategory,
+
+        //    };
+        //    return View("List", viewModel);
+        //}
+
+
+        //private int FindMinPrice(List<Product> repo)
+        //{
+        //    int minPrice = repo[0].Price;
+        //    foreach(var p in repo)
+        //    {
+        //        if(p.Price < minPrice)
+        //        {
+        //            minPrice = p.Price;
+        //        }
+        //    }
+        //    return minPrice;
+        //}
+
+        //private int FindMaxPrice(List<Product> repo)
+        //{
+        //    int maxPrice = repo[0].Price;
+        //    foreach (var p in repo)
+        //    {
+        //        if (p.Price > maxPrice)
+        //        {
+        //            maxPrice = p.Price;
+        //        }
+        //    }
+        //    return maxPrice;
+        //}
+
+        //private List<int> listPricesForFiltering(int minPrice, int maxPrice)
+        //{
+        //    List<int> listPrices = new List<int>();
+        //    if (minPrice < maxPrice)
+        //    {
+        //        do
+        //        {
+        //            listPrices.Add(minPrice + 50);
+        //        } while (minPrice + 50 >= maxPrice);
+                
+        //    }
+        //    listPrices.Add(maxPrice);
+        //    return listPrices;
+        //}
 
         public IViewComponentResult Invoke(AdminProductViewModel model)
         {

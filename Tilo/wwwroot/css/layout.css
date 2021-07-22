@@ -2234,3 +2234,22 @@ color: white;
  /*margin-top: -20px;*/
     }
 /*}*/
+.minPrice {
+    width: 15%;
+}
+@media(min-width: 780px) {
+    .minPrice {
+        margin-top: 50px;
+    }
+}
+
+        .filter {
+            margin-top: 30px;
+            width: 15%;
+        }
+
+@media(min-width: 780px) {
+    .filter {
+        margin-top: 50px;
+    }
+}

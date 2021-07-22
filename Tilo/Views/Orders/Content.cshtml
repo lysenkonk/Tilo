@@ -84,11 +84,6 @@
             margin: 2px;
         }
     </style>
-
-
-
-
-
 </head>
 <body>
     @*<div class="header-content">
@@ -156,11 +151,8 @@
                                 {
                                     <td class="marginTd widthTd250"><p> @name: @p.Sizes[0].Name </p></td>
                                 }
-
                             </tr>
-
                         }
-
                     }
                 }
                 else
@@ -177,9 +169,7 @@
                             <p>Кількість: @orderLine.Quantity</p>
                         </td>
                         <td class="marginTd"><h4>@(orderLine.Product.Price * orderLine.Quantity) грн</h4></td>
-
                     </tr>
-
                     price = orderLine.Product.Price * orderLine.Quantity;
                     priceAllOrder = priceAllOrder + price;
                 }

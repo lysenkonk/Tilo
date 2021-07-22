@@ -838,7 +838,7 @@
 
 
 
-    @media(max-width: 800px) {
+    @media(max-width: 780px) {
         .eProductView_body {
             display: -ms-flexbox;
             display: flex;

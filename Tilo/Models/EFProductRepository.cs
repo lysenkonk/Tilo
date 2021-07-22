@@ -20,6 +20,58 @@ namespace Tilo.Models
 
         public IQueryable<Product> Products =>  _context.Products.Include(p => p.Images).Include(p => p.Category).Include(p => p.Products).ThenInclude(subProduct => subProduct.Sizes).Include(p => p.Sizes);
 
+
+        //filtering products by the price
+        public IQueryable<Product> GetFilteringProductsByPrice(string category = null, int? minPrice = null, int? maxPrice = null)
+        {
+            IQueryable<Product> data = Products;
+            if(category != null)
+            {
+                data = data.Where(p => p.Category.Name == category);
+            }
+            if(minPrice != null)
+            {
+                data = data.Where(p => p.Price >= minPrice);
+            }
+            if (maxPrice != null && maxPrice > 0)
+            {
+                data = data.Where(p => p.Price <= maxPrice);
+            }
+            return data;
+        }
+
+        //filtering products by the color
+        public IQueryable<Product> GetFilteringProductsByColor(string category = null, string color = null)
+        {
+            IQueryable<Product> data = _context.Products;
+            if (category != null)
+            {
+                data = data.Where(p => p.Category.Name == category);
+            }
+            if (color != null)
+            {
+                data = data.Where(p => p.Color == color);
+            }
+
+            return data;
+        }
+
+        //filtering products by the size
+        public IQueryable<Product> GetFilteringProductsBySize(string category = null, string size = null)
+        {
+            IQueryable<Product> data = _context.Products;
+            if (category != null)
+            {
+                data = data.Where(p => p.Category.Name == category);
+            }
+            if (size != null)
+            {
+                data = data.Where(p => p.Color == size);
+            }
+
+            return data;
+        }
+
         //public IQueryable<string> Colors => _context.Products.Select(x => x.Color).Distinct().OrderBy(x => x);
         public IEnumerable<string> Colors => new string[]{"чёрный", "белый", "красный", "зелёный", "синий", "айвори","марсала", "оранжевый", "розовый", "желтый", "голубой", "изумрудный", "морская волна", "серый", "фиолетовый", "серебряный", "золотой"};
         //public IEnumerable<string> Sizes => new string[] { "70", "75", "80", "A", "B", "C", "D", "E", "XS", "S", "M", "L" };

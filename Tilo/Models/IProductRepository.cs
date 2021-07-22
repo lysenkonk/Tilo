@@ -9,6 +9,11 @@ namespace Tilo.Models
     {
         IQueryable<Product> Products { get; }
 
+
+        IQueryable<Product> GetFilteringProductsBySize(string category, string size);
+        IQueryable<Product> GetFilteringProductsByColor(string category, string color);
+        IQueryable<Product> GetFilteringProductsByPrice(string category, int? minPrice, int? maxPrice);
+
         IEnumerable<string> Colors { get; }
         //IEnumerable<string> Sizes { get; }
 
