@@ -2235,21 +2235,39 @@ color: white;
     }
 /*}*/
 .minPrice {
-    width: 15%;
+    /*width: 15%;*/
 }
-@media(min-width: 780px) {
+/*@media(min-width: 780px) {
     .minPrice {
         margin-top: 50px;
     }
-}
+}*/
 
         .filter {
             margin-top: 30px;
-            width: 15%;
         }
 
 @media(min-width: 780px) {
     .filter {
         margin-top: 50px;
+        display: block;
+    }
+}
+
+.selectFilter
+{
+    /*width: 15%;*/
+}
+.buttonFilter {
+    display: inline-grid;
+}
+@media(min-width: 780px) {
+    .buttonFilter {
+        display: inline;
+    }
+}
+@media(min-width: 780px) {
+    .filterCommon {
+        width: 100%;
     }
 }

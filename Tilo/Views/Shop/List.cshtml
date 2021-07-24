@@ -9,18 +9,28 @@
         <div class="row filter">
             <form asp-action="ListFilteringProducts" asp-route-category="@Model.CurrentCategory"
                   asp-route-sortOrder="@(Model.SortViewModel.Current)">
-                <div class="col-sm-9">
-                    @*<select name="minPrice" class="minPrice" asp-for="@Model.MinPrice" asp-items="@ViewBag.PricesForFiltering">
-                        </select>*@
-                    <select name="color" asp-items="@Model.FilterViewModel.Colors">
+                @*<div class="col-sm-9">
+                    <text>Цена</text>
+                </div>*@
+                <div class="col-sm-9 filterCommon">
+                    <text>от</text>
+                    <select name="minPrice" class="selectFilter" asp-for="@Model.MinPrice" asp-items="@ViewBag.PricesForFiltering"></select>
+                    <text>до</text>
+                    <select name="maxPrice" class="selectFilter" asp-for="@Model.MaxPrice" asp-items="@ViewBag.PricesForFiltering">
+                        <option  value="@Model.MaxPrice" selected></option>
+                    </select>
+                    <select name="color" class="selectFilter" asp-items="@Model.FilterViewModel.Colors">
                         @*<option selected value="@Model.FilterViewModel.SelectedColor"></option>*@
                     </select>
-                    <input type="submit" value="Фильтр" />
+                    <div class="buttonFilter">
+                        <input type="submit" value="Фильтр" />
+                        <input type="submit" asp-action="List" asp-route-category="@Model.CurrentCategory" value="Сбросить" />
+                    </div>
                 </div>
 
                 <div class="col-sm-9">
                     @*<select name="color" asp-items="@Model.SortViewModel.">
-                    </select>*@
+            </select>*@
                 </div>
             </form>
         </div>
@@ -69,7 +79,7 @@
             </div>
         </div>
         <div page-model="@Model.PagingInfo" page-action="ListFilteringProducts" page-classes-enabled="true"
-             page-class="btn" page-class-normal="btn-secondary" page-url-category="@Model.CurrentCategory" page-url-color="@(Model.FilterViewModel.SelectedColor)"
+             page-class="btn" page-class-normal="btn-secondary" page-url-category="@Model.CurrentCategory" page-url-color="@(Model.FilterViewModel.SelectedColor)" page-url-maxPrice="@Model.MaxPrice" page-url-minPrice="@Model.MinPrice"
              page-url-sortOrder="@(Model.SortViewModel.Current)"
              page-class-selected="btn-primary"
              class="pagination">
