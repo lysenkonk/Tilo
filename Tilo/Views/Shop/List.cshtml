@@ -6,84 +6,105 @@
 
 <section class="new-products appear-from-nowhere shown">
     <div class="container parent-height">
-        <div class="row filter">
-            <form asp-action="ListFilteringProducts" asp-route-category="@Model.CurrentCategory"
-                  asp-route-sortOrder="@(Model.SortViewModel.Current)">
-                @*<div class="col-sm-9">
-                    <text>Цена</text>
-                </div>*@
-                <div class="col-sm-9 filterCommon">
-                    <text>от</text>
-                    <select name="minPrice" class="selectFilter" asp-for="@Model.MinPrice" asp-items="@ViewBag.PricesForFiltering"></select>
-                    <text>до</text>
-                    <select name="maxPrice" class="selectFilter" asp-for="@Model.MaxPrice" asp-items="@ViewBag.PricesForFiltering">
-                        <option  value="@Model.MaxPrice" selected></option>
-                    </select>
-                    <select name="color" class="selectFilter" asp-items="@Model.FilterViewModel.Colors">
-                        @*<option selected value="@Model.FilterViewModel.SelectedColor"></option>*@
-                    </select>
-                    <div class="buttonFilter">
-                        <input type="submit" value="Фильтр" />
-                        <input type="submit" asp-action="List" asp-route-category="@Model.CurrentCategory" value="Сбросить" />
+        @if (Model.CurrentCategory != "Подарочный сертификат")
+        {
+            <div class="row filter">
+                <form asp-action="ListFilteringProducts" asp-route-category="@Model.CurrentCategory"
+                      asp-route-sortOrder="@(Model.SortViewModel.Current)">
+                    @*<div class="col-sm-9">
+                        <text>Цена</text>
+                    </div>*@
+                    <div class="col-sm-9 filterCommon">
+                        <text>от</text>
+                        <select size="1" name="minPrice" class="selectFilter" asp-for="@Model.MinPrice" asp-items="@ViewBag.PricesForMinFiltering">
+                            <option value="@Model.MinPrice" selected="selected" hidden="hidden">@Model.MinPrice</option>
+                        </select>
+                        <text>до</text>
+                        <select size="1" name="maxPrice" id="maxPrice" class="selectFilter" asp-for="@Model.MaxPrice" asp-items="@ViewBag.PricesForMaxFiltering">
+                            <option value="@Model.MaxPrice" selected="selected" hidden="hidden">@Model.MaxPrice</option>
+                        </select>
+                        <select name="color" class="selectFilter" asp-items="@Model.FilterViewModel.Colors">
+                            @*<option selected value="@Model.FilterViewModel.SelectedColor"></option>*@
+                        </select>
+                        <div class="buttonFilter">
+                            <input type="submit" value="Фильтр" />
+                            <input type="submit" asp-action="List" asp-route-category="@Model.CurrentCategory" value="Сбросить" />
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-sm-9">
-                    @*<select name="color" asp-items="@Model.SortViewModel.">
-            </select>*@
-                </div>
-            </form>
-        </div>
-        <div class="row parent-height appearing-group shown">
-            <div class="col-xs-12 parent-height">
-                <div class="wrapper">
-                    <input type="hidden" asp-for="@Model.CurrentCategory" />
+                    <div class="col-sm-9">
+                        @*<select name="color" asp-items="@Model.SortViewModel.">
+                        </select>*@
+                    </div>
+                </form>
+            </div>
+        }
+            <div class="row parent-height appearing-group shown">
+                <div class="col-xs-12 parent-height">
+                    <div class="wrapper">
+                        <input type="hidden" asp-for="@Model.CurrentCategory" />
 
-                    <ul class="products clearfix">
-                        @foreach (var p in Model.Products)
-                        {
-                            <li class="product inner-appearing-object">
-                                <div class="picture img">
-                                    <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
-                                        @*<img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)">*@
+                        <ul class="products clearfix">
+                            @foreach (var p in Model.Products)
+                            {
+                                <li class="product inner-appearing-object">
+                                    <div class="picture img">
+                                        <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
+                                            @*<img src="@Url.Content("/files/main/newProducts/" + p.Images[0].Name)">*@
 
-                                        @if (p.Images.Count > 0)
-                                        {
-                                            <img src="@Url.Content("/files/Bg/" + p.Images[0].Name)">
-                                        }
-                                        else
-                                        {
-                                            <img src="@Url.Content("/files/Bg/noPhoto.jpg")">
-                                        }
+                                            @if (p.Images.Count > 0)
+                                            {
+                                                <img src="@Url.Content("/files/Bg/" + p.Images[0].Name)">
+                                            }
+                                            else
+                                            {
+                                                <img src="@Url.Content("/files/Bg/noPhoto.jpg")">
+                                            }
 
-                                    </a>
-                                </div>
-                                <div class="description">
-                                    <div class="information">
-                                        <div class="name">
-                                            <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
-                                                <p>@p.Name</p>
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <p></p>
-                                            <span class="woocommerce-Price-currencySymbol">@p.Price грн</span>
+                                        </a>
+                                    </div>
+                                    <div class="description">
+                                        <div class="information">
+                                            <div class="name">
+                                                <a asp-action="Product" asp-controller="Shop" asp-route-id="@p.Id">
+                                                    <p>@p.Name</p>
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <p></p>
+                                                <span class="woocommerce-Price-currencySymbol">@p.Price грн</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                        }
+                                </li>
+                            }
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
+            <div page-model="@Model.PagingInfo" page-action="ListFilteringProducts" page-classes-enabled="true"
+                 page-class="btn" page-class-normal="btn-secondary" page-url-category="@Model.CurrentCategory" page-url-color="@(Model.FilterViewModel.SelectedColor)" page-url-maxPrice="@Model.MaxPrice" page-url-minPrice="@Model.MinPrice"
+                 page-url-sortOrder="@(Model.SortViewModel.Current)"
+                 page-class-selected="btn-primary"
+                 class="pagination">
+            </div>
         </div>
-        <div page-model="@Model.PagingInfo" page-action="ListFilteringProducts" page-classes-enabled="true"
-             page-class="btn" page-class-normal="btn-secondary" page-url-category="@Model.CurrentCategory" page-url-color="@(Model.FilterViewModel.SelectedColor)" page-url-maxPrice="@Model.MaxPrice" page-url-minPrice="@Model.MinPrice"
-             page-url-sortOrder="@(Model.SortViewModel.Current)"
-             page-class-selected="btn-primary"
-             class="pagination">
-        </div>
-    </div>
 
 </section> 
+<script>
+    //$('#maxPrice').empty();
+    $('#maxPrice option:selected').prop('selected', false);
+
+
+
+    /* Set the width of the sidebar to 250px (show it) */
+    function openNav() {
+        if (document.getElementById("mySidepanel").style.width = "380px")
+            document.getElementById("mySidepanel").style.width = "380px";
+    }
+    /* Set the width of the sidebar to 0 (hide it) */
+    function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+    }
+</script>

@@ -38,7 +38,7 @@ namespace Tilo.Controllers
 
         private IProductRepository _repository;
         private ICategoryRepository _repoCategories;
-        public int PageSize = 9;
+        public int PageSize = 10;
 
         public ShopController(IProductRepository repo, ICategoryRepository categories)
         {
@@ -96,12 +96,35 @@ namespace Tilo.Controllers
             };
             return View(viewModel);
         }
-        [HttpPost]
-        [HttpGet]
+
+
+        [Route("Shop/List/")]
         [Route("Shop/List/{category}")]
         [Route("{category}/{page}")]
         public ViewResult List(string category, int page = 1)
-        {
+        {            
+            IQueryable<Product> products = _repository.Products
+               .Where(p => category == null || p.Category.Name == category)
+               .Where(p => p.Category.Name != null)
+               .OrderBy(p => p.Id);
+
+            if (category == "Купальники")
+            {
+                products = _repository.Products
+               .Where(p => p.Category.ParentCategory.Name == category)
+               .Where(p => p.Category.Name != null)
+               .OrderBy(p => p.Id);
+            }
+
+
+            if(products.Count() == 0)
+            {
+                //}
+                int count = _repository.Products.Count();
+                IQueryable<Product> Products = _repository.Products.Where(p => p.Category != null && p.Category.Name != "Подарочный сертификат").OrderByDescending(p => p.Id).Take(10);
+                return View("Index", Products);
+            }
+
             int minPrice = FindMinPrice(_repository.Products
                 .Where(p => category == null || p.Category.Name == category)
                 .Where(p => p.Category.Name != null).ToList());
@@ -112,23 +135,12 @@ namespace Tilo.Controllers
 
             if (minPrice > 0 && maxPrice > 0)
             {
-                List<int> listPrices = listPricesForFiltering(0, maxPrice);
-                ViewBag.PricesForFiltering = new SelectList(listPrices, "Price");
+                //List<int> listPrices = listPricesForFiltering(minPrice, maxPrice);
+                List<int> listPrices = products.Select(p => p.Price).Distinct().ToList();
+                //ViewBag.PricesForFiltering = new SelectList(listPrices, "Price");
+                ViewBag.PricesForMinFiltering = new SelectList(listPrices, minPrice);
+                ViewBag.PricesForMaxFiltering = new SelectList(listPrices, maxPrice);
             }
-
-            IQueryable<Product> products = _repository.Products
-               .Where(p => category == null || p.Category.Name == category)
-               .Where(p => p.Category.Name != null)
-               .OrderBy(p => p.Id);
-            if (category == "Купальники")
-            {
-                products = _repository.Products
-               .Where(p => p.Category.ParentCategory.Name == category)
-               .Where(p => p.Category.Name != null)
-               .OrderBy(p => p.Id);
-            }
-           
-
             List<string> colors = products.Select(p => p.Color).Distinct().ToList();
 
 
@@ -155,7 +167,7 @@ namespace Tilo.Controllers
             return View(viewModel);
         }
 
-
+    
         [Route("Shop/ListFilteringProducts/")]
         public async Task<IActionResult> ListFilteringProducts(string category, string color, int minPrice = 0, int maxPrice = 0, int page = 1, SortState sortOrder = SortState.PriceAsc)
         {
@@ -173,7 +185,7 @@ namespace Tilo.Controllers
                .OrderBy(p => p.Id);
             }
 
-            List<string> colors = await products.Select(p => p.Color).Distinct().ToListAsync();
+            
             if (!String.IsNullOrEmpty(color) && color != "все цвета" )
             {
                 products = products.Where(p => p.Color == color);
@@ -181,25 +193,26 @@ namespace Tilo.Controllers
 
             if (minPrice == 0)
             {
-                minPrice = FindMinPrice(_repository.Products
-                   .Where(p => category == null || p.Category.Name == category)
-                   .Where(p => p.Category.Name != null).ToList());
+                minPrice = FindMinPrice(products.ToList());
             }
 
-            if (maxPrice == 0 || maxPrice <= minPrice)
+          
+            int max = FindMaxPrice(products.ToList());
+
+            if (maxPrice == 0 || maxPrice < minPrice)
             {
-                maxPrice = FindMaxPrice(_repository.Products
-                .Where(p => category == null || p.Category.Name == category)
-                .Where(p => p.Category.Name != null).ToList());
+                maxPrice = max;
             }
-            int max = FindMaxPrice(_repository.Products
-               .Where(p => category == null || p.Category.Name == category)
-               .Where(p => p.Category.Name != null).ToList());
 
             if (minPrice > 0 && maxPrice > 0)
             {
-                List<int> listPrices = listPricesForFiltering(0, max);
-                ViewBag.PricesForFiltering = new SelectList(listPrices, "Price");
+                //List<int> listPrices = listPricesForFiltering(0, maxPrice);
+
+                List<int> listPrices =  await products.Select(p => p.Price).Distinct().ToListAsync();
+                ViewBag.PricesForMinFiltering = new SelectList(listPrices, minPrice);
+                ViewBag.PricesForMaxFiltering = new SelectList(listPrices, maxPrice);
+
+
             }
 
             if (minPrice > 0)
@@ -210,7 +223,7 @@ namespace Tilo.Controllers
             {
                 products = products.Where(p => p.Price <= maxPrice);
             }
-
+            List<string> colors = await products.Select(p => p.Color).Distinct().ToListAsync();
 
             //sorting
             switch (sortOrder)
